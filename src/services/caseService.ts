@@ -13,7 +13,6 @@ export async function listCases(): Promise<CaseDetailModel[]> {
     return new Promise((resolve: any) => {
 
         resolve([{
-
             id: 1,
             caseSatus: 'caseSatus',
             caseOrigin: 'caseOrigin',
