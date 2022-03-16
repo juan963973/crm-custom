@@ -138,9 +138,9 @@ export default function Id() {
                                                 <Row className='d-flex justify-content-end'>Case Owner</Row>
                                             </Col>
                                             <Col>
-                                                <Row>{data.caseSatus}</Row>
-                                                <Row>{data.caseOrigin}</Row>
-                                                <Row>Jonathan Noguera Garcia</Row>
+                                                <Row>{cases?.caseStatusName ? cases.caseStatusName: ' - ' }</Row>
+                                                <Row>{cases[0]?.caseOrigin ? cases[0].caseOrigin: ' - ' }</Row>
+                                                <Row>{cases?.caseOwnerUserName ? cases.caseOwnerUserName: ' - ' }</Row>
                                             </Col>
                                         </Row>
                                     </Card>
@@ -160,9 +160,9 @@ export default function Id() {
                                                 <Row>Img</Row>
                                             </Col>
                                             <Col>
-                                                <Row>ADEMIR SANTOS DE MARÍA</Row>
-                                                <Row>ademirdemaria@hotmail.com</Row>
-                                                <Row>(098) 190-5855</Row>
+                                                {/* <Row>{cases[0].contactName ? cases[0].contactName: ' - ' }</Row> */}
+                                                <Row>ademirdemaria@hotmail.com (no tenemos)</Row>
+                                                {/* <Row>{cases[0].contactPhone ? cases[0].contactPhone: ' - ' }</Row> */}
                                             </Col>
                                         </Row>
                                     </Card>
@@ -183,9 +183,9 @@ export default function Id() {
                                             </Row>
                                             <Row>
                                                 <Col style={{ color: 'gray' }}>Nro_Ticket_Finansys</Col>
-                                                <Col> - </Col>
+                                                <Col>{cases[0]?.ticketNumber ? cases[0].ticketNumber: ' - ' }</Col>
                                                 <Col style={{ color: 'gray' }}> Tiempo (auto) </Col>
-                                                <Col> - </Col>
+                                                <Col>{cases[0]?.time ? cases[0].time: ' - ' }</Col>
                                             </Row>
                                         </Row>
 
@@ -196,12 +196,12 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Nombre y Apellido</Col>
                                                 <Col align="start">
-                                                    Ricardo Yorki
+                                                {cases?.contactFullname ? cases.contactFullname: ' - ' }
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Empresa name</Col>
                                                 <Col sm={4} align="start">
-                                                    -
+                                                {cases?.companyName ? cases.companyName: ' - ' }
                                                 </Col>
                                             </Row>
                                         </Row>
@@ -213,40 +213,40 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Tipo de Documento</Col>
                                                 <Col align="start">
-                                                    Cédula
+                                                {cases?.contactDocumentTypeName ? cases.contactDocumentTypeName: ' - ' }
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Correo electronico</Col>
                                                 <Col sm={4} align="start">
-                                                    example@example.com
+                                                    example@example.com (no tenemos)
                                                 </Col>
                                             </Row>
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Nro. de Documento Cliente</Col>
                                                 <Col align="start">
-                                                    0000000000
+                                                {cases?.contactDocumentNumber ? cases.contactDocumentNumber: ' - ' }
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Celular</Col>
                                                 <Col sm={4} align="start">
-                                                    0955 222 333
+                                                {cases?.contactMobile ? cases.contactMobile: ' - ' }
                                                 </Col>
                                             </Row>
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Código Cliente</Col>
                                                 <Col align="start">
-                                                    000000
+                                                {cases?.contactClientCode ? cases.contactClientCode: ' - ' }
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Phone</Col>
                                                 <Col sm={4} align="start">
-                                                    -
+                                                {cases?.contactPhone ? cases.contactPhone: ' - ' }
                                                 </Col>
                                             </Row>
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Sucursal cliente</Col>
                                                 <Col sm={4} align="start">
-                                                    Eusebio Ayala
+                                                {cases?.contactBranchName ? cases.contactBranchName: ' - ' }
                                                 </Col>
                                                 <Col ></Col>
                                                 <Col ></Col>
@@ -260,23 +260,23 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Nombre y apellido gestor</Col>
                                                 <Col align="start">
-                                                    -
+                                                    {cases?.promoterFullName ? cases.promoterFullName: ' - ' }
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Nro. de documento gestor</Col>
                                                 <Col sm={4} align="start">
-                                                    -
+                                                    {cases?.promoterDocumentNumber ? cases.promoterDocumentNumber: ' - ' }
                                                 </Col>
                                             </Row>
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Celular gestor</Col>
                                                 <Col align="start">
-                                                    -
+                                                    {cases?.promoterPhone ? cases.promoterPhone: ' - ' }
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Email gestor</Col>
                                                 <Col sm={4} align="start">
-                                                    -
+                                                {cases?.promoterEmail ? cases.promoterEmail: ' - ' }
                                                 </Col>
                                             </Row>
                                         </Row>
@@ -292,16 +292,16 @@ export default function Id() {
                                                     <Row className='d-flex justify-content-end'>Tipificacion</Row>
                                                 </Col>
                                                 <Col>
-                                                    <Row>CONSULTA</Row>
-                                                    <Row>Cuenta Corriente</Row>
-                                                    <Row>Comision / gastos / penalidad / intereses / impuestos / seguro</Row>
+                                                    <Row>{cases?.typeName ? cases.typeName: ' - ' }</Row>
+                                                    <Row>{cases?.subtypeName ? cases.subtypeName: ' - ' }</Row>
+                                                    <Row>{cases?.typificationName ? cases.typificationName: ' - ' }</Row>
                                                 </Col>
                                             </Row>
                                         </Row>
 
                                         <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                                             <Row>
-                                                <Col> <h6>CLASIFICACIÓN DEL CASO</h6> </Col>
+                                                <Col> <h6>EXPLICACIÓN DEL CASO</h6> </Col>
                                             </Row>
                                             <Row className='mt-200'>
                                                 <Col sm={3} style={{ color: 'gray', marginRight: 30 }} >
@@ -310,36 +310,35 @@ export default function Id() {
                                                 </Col>
                                                 <Col>
                                                     <Row>CONSULTA</Row>
-                                                    <Row>Cuenta Corriente</Row>
-                                                    <Row>Contacto el cliente de referencia, el mismo solicita contactar con su oficial de cuentas, menciona es referente a la habilitación para operar con cuentas corrientes, menciona que hace 7 años aproximadamente fue inhabilitado para uso de cta cte y hace aproximadamente 15 días se acerco a la sucursal ... Show more</Row>
+                                                    <Row>{cases[0]?.description ? cases[0].description: ' - ' }</Row>
                                                 </Col>
                                             </Row>
                                         </Row>
 
                                         <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                                             <Row>
-                                                <Col> <h6>DATOS DEL CONTACTO</h6> </Col>
+                                                <Col> <h6>DATOS DEL CASO</h6> </Col>
                                             </Row>
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Case Origin</Col>
                                                 <Col align="start">
-                                                    CALL CENTER
+                                                    CALL {cases[0]?.caseOrigin ? cases[0].caseOrigin: ' - ' }
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Case owner</Col>
                                                 <Col sm={4} align="start">
-                                                    Unkwnown
+                                                    {cases[0]?.caseOwnerName ? cases[0].caseOwnerName: ' - ' }
                                                 </Col>
                                             </Row>
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Nro. ticket</Col>
                                                 <Col align="start">
-                                                    123456
+                                                {cases?.ticketNumber ? cases.ticketNumber: ' - ' }
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Fecha/Hora Creado</Col>
                                                 <Col sm={4} align="start">
-                                                    Mar 4, 2022 08:51 AM
+                                                    {cases?.createdAt ? cases.createdAt: ' - ' }
                                                 </Col>
                                             </Row>
                                             <Row align="end">
@@ -348,15 +347,15 @@ export default function Id() {
                                                     PENDIENTE
                                                 </Col>
 
-                                                <Col style={{ color: 'gray' }}></Col>
+                                                <Col style={{ color: 'gray' }}>Fecha/Hora Creado (auto)</Col>
                                                 <Col sm={4} align="start">
-                                                    Mar 4, 2022 08:51 AM
+                                                {cases[0]?.createdAt ? cases[0].createdAt: ' - ' }
                                                 </Col>
                                             </Row>
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Dirección de llamada</Col>
                                                 <Col align="start">
-                                                    Entrante
+                                                    {cases?.callDirection ? cases.callDirection: ' - ' }
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}></Col>
@@ -366,7 +365,7 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>id ServiDesk</Col>
                                                 <Col align="start">
-                                                    -
+                                                    {cases?.idServidesk ? cases.idServidesk: ' - ' }
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}></Col>
@@ -382,18 +381,18 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col >Áreas Resolutoras</Col>
                                                 <Col align="start">
-                                                    Sucursal Eusebio Ayala (16)
+                                                    {cases?.resolverAreas ? cases.resolverAreas: ' - ' }
                                                 </Col>
 
                                                 <Col>Oficial negocio</Col>
                                                 <Col sm={4} align="start">
-                                                    -
+                                                    {cases?.businessOfficerName ? cases.businessOfficerName: ' - ' }
                                                 </Col>
                                             </Row>
                                             <Row align="start">
                                                 <Col >Personas Resolutoras</Col>
                                                 <Col align="start">
-                                                    Jonnatan Miranda
+                                                    {cases?.resolvers ? cases.resolvers: ' - ' }
                                                 </Col>
                                             </Row>
 
@@ -406,7 +405,7 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col >Solution</Col>
                                                 <Col align="start">
-                                                    -
+                                                {cases?.solution ? cases.solution: ' - ' }
                                                 </Col>
 
                                                 <Col>Comentario de Contacto / Cierre</Col>
@@ -417,7 +416,7 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col >¿Desea solicitar una prórroga del caso?</Col>
                                                 <Col align="start">
-                                                    -
+                                                {cases?.requestExtension ? cases.requestExtension: ' - ' }
                                                 </Col>
 
                                                 <Col>Calificación</Col>
