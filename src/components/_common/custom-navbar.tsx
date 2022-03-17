@@ -13,9 +13,9 @@ function CustomNavbar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="contacts">Contactos</Nav.Link>
-              <Nav.Link href="company">Empresas</Nav.Link>
-              <Nav.Link  href="case">
+              <Nav.Link href="/contacts">Contactos</Nav.Link>
+              <Nav.Link href="/company">Empresas</Nav.Link>
+              <Nav.Link  href="/case">
                 Casos
                 {/* <Link href="case">Casos</Link> */}
               </Nav.Link>
@@ -41,7 +41,7 @@ function CustomNavbar() {
               <Button variant="outline-success">Buscar</Button>
             </Form> */}
 
-            <SearchGlobal />
+            {/* <SearchGlobal /> */}
 
             <Nav>
               <Nav.Link href="#deets">icon1</Nav.Link>

@@ -1,0 +1,26 @@
+// $color: #209FD3;
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+    .containerDroppable { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center;
+        .droppable{
+            border: 2px dashed black;
+            padding: 8px; 
+            height: 800px; 
+            width: 300px;
+            overflow-y: auto;
+            .draggable{
+                padding: 16px;
+                margin: 0 0 16px 0;
+                height: 40px;
+                border-radius: 8px;
+            }
+        }
+        
+    }
+}

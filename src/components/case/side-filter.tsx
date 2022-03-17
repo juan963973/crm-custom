@@ -127,7 +127,7 @@ function SideFilter() {
           <a style={{fontWeight:"bold", color:"black"}} onClick={onClickIcon}><IoCaretDown/>Filtrar por campos</a>
           {['checkbox'].map((type) => (
             <div key={`inline-${type}`} className="mb-3">
-              {
+              {/* {
                 Object.keys(headers).map((h) => (
                   <div>
                     <Form.Check
@@ -149,7 +149,7 @@ function SideFilter() {
                   <br/>
                   </div>
                 ))
-              }
+              } */}
             </div>
           ))}
         </Form>
