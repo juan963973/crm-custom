@@ -1,4 +1,4 @@
-import { Button, Col, Container, Form, Row, Card, InputGroup, FormControl, ButtonGroup, ToggleButton, Nav } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Card, InputGroup, FormControl, ButtonGroup, ToggleButton, Nav, Tabs, Tab } from "react-bootstrap";
 import Select from 'react-select';
 import { useEffect, useState } from "react";
 
@@ -113,31 +113,38 @@ export default function Id() {
                         <p className="text-primary">Add link</p>
                     </Col>
 
-                    {/* <Col style={{
-                        backgroundColor: '#edf0f4', maxHeight: "25rem", overflow: "auto"
-                    }}> */}
                     <Col style={{
                         backgroundColor: '#edf0f4'
                     }}>
                         <Row>
-                        <Row sm={4} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <Row sm={4} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <Col style={{ backgroundColor: 'white', width: 'auto', borderColor: '#edf0f4', borderStyle: 'solid' }}>
-                                    <Nav variant="pills" defaultActiveKey="/home" >
+                                    {/* <Nav variant="pills" defaultActiveKey="/home" >
                                         <Nav.Item>
                                             <Nav.Link href="/home">Overview</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
                                             <Nav.Link eventKey="">Timeline</Nav.Link>
                                         </Nav.Item>
-                                    </Nav>
+                                    </Nav> */}
+
+                                    <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example" className="mb-3" variant="pills">
+                                        <Tab eventKey="overview" title="Overview">
+                                            Overview
+                                        </Tab>
+                                        <Tab eventKey="timeline" title="Timeline">
+                                            Timeline
+                                        </Tab>
+                                    </Tabs>
 
                                 </Col>
                                 <Col align="end">Last Update : {cases?.updatedAt ? cases.updatedAt : ' - '}</Col>
                             </Row>
                         </Row>
 
-                        <Row style={{ maxHeight: "22rem", overflow: "auto"
-                    }}>
+                        <Row style={{
+                            maxHeight: "22rem", overflow: "auto"
+                        }}>
 
 
                             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
