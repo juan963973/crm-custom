@@ -1,4 +1,4 @@
-import { Button, Col, Container, Form, Row, Card, InputGroup, FormControl, ButtonGroup, ToggleButton } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Card, InputGroup, FormControl, ButtonGroup, ToggleButton, Nav } from "react-bootstrap";
 import Select from 'react-select';
 import { useEffect, useState } from "react";
 
@@ -113,20 +113,32 @@ export default function Id() {
                         <p className="text-primary">Add link</p>
                     </Col>
 
-                    <Col style={{
+                    {/* <Col style={{
                         backgroundColor: '#edf0f4', maxHeight: "25rem", overflow: "auto"
+                    }}> */}
+                    <Col style={{
+                        backgroundColor: '#edf0f4'
                     }}>
                         <Row>
-                            <Row sm={8}>
-                                <Col>
-                                    <ButtonGroup size="sm">
-                                        <Button>Overview</Button>
-                                        <Button variant="secondary">Timeline</Button>
-                                    </ButtonGroup>
+                        <Row sm={4} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <Col style={{ backgroundColor: 'white', width: 'auto', borderColor: '#edf0f4', borderStyle: 'solid' }}>
+                                    <Nav variant="pills" defaultActiveKey="/home" >
+                                        <Nav.Item>
+                                            <Nav.Link href="/home">Overview</Nav.Link>
+                                        </Nav.Item>
+                                        <Nav.Item>
+                                            <Nav.Link eventKey="">Timeline</Nav.Link>
+                                        </Nav.Item>
+                                    </Nav>
 
                                 </Col>
-                                <Col align="end">Last Update : 11:28 AM</Col>
+                                <Col align="end">Last Update : {cases?.updatedAt ? cases.updatedAt : ' - '}</Col>
                             </Row>
+                        </Row>
+
+                        <Row style={{ maxHeight: "22rem", overflow: "auto"
+                    }}>
+
 
                             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
                                 <Row style={{ width: '99%' }} >
@@ -138,9 +150,9 @@ export default function Id() {
                                                 <Row className='d-flex justify-content-end'>Case Owner</Row>
                                             </Col>
                                             <Col>
-                                                <Row>{cases?.caseStatusName ? cases.caseStatusName: ' - ' }</Row>
-                                                <Row>{cases[0]?.caseOrigin ? cases[0].caseOrigin: ' - ' }</Row>
-                                                <Row>{cases?.caseOwnerUserName ? cases.caseOwnerUserName: ' - ' }</Row>
+                                                <Row>{cases?.caseStatusName ? cases.caseStatusName : ' - '}</Row>
+                                                <Row>{cases[0]?.caseOrigin ? cases[0].caseOrigin : ' - '}</Row>
+                                                <Row>{cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}</Row>
                                             </Col>
                                         </Row>
                                     </Card>
@@ -183,9 +195,9 @@ export default function Id() {
                                             </Row>
                                             <Row>
                                                 <Col style={{ color: 'gray' }}>Nro_Ticket_Finansys</Col>
-                                                <Col>{cases[0]?.ticketNumber ? cases[0].ticketNumber: ' - ' }</Col>
+                                                <Col>{cases[0]?.ticketNumber ? cases[0].ticketNumber : ' - '}</Col>
                                                 <Col style={{ color: 'gray' }}> Tiempo (auto) </Col>
-                                                <Col>{cases[0]?.time ? cases[0].time: ' - ' }</Col>
+                                                <Col>{cases[0]?.time ? cases[0].time : ' - '}</Col>
                                             </Row>
                                         </Row>
 
@@ -196,12 +208,12 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Nombre y Apellido</Col>
                                                 <Col align="start">
-                                                {cases?.contactFullname ? cases.contactFullname: ' - ' }
+                                                    {cases?.contactFullname ? cases.contactFullname : ' - '}
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Empresa name</Col>
                                                 <Col sm={4} align="start">
-                                                {cases?.companyName ? cases.companyName: ' - ' }
+                                                    {cases?.companyName ? cases.companyName : ' - '}
                                                 </Col>
                                             </Row>
                                         </Row>
@@ -213,7 +225,7 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Tipo de Documento</Col>
                                                 <Col align="start">
-                                                {cases?.contactDocumentTypeName ? cases.contactDocumentTypeName: ' - ' }
+                                                    {cases?.contactDocumentTypeName ? cases.contactDocumentTypeName : ' - '}
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Correo electronico</Col>
@@ -224,29 +236,29 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Nro. de Documento Cliente</Col>
                                                 <Col align="start">
-                                                {cases?.contactDocumentNumber ? cases.contactDocumentNumber: ' - ' }
+                                                    {cases?.contactDocumentNumber ? cases.contactDocumentNumber : ' - '}
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Celular</Col>
                                                 <Col sm={4} align="start">
-                                                {cases?.contactMobile ? cases.contactMobile: ' - ' }
+                                                    {cases?.contactMobile ? cases.contactMobile : ' - '}
                                                 </Col>
                                             </Row>
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Código Cliente</Col>
                                                 <Col align="start">
-                                                {cases?.contactClientCode ? cases.contactClientCode: ' - ' }
+                                                    {cases?.contactClientCode ? cases.contactClientCode : ' - '}
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Phone</Col>
                                                 <Col sm={4} align="start">
-                                                {cases?.contactPhone ? cases.contactPhone: ' - ' }
+                                                    {cases?.contactPhone ? cases.contactPhone : ' - '}
                                                 </Col>
                                             </Row>
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Sucursal cliente</Col>
                                                 <Col sm={4} align="start">
-                                                {cases?.contactBranchName ? cases.contactBranchName: ' - ' }
+                                                    {cases?.contactBranchName ? cases.contactBranchName : ' - '}
                                                 </Col>
                                                 <Col ></Col>
                                                 <Col ></Col>
@@ -260,23 +272,23 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Nombre y apellido gestor</Col>
                                                 <Col align="start">
-                                                    {cases?.promoterFullName ? cases.promoterFullName: ' - ' }
+                                                    {cases?.promoterFullName ? cases.promoterFullName : ' - '}
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Nro. de documento gestor</Col>
                                                 <Col sm={4} align="start">
-                                                    {cases?.promoterDocumentNumber ? cases.promoterDocumentNumber: ' - ' }
+                                                    {cases?.promoterDocumentNumber ? cases.promoterDocumentNumber : ' - '}
                                                 </Col>
                                             </Row>
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Celular gestor</Col>
                                                 <Col align="start">
-                                                    {cases?.promoterPhone ? cases.promoterPhone: ' - ' }
+                                                    {cases?.promoterPhone ? cases.promoterPhone : ' - '}
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Email gestor</Col>
                                                 <Col sm={4} align="start">
-                                                {cases?.promoterEmail ? cases.promoterEmail: ' - ' }
+                                                    {cases?.promoterEmail ? cases.promoterEmail : ' - '}
                                                 </Col>
                                             </Row>
                                         </Row>
@@ -292,9 +304,9 @@ export default function Id() {
                                                     <Row className='d-flex justify-content-end'>Tipificacion</Row>
                                                 </Col>
                                                 <Col>
-                                                    <Row>{cases?.typeName ? cases.typeName: ' - ' }</Row>
-                                                    <Row>{cases?.subtypeName ? cases.subtypeName: ' - ' }</Row>
-                                                    <Row>{cases?.typificationName ? cases.typificationName: ' - ' }</Row>
+                                                    <Row>{cases?.typeName ? cases.typeName : ' - '}</Row>
+                                                    <Row>{cases?.subtypeName ? cases.subtypeName : ' - '}</Row>
+                                                    <Row>{cases?.typificationName ? cases.typificationName : ' - '}</Row>
                                                 </Col>
                                             </Row>
                                         </Row>
@@ -310,7 +322,7 @@ export default function Id() {
                                                 </Col>
                                                 <Col>
                                                     <Row>CONSULTA</Row>
-                                                    <Row>{cases[0]?.description ? cases[0].description: ' - ' }</Row>
+                                                    <Row>{cases[0]?.description ? cases[0].description : ' - '}</Row>
                                                 </Col>
                                             </Row>
                                         </Row>
@@ -322,23 +334,23 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Case Origin</Col>
                                                 <Col align="start">
-                                                    CALL {cases[0]?.caseOrigin ? cases[0].caseOrigin: ' - ' }
+                                                    CALL {cases[0]?.caseOrigin ? cases[0].caseOrigin : ' - '}
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Case owner</Col>
                                                 <Col sm={4} align="start">
-                                                    {cases[0]?.caseOwnerName ? cases[0].caseOwnerName: ' - ' }
+                                                    {cases[0]?.caseOwnerName ? cases[0].caseOwnerName : ' - '}
                                                 </Col>
                                             </Row>
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Nro. ticket</Col>
                                                 <Col align="start">
-                                                {cases?.ticketNumber ? cases.ticketNumber: ' - ' }
+                                                    {cases?.ticketNumber ? cases.ticketNumber : ' - '}
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}>Fecha/Hora Creado</Col>
                                                 <Col sm={4} align="start">
-                                                    {cases?.createdAt ? cases.createdAt: ' - ' }
+                                                    {cases?.createdAt ? cases.createdAt : ' - '}
                                                 </Col>
                                             </Row>
                                             <Row align="end">
@@ -349,13 +361,13 @@ export default function Id() {
 
                                                 <Col style={{ color: 'gray' }}>Fecha/Hora Creado (auto)</Col>
                                                 <Col sm={4} align="start">
-                                                {cases[0]?.createdAt ? cases[0].createdAt: ' - ' }
+                                                    {cases[0]?.createdAt ? cases[0].createdAt : ' - '}
                                                 </Col>
                                             </Row>
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>Dirección de llamada</Col>
                                                 <Col align="start">
-                                                    {cases?.callDirection ? cases.callDirection: ' - ' }
+                                                    {cases?.callDirection ? cases.callDirection : ' - '}
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}></Col>
@@ -365,7 +377,7 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col style={{ color: 'gray' }}>id ServiDesk</Col>
                                                 <Col align="start">
-                                                    {cases?.idServidesk ? cases.idServidesk: ' - ' }
+                                                    {cases?.idServidesk ? cases.idServidesk : ' - '}
                                                 </Col>
 
                                                 <Col style={{ color: 'gray' }}></Col>
@@ -381,18 +393,18 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col >Áreas Resolutoras</Col>
                                                 <Col align="start">
-                                                    {cases?.resolverAreas ? cases.resolverAreas: ' - ' }
+                                                    {cases?.resolverAreas ? cases.resolverAreas : ' - '}
                                                 </Col>
 
                                                 <Col>Oficial negocio</Col>
                                                 <Col sm={4} align="start">
-                                                    {cases?.businessOfficerName ? cases.businessOfficerName: ' - ' }
+                                                    {cases?.businessOfficerName ? cases.businessOfficerName : ' - '}
                                                 </Col>
                                             </Row>
                                             <Row align="start">
                                                 <Col >Personas Resolutoras</Col>
                                                 <Col align="start">
-                                                    {cases?.resolvers ? cases.resolvers: ' - ' }
+                                                    {cases?.resolvers ? cases.resolvers : ' - '}
                                                 </Col>
                                             </Row>
 
@@ -405,7 +417,7 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col >Solution</Col>
                                                 <Col align="start">
-                                                {cases?.solution ? cases.solution: ' - ' }
+                                                    {cases?.solution ? cases.solution : ' - '}
                                                 </Col>
 
                                                 <Col>Comentario de Contacto / Cierre</Col>
@@ -416,7 +428,7 @@ export default function Id() {
                                             <Row align="end">
                                                 <Col >¿Desea solicitar una prórroga del caso?</Col>
                                                 <Col align="start">
-                                                {cases?.requestExtension ? cases.requestExtension: ' - ' }
+                                                    {cases?.requestExtension ? cases.requestExtension : ' - '}
                                                 </Col>
 
                                                 <Col>Calificación</Col>
