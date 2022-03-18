@@ -1,162 +1,125 @@
-import { componentsHelpers } from "helpers/componentsHelpers";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { Container, FormControl, InputGroup, Card, Form } from "react-bootstrap";
+import {
+  Container,
+  FormControl,
+  InputGroup,
+  Card,
+  Form,
+  Row,
+  Col,
+} from "react-bootstrap";
+import styles from "../../../public/styles/case/Case.module.scss";
+import Textfield from "components/_common/text-field";
+import MultipleSelect from "components/_common/multiple-select";
+import Datefield from "components/_common/date-field";
+import dataSelect from "../../../data/data-select.json"
 import { BsSearch } from "react-icons/bs";
-import { IoCaretDown } from "react-icons/io5";
-import dataCase from "../../../data/prueba.json";
 
 function SideFilter() {
-  const [headers, setHeaders] = useState({});
-  const [values, setValues] = useState([]);
+  
+const [checked, setChecked] = useState([]);
+const [checkList, setCheckList] = useState([]);
 
-  useEffect(() => {
-
-    setHeaders(componentsHelpers.mapHeader(dataCase) as any);
-    setValues(componentsHelpers.mapValue(dataCase) as any);
-  }, []);
-
-  const style = {
-    card:{
-      marginTop:"67px",
-      borderRadius:'10px 10px 0 0'
+useEffect(() => {
+  const request: any = {
+    method: "get",
+    url: "https://localhost:5001/v1/api/Filter/cases",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-    input:{
-      borderRadius:'0% 20px 20px 0%'
-    },
-    inputButton:{
-      borderRadius:'20px 0 0 20px'
-    },
-    select:{
-      with: "100px"
-    }
-    
-  }
+  };
 
-  const dataSelect = [{
-    "label": "Es",
-    "value": "es"
-  },
-  {
-    "label": "No está",
-    "value": "not in"
-  },
-  {
-    "label": "Contiene",
-    "value": "contiene",
-    "role": "Master"
-  },
-  {
-    "label": "No contiene",
-    "value": "no contiene"
-  },
-  {
-    "label": "empieza por",
-    "value": "empieza por"
-  },
-  {
-    "label": "Termina por",
-    "value": "termina por"
-  },
-  {
-    "label": "Esta vacio",
-    "value": "esta vacio"
-  },
-  {
-    "label": "No esta vacio",
-    "value": "No esta vacio"
-  }]
+  axios(request)
+    .then(function (response) {
+      setCheckList(response.data);
+    })
+    .catch(function (error) {
+      alert(error);
+    });
+}, []);
 
-  const onClickIcon = (e:any)=>{
-    let datos = e.target;
-    console.log(datos)
-    return datos;
+const handleCheck = (event:any) => {
+  var updatedList = [...checked];
+  if (event.target.checked) {
+    updatedList = [...checked, event.target.value];
+  } else {
+    updatedList.splice(checked.indexOf(event.target.value), 1);
   }
+  setChecked(updatedList);
+};
 
-  const onClickCheck = (e:any)=>{
-    console.log(e.target)
-  }
+var isChecked = (item:any) => checked.includes(item) ? true : false;
+
   return (
     <>
-      <Card style={style.card}>
-        <Container fluid>
+      <Card className={styles.card}>
+        <Card.Header className={styles.header}>
           <h6 className="mt-2">Filtrar Casos por:</h6>
-          <InputGroup className="mb-3 mt-2">
-            <InputGroup.Text id="basic-addon1" style={style.inputButton}><BsSearch/></InputGroup.Text>
+          <InputGroup className="mb-3 mt-2 fixed">
+            <InputGroup.Text id="basic-addon1" className={styles.inputbotton}>
+              <BsSearch />
+            </InputGroup.Text>
             <FormControl
-              style={style.input}
+              className={styles.input}
               placeholder="Buscar"
               aria-label="Buscar"
               aria-describedby="basic-addon1"
             />
           </InputGroup>
-          <a style={{fontWeight:"bold", color:"black"}} onClick={onClickIcon}><IoCaretDown/>Filtros definidos por el sistema</a>
-          <Form>
-          {['checkbox'].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
-              <Form.Check
-                inline
-                style={{ color:"black"}}
-                label="Registros modificados"
-                name="group12"
-                id={`inline-${type}-1`}
-              />
-              <Form.Check
-                inline
-                style={{ color:"black"}}
-                label="Registros no modificados"
-                name="group13"
-                id={`inline-${type}-1`}
-              />
-              <Form.Check
-                inline
-                style={{ color:"black"}}
-                label="Acción en Registro"
-                name="group14"
-                id={`inline-${type}-1`}
-              />
-              <Form.Check
-                inline
-                style={{ color:"black"}}
-                label="Acción en Registro relacionado"
-                name="group15"
-                id={`inline-${type}-1`}
-              />
-              
-            </div>
-          ))}
-          <a style={{fontWeight:"bold", color:"black"}} onClick={onClickIcon}><IoCaretDown/>Filtrar por campos</a>
-          {['checkbox'].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
-              {/* {
-                Object.keys(headers).map((h) => (
-                  <div>
+        </Card.Header>
+        <Card.Body>
+          <Container className={`app ${styles.scrollCard}`} fluid>
+            <div className="checkList">
+              <h6>Filtro por columnas:</h6>
+
+              {/* ----------------------------------------------------------- */}
+              <div className="list-container">
+                {checkList.map((item, index) => (
+                  <div key={index}>
                     <Form.Check
                       inline
-                      style={{ color:"black"}}
-                      label={headers[h as keyof typeof headers]}
-                      name="group1"
-                      id={`inline-${type}-1`}
-                      onClick={onClickCheck}
+                      style={{ color: "black" }}
+                      label={item.title}
+                      value={item.title}
+                      onChange={handleCheck}
                     />
-                    <div id={h} className="d-none">
-                      <Form.Select aria-label="Default select example" size="sm">
-                        {dataSelect.map((index)=>{
-                          return <option value={index.value}>{index.label}</option>
-                        })}
-                      </Form.Select>
-                      <FormControl className="mt-1" size="sm"/>
-                    </div>
-                  <br/>
+                      <div>
+                        {isChecked(item.title) && (
+                          <>
+                            <Row>
+                              <Col md={6} className="mb-1">
+                                <Form.Select
+                                  aria-label="Default select example"
+                                  size="sm"
+                                >
+                                  {dataSelect.map((index) => (
+                                      <option value={index.value}>
+                                        {index.label}
+                                      </option>
+                                    )
+                                  )}
+                                </Form.Select>
+                              </Col>
+                            </Row>
+                            {item.type == "Textfield" && <Textfield />}
+                            {item.type == "Date" && <Datefield />}
+                            {item.type == "MultipleSelect" && <MultipleSelect endpoint={item.endpoint} />}
+                          </>
+                        )}
+                      </div>  
                   </div>
-                ))
-              } */}
+                ))}
+              </div>
+              {/* ----------------------------------------------------------- */}
+
             </div>
-          ))}
-        </Form>
-        </Container>
-      </Card>
-    </>
+          </Container>
+        </Card.Body>
+      </Card>  
+    </>  
   );
 }
 
-export default SideFilter
+export default SideFilter;
