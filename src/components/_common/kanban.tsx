@@ -4,7 +4,7 @@ import styles from '../../../public/styles/Kanban.module.scss'
 
 const mockData = {
     todo: {
-        name: "Todo",
+        name: "ASIGNACION",
         items: [{
             id: 1000,
             text: "Görev 5656"
@@ -13,31 +13,59 @@ const mockData = {
             id: 2000,
             text: "Görev 5959"
         }
+        , {
+            id: 3000,
+            text: "Görev 5959"
+        }
+        , {
+            id: 4000,
+            text: "Görev 5959"
+        }
+        , {
+            id: 5000,
+            text: "Görev 5959"
+        }
+        , {
+            id: 6000,
+            text: "Görev 5959"
+        }
+        , {
+            id: 7000,
+            text: "Görev 5959"
+        }
+        , {
+            id: 8000,
+            text: "Görev 5959"
+        }
+        , {
+            id: 9000,
+            text: "Görev 5959"
+        }
     ]
     },
     inprogress: {
-        name: "Inprogress",
+        name: "PENDIENTE",
         items: [{
             id: 100,
             text: "Görev 1099"
         }]
     },
     inreview: {
-        name: "InReview",
+        name: "ACTIVO",
         items: [{
             id: 10000,
             text: "Görev 2002"
         }]
     },
     intest: {
-        name: "InTest",
+        name: "DERIVADO",
         items: [{
             id: 100002,
             text: "Görev 5588"
         }]
     },
     done: {
-        name: "Done",
+        name: "CONTACTO",
         items: [{
             id: 10000232,
             text: "Görev 9889"
@@ -91,14 +119,26 @@ const Kanban = () => {
             }}>
                 {Object.entries(cols).map(([id, col], index) => (
                     <div className={styles.containerDroppable} key={index}>
-                        <h5>{col.name}</h5>
+                        <div className={styles.titleContainer} 
+                            style={{
+                                background: "#dff7e4",
+                                borderColor: "#c7e8ce",
+                                borderTop: "4px solid #93cb9d" 
+                            }}>
+                            <div className={styles.title}>
+                                {col.name}
+                            </div>
+                            <div className={styles.subtitle}>
+                                3 Casos
+                            </div>
+                        </div>
                         <div style={{ marginLeft: "8px" }}>
                             <Droppable droppableId={id} key={id}>
                                 {(provider, snapshot) => (
                                     <div {...provider.droppableProps}
                                         className={styles.droppable}
                                         style={{
-                                            backgroundColor: snapshot.isDraggingOver ? "#e7e7e7" : "#fff",                                            
+                                            backgroundColor: snapshot.isDraggingOver ? "#EDE685" : "#EBEBEB",                                            
                                         }}
                                         ref={provider.innerRef}>
                                         {col.items.map((item, index) => (
@@ -108,12 +148,20 @@ const Kanban = () => {
                                                         {...provider.dragHandleProps}
                                                         {...provider.draggableProps}
                                                         className={styles.draggable}
-                                                        style={{                                                            
-                                                            backgroundColor: snapshot.isDragging ? "#cccccc" : "#e7e7e7",
-                                                            ...provider.draggableProps.style
-                                                        }}
+                                                        style={{ backgroundColor: "#fff",  ...provider.draggableProps.style}}
+                                                        // style={{
+                                                        //     backgroundColor: snapshot.isDragging ? "#FFF" : "#EBEBEB",
+                                                        //     ...provider.draggableProps.style
+                                                        // }}
                                                     >
-                                                        {item.text}
+                                                        RECLAMO CDA<br />
+                                                        33109<br />
+                                                        Solicitud<br />
+                                                        Tarjeta de Crédito<br />
+                                                        Tarjetas
+
+                                                        {/* {item.text} */}
+                                                        
                                                     </div>
                                                 )}
                                             </Draggable>
