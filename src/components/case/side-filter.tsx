@@ -9,8 +9,12 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+import styles from "../../../public/styles/case/Case.module.scss";
+import Textfield from "components/_common/text-field";
+import MultipleSelect from "components/_common/multiple-select";
+import Datefield from "components/_common/date-field";
+import dataSelect from "../../../data/data-select.json"
 import { BsSearch } from "react-icons/bs";
-import { IoCaretDown } from "react-icons/io5";
 
 function SideFilter() {
   
@@ -48,57 +52,73 @@ const handleCheck = (event:any) => {
 
 var isChecked = (item:any) => checked.includes(item) ? true : false;
 
-const dataMultiSelect: any = async (uri: any) => {
-  return await axios.get(uri);
-}
-
-const Textfield:any = () => {
-  return <input type="text" value="" onChange={(e) => {}} />
-}
-
-const MultipleSelect:any = (endpoint:any) => {
-  const [data, setData] = useState([]);
-  
-  useEffect(() => { 
-      async function fetchData() {
-        try {
-          const res = await axios.get(`https://localhost:5001/v1/api/${endpoint.endpoint}`);
-          setData(res.data);
-        } catch (err) {
-            console.log(err);
-        }
-      }
-      fetchData();
-  }, []);
-   return <select> {data.map((res:any) => <option value={res.id}>{res.value}</option>)} </select>
-   
-}
-
   return (
-    <div className="app">
-      <div className="checkList">
-        <h6>Filtro por columnas:</h6>
+    <>
+      <Card className={styles.card}>
+        <Card.Header className={styles.header}>
+          <h6 className="mt-2">Filtrar Casos por:</h6>
+          <InputGroup className="mb-3 mt-2 fixed">
+            <InputGroup.Text id="basic-addon1" className={styles.inputbotton}>
+              <BsSearch />
+            </InputGroup.Text>
+            <FormControl
+              className={styles.input}
+              placeholder="Buscar"
+              aria-label="Buscar"
+              aria-describedby="basic-addon1"
+            />
+          </InputGroup>
+        </Card.Header>
+        <Card.Body>
+          <Container className={`app ${styles.scrollCard}`} fluid>
+            <div className="checkList">
+              <h6>Filtro por columnas:</h6>
 
-        {/* ----------------------------------------------------------- */}
-        <div className="list-container">
-          {checkList.map((item, index) => (
-            <div key={index}>
-              <label htmlFor="">
-                <input value={item.title} type="checkbox" onChange={handleCheck} /> {item.title}                
-                {isChecked(item.title) && (
-                  <>
-                    {item.type == "Textfield" && <Textfield />}
-                    {item.type == "MultipleSelect" && <MultipleSelect endpoint={item.endpoint} />}
-                  </>
-                )}
-              </label>
+              {/* ----------------------------------------------------------- */}
+              <div className="list-container">
+                {checkList.map((item, index) => (
+                  <div key={index}>
+                    <Form.Check
+                      inline
+                      style={{ color: "black" }}
+                      label={item.title}
+                      value={item.title}
+                      onChange={handleCheck}
+                    />
+                      <div>
+                        {isChecked(item.title) && (
+                          <>
+                            <Row>
+                              <Col md={6} className="mb-1">
+                                <Form.Select
+                                  aria-label="Default select example"
+                                  size="sm"
+                                >
+                                  {dataSelect.map((index) => (
+                                      <option value={index.value}>
+                                        {index.label}
+                                      </option>
+                                    )
+                                  )}
+                                </Form.Select>
+                              </Col>
+                            </Row>
+                            {item.type == "Textfield" && <Textfield />}
+                            {item.type == "Date" && <Datefield />}
+                            {item.type == "MultipleSelect" && <MultipleSelect endpoint={item.endpoint} />}
+                          </>
+                        )}
+                      </div>  
+                  </div>
+                ))}
+              </div>
+              {/* ----------------------------------------------------------- */}
+
             </div>
-          ))}
-        </div>
-        {/* ----------------------------------------------------------- */}
-
-      </div>
-    </div>
+          </Container>
+        </Card.Body>
+      </Card>  
+    </>  
   );
 }
 
