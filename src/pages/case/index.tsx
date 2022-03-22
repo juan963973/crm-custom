@@ -7,6 +7,8 @@ import Kanban from "components/_common/kanban";
 import styles from '../../../public/styles/case/Case.module.scss'
 import { Card, Col, Container, Row } from "react-bootstrap";
 
+import StoreProvider from "store/filter/StoreProvider";
+
 export default function Index() {
     const styles = {
         marginTop:'15px',
@@ -15,16 +17,18 @@ export default function Index() {
     return ( 
         <>
             <Container style={styles} fluid>
-                <Row>
-                    <Col xs={3}>
-                        <SideFilter/>
-                    </Col>
-                    <Col xs={9} >
-                        <div suppressHydrationWarning={true} style={{backgroundColor: '#edf0f4',overflow: "auto", display: "flex" }}>
-                        {process.browser && <Kanban  />}
-                        </div>
-                    </Col>
-                </Row>
+                <StoreProvider>
+                    <Row>
+                        <Col xs={3}>
+                            <SideFilter/>
+                        </Col>
+                        <Col xs={9} >
+                            <div suppressHydrationWarning={true} style={{backgroundColor: '#edf0f4',overflow: "auto", display: "flex" }}>
+                            {process.browser && <Kanban  />}
+                            </div>
+                        </Col>
+                    </Row>
+                </StoreProvider>
             </Container>
         </>
     )

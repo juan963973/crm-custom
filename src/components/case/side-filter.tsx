@@ -16,8 +16,16 @@ import Datefield from "components/_common/date-field";
 import dataSelect from "../../../data/data-select.json"
 import { BsSearch } from "react-icons/bs";
 
+import { types } from "store/filter/storeReducer";
+import { useDispatch, useStore } from "store/filter/StoreProvider";
+
 function SideFilter() {
-  
+
+const store = useStore();
+const dispatch = useDispatch();
+// const {user, products} = useStore();
+
+
 const [checked, setChecked] = useState([]);
 const [checkList, setCheckList] = useState([]);
 
@@ -49,6 +57,15 @@ const handleCheck = (event:any) => {
   }
   setChecked(updatedList);
 };
+
+const handleClick = (dispatch:any) => {
+  // setFilter({type: 'holaaa'});
+    dispatch({
+      type: types.setFilter, 
+      payload: { type: 2 }
+    })
+  console.log(checked)
+}
 
 var isChecked = (item:any) => checked.includes(item) ? true : false;
 
@@ -115,6 +132,7 @@ var isChecked = (item:any) => checked.includes(item) ? true : false;
               {/* ----------------------------------------------------------- */}
 
             </div>
+            <input type="button" value="Filtrar" onClick={() => handleClick(dispatch)} />
           </Container>
         </Card.Body>
       </Card>  
