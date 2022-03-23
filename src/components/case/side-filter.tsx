@@ -59,12 +59,8 @@ const handleCheck = (event:any) => {
 };
 
 const handleClick = (dispatch:any) => {
-  // setFilter({type: 'holaaa'});
-    dispatch({
-      type: types.setFilter, 
-      payload: { type: 2 }
-    })
-  console.log(checked)
+    dispatch({ type: types.setFilter,  payload: { type: 2 } })
+  // console.log(checked)
 }
 
 var isChecked = (item:any) => checked.includes(item) ? true : false;
