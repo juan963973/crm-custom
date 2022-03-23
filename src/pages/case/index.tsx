@@ -1,10 +1,5 @@
-import {useState} from "react";
-import {listCompanies} from "../../services/companyService";
-import {CompanyModel} from "../../models/Company";
-import Cases from "components/case/data-case";
-import SideFilter from "components/case/side-filter";
+import SideFilter from "components/_common/side-filter";
 import Kanban from "components/_common/kanban";
-import styles from '../../../public/styles/case/Case.module.scss'
 import { Card, Col, Container, Row } from "react-bootstrap";
 
 import StoreProvider from "store/filter/StoreProvider";
@@ -14,6 +9,7 @@ export default function Index() {
         marginTop:'15px',
         backGroundColor: '#edf0f4'
     }
+    const endpoint = "Filter/cases";
     return ( 
         <>
             <Container style={styles} fluid>
