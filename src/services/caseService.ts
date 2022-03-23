@@ -71,3 +71,10 @@ export async function listCases(): Promise<CaseDetailModel[]> {
 
 
 };
+
+export async function kanbanView(): Promise<any[]> {
+    console.log(process)
+    // const res = await axios.get<any[]>(`${process.env.BASE_URL}/Cases/kanban-view`)
+    const res = await axios.get<any[]>(`https://localhost:5001/v1/api/Cases/kanban-view`)
+    return res.data
+};
