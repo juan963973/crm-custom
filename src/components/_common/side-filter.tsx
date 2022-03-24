@@ -17,59 +17,55 @@ import Datefield from "components/_common/date-field";
 import dataSelect from "../../../data/data-select.json";
 import { BsSearch } from "react-icons/bs";
 
-const SideFilter = (props:any) => {
+import { typesFilter } from "store/filter/filterReducer";
+import { useStoreFilter, useDispatchFilter } from "store/filter/FilterProvider";
+import { getFieldsFilter } from "services/caseService";
+
+const SideFilter = ({page}:any) => {
+  const dispatchFilter = useDispatchFilter();
+
   const [checked, setChecked] = useState([]);
   const [checkList, setCheckList] = useState([]);
   const [checkListBackup, setCheckListBackup] = useState([]);
   const [checkListFilter, setCheckListFilter] = useState({});
 
   useEffect(() => {
-    const request: any = {
-      method: "get",
-      url: `https://localhost:5001/v1/api/${props.endPoint}`,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    };
-
-    axios(request)
-      .then(function (response) {
-        setCheckList(response.data);
-        setCheckListBackup(response.data);
-      })
-      .catch(function (error) {
-        alert(error);
-      });
-  }, []);
+    getFieldsFilter(page)
+        .then( (response:any) => {
+          setCheckList(response);
+          setCheckListBackup(response);
+        })
+        .catch((e:any) => console.log(e));
+  }, [])
 
   const handleCheck = (event: any) => {
     var updatedList = [...checked];
-    console.log(updatedList);
     if (event.target.checked) {
       updatedList = [...checked, event.target.value];
     } else {
       updatedList.splice(checked.indexOf(event.target.value), 1);
     }
     setChecked(updatedList);
-  };
+  }
 
-  const handleChange = (event: any) => {
+  const handleChangeSearch = (event: any) => {
     var query = event.target.value;
     setCheckList(
-      checkListBackup.filter((el) => {
-        return el["title"].toLowerCase().indexOf(query.toLowerCase()) > -1;
+      checkListBackup.filter((item) => {
+        return item?.title?.toLowerCase().includes(query.toLowerCase());
       })
-    );
-  };
+    )
+  }
 
   var isChecked = (item: any) => (checked.includes(item) ? true : false);
 
   const handleSaveFilter = (event: any) => {
-    var keyF = event.target.id;
+    var keyFilter = event.target.id;
     var value = event.target.value;
-    setCheckListFilter({ ...checkListFilter, [keyF]: value });
-  };
+    setCheckListFilter({ ...checkListFilter, [keyFilter]: value });
+  }
+
+  const handleSubmit = () => dispatchFilter({ type: typesFilter.setFilter,  payload: checkListFilter }) 
 
   return (
     <>
@@ -82,7 +78,7 @@ const SideFilter = (props:any) => {
             </InputGroup.Text>
             <FormControl
               className={styles.input}
-              onChange={handleChange}
+              onChange={handleChangeSearch}
               placeholder="Buscar"
               aria-label="Buscar"
               aria-describedby="basic-addon1"
@@ -151,7 +147,7 @@ const SideFilter = (props:any) => {
                     <Col md={4}></Col>
                     <Col md={3}>
                       <Button
-                        className="submit-button btn-sm" /*onClick={handleSubmit}*/
+                        className="submit-button btn-sm" onClick={handleSubmit}
                       >
                         Aplicar
                       </Button>

@@ -1,12 +1,12 @@
-const types = {
+const typesFilter = {
     setFilter: 'set - filter'
 }
 
-const initialStore = {};
+const initialFilter = {};
 
-const storeReducer = (state:any, action:any) => {
+const filterReducer = (state:any, action:any) => {
     switch (action.type) {
-        case types.setFilter:
+        case typesFilter.setFilter:
             return {
                 ...state,
                 type: action.payload
@@ -16,5 +16,5 @@ const storeReducer = (state:any, action:any) => {
     }
 }
 
-export {initialStore, types}
-export default storeReducer
+export {initialFilter, typesFilter}
+export default filterReducer

@@ -1,7 +1,7 @@
 import { FormControl } from "react-bootstrap";
 
-const Textfield: any = (param:any) => {
-  return <FormControl className="mt-1" size="sm" onChange={param.onChange} id={param.keyFilter}/>;
+const Textfield: any = ({onChange, keyFilter}:any) => {
+  return <FormControl className="mt-1" size="sm" onChange={onChange} id={keyFilter}/>;
 };
 
 export default Textfield;
