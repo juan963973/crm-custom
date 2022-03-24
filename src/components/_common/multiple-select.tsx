@@ -20,11 +20,10 @@ const MultipleSelect: any = ({endpoint, onChange, keyFilter}: any) => {
   }, []);
   return (
     <Form.Select onChange={onChange} id={keyFilter} >
-      <option value="" selected>Seleccione</option>
-      {" "}
+      <option value="" disabled>Seleccione ...</option>
       {data.map((res: any) => (
-        <option value={res.id}>{res.value}</option>
-      ))}{" "}
+        <option key={res.id} value={res.id}>{res.value}</option>
+      ))}
     </Form.Select>
   );
 };

@@ -108,12 +108,13 @@ const SideFilter = ({page}:any) => {
                             <Row>
                               <Col md={6} className="mb-1">
                                 <Form.Select
-                                  aria-label="Default select example"
+                                  aria-label="Seleccione ..."
                                   size="sm"
+                                  // defaultValue={'DEFAULT'}
                                 >
-                                  {dataSelect.map((index) => (
-                                    <option value={index.value}>
-                                      {index.label}
+                                  {dataSelect.map((data, index) => (
+                                    <option value={data.value} key={index}>
+                                      {data.label}
                                     </option>
                                   ))}
                                 </Form.Select>
