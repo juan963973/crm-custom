@@ -52,7 +52,7 @@ export default function FilteringResolvers() {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu >
-                        <Card.Header style={{  height: "400px", width: '200px', overflow: "auto" }}>
+                        <Card.Header style={{ height: "400px", width: '200px', overflow: "auto" }}>
                             <InputGroup className="mb-3 mt-2 fixed">
                                 <InputGroup.Text id="basic-addon1" className={styles.inputbotton}>
                                     <BsSearch />
@@ -66,45 +66,51 @@ export default function FilteringResolvers() {
                                 />
                             </InputGroup>
                             <Card.Body >
-                                <div className={`app ${styles.scrollCard}`} fluid style={{  height: "auto", width: 'auto', overflow: "auto" }}>
+                                <div className={`app ${styles.scrollCard}`} fluid style={{ height: "auto", width: 'auto', overflow: "auto" }}>
                                     <div className="checkList">
                                         <h6>Vistas Públicas:</h6>
                                         <div className="list-container">
-                                            {checkList.map((item, index) => (
-                                                <div key={index}>
-                                                    <Form.Check
-                                                        inline
-                                                        style={{ color: "black" }}
-                                                        label={item.title}
-                                                        value={item.title}
-                                                        onChange={handleCheck}
-                                                    />
-                                                    <div>
-                                                        {isChecked(item.title) && (
-                                                            <>
-                                                                <Row>
-                                                                    <Col md={4} className="mb-1">
-                                                                        <Form.Select
-                                                                            aria-label="Default select example"
-                                                                            size="sm"
-                                                                        >
-                                                                            {dataSelect.map((index) => (
-                                                                                <option value={index.value}>
-                                                                                    {index.label}
-                                                                                </option>
-                                                                            )
-                                                                            )}
-                                                                        </Form.Select>
-                                                                    </Col>
-                                                                </Row>
-                                                                {item.type == "Textfield" && <Textfield />}
-                                                                {item.type == "Date" && <Datefield />}
-                                                                {item.type == "MultipleSelect" && <MultipleSelect endpoint={item.endpoint} />}
-                                                            </>
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            ))}
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
+                                            <p>una cosa</p>
                                         </div>
                                     </div>
                                 </div>
