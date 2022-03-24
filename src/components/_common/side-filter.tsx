@@ -45,7 +45,6 @@ const SideFilter = (props:any) => {
 
   const handleCheck = (event: any) => {
     var updatedList = [...checked];
-    console.log(updatedList);
     if (event.target.checked) {
       updatedList = [...checked, event.target.value];
     } else {
@@ -66,9 +65,11 @@ const SideFilter = (props:any) => {
   var isChecked = (item: any) => (checked.includes(item) ? true : false);
 
   const handleSaveFilter = (event: any) => {
-    var keyF = event.target.id;
+    console.log(event)
+    var keyFilter = event.target.id;
     var value = event.target.value;
-    setCheckListFilter({ ...checkListFilter, [keyF]: value });
+    console.log(value)
+    setCheckListFilter({ ...checkListFilter, [keyFilter]: value });
   };
 
   return (
