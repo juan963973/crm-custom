@@ -1,80 +1,23 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
+import { kanbanView } from "services/caseService"
 import styles from '../../../public/styles/Kanban.module.scss'
 
-const mockData = {
-    todo: {
-        name: "ASIGNACION",
-        items: [{
-            id: 1000,
-            text: "Görev 5656"
-        }
-        , {
-            id: 2000,
-            text: "Görev 5959"
-        }
-        , {
-            id: 3000,
-            text: "Görev 5959"
-        }
-        , {
-            id: 4000,
-            text: "Görev 5959"
-        }
-        , {
-            id: 5000,
-            text: "Görev 5959"
-        }
-        , {
-            id: 6000,
-            text: "Görev 5959"
-        }
-        , {
-            id: 7000,
-            text: "Görev 5959"
-        }
-        , {
-            id: 8000,
-            text: "Görev 5959"
-        }
-        , {
-            id: 9000,
-            text: "Görev 5959"
-        }
-    ]
-    },
-    inprogress: {
-        name: "PENDIENTE",
-        items: [{
-            id: 100,
-            text: "Görev 1099"
-        }]
-    },
-    inreview: {
-        name: "ACTIVO",
-        items: [{
-            id: 10000,
-            text: "Görev 2002"
-        }]
-    },
-    intest: {
-        name: "DERIVADO",
-        items: [{
-            id: 100002,
-            text: "Görev 5588"
-        }]
-    },
-    done: {
-        name: "CONTACTO",
-        items: [{
-            id: 10000232,
-            text: "Görev 9889"
-        }]
-    }
-}
+import { typesFilter } from "store/filter/filterReducer";
+import { useStoreFilter, useDispatchFilter } from "store/filter/FilterProvider";
 
-const Kanban = () => {
-    const [cols, setCols] = useState(mockData)
+const Kanban = ({page}:any) => {
+    const storeFilter = useStoreFilter();
+    const [cols, setCols] = useState<object>({})
+
+    useEffect(() => {
+        kanbanView(page, storeFilter.type, null)
+            .then( (data:any) => {
+                setCols(data)
+            })
+            .catch((e:any) => console.log(e));
+    }, [storeFilter])
+
     const onDragEnd = (result:any, cols:any, setCols:any) => {
         if (!result.destination) return
         const { source, destination } = result
@@ -126,10 +69,10 @@ const Kanban = () => {
                                 borderTop: "4px solid #93cb9d" 
                             }}>
                             <div className={styles.title}>
-                                {col.name}
+                                {col?.name}
                             </div>
                             <div className={styles.subtitle}>
-                                3 Casos
+                                {col.items.length} Casos
                             </div>
                         </div>
                         <div style={{ marginLeft: "8px" }}>
@@ -141,7 +84,7 @@ const Kanban = () => {
                                             backgroundColor: snapshot.isDraggingOver ? "#EDE685" : "#EBEBEB",                                            
                                         }}
                                         ref={provider.innerRef}>
-                                        {col.items.map((item, index) => (
+                                        {col.items.map((item:any, index:any) => (
                                             <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
                                                 {(provider, snapshot) => (
                                                     <div ref={provider.innerRef}
@@ -154,13 +97,17 @@ const Kanban = () => {
                                                         //     ...provider.draggableProps.style
                                                         // }}
                                                     >
-                                                        RECLAMO CDA<br />
+                                                        {/* RECLAMO CDA<br />
                                                         33109<br />
                                                         Solicitud<br />
                                                         Tarjeta de Crédito<br />
-                                                        Tarjetas
-
-                                                        {/* {item.text} */}
+                                                        Tarjetas */}
+                                                        {item.issue}<br />
+                                                        {item.ticketNumber}<br />
+                                                        {item.type}<br />
+                                                        {item.subtype}<br />
+                                                        {item.resolutionAreas.join(',')}<br />
+                                                        {item.resolver.join(',')}
                                                         
                                                     </div>
                                                 )}

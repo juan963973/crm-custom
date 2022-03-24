@@ -57,17 +57,31 @@
 // }
 
 import axios from "axios";
-
 import { CaseDetailModel } from "../models/Case";
 
 
 
 export async function listCases(): Promise<CaseDetailModel[]> {
-
     const res = await axios.get<CaseDetailModel[]>(`https://localhost:5001/v1/api/Cases/1`)
-
     return res.data
+}
 
+//TODO VER PORQUE NO ME ESTÁ FUNCIONANDO PROCESS.ENV
+export async function kanbanView(page:any, filterModel:string, resolverAreaId:number): Promise<any[]> {
+    console.log(process.env)
+    const res = await axios.get<any[]>(`https://localhost:5001/v1/api/${page}/kanban-view`,
+        {
+            params: {
+                filterModel: JSON.stringify(filterModel),
+                resolverAreaId: resolverAreaId
+            }
+        }
+    )
+    return res.data
+}
 
-
-};
+//TODO VER PORQUE NO ME ESTÁ FUNCIONANDO PROCESS.ENV
+export async function getFieldsFilter(page:any): Promise<any[]> {
+    const res = await axios.get<any[]>(`https://localhost:5001/v1/api/filter/${page}`)
+    return res.data
+}
