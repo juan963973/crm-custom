@@ -6,7 +6,7 @@ import SideFilter from "components/case/side-filter";
 import Kanban from "components/_common/kanban";
 import styles from '../../../public/styles/case/Case.module.scss'
 import { Card, Col, Container, Row } from "react-bootstrap";
-import FilteringResolvers from "./filter/FilteringResolvers";
+import FilteringResolvers from "../../components/_common/filtering-resolvers";
 
 export default function Index() {
     const styles = {

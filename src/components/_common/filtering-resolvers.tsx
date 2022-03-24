@@ -1,46 +1,56 @@
-import { Card, Col, Container, Dropdown, Form, FormControl, InputGroup, Row } from "react-bootstrap";
-import styles from '../../../../public/styles/case/Case.module.scss'
+import { Card, Col, Dropdown, Form, FormControl, InputGroup, Row } from "react-bootstrap";
+import styles from '../../../public/styles/case/Case.module.scss'
 import { BsSearch } from "react-icons/bs";
-import Textfield from "components/_common/text-field";
-import Datefield from "components/_common/date-field";
-import MultipleSelect from "components/_common/multiple-select";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useStoreFilter, useDispatchFilter } from "store/filter/FilterProvider";
+import { getFieldsFilter } from "services/caseService";
 
 export default function FilteringResolvers() {
+    const dispatchFilter = useDispatchFilter();
+
     const [checked, setChecked] = useState([]);
     const [checkList, setCheckList] = useState([]);
-
+    const [checkListBackup, setCheckListBackup] = useState([]);
+    const [checkListFilter, setCheckListFilter] = useState({});
+  
     useEffect(() => {
-        const request: any = {
-            method: "get",
-            url: "https://localhost:5001/v1/api/Filter/cases",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-        };
-
-        axios(request)
-            .then(function (response) {
-                setCheckList(response.data);
-            })
-            .catch(function (error) {
-                alert(error);
-            });
-    }, []);
-
+      getFieldsFilter(page)
+          .then( (response:any) => {
+            setCheckList(response);
+            setCheckListBackup(response);
+          })
+          .catch((e:any) => console.log(e));
+    }, [])
+  
     const handleCheck = (event: any) => {
-        var updatedList = [...checked];
-        if (event.target.checked) {
-            updatedList = [...checked, event.target.value];
-        } else {
-            updatedList.splice(checked.indexOf(event.target.value), 1);
-        }
-        setChecked(updatedList);
-    };
-
-    var isChecked = (item: any) => checked.includes(item) ? true : false;
+      var updatedList = [...checked];
+      if (event.target.checked) {
+        updatedList = [...checked, event.target.value];
+      } else {
+        updatedList.splice(checked.indexOf(event.target.value), 1);
+      }
+      setChecked(updatedList);
+    }
+  
+    const handleChangeSearch = (event: any) => {
+      var query = event.target.value;
+      setCheckList(
+        checkListBackup.filter((item) => {
+          return item?.title?.toLowerCase().includes(query.toLowerCase());
+        })
+      )
+    }
+  
+    var isChecked = (item: any) => (checked.includes(item) ? true : false);
+  
+    const handleSaveFilter = (event: any) => {
+      var keyFilter = event.target.id;
+      var value = event.target.value;
+      setCheckListFilter({ ...checkListFilter, [keyFilter]: value });
+    }
+  
+    const handleSubmit = () => dispatchFilter({ type: typesFilter.setFilter,  payload: checkListFilter }) 
 
     return (
         <Row>
@@ -52,21 +62,23 @@ export default function FilteringResolvers() {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu >
-                        <Card.Header style={{ height: "400px", width: '200px', overflow: "auto" }}>
-                            <InputGroup className="mb-3 mt-2 fixed">
-                                <InputGroup.Text id="basic-addon1" className={styles.inputbotton}>
-                                    <BsSearch />
-                                </InputGroup.Text>
-                                <FormControl
-                                    className={styles.input}
-                                    autoFocus
-                                    placeholder="Buscar"
-                                    aria-label="Buscar"
-                                    aria-describedby="basic-addon1"
-                                />
-                            </InputGroup>
+                        <Card style={{ border: 'none' }}>
+                            <Card.Header >
+                                <InputGroup className="mb-3 mt-2 fixed">
+                                    <InputGroup.Text id="basic-addon1" className={styles.inputbotton}>
+                                        <BsSearch />
+                                    </InputGroup.Text>
+                                    <FormControl
+                                        className={styles.input}
+                                        onChange={handleChangeSearch}
+                                        placeholder="Buscar"
+                                        aria-label="Buscar"
+                                        aria-describedby="basic-addon1"
+                                    />
+                                </InputGroup>
+                            </Card.Header>
                             <Card.Body >
-                                <div className={`app ${styles.scrollCard}`} fluid style={{ height: "auto", width: 'auto', overflow: "auto" }}>
+                                <div className={`app ${styles.scrollCard}`} style={{ height: "300px", width: '250px', overflow: "auto" }}>
                                     <div className="checkList">
                                         <h6>Vistas Públicas:</h6>
                                         <div className="list-container">
@@ -115,7 +127,8 @@ export default function FilteringResolvers() {
                                     </div>
                                 </div>
                             </Card.Body>
-                        </Card.Header>
+
+                        </Card>
 
 
                     </Dropdown.Menu>
