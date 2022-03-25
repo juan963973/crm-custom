@@ -17,6 +17,7 @@ export default function Index() {
             <Container style={styles} fluid>
                 <FilterProvider>
                     <Row>
+                    <FilteringResolvers />
                         <Col xs={3}>
                             <SideFilter page={page}/>
                         </Col>
