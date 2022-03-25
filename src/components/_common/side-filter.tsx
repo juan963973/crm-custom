@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   Container,
@@ -18,7 +17,7 @@ import dataSelect from "../../../data/data-select.json";
 import { BsSearch } from "react-icons/bs";
 
 import { typesFilter } from "store/filter/filterReducer";
-import { useStoreFilter, useDispatchFilter } from "store/filter/FilterProvider";
+import { useDispatchFilter } from "store/filter/FilterProvider";
 import { getFieldsFilter } from "services/caseService";
 
 const SideFilter = ({page}:any) => {
@@ -110,7 +109,6 @@ const SideFilter = ({page}:any) => {
                                 <Form.Select
                                   aria-label="Seleccione ..."
                                   size="sm"
-                                  // defaultValue={'DEFAULT'}
                                 >
                                   {dataSelect.map((data, index) => (
                                     <option value={data.value} key={index}>

@@ -4,21 +4,21 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { kanbanView } from "services/caseService"
 import styles from '../../../public/styles/Kanban.module.scss'
 
-import { typesFilter } from "store/filter/filterReducer"
-import { useStoreFilter, useDispatchFilter } from "store/filter/FilterProvider"
-
+import { useStoreFilter } from "store/filter/FilterProvider"
+import { useStoreFilter as useStoreFilterResolutionArea } from "store/filterResolutionAreas/FilterProvider"
 
 const Kanban = ({page}:any) => {
     const storeFilter = useStoreFilter();
+    const storeFilterResolutionArea = useStoreFilterResolutionArea();
     const [cols, setCols] = useState<object>({})
 
     useEffect(() => {
-        kanbanView(page, storeFilter.type, null)
+        kanbanView(page, storeFilter.type, storeFilterResolutionArea.type)
             .then( (data:any) => {
                 setCols(data)
             })
             .catch((e:any) => console.log(e));
-    }, [storeFilter])
+    }, [storeFilter, storeFilterResolutionArea])
 
     const onDragEnd = (result:any, cols:any, setCols:any) => {
         if (!result.destination) return

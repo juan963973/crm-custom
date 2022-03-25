@@ -1,4 +1,4 @@
-export class CasesModel {
+export interface CasesModel {
     "id": number;
     "Creado el": Date;
     "Numero de Ticket": string;
@@ -32,3 +32,40 @@ export class CasesModel {
     "Sucursal Cliente":string;
     "Layout":string;
 }
+
+export interface CaseDetailModel {
+    id: number;
+    caseSatus: string;
+    caseOrigin: string;
+    caseOwnerName: string;
+    contactName: string;
+    contactPhone: string;
+    ticketNumber: string;
+    time: string;
+    companyName: string;
+    documentTypeName: string;
+    documentNumber: string;
+    clientCode: string;
+    clientBranch: string;
+    contactMobile: string;
+    promoterName: string;
+    promoterPhone: string;
+    promoterDocumentNumber: string;
+    promoterEmail: string;
+    typeName: string;
+    subtypeName: string;
+    typificationName: string;
+    description: string;
+    caseOriginName: string;
+    design: string;
+    callDirection: string;
+    updatedAt: string;
+    createdAt: string;
+    idServidesk: string;
+    resolverAreas: string[];
+    resolvers: string[];
+    businessOfficerName: string;
+    solution: string;
+    requestExtension: string
+}
+

@@ -1,32 +1,40 @@
+import { Col, Container, Row } from "react-bootstrap";
 import SideFilter from "components/_common/side-filter";
 import Kanban from "components/_common/kanban";
-import { Card, Col, Container, Row } from "react-bootstrap";
-import FilteringResolvers from "../../components/_common/filtering-resolvers";
+import FilteringResolvers from "components/_common/filtering-resolvers";
 
 import FilterProvider from "store/filter/FilterProvider";
+import FilterContextResolutionAreasProvider from "store/filterResolutionAreas/FilterProvider";
 
-const styles = {
-    marginTop:'15px',
-    backGroundColor: '#edf0f4'
-}
 const page = 'cases';
 
 export default function Index() {
     return ( 
         <>
-            <Container style={styles} fluid>
+            <Container style={{background: '#edf0f4'}} fluid>
                 <FilterProvider>
-                    <Row>
-                    <FilteringResolvers />
-                        <Col xs={3}>
-                            <SideFilter page={page}/>
-                        </Col>
-                        <Col xs={9} >
-                            <div suppressHydrationWarning={true} style={{backgroundColor: '#edf0f4',overflow: "auto", display: "flex" }}>
-                                {process.browser && <Kanban page={page} />}
-                            </div>
-                        </Col>
-                    </Row>
+                    <FilterContextResolutionAreasProvider>
+                        <Row style={{padding: '6px', background: '#FFF'}}>
+                            <Col xs={12} >
+                                <FilteringResolvers />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={2} style={{marginLeft: '27px', padding: '7px 0' }}>
+                                <h6>Vista Kanban</h6>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={3}>
+                                <SideFilter page={page}/>
+                            </Col>
+                            <Col xs={9} >
+                                <div suppressHydrationWarning={true} style={{backgroundColor: '#edf0f4',overflow: "auto", display: "flex" }}>
+                                    {process.browser && <Kanban page={page} />}
+                                </div>
+                            </Col>
+                        </Row>
+                    </FilterContextResolutionAreasProvider>
                 </FilterProvider>
             </Container>
         </>
