@@ -34,7 +34,7 @@ export default function FilteringResolvers() {
     }
 
     const handleChangeResolutorArea = (values: any) => {
-        dispatchFilter({ type: typesFilter.setFilter,  payload: values })
+        // dispatchFilter({ type: typesFilter.setFilter,  payload: values })
     }
 
     const resolverAreas = () => {
