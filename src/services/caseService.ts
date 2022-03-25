@@ -1,8 +1,12 @@
 import axios from "axios";
-import { CaseDetailModel } from "../models/Case";
+// import { CaseDetailModel } from "../models/Case";
 
-export async function listCases(): Promise<CaseDetailModel[]> {
-    const res = await axios.get<CaseDetailModel[]>(`https://localhost:5001/v1/api/Cases/1`)
+// export async function listCases(): Promise<CaseDetailModel[]> {
+//     const res = await axios.get<CaseDetailModel[]>(`https://localhost:5001/v1/api/Cases/1`)
+//     return res.data
+// }
+export async function listCases(): Promise<any[]> {
+    const res = await axios.get<any[]>(`https://localhost:5001/v1/api/Cases/1`)
     return res.data
 }
 
