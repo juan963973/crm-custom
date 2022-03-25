@@ -1,6 +1,7 @@
 import SideFilter from "components/_common/side-filter";
 import Kanban from "components/_common/kanban";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import FilteringResolvers from "../../components/_common/filtering-resolvers";
 
 import FilterProvider from "store/filter/FilterProvider";
 
@@ -16,6 +17,7 @@ export default function Index() {
             <Container style={styles} fluid>
                 <FilterProvider>
                     <Row>
+                    <FilteringResolvers />
                         <Col xs={3}>
                             <SideFilter page={page}/>
                         </Col>
