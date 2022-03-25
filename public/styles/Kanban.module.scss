@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     height: 100%;
-    padding: 20px;
+    padding: 0 20px;
 
     .titleContainer {
         border-radius: 3px 3px 0 0;
@@ -33,7 +33,7 @@
         .droppable{
             // border: 2px dashed black;
             padding: 8px; 
-            height: 800px; 
+            height:600px; 
             width: 300px;
             overflow-y: auto;
             .draggable{
