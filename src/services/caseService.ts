@@ -57,12 +57,12 @@
 // }
 
 import axios from "axios";
-import { CaseDetailModel } from "../models/Case";
+import { CasesModel } from "../models/Case";
 
 
 
-export async function listCases(): Promise<CaseDetailModel[]> {
-    const res = await axios.get<CaseDetailModel[]>(`https://localhost:5001/v1/api/Cases/1`)
+export async function listCases(): Promise<CasesModel[]> {
+    const res = await axios.get<CasesModel[]>(`https://localhost:5001/v1/api/Cases/1`)
     return res.data
 }
 
