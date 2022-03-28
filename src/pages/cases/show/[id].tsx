@@ -5,9 +5,7 @@ import { useEffect, useState } from "react";
 import { listCases } from "../../../services/caseService";
 import { CaseDetailModel } from ".../../models/Case";
 import Index from "..";
-import Overview from "./Overview";
-import Timeline from "./TimeLine";
-
+import Overview from "../../../components/_common/overview"
 // const personOptions = [
 //     { value: 'Jessi', label: 'Jessi' },
 //     { value: 'Anto', label: 'Anto' },

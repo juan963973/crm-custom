@@ -3,9 +3,9 @@ import { Button, Col, Container, Form, Row, Card, InputGroup, FormControl, Butto
 import Select from 'react-select';
 import { useEffect, useState } from "react";
 
-import { listCases } from "../../../services/caseService";
+import { listCases } from "../../services/caseService";
 import { CaseDetailModel } from ".../../models/Case";
-import Index from "..";
+import Index from "../../pages/cases";
 
 export default function Overview(){
     const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
