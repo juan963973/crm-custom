@@ -106,12 +106,12 @@ const Kanban = ({page}:any) => {
                                                         Tarjetas */}
                                                         <Link href={ `/${page}/show/${item.id}` }>
                                                             <a style={{textDecoration: 'none', color:'#000'}}>
-                                                                {item.issue }<br />
-                                                                {item.ticketNumber}<br />
-                                                                {item.type}<br />
-                                                                {item.subtype}<br />
-                                                                {item.resolutionAreas.join(',')}<br />
-                                                                {item.resolver.join(',')}
+                                                                <div>{item.issue }</div>
+                                                                <div>{item.ticketNumber }</div>
+                                                                <div>{item.type }</div>
+                                                                <div>{item.subtype }</div>
+                                                                <div>{item.resolutionAreas.join(',') }</div>
+                                                                <div>{item.resolver.join(',') }</div>
                                                             </a>
                                                         </Link>
                                                         
