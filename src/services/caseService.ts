@@ -2,8 +2,8 @@ import axios from "axios";
 import { CaseDetailModel } from "../models/Case";
 
 //TODO VER PORQUE NO ME ESTÁ FUNCIONANDO PROCESS.ENV
-export async function listCases(): Promise<CaseDetailModel[]> {
-    const res = await axios.get<CaseDetailModel[]>(`https://localhost:5001/v1/api/Cases/1`)
+export async function listCases(page:any, id:any): Promise<CaseDetailModel> {
+    const res = await axios.get<CaseDetailModel>(`https://localhost:5001/v1/api/${page}/${id}`)
     return res.data
 }
 
