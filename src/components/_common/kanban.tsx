@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
-import { kanbanView } from "services/caseService"
+import { kanbanChangeStatus, kanbanView } from "services/caseService"
 import styles from '../../../public/styles/Kanban.module.scss'
+import debounce from 'lodash.debounce';
 
 import { useStoreFilter } from "store/filter/FilterProvider"
 import { useStoreFilter as useStoreFilterResolutionArea } from "store/filterResolutionAreas/FilterProvider"
@@ -42,20 +43,37 @@ const Kanban = ({page}:any) => {
                     items: destItems
                 }
             })
+
+            let order = destItems.findIndex( item => item.id == result.draggableId);
+            changeStatusSave(result.draggableId, destCol.id)
         } else {
-            const columns = cols[source.droppableId]
-            const _items = [...columns.items]
-            const [removed] = _items.splice(source.index, 1)
-            _items.splice(destination.index, 0, removed)
-            setCols({
-                ...cols,
-                [source.droppableId]: {
-                    ...columns,
-                    items: _items
-                }
-            })
+            // ESTA PARTE ORDENA LAS CARTS PARA PRIORIZAR
+
+            // const columns = cols[source.droppableId]
+            // const _items = [...columns.items]
+            // const [removed] = _items.splice(source.index, 1)
+            // _items.splice(destination.index, 0, removed)
+            // setCols({
+            //     ...cols,
+            //     [source.droppableId]: {
+            //         ...columns,
+            //         items: _items
+            //     }
+            // })
+
+            // let order = _items.findIndex( item => item.id == result.draggableId);
+            // changeStatusSave(result.draggableId, columns.id, order)
         }
     }
+
+    const changeStatusSave = useCallback(
+        debounce((caseId:any, statusId:any) => {
+            let dataChange = { caseId, statusId}
+            kanbanChangeStatus(page, dataChange)
+            .then( (data:any) => {})
+            .catch((e:any) => console.log(e));
+        }, 300), []
+    )
 
     return (
         <div className={styles.container}>
@@ -66,9 +84,9 @@ const Kanban = ({page}:any) => {
                     <div className={styles.containerDroppable} key={index}>
                         <div className={styles.titleContainer} 
                             style={{
-                                background: "#dff7e4",
+                                background: col?.color,
                                 borderColor: "#c7e8ce",
-                                borderTop: "4px solid #93cb9d" 
+                                borderTop: `4px solid ${col?.borderColor}`
                             }}>
                             <div className={styles.title}>
                                 {col?.name}
