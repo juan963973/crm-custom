@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { listCases } from "../../../services/caseService";
 import { CaseDetailModel } from ".../../models/Case";
 import Index from "..";
+import Notes from "components/_common/notes";
 
 export default function Overview(){
     const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
@@ -459,17 +460,18 @@ export default function Overview(){
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row> <h6>Notes</h6></Row>
+                                <Row> <h6>Notas</h6></Row>
                             </Col>
                         </Row>
                         <Row>
-                            <InputGroup className="mb-3">
+                            {/* <InputGroup className="mb-3">
                                 <FormControl
                                     aria-label="Example text with button addon"
                                     aria-describedby="basic-addon1"
                                     placeholder="Add a note..."
                                 />
-                            </InputGroup>
+                            </InputGroup> */}
+                           <Notes /> 
                         </Row>
                     </Card>
                 </Row>
