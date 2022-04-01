@@ -58,9 +58,7 @@ const Comments = ({ currentUserId }: any) => {
     }, []);
     return (
         <div className="comments">
-            <h3 className="comments-title">Notas</h3>
-            <div className="comment-form-title">Escribe un comentario</div>
-            <CommentForm submitLabel='write' handleSubmit={addComment} />
+            <CommentForm submitLabel='Guardar' handleSubmit={addComment} />
             <div className="comments-container">
                 {rootComments.map((rootComment) => (
                     <Comment 

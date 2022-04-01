@@ -20,12 +20,13 @@ const CommentForm = ({
                 className="comment-form-textarea form-control"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
+                placeholder='Agrega una nota'
             />
-            <button className="comment-form-button btn btn-primary" disabled={isTextAreaDisabled} >{submitLabel}</button>
+            <button className="comment-form-button btn btn-primary btn-sm" disabled={isTextAreaDisabled} >{submitLabel}</button>
             {hasCancelButton && (
                 <button
                     type="button"
-                    className="comment-form-button comment-form-cancel-buton btn btn-danger"
+                    className="comment-form-button comment-form-cancel-buton btn btn-secondary btn-sm"
                     onClick={handleCancel}
                 >
                     Cancelar
