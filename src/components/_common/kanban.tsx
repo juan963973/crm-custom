@@ -117,11 +117,6 @@ const Kanban = ({page}:any) => {
                                                         //     ...provider.draggableProps.style
                                                         // }}
                                                     >
-                                                        {/* RECLAMO CDA<br />
-                                                        33109<br />
-                                                        Solicitud<br />
-                                                        Tarjeta de Crédito<br />
-                                                        Tarjetas */}
                                                         <Link href={ `/${page}/show/${item.id}` }>
                                                             <a style={{textDecoration: 'none', color:'#000'}}>
                                                                 <div>{item.issue }</div>
