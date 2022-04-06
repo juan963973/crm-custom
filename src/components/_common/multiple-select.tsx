@@ -2,9 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 
-const MultipleSelect: any = ({endpoint, onChange, keyFilter}: any) => {
+const MultipleSelect: any = ({endpoint, onChange, keyFilter, value}: any) => {
   const [data, setData] = useState([]);
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -16,13 +15,13 @@ const MultipleSelect: any = ({endpoint, onChange, keyFilter}: any) => {
         console.log(err);
       }
     }
-    fetchData();
+   fetchData()
   }, []);
   return (
-    <Form.Select onChange={onChange} id={keyFilter} >
+    <Form.Select onChange={onChange} id={keyFilter} value={value.id??''} >
       <option value="" disabled>Seleccione ...</option>
-      {data.map((res: any) => (
-        <option key={res.id} value={res.id}>{res.value}</option>
+      { data.map((res: any) => (
+        <option key={res.id} value={res.id} >{ res.value}</option>
       ))}
     </Form.Select>
   );
