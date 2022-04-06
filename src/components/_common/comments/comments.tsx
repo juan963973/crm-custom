@@ -6,8 +6,12 @@ import {
     getComments as getCommentsApi, 
     createComment as createCommentApi, 
     deleteComment as deleteCommentApi,
-    updateComment as updateCommentApi
+    updateComment as updateCommentApi,
 } from "./notes_api"
+
+import addNote from "./notes_api"
+import updateNote from "./notes_api"
+import throwNote from "./notes_api"
 
 const Comments = ({ currentUserId }: any) => {
     const [backendComments, setBackendComments] = useState([])
@@ -25,6 +29,7 @@ const Comments = ({ currentUserId }: any) => {
             setBackendComments([comment, ...backendComments])
             setActiveComment(null)
         })
+        // addNote(text)
     }
 
     const deleteComment = (commentId: any) => {
@@ -72,7 +77,7 @@ const Comments = ({ currentUserId }: any) => {
                     />
                 ))}
             </div>
-
+{/* {throwNote()} */}
         </div>
     )
 }

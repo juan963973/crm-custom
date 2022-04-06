@@ -27,12 +27,12 @@ export const getComments = async () => {
     ]
 }
 
-export const createComment = async (text, parentId = null) =>{
+export const createComment = async (text, parentId = null) => {
     return {
-        id: Math.random().toString(36).substr(2,9),
+        id: Math.random().toString(36).substr(2, 9),
         body: text,
         parentId,
-        userId: '1',
+        userId: '2',
         username: 'Cristhian',
         createdAt: new Date().toISOString()
     }
@@ -45,3 +45,37 @@ export const updateComment = async (text) => {
 export const deleteComment = async () => {
     return {}
 }
+import axios from "axios";
+import React from "react";
+
+const baseURL = "https://localhost:5001/v1/api/Notes/Case";
+const baseURL2 = "https://localhost:5001/v1/api/Notes";
+// export default function addNote(text) {
+//     axios
+//     .post(baseURL, {
+//       body: text,
+//       "moduleId": 2
+//     })
+//     .then((response) => {
+//       console.log(response.data);
+//     });
+// }
+
+// export default function updateNote() {
+//     axios
+//         .put(`${baseURL2}/22`, {
+//             Body: "This is an updated post by Cris."
+//         })
+//         .then((response) => {
+//             console.log(response.data);
+//         });
+// }
+
+// export default function throwNote() {
+//     axios
+//         .delete(`${baseURL2}/22`)
+//         .then(() => {
+//             alert("Post deleted!");
+//             setPost(null)
+//         });
+// }

@@ -7,7 +7,7 @@ import CommentForm from "./comments/commentForm"
 export default function Notes() {
     return(
         <>
-        <Comments currentUserId='1'/>
+        <Comments currentUserId='2'/>
         </>
     )
 }
