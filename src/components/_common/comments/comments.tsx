@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import axios from "axios";
 import Comment from './comment'
 import CommentForm from "./commentForm"
 
@@ -9,9 +10,10 @@ import {
     updateComment as updateCommentApi,
 } from "./notes_api"
 
-import addNote from "./notes_api"
-import updateNote from "./notes_api"
-import throwNote from "./notes_api"
+import {addNote, updateNote, throwNote, getNotess} from "./notes_api"
+
+import { listCases } from "../../../services/caseService";
+import { CaseDetailModel } from ".../../models/Case";
 
 const Comments = ({ currentUserId }: any) => {
     const [backendComments, setBackendComments] = useState([])
@@ -29,24 +31,25 @@ const Comments = ({ currentUserId }: any) => {
             setBackendComments([comment, ...backendComments])
             setActiveComment(null)
         })
-        // addNote(text)
+        addNote(text)
     }
 
-    const deleteComment = (commentId: any) => {
+    const deleteComment = (Id: any) => {
         if (window.confirm('¿Está seguro de que desea eliminar la nota?')){
             deleteCommentApi().then(() => {
                 const updateBackendComments = backendComments.filter(
-                    (backendComment) => backendComment.id !== commentId
+                    (backendComment) => backendComment.id !== Id
                 )
                 setBackendComments(updateBackendComments)
+                throwNote(Id)
             })
         }
     }
 
-    const updateComment = (text: any, commentId: any) => {
+    const updateComment = (text: any, Id: any) => {
         updateCommentApi(text).then(() =>{
             const updatedtBackendComments = backendComments.map((backendComment) => {
-                if (backendComment.id === commentId) {
+                if (backendComment.id === Id) {
                     return { ...backendComment, body: text }
                 }
                 return backendComment
@@ -54,6 +57,7 @@ const Comments = ({ currentUserId }: any) => {
             setBackendComments(updatedtBackendComments)
             setActiveComment(null)
         })
+        updateNote(text, Id)
     }
 
     useEffect(() => {
@@ -77,7 +81,7 @@ const Comments = ({ currentUserId }: any) => {
                     />
                 ))}
             </div>
-{/* {throwNote()} */}
+            {getNotess()}
         </div>
     )
 }

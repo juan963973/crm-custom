@@ -23,7 +23,9 @@ const Comment = ({
             <div className="comment-right-part">
                 <div className="comment-content">
                     <div className="comment-author">{comment.username}</div>
+                    <div>{comment?.username ? comment.username : 'Usuario'}</div>
                     <div>{createdAt}</div>
+                    {/* <div>{createdAt? createdAt : 'Fecha'}</div> */}
                 </div>
                 { !isEditing && <div className="comment-text">{comment.body}</div> }
                 { isEditing && (

@@ -50,32 +50,49 @@ import React from "react";
 
 const baseURL = "https://localhost:5001/v1/api/Notes/Case";
 const baseURL2 = "https://localhost:5001/v1/api/Notes";
-// export default function addNote(text) {
-//     axios
-//     .post(baseURL, {
-//       body: text,
-//       "moduleId": 2
-//     })
-//     .then((response) => {
-//       console.log(response.data);
-//     });
-// }
+const baseURL3 = "https://localhost:5001/v1/api/Cases/2/details";
 
-// export default function updateNote() {
-//     axios
-//         .put(`${baseURL2}/22`, {
-//             Body: "This is an updated post by Cris."
-//         })
-//         .then((response) => {
-//             console.log(response.data);
-//         });
-// }
+export function addNote(text) {
+    axios
+        .post(baseURL, {
+            body: text,
+            "moduleId": 2
+        })
+        .then((response) => {
+            console.log(response.data);
+        });
+}
 
-// export default function throwNote() {
-//     axios
-//         .delete(`${baseURL2}/22`)
-//         .then(() => {
-//             alert("Post deleted!");
-//             setPost(null)
-//         });
-// }
+export function updateNote(text, Id) {
+    console.log(`${baseURL2}/${Id})`)
+    axios
+        .put(`${baseURL2}/${Id}`, {
+            Body: text
+        })
+        .then((response) => {
+            console.log(response.data);
+        });
+}
+
+export function throwNote(Id) {
+    console.log(`${baseURL2}/${Id})`)
+    axios
+        .delete(`${baseURL2}/${Id}`)
+        .then(() => {
+            alert("Post deleted!");
+        });
+}
+
+export function getNotess() {
+    const [post, setPost] = React.useState(null);
+
+    React.useEffect(() => {
+        axios.get(baseURL3).then((response) => {
+            console.log('kk*******************')
+            console.log(response.data.notes)
+            console.log('kk*******************')
+            setPost(response.data);
+        });
+    }, []);
+
+}
