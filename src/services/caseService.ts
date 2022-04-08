@@ -18,6 +18,17 @@ export async function kanbanView(page:any, filterModel:string, resolverAreaId:nu
     return res.data
 }
 
+export async function kanbanChangeStatus(page:any, dataChange:any): Promise<any[]> {
+    let statusId = dataChange?.statusId
+    let data:object = {
+        statusId
+    }
+    const res = await axios.put<any[]>(`https://localhost:5001/v1/api/${page}/${dataChange?.caseId}/change-status`, data)
+    return res.data
+}
+
+
+
 export async function getFieldsFilter(page:any): Promise<any[]> {
     console.log('getFieldsFilter::ENV',process.env)
     const res = await axios.get<any[]>(`https://localhost:5001/v1/api/filter/${page}`)

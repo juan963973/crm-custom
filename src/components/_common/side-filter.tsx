@@ -20,7 +20,7 @@ import { typesFilter } from "store/filter/filterReducer";
 import { useDispatchFilter } from "store/filter/FilterProvider";
 import { getFieldsFilter } from "services/caseService";
 
-const SideFilter = ({page}:any) => {
+const SideFilter = ({ page }: any) => {
   const dispatchFilter = useDispatchFilter();
 
   const [checked, setChecked] = useState([]);
@@ -30,12 +30,12 @@ const SideFilter = ({page}:any) => {
 
   useEffect(() => {
     getFieldsFilter(page)
-        .then( (response:any) => {
-          setCheckList(response);
-          setCheckListBackup(response);
-        })
-        .catch((e:any) => console.log(e));
-  }, [])
+      .then((response: any) => {
+        setCheckList(response);
+        setCheckListBackup(response);
+      })
+      .catch((e: any) => console.log(e));
+  }, []);
 
   const handleCheck = (event: any) => {
     var updatedList = [...checked];
@@ -43,18 +43,27 @@ const SideFilter = ({page}:any) => {
       updatedList = [...checked, event.target.value];
     } else {
       updatedList.splice(checked.indexOf(event.target.value), 1);
+      if(Object.keys(checkListFilter).length>0){
+
+        Object.keys(checkListFilter).map((item:any)=>{
+            if((Object.keys(checkListFilter).some(p => p == event.target.value))){
+              const {[event.target.value as keyof typeof checkListFilter] : _, ... newItems} = checkListFilter
+              setCheckListFilter(newItems);  
+            }
+        })
+    }
     }
     setChecked(updatedList);
-  }
+  };
 
   const handleChangeSearch = (event: any) => {
     var query = event.target.value;
     setCheckList(
       checkListBackup.filter((item) => {
-        return item?.title?.toLowerCase().includes(query.toLowerCase());
+        return item?.key?.toLowerCase().includes(query.toLowerCase());
       })
-    )
-  }
+    );
+  };
 
   var isChecked = (item: any) => (checked.includes(item) ? true : false);
 
@@ -63,9 +72,18 @@ const SideFilter = ({page}:any) => {
     var value = event.target.value;
     setCheckListFilter({ ...checkListFilter, [keyFilter]: value });
     return;
+  };
+
+  const handleSubmit = () =>
+    dispatchFilter({ type: typesFilter.setFilter, payload: checkListFilter });
+
+  const handleClear = () =>{
+    setCheckListFilter({});
+    setChecked([]);
+    setCheckList(checkListBackup);
   }
 
-  const handleSubmit = () => dispatchFilter({ type: typesFilter.setFilter,  payload: checkListFilter }) 
+  console.log(checked.length);
 
   return (
     <>
@@ -94,16 +112,17 @@ const SideFilter = ({page}:any) => {
               <div className="list-container">
                 <Form id="formFilter">
                   {checkList.map((item, index) => (
-                    <div key={index}>
+                    <div key={item.key}>
                       <Form.Check
+                        checked={isChecked(item.key)}
                         inline
                         style={{ color: "black" }}
                         label={item.title}
-                        value={item.title}
+                        value={item.key}
                         onChange={handleCheck}
                       />
                       <div>
-                        {isChecked(item.title) && (
+                        {isChecked(item.key) && (
                           <>
                             <Row>
                               <Col md={6} className="mb-1">
@@ -121,18 +140,21 @@ const SideFilter = ({page}:any) => {
                             </Row>
                             {item.type == "Textfield" && (
                               <Textfield
+                                value={isChecked(item.key) ? checkListFilter[item.key as keyof typeof checkListFilter] : null}
                                 onChange={handleSaveFilter}
                                 keyFilter={item.key}
                               />
                             )}
                             {item.type == "Date" && (
                               <Datefield
+                                value={isChecked(item.key) ? {valueData: checkListFilter[item.key as keyof typeof checkListFilter]} : null}
                                 onChange={handleSaveFilter}
                                 keyFilter={item.key}
                               />
                             )}
                             {item.type == "MultipleSelect" && (
                               <MultipleSelect
+                                value={isChecked(item.key) ? checkListFilter[item.key as keyof typeof checkListFilter]: null}
                                 endpoint={item.endpoint}
                                 onChange={handleSaveFilter}
                                 keyFilter={item.key}
@@ -143,23 +165,24 @@ const SideFilter = ({page}:any) => {
                       </div>
                     </div>
                   ))}
-                  <Row className="mt-2">
+                  {(checked.length>0)&&<Row className="mt-2">
                     <Col md={4}></Col>
                     <Col md={3}>
                       <Button
-                        className="submit-button btn-sm" onClick={handleSubmit}
+                        className="submit-button btn-sm"
+                        onClick={handleSubmit}
                       >
                         Aplicar
                       </Button>
                     </Col>
                     <Col md={3}>
                       <Button
-                        className=" btn-sm btn-secondary" /*onClick={handleSubmit}*/
+                        className=" btn-sm btn-secondary" onClick={handleClear}
                       >
                         Cancelar
                       </Button>
                     </Col>
-                  </Row>
+                  </Row>}
                 </Form>
               </div>
               {/* ----------------------------------------------------------- */}

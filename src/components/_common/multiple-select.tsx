@@ -7,7 +7,7 @@ interface toolFunction {
   endpoint: string;
   onChange: (event?: any) => void;
   keyFilter: string;
-  dataCase?: number | null;
+  value?: any;
   disabled?: boolean;
 }
 
@@ -15,11 +15,10 @@ const MultipleSelect = ({
   endpoint,
   onChange,
   keyFilter,
-  dataCase=null,
+  value=null,
   disabled = false,
 }: toolFunction) => {
   const [data, setData] = useState([]);
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -29,7 +28,7 @@ const MultipleSelect = ({
         console.log(err);
       }
     }
-    fetchData();
+   fetchData()
   }, []);
 
   return (
@@ -37,8 +36,8 @@ const MultipleSelect = ({
       onChange={onChange}
       id={keyFilter}
       name={keyFilter}
-      value={dataCase}
-      defaultValue={dataCase}
+      value={value}
+      defaultValue={value}
       disabled={disabled}
     >
 

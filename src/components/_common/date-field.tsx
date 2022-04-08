@@ -2,19 +2,33 @@ import { FormControl } from "react-bootstrap";
 import DateRangePicker from 'rsuite/DateRangePicker';
 import "rsuite/dist/rsuite.min.css";
 
-const Datefield: any = (param:any) => {
+const Datefield: any = ({keyFilter,onChange,value}:any) => {
+  
   const handleChange = (e: any) =>{
+    if(!e) {
+      const result = {
+        target :   {
+          id: keyFilter, 
+          value: {
+          from: dateFormat(new Date()),
+          to: dateFormat(new Date())
+        }}
+      }
+      
+      onChange(result)
+      return;
+    }
     if(Object.keys(e).length === 0) return;
     const result = {
       target :   {
-        id: param.keyFilter, 
+        id: keyFilter, 
         value: {
         from: dateFormat(e[0]),
         to: dateFormat(e[1])
       }}
     }
-    console.log(dateFormat(new Date))
-    param.onChange(result)
+    
+    onChange(result)
   }
 
   const dateFormat = (date:any)=>{
@@ -25,7 +39,7 @@ const Datefield: any = (param:any) => {
     return `${year}-${month}-${day}`
   }
 
-  return <DateRangePicker onChange={handleChange}  /> /*<FormControl type="date" className="mt-1" size="sm" onChange={param.onChange} id={param.keyFilter} />*/;
+  return <DateRangePicker onChange={handleChange} value={value.valueData?[new Date(value.valueData.from),new Date(value.valueData.to)]:[new Date(), new Date()]}  />;
 };
 
 export default Datefield;
