@@ -68,4 +68,27 @@ export interface CaseDetailModel {
     requestExtension:        string;
 }
     
+export interface CreateCaseModel {
+    contactId:	        number,
+    companyId:	        number,
+    promoterId:	        number,
+    callDirectionId:	number,
+    typeId:	            number,
+    subtypeId:	        number,
+    typificationId:	    number,
+    subject:	        string,
+    description:	    string,
+    originId:	        number,
+    caseOwnerId:	    number,
+    caseStatusId:	    number,
+    idServidesk:	    string,
+    resolutionAreaIds:	number,
+    resolverIds:        number,
+    businessOfficer:	string,
+    solution:	        string,
+    clientComment:	    string,
+    qualification:	    string,
+    requestExtension:	boolean,
+    attachmentFile:	    string
 
+}

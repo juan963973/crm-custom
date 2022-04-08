@@ -62,6 +62,7 @@ const SideFilter = ({page}:any) => {
     var keyFilter = event.target.id;
     var value = event.target.value;
     setCheckListFilter({ ...checkListFilter, [keyFilter]: value });
+    return;
   }
 
   const handleSubmit = () => dispatchFilter({ type: typesFilter.setFilter,  payload: checkListFilter }) 
