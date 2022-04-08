@@ -6,8 +6,8 @@ import CommentForm from "./commentForm"
 import {
     deleteComment as deleteCommentApi,
     updateComment as updateCommentApi,
-    createComment as createCommentApi
 } from "./notes_api"
+import { createNote } from "services/notesService";
 
 const baseURL = "https://localhost:5001/v1/api/Cases/2/details";
 const baseURLP = "https://localhost:5001/v1/api/Notes/Case";
@@ -19,36 +19,14 @@ const Comments = ({ currentUserId }: any) => {
     const [activeComment, setActiveComment] = useState(null)
     const rootComments = backendComments
 
-    // console.log(typeof(backendComments))
-    // console.log('backendComments', backendComments)
-    // console.log('rootComments', rootComments)
+
     console.log('rootComments', typeof (rootComments))
 
     const addComment = async (text: any) => {
-        console.log('addComent', text)
-        // createCommentApi(text, parentId).then(comment => {
-        //     setBackendComments([comment, ...backendComments])
-        //     setActiveComment(null)
-        // })
-
-        axios
-            .post(baseURLP, {
-                body: text,
-                "moduleId": 2
-            })
-            .then((comment: any) => {
-                createCommentApi(text).then(comment => {
-                    setBackendComments([comment, ...backendComments])
-                    setActiveComment(null)
-                    axios.get("https://localhost:5001/v1/api/Cases/2/details").then((response) => {
-                        setBackendComments(response.data.notes)
-                        // console.log('kk*******************')
-                        // console.log(setBackendComments)
-                        // console.log('kk*******************')
-                    });
-                })
-            })
-            
+        await createNote(text, 2, 'Case')
+        axios.get("https://localhost:5001/v1/api/Cases/2/details").then((response) => {
+            setBackendComments(response.data.notes)
+        });
     }
 
     const deleteComment = (Id: any) => {

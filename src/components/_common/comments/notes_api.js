@@ -38,11 +38,11 @@ export const getComments = async () => {
 //     }
 // }
 
-export const createComment = async (text) => {
-    return {
-        body: text
-    }
-}
+// export const createComment = async (text) => {
+//     return {
+//         body: text
+//     }
+// }
 
 export const updateComment = async (text) => {
     return { text }
