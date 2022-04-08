@@ -8,13 +8,13 @@ import debounce from 'lodash.debounce';
 import { useStoreFilter } from "store/filter/FilterProvider"
 import { useStoreFilter as useStoreFilterResolutionArea } from "store/filterResolutionAreas/FilterProvider"
 
-const Kanban = ({page}:any) => {
+const Kanban = ({module}:any) => {
     const storeFilter = useStoreFilter();
     const storeFilterResolutionArea = useStoreFilterResolutionArea();
     const [cols, setCols] = useState<object>({})
 
     useEffect(() => {
-        kanbanView(page, storeFilter.type, storeFilterResolutionArea.type)
+        kanbanView(module, storeFilter.type, storeFilterResolutionArea.type)
             .then( (data:any) => {
                 setCols(data)
             })
@@ -69,7 +69,7 @@ const Kanban = ({page}:any) => {
     const changeStatusSave = useCallback(
         debounce((caseId:any, statusId:any) => {
             let dataChange = { caseId, statusId}
-            kanbanChangeStatus(page, dataChange)
+            kanbanChangeStatus(module, dataChange)
             .then( (data:any) => {})
             .catch((e:any) => console.log(e));
         }, 300), []
@@ -117,7 +117,7 @@ const Kanban = ({page}:any) => {
                                                         //     ...provider.draggableProps.style
                                                         // }}
                                                     >
-                                                        <Link href={ `/${page}/show/${item.id}` }>
+                                                        <Link href={ `/${module}/show/${item.id}` }>
                                                             <a style={{textDecoration: 'none', color:'#000'}}>
                                                                 <div>{item.issue }</div>
                                                                 <div>{item.ticketNumber }</div>

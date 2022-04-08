@@ -7,7 +7,7 @@ import SearchGlobal from './searchGlobal'
 
 function CustomNavbar() {
     return (
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
         <Container>
           <Navbar.Brand href="/"><BsBank2 size="30px"/>    CRM</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
