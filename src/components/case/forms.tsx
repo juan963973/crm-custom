@@ -34,7 +34,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 endpoint={"Info/list-contact"}
                 onChange={handleChange}
                 keyFilter={"contactId"}
-                dataCase={caseData.contactId}
+                value={caseData.contactId}
                 disabled={caseData?.companyId !== null} 
               />
             </Col>
@@ -45,7 +45,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 endpoint={"Search/company"}
                 onChange={handleChange}
                 keyFilter={"companyId"}
-                dataCase={caseData.companyId}
+                value={caseData.companyId}
                 disabled={caseData?.contactId !== null}
               />
             </Col>
@@ -178,7 +178,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 endpoint={"Info/list-contact"}
                 onChange={handleChange}
                 keyFilter={"promoterId"}
-                dataCase={caseData.promoterId}
+                value={caseData.promoterId}
               />
             </Col>
 
@@ -239,7 +239,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 endpoint={"Search/case-types"}
                 onChange={handleChange}
                 keyFilter={"typeId"}
-                dataCase={caseData.typeId}
+                value={caseData.typeId}
               />
             </Col>
             <Col></Col>
@@ -253,7 +253,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 endpoint={"Search/case-subtypes"}
                 onChange={handleChange}
                 keyFilter={"subtypeId"}
-                dataCase={caseData.subtypeId}
+                value={caseData.subtypeId}
               />
             </Col>
             <Col></Col>
@@ -267,7 +267,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 endpoint={"Search/typification-name"}
                 onChange={handleChange}
                 keyFilter={"typificationId"}
-                dataCase={caseData.typificationId}
+                value={caseData.typificationId}
               />
             </Col>
             <Col></Col>
@@ -333,7 +333,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 endpoint={"Search/case-origin"}
                 onChange={handleChange}
                 keyFilter={"originId"}
-                dataCase={caseData.originId}
+                value={caseData.originId}
               />
             </Col>
 
@@ -343,7 +343,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 endpoint={"Search/case-owner"}
                 onChange={handleChange}
                 keyFilter={"caseOwnerId"}
-                dataCase={caseData.caseOwnerId}
+                value={caseData.caseOwnerId}
               />
             </Col>
           </Row>
@@ -357,7 +357,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 endpoint={"Search/case-status"}
                 onChange={handleChange}
                 keyFilter={"caseStatusId"}
-                dataCase={caseData.caseStatusId}
+                value={caseData.caseStatusId}
               />
             </Col>
           </Row>
@@ -395,7 +395,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 endpoint={"Search/resolver-areas"}
                 handleChange={handleChange}
                 keyFilter={"resolutionAreaIds"}
-                dataCase={caseData.resolutionAreaIds}
+                value={caseData.resolutionAreaIds}
               />
             </Col>
             <Col>Oficial Negocio</Col>
@@ -419,7 +419,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 endpoint={"Search/resolver"}
                 handleChange={handleChange}
                 keyFilter={"resolverIds"}
-                dataCase={caseData.resolverIds}
+                value={caseData.resolverIds}
               />
             </Col>
 
