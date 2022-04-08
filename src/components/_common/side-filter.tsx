@@ -20,19 +20,21 @@ import { typesFilter } from "store/filter/filterReducer";
 import { useDispatchFilter } from "store/filter/FilterProvider";
 import { getFieldsFilter } from "services/caseService";
 
-const SideFilter = ({ page }: any) => {
+const SideFilter = ({ module }: any) => {
   const dispatchFilter = useDispatchFilter();
 
   const [checked, setChecked] = useState([]);
   const [checkList, setCheckList] = useState([]);
   const [checkListBackup, setCheckListBackup] = useState([]);
   const [checkListFilter, setCheckListFilter] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getFieldsFilter(page)
-      .then((response: any) => {
-        setCheckList(response);
-        setCheckListBackup(response);
+    getFieldsFilter(module)
+      .then((res: any) => {
+        setCheckList(res);
+        setCheckListBackup(res);
+        setLoading(false)
       })
       .catch((e: any) => console.log(e));
   }, []);
@@ -71,6 +73,7 @@ const SideFilter = ({ page }: any) => {
     var keyFilter = event.target.id;
     var value = event.target.value;
     setCheckListFilter({ ...checkListFilter, [keyFilter]: value });
+    return;
   };
 
   const handleSubmit = () =>
@@ -109,6 +112,7 @@ const SideFilter = ({ page }: any) => {
 
               {/* ----------------------------------------------------------- */}
               <div className="list-container">
+                {loading ? 'Cargando...': ''}
                 <Form id="formFilter">
                   {checkList.map((item, index) => (
                     <div key={item.key}>
@@ -153,7 +157,7 @@ const SideFilter = ({ page }: any) => {
                             )}
                             {item.type == "MultipleSelect" && (
                               <MultipleSelect
-                                value={isChecked(item.key) ? {id: checkListFilter[item.key as keyof typeof checkListFilter]} : null}
+                                value={isChecked(item.key) ? checkListFilter[item.key as keyof typeof checkListFilter]: null}
                                 endpoint={item.endpoint}
                                 onChange={handleSaveFilter}
                                 keyFilter={item.key}

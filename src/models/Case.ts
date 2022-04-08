@@ -34,38 +34,61 @@ export interface CasesModel {
 }
 
 export interface CaseDetailModel {
-    id: number;
-    caseSatus: string;
-    caseOrigin: string;
-    caseOwnerName: string;
-    contactName: string;
-    contactPhone: string;
-    ticketNumber: string;
-    time: string;
-    companyName: string;
-    documentTypeName: string;
-    documentNumber: string;
-    clientCode: string;
-    clientBranch: string;
-    contactMobile: string;
-    promoterName: string;
-    promoterPhone: string;
-    promoterDocumentNumber: string;
-    promoterEmail: string;
-    typeName: string;
-    subtypeName: string;
-    typificationName: string;
-    description: string;
-    caseOriginName: string;
-    design: string;
-    callDirection: string;
-    updatedAt: string;
-    createdAt: string;
-    idServidesk: string;
-    resolverAreas: string[];
-    resolvers: string[];
-    businessOfficerName: string;
-    solution: string;
-    requestExtension: string
+    id:                      number;
+    caseStatusName:          string;
+    originName:              string;
+    caseOwnerUserName:       string;
+    contactFullname:         string;
+    contactPhone:            null;
+    ticketNumber:            string;
+    time:                    string;
+    companyName:             string;
+    contactDocumentTypeName: string;
+    contactDocumentNumber:   null;
+    contactClientCode:       null;
+    contactBranchName:       null;
+    contactMobile:           null;
+    promoterFullName:        string;
+    promoterPhone:           null;
+    promoterDocumentNumber:  null;
+    promoterEmail:           null;
+    typeName:                string;
+    subtypeName:             string;
+    typificationName:        string;
+    description:             null;
+    design:                  null;
+    callDirection:           string;
+    updatedAt:               null;
+    createdAt:               string;
+    idServidesk:             null;
+    resolverAreas:           any[];
+    resolvers:               any[];
+    businessOfficerName:     null;
+    solution:                null;
+    requestExtension:        string;
 }
+    
+export interface CreateCaseModel {
+    contactId:	        number,
+    companyId:	        number,
+    promoterId:	        number,
+    callDirectionId:	number,
+    typeId:	            number,
+    subtypeId:	        number,
+    typificationId:	    number,
+    subject:	        string,
+    description:	    string,
+    originId:	        number,
+    caseOwnerId:	    number,
+    caseStatusId:	    number,
+    idServidesk:	    string,
+    resolutionAreaIds:	number,
+    resolverIds:        number,
+    businessOfficer:	string,
+    solution:	        string,
+    clientComment:	    string,
+    qualification:	    string,
+    requestExtension:	boolean,
+    attachmentFile:	    string
 
+}
