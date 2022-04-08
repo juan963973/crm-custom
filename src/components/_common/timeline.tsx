@@ -1,14 +1,14 @@
 import React from "react";
 import { Card, Col, Row } from "react-bootstrap";
 
-export default function Timeline(){
-    return(
+export default function Timeline() {
+    return (
         <Row style={{
             maxHeight: "22rem", overflow: "auto", backgroundColor: '#edf0f4'
         }}>
 
 
-<Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
+            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
                     <Card body>
                         <Row className='mt-200'>
@@ -29,6 +29,6 @@ export default function Timeline(){
                     </Card>
                 </Row>
             </Row>
-            </Row>
+        </Row>
     )
 }

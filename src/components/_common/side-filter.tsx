@@ -73,6 +73,7 @@ const SideFilter = ({ module }: any) => {
     var keyFilter = event.target.id;
     var value = event.target.value;
     setCheckListFilter({ ...checkListFilter, [keyFilter]: value });
+    return;
   };
 
   const handleSubmit = () =>
@@ -156,7 +157,7 @@ const SideFilter = ({ module }: any) => {
                             )}
                             {item.type == "MultipleSelect" && (
                               <MultipleSelect
-                                value={isChecked(item.key) ? {id: checkListFilter[item.key as keyof typeof checkListFilter]} : null}
+                                value={isChecked(item.key) ? checkListFilter[item.key as keyof typeof checkListFilter]: null}
                                 endpoint={item.endpoint}
                                 onChange={handleSaveFilter}
                                 keyFilter={item.key}
