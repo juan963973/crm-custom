@@ -27,14 +27,20 @@ export const getComments = async () => {
     ]
 }
 
-export const createComment = async (text, parentId = null) => {
+// export const createComment = async (text, parentId = null) => {
+//     return {
+//         id: Math.random().toString(36).substr(2, 9),
+//         body: text,
+//         parentId,
+//         userId: '2',
+//         username: 'Usuario',
+//         createdAt: new Date().toISOString()
+//     }
+// }
+
+export const createComment = async (text) => {
     return {
-        id: Math.random().toString(36).substr(2, 9),
-        body: text,
-        parentId,
-        userId: '2',
-        username: 'Cristhian',
-        createdAt: new Date().toISOString()
+        body: text
     }
 }
 
@@ -83,16 +89,38 @@ export function throwNote(Id) {
         });
 }
 
-export function getNotess() {
+export function getNotes() {
     const [post, setPost] = React.useState(null);
+    let value
 
     React.useEffect(() => {
         axios.get(baseURL3).then((response) => {
-            console.log('kk*******************')
-            console.log(response.data.notes)
-            console.log('kk*******************')
-            setPost(response.data);
+            // console.log('kk*******************')
+            // console.log(response.data.notes)
+            // console.log('kk*******************')
+            // setPost(response.data);
         });
     }, []);
+    return(
+        value
+    )
 
 }
+
+// export const getNotess = async () =>{
+//         const [post, setPost] = React.useState(null);
+//     let value
+
+//     React.useEffect(() => {
+//         axios.get(baseURL3).then((response) => {
+//             console.log('kk*******************')
+//             console.log(response.data.notes)
+//             value = response.data.notes
+//             console.log('kk*******************')
+//             setPost(response.data);
+//         });
+//     }, []);
+//     return(
+//         value
+//     )
+// }
