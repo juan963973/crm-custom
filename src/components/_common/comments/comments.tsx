@@ -24,7 +24,7 @@ const Comments = ({ currentUserId }: any) => {
     // console.log('rootComments', rootComments)
     console.log('rootComments', typeof (rootComments))
 
-    const addComment = (text: any) => {
+    const addComment = async (text: any) => {
         console.log('addComent', text)
         // createCommentApi(text, parentId).then(comment => {
         //     setBackendComments([comment, ...backendComments])
@@ -40,8 +40,15 @@ const Comments = ({ currentUserId }: any) => {
                 createCommentApi(text).then(comment => {
                     setBackendComments([comment, ...backendComments])
                     setActiveComment(null)
+                    axios.get("https://localhost:5001/v1/api/Cases/2/details").then((response) => {
+                        setBackendComments(response.data.notes)
+                        // console.log('kk*******************')
+                        // console.log(setBackendComments)
+                        // console.log('kk*******************')
+                    });
                 })
             })
+            
     }
 
     const deleteComment = (Id: any) => {
