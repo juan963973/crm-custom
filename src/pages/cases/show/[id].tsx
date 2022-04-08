@@ -1,77 +1,18 @@
-import { Button, Col, Container, Form, Row, Card, InputGroup, FormControl, ButtonGroup, ToggleButton, Nav, Tabs, Tab } from "react-bootstrap";
-import Select from 'react-select';
-import { useEffect, useState } from "react";
-
-import { listCases } from "../../../services/caseService";
+import {
+    Button, Col, Container, Form, Row, Card, InputGroup, FormControl,
+    ButtonGroup, ToggleButton, Nav, Tabs, Tab
+} from "react-bootstrap";
+import { useRouter } from 'next/router'
+import { useState } from "react";
 import { CaseDetailModel } from ".../../models/Case";
-import Index from "..";
-import Overview from "./Overview";
-import Timeline from "./TimeLine";
+import Overview from "components/_common/overview";
 
-// const personOptions = [
-//     { value: 'Jessi', label: 'Jessi' },
-//     { value: 'Anto', label: 'Anto' },
-//     { value: 'Marcos', label: 'Marcos' },
-//     { value: 'New Persona', label: 'New Persona' }
-// ]
+const page = "cases";
 
-// const EnterpriseOptions = [
-//     { value: 'Patria', label: 'Patria' },
-//     { value: 'Avalon', label: 'Avalon' },
-//     { value: 'Bepsa', label: 'Bepsa' },
-//     { value: 'New enterprise', label: 'New enterprise' }
-// ]
-
-// const idOptions = [
-//     { value: 'Undefined', label: 'Undefined' },
-//     { value: 'Cédula', label: 'Cédula' },
-//     { value: 'RUC', label: 'RUC' },
-//     { value: 'Pasaporte', label: 'Pasaporte' }
-// ]
-
-// const caseType = [
-//     { value: 'Undefined', label: 'Undefined' },
-//     { value: 'Consulta', label: 'Consulta' },
-//     { value: 'Solicitud', label: 'Solicitud' },
-//     { value: 'Reclamo', label: 'Reclamo' }
-// ]
-
-// const caseOrigin = [
-//     { value: 'Undefined', label: 'Undefined' },
-//     { value: 'Consulta', label: 'Consulta' },
-//     { value: 'Solicitud', label: 'Solicitud' },
-//     { value: 'Reclamo', label: 'Reclamo' }
-// ]
-
-// const caseStatus = [
-//     { value: 'Undefined', label: 'Undefined' },
-//     { value: 'Consulta', label: 'Consulta' },
-//     { value: 'Solicitud', label: 'Solicitud' },
-//     { value: 'Reclamo', label: 'Reclamo' }
-// ]
-
-
-
-
-
-export default function Id() {
+export default function Show() {
     const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
-
-
-
-    useEffect(() => {
- 
-        listCases()
-
-            .then(data => {
-
-                setCases(data)
-
-            })
-
-            .catch(e => console.log(e));
-
-    }, [])
+    const router = useRouter()
+    const id = 1
 
     let data = cases
 
@@ -120,8 +61,8 @@ export default function Id() {
                     }}>
                         <Row>
                             <Row sm={4} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#edf0f4' }}>
-                                
-                                <Col sm={4} style={{ width: 'auto'}}>
+
+                                <Col sm={4} style={{ width: 'auto' }}>
 
                                     <Button variant="primary">Overview</Button>
                                     {/* 
@@ -133,13 +74,17 @@ export default function Id() {
                                             <Timeline />
                                         </Tab>
                                     </Tabs> */}
-
                                 </Col>
-                                <Col align="end">Last Update : {cases?.updatedAt ? cases.updatedAt : ' - '}</Col>
                             </Row>
 
-                            <Overview />
-                        
+                            <Row style={{
+                                maxHeight: "25rem", overflow: "auto", backgroundColor: '#edf0f4'
+                            }}>
+                                <Overview page={page} id={id} />
+                            </Row>
+
+
+
                         </Row>
                     </Col>
                 </Row>

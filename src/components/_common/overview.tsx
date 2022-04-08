@@ -1,22 +1,19 @@
 import React from "react";
-import { Button, Col, Container, Form, Row, Card, InputGroup, FormControl, ButtonGroup, ToggleButton, Nav, Tabs, Tab } from "react-bootstrap";
-import Select from 'react-select';
+import { Col, Row, Card, InputGroup, FormControl } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
-import { listCases } from "../../../services/caseService";
-import { CaseDetailModel } from ".../../models/Case";
-import Index from "..";
+import { listCases } from "../../services/caseService";
+import { CaseDetailModel } from "../../models/Case";
 
-export default function Overview(){
-    const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
-
-
+export default function Overview({page, id}:any){
+    const [cases, setCases] = useState<CaseDetailModel>({} as CaseDetailModel)
 
     useEffect(() => {
-
-        listCases()
+        
+        listCases(page, id)
 
             .then(data => {
+                console.log('::::',data)
 
                 setCases(data)
 
@@ -27,12 +24,9 @@ export default function Overview(){
     }, [])
 
     let data = cases
+    console.log(cases)
     return(
-        <Row style={{
-            maxHeight: "25rem", overflow: "auto", backgroundColor: '#edf0f4'
-        }}>
-
-
+        <>
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
                 <Row style={{ width: '99%' }} >
                     <Card body >
@@ -44,7 +38,7 @@ export default function Overview(){
                             </Col>
                             <Col>
                                 <Row>{cases?.caseStatusName ? cases.caseStatusName : ' - '}</Row>
-                                <Row>{cases[0]?.caseOrigin ? cases[0].caseOrigin : ' - '}</Row>
+                                <Row>{cases?.originName ? cases.originName : ' - '}</Row>
                                 <Row>{cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}</Row>
                             </Col>
                         </Row>
@@ -88,9 +82,9 @@ export default function Overview(){
                             </Row>
                             <Row>
                                 <Col style={{ color: 'gray' }}>Nro_Ticket_Finansys</Col>
-                                <Col>{cases[0]?.ticketNumber ? cases[0].ticketNumber : ' - '}</Col>
+                                <Col>{cases?.ticketNumber ? cases.ticketNumber : ' - '}</Col>
                                 <Col style={{ color: 'gray' }}> Tiempo (auto) </Col>
-                                <Col>{cases[0]?.time ? cases[0].time : ' - '}</Col>
+                                <Col>{cases?.time ? cases.time : ' - '}</Col>
                             </Row>
                         </Row>
 
@@ -215,7 +209,7 @@ export default function Overview(){
                                 </Col>
                                 <Col>
                                     <Row>CONSULTA</Row>
-                                    <Row>{cases[0]?.description ? cases[0].description : ' - '}</Row>
+                                    <Row>{cases?.description ? cases.description : ' - '}</Row>
                                 </Col>
                             </Row>
                         </Row>
@@ -227,12 +221,12 @@ export default function Overview(){
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Case Origin</Col>
                                 <Col align="start">
-                                    CALL {cases[0]?.caseOrigin ? cases[0].caseOrigin : ' - '}
+                                    CALL {cases?.originName ? cases.originName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Case owner</Col>
                                 <Col sm={4} align="start">
-                                    {cases[0]?.caseOwnerName ? cases[0].caseOwnerName : ' - '}
+                                    {cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
@@ -254,7 +248,7 @@ export default function Overview(){
 
                                 <Col style={{ color: 'gray' }}>Fecha/Hora Creado (auto)</Col>
                                 <Col sm={4} align="start">
-                                    {cases[0]?.createdAt ? cases[0].createdAt : ' - '}
+                                    {cases?.createdAt ? cases.createdAt : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
@@ -265,7 +259,7 @@ export default function Overview(){
 
                                 <Col style={{ color: 'gray' }}>Fecha/Hora Creado (auto)</Col>
                                 <Col sm={4} align="start">
-                                    {cases[0]?.createdAt ? cases[0].createdAt : ' - '}
+                                    {cases?.createdAt ? cases.createdAt : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
@@ -559,6 +553,6 @@ export default function Overview(){
                 </Row>
             </Row>
 
-        </Row>
+        </>
     )
 }
