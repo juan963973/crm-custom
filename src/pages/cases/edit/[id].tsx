@@ -146,7 +146,7 @@ function EditCase({id, uri}:any) {
 
     return (
       <>
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form noValidate validated={validated} style={{marginTop:'58px'}} onSubmit={handleSubmit}>
         <Container className="shadow-sm p-3 mb-5 bg-white rounded mt-2">
           <Row className="justify-content-end">
             <Col sm={2}>
