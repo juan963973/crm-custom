@@ -62,7 +62,6 @@ const Comments = ({ currentUserId }: any) => {
         axios.get("https://localhost:5001/v1/api/Cases/2/details").then((response) => {
             setBackendComments(response.data.notes)
         });
-        console.log("asdfadsf")
     }, []);
 
     return (
