@@ -9,8 +9,6 @@ import {
 } from "./notes_api"
 import { createNote } from "services/notesService";
 
-const baseURL = "https://localhost:5001/v1/api/Cases/2/details";
-const baseURLP = "https://localhost:5001/v1/api/Notes/Case";
 const baseURLE = "https://localhost:5001/v1/api/Notes";
 
 
@@ -18,17 +16,12 @@ const Comments = ({ currentUserId }: any) => {
     const [backendComments, setBackendComments] = useState([])
     const [activeComment, setActiveComment] = useState(null)
     const rootComments = backendComments
-
-
-    console.log('rootComments', typeof (rootComments))
-
     const addComment = async (text: any) => {
         await createNote(text, 2, 'Case')
         axios.get("https://localhost:5001/v1/api/Cases/2/details").then((response) => {
             setBackendComments(response.data.notes)
         });
     }
-
     const deleteComment = (Id: any) => {
         if (window.confirm('¿Está seguro de que desea eliminar la nota?')) {
             deleteCommentApi().then(() => {
@@ -63,21 +56,11 @@ const Comments = ({ currentUserId }: any) => {
             console.log('setBackendComments', setBackendComments)
             setActiveComment(null)
         })
-        // updateNote(text, Id)
     }
-
-    // useEffect(() => {
-    //     getCommentsApi().then((data) => {
-    //         setBackendComments(data)
-    //     });
-    // }, []);
 
     useEffect(() => {
         axios.get("https://localhost:5001/v1/api/Cases/2/details").then((response) => {
             setBackendComments(response.data.notes)
-            // console.log('kk*******************')
-            // console.log(setBackendComments)
-            // console.log('kk*******************')
         });
         console.log("asdfadsf")
     }, []);

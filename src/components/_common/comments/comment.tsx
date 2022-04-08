@@ -29,7 +29,7 @@ const Comment = ({
                     <div className="comment-content">
                         {/* <div className="comment-author">{comment.username}</div> */}
                         <div><b>{comment?.username ? comment.username : 'Usuario'}</b></div>
-                        <div>{createdAt}</div>
+                        {/* <div>{createdAt}</div> */}
                     </div>
                     {!isEditing && <div className="comment-text">{comment.body}</div>}
                     {isEditing && (
@@ -47,7 +47,7 @@ const Comment = ({
                         >Editar</button>}
                         {canDelete && <button className='comment-action btn btn-secondary btn-sm' onClick={() => deleteComment(comment.id)}>Eliminar</button>}
                     </div> */}
-                    <div className='comment-actions'>
+                    <div className='comment-actions' style={{marginTop: '5px'}}>
                         <button style={{marginRight: '3px'}} className='comment-action btn btn-primary btn-sm' onClick={() =>
                             setActiveComment({ id: comment.id, type: 'editing' })}
                         >Editar</button>
