@@ -565,6 +565,7 @@ export default function Overview2({ page, id }: any) {
                                 <Button size="sm" variant="primary">Asignar</Button>{' '}
                                 <Button size="sm" variant="secondary">Editar</Button>{' '}
                                 <Button size="sm" variant="secondary">Nuevo</Button>{' '}
+                                {/* <Button size="sm" variant="secondary">?</Button>{' '} */}
                             </Col>
                         </Row>
                         <Row style={{

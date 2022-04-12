@@ -22,12 +22,15 @@ export default function Show() {
 
             <Container className="shadow-sm p-3 mb-3 bg-white rounded mt-2">
                 <Row style={{marginTop: '50px'}}>
-                    <Col sm={2}  >
+                    <Col sm={1} style={{width: '30px'}} >
                         <h4>
                             ←
                         </h4>
                     </Col>
-                    <Col sm={5} style={{ marginLeft: '-13%' }}>
+                    <Col sm={1}>
+                        <img src="/contactIcon.png" style={{ height: '55px' }} />
+                    </Col>
+                    <Col>
                         <Row>
                             <h4>Nombre Apellido</h4>
                         </Row>
@@ -36,8 +39,8 @@ export default function Show() {
                         </Row>
                     </Col>
                     <Col align="end">
-                        <Button variant="primary">Send Email</Button>{' '}
-                        <Button variant="secondary">Edit</Button>{' '}
+                        <Button variant="primary">Enviar Correo</Button>{' '}
+                        <Button variant="secondary">Editar</Button>{' '}
                         <Button variant="secondary">...</Button>{' '}
                         «
                         »
