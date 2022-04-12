@@ -20,7 +20,7 @@ export default function Show() {
         <>
 
             <Container className="shadow-sm p-3 mb-3 bg-white rounded mt-2">
-                <Row >
+                <Row style={{marginTop: '50px'}}>
                     <Col sm={2}  >
                         <h4>
                             ←
