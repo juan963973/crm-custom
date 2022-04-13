@@ -6,6 +6,7 @@ import { listCases } from "../../services/caseService";
 import { CaseDetailModel } from '../../models/Case';
 
 import Notes from "components/_common/notes";
+import NewButtonCase from "./newButtonCase";
 
 export default function Overview2({ page, id }: any) {
     const [cases, setCases] = useState<CaseDetailModel>({} as CaseDetailModel)
@@ -562,16 +563,13 @@ export default function Overview2({ page, id }: any) {
                                 </h6>
                             </Col>
                             <Col align="end">
-                                <Button size="sm" variant="primary">Asignar</Button>{' '}
-                                <Button size="sm" variant="secondary">Editar</Button>{' '}
-                                <Button size="sm" variant="secondary">Nuevo</Button>{' '}
-                                {/* <Button size="sm" variant="secondary">?</Button>{' '} */}
+                                <NewButtonCase />
                             </Col>
                         </Row>
                         <Row style={{
                             justifyContent: 'between',
                             alignItems: 'center'
-                            }}>
+                        }}>
                             <Row
                                 style={{
                                     color: 'gray',
