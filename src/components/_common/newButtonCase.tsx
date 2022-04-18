@@ -6,11 +6,8 @@ export default function NewButtonCase() {
 
     const handleClick = (e: { preventDefault: () => void }) => {
         e.preventDefault()
-        router.push('/cases/new/1')
+        router.push('/cases/new/')
     }
-
-    let Id = 1;
-    // console.log('>>>>>>>>>>>>>>>>>>>>>', id)
 
     return (
         <Button
