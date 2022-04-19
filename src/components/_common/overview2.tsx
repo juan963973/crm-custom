@@ -1,17 +1,18 @@
 import React from "react";
-import { Col, Row, Card, InputGroup, FormControl } from "react-bootstrap";
+import { Col, Row, Card, InputGroup, FormControl, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 import { detail } from "../../services/caseService";
 import { CaseDetailModel } from '../../models/Case';
 
 import Notes from "components/_common/notes";
+import NewButtonCase from "./newButtonCase";
 
-export default function Overview({page, id}:any){
+export default function Overview2({ page, id }: any) {
     const [cases, setCases] = useState<CaseDetailModel>({} as CaseDetailModel)
 
     useEffect(() => {
-        
+
         detail(page, id)
 
             .then(data => {
@@ -26,10 +27,10 @@ export default function Overview({page, id}:any){
 
     let data = cases
     console.log(cases)
-    return(
+    return (
         <>
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
-                <Row style={{ width: '99%' }} >
+            {/* <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center"> */}
+            {/* <Row style={{ width: '99%' }} >
                     <Card body >
                         <Row className='mt-200'>
                             <Col sm={3} style={{ color: 'gray', marginRight: 30 }} >
@@ -44,10 +45,10 @@ export default function Overview({page, id}:any){
                             </Col>
                         </Row>
                     </Card>
-                </Row>
-            </Row>
+                </Row> */}
+            {/* </Row> */}
 
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
+            {/* <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
                     <Card body>
                         <Row className='mt-200'>
@@ -60,16 +61,14 @@ export default function Overview({page, id}:any){
                                 <Row>Img</Row>
                             </Col>
                             <Col>
-                                {/* <Row>{cases[0].contactName ? cases[0].contactName: ' - ' }</Row> */}
                                 <Row>ademirdemaria@hotmail.com (no tenemos)</Row>
-                                {/* <Row>{cases[0].contactPhone ? cases[0].contactPhone: ' - ' }</Row> */}
                             </Col>
                         </Row>
                     </Card>
                 </Row>
-            </Row>
+            </Row> */}
 
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
+            {/* <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
                     <Card body>
                         <Row className='mt-200' style={{ marginBottom: 35 }}>
@@ -447,9 +446,9 @@ export default function Overview({page, id}:any){
                 </Row>
 
 
-            </Row>
+            </Row> */}
 
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
+            {/* <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
                     <Card body>
                         <Row className='mt-200'>
@@ -458,20 +457,20 @@ export default function Overview({page, id}:any){
                             </Col>
                         </Row>
                         <Row>
-                            {/* <InputGroup className="mb-3">
+                            <InputGroup className="mb-3">
                                 <FormControl
                                     aria-label="Example text with button addon"
                                     aria-describedby="basic-addon1"
                                     placeholder="Add a note..."
                                 />
-                            </InputGroup> */}
+                            </InputGroup>
                            <Notes /> 
                         </Row>
                     </Card>
                 </Row>
-            </Row>
+            </Row> */}
 
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
+            {/* <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
                     <Card body>
                         <Row className='mt-200'>
@@ -499,9 +498,9 @@ export default function Overview({page, id}:any){
                         </Row>
                     </Card>
                 </Row>
-            </Row>
+            </Row> */}
 
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
+            {/* <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
                     <Card body>
                         <Row className='mt-200'>
@@ -516,9 +515,9 @@ export default function Overview({page, id}:any){
                         </Row>
                     </Card>
                 </Row>
-            </Row>
+            </Row> */}
 
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
+            {/* <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
                     <Card body>
                         <Row className='mt-200'>
@@ -534,9 +533,9 @@ export default function Overview({page, id}:any){
                         </Row>
                     </Card>
                 </Row>
-            </Row>
+            </Row> */}
 
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
+            {/* <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
                     <Card body>
                         <Row className='mt-200'>
@@ -553,8 +552,58 @@ export default function Overview({page, id}:any){
                         </Row>
                     </Card>
                 </Row>
+            </Row> */}
+            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
+                <Row style={{ width: '99%' }}>
+                    <Card body>
+                        <Row className='mt-200'>
+                            <Col align="start">
+                                <h6>
+                                    Casos
+                                </h6>
+                            </Col>
+                            <Col align="end">
+                                <NewButtonCase />
+                            </Col>
+                        </Row>
+                        <Row style={{
+                            justifyContent: 'between',
+                            alignItems: 'center'
+                        }}>
+                            <Row
+                                style={{
+                                    color: 'gray',
+                                    marginBottom: 10,
+                                    marginTop: 10,
+                                    borderColor: 'rgb(237, 240, 244)',
+                                    borderStyle: 'solid',
+                                    borderWidth: 'thin',
+                                    borderLeft: 'none',
+                                    borderRight: 'none'
+                                }}>
+                                <Col>Asunto</Col>
+                                <Col>Estatus</Col>
+                                <Col>Tipo</Col>
+                            </Row>
+                            <Row
+                                style={{
+                                    marginBottom: 10,
+                                    marginTop: 10,
+                                    borderColor: 'rgb(237, 240, 244)',
+                                    borderStyle: 'solid',
+                                    borderWidth: 'thin',
+                                    borderTop: 'none',
+                                    borderLeft: 'none',
+                                    borderRight: 'none'
+                                }}>
+                                <Col>NO DEFINIDO </Col>
+                                <Col>ASIGNACION</Col>
+                                <Col>CONSULTA</Col>
+                            </Row>
+                        </Row>
+                    </Card>
+                </Row>
             </Row>
-
         </>
     )
 }
