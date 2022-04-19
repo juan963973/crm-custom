@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { TagPicker } from "rsuite";
 
-const MultipleArray: any = ({endpoint, handleChange, keyFilter, dataCase=[]}: any) => {
+const MultipleArray: any = ({endpoint, handleChange, keyFilter, value=[]}: any) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const MultipleArray: any = ({endpoint, handleChange, keyFilter, dataCase=[]}: an
     fetchData();
   }, []);
   return (
-    <TagPicker data={data} onChange={(e)=>handleChange(e,keyFilter)} style={{ width: "100%" }} defaultValue={dataCase} value={dataCase} />
+    <TagPicker data={data} onChange={(e)=>handleChange(e,keyFilter)} style={{ width: "100%" }} defaultValue={value} value={value} />
   );
 };
 export default MultipleArray;
