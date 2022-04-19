@@ -33,7 +33,7 @@ export default function Index({module}:any) {
             <Container style={{background: '#edf0f4'}} fluid>
                 <FilterProvider>
                     <FilterContextResolutionAreasProvider>
-                        <Row style={{padding: '6px', background: '#FFF', marginTop: '70px'}}>
+                        <Row style={{padding: '6px 0', background: '#FFF', marginTop: '70px'}}>
                             <Col xs={1} >
                                 <Button variant="secondary" style={{background: '#FFF'}} onClick={toggleViewFilter}>
                                     <div>
