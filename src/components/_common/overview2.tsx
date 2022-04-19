@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Card, InputGroup, FormControl, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
-import { listCases } from "../../services/caseService";
+import { detail } from "../../services/caseService";
 import { CaseDetailModel } from '../../models/Case';
 
 import Notes from "components/_common/notes";
@@ -13,7 +13,7 @@ export default function Overview2({ page, id }: any) {
 
     useEffect(() => {
 
-        listCases(page, id)
+        detail(page, id)
 
             .then(data => {
 

@@ -3,7 +3,7 @@ import _ from "lodash";
 import { CreateCaseModel } from "models/Case";
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import { createCase, refenceField, updateCase } from "services/caseService";
+import { create, refenceField, update } from "services/caseService";
 
 
 function EditCase({id, uri}:any) {
@@ -31,7 +31,7 @@ function EditCase({id, uri}:any) {
 
   useEffect(()=>{
     let page = _.startCase(uri);
-    updateCase(page, id)
+    update(page, id)
     .then( (response:any) => {
       if(response.companyId !== null){
         let key = "companyId";
@@ -135,7 +135,7 @@ function EditCase({id, uri}:any) {
     } else {
       const page = "Cases";
       try {
-        await createCase(page, casesData);
+        await create(page, casesData);
       } catch (error) {
         console.log(error);
       }

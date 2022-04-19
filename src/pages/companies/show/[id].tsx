@@ -28,18 +28,19 @@ export default function Show() {
                         </h4>
                     </Col>
                     <Col sm={1}>
-                        <img src="/compayIcon.png" style={{ height: '55px' }} />
+                        <img src="/contactIcon.png" style={{ height: '55px' }} />
                     </Col>
                     <Col>
                         <Row>
-                            <h4>Empresa</h4>
+                            <h4>Nombre Apellido</h4>
                         </Row>
                         <Row>
                             <h6>Add tags</h6>
                         </Row>
                     </Col>
                     <Col align="end">
-                        <Button variant="secondary">Edit</Button>{' '}
+                        <Button variant="primary">Enviar Correo</Button>{' '}
+                        <Button variant="secondary">Editar</Button>{' '}
                         <Button variant="secondary">...</Button>{' '}
                         «
                         »

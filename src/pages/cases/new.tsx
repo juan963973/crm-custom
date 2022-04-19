@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Forms from "components/case/forms";
 import { CreateCaseModel } from "../../models/Case";
-import { createCase, refenceField } from "../../services/caseService";
+import { create, refenceField } from "../../services/caseService";
 
 function New() {
   const [casesData, setCasesData] = useState<CreateCaseModel>({
@@ -107,7 +107,7 @@ function New() {
     } else {
       let page = "Cases";
       try {
-        await createCase(page, casesData);
+        await create(page, casesData);
       } catch (error) {
         console.log(error);
       }

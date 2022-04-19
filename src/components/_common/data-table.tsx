@@ -5,7 +5,7 @@ import { FaPencilAlt, FaEye } from 'react-icons/fa';
 import "rsuite/dist/rsuite.min.css";
 import { Card } from "react-bootstrap";
 
-import { getListView } from "services/caseService";
+import { getListView } from "services/commonService";
 
 import { useStoreFilter } from "store/filter/FilterProvider"
 import { useStoreFilter as useStoreFilterResolutionArea } from "store/filterResolutionAreas/FilterProvider"
