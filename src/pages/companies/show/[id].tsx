@@ -3,20 +3,24 @@ import {
     ButtonGroup, ToggleButton, Nav, Tabs, Tab
 } from "react-bootstrap";
 import { useRouter } from 'next/router'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CaseDetailModel } from ".../../models/Case";
+import getCompanyData from "services/companyService";
 import Overview from "components/_common/overview";
 import Overview2 from "components/_common/overview2";
 
 const page = "cases";
 
 export default function Show() {
-    const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
-    const router = useRouter()
+    // const [coso, setCoso] = useState([])
+
+
     const id = 1
+    // let data = cases
 
-    let data = cases
+    let data: any = getCompanyData(id)
 
+    console.log('data', data)
     return (
         <>
 
@@ -28,18 +32,17 @@ export default function Show() {
                         </h4>
                     </Col>
                     <Col sm={1}>
-                        <img src="/contactIcon.png" style={{ height: '55px' }} />
+                        <img src="/compayIcon.png" style={{ height: '55px' }} />
                     </Col>
                     <Col>
                         <Row>
-                            <h4>Nombre Apellido</h4>
+                            <h4> {data.name} </h4>
                         </Row>
                         <Row>
                             <h6>Add tags</h6>
                         </Row>
                     </Col>
                     <Col align="end">
-                        <Button variant="primary">Enviar Correo</Button>{' '}
                         <Button variant="secondary">Editar</Button>{' '}
                         <Button variant="secondary">...</Button>{' '}
                         «

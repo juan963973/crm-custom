@@ -26,7 +26,7 @@ export default function Overview2({ page, id }: any) {
     }, [])
 
     let data = cases
-    console.log(cases)
+    // console.log(data)
     return (
         <>
             {/* <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center"> */}
