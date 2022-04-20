@@ -9,11 +9,25 @@ export default function NewButtonCase() {
         router.push('/cases/new/')
     }
 
+    const Home = () => {
+        const id = 1;
+        
+        function sendProps(){
+            router.push({
+                pathname: '/cases/new/',
+                query: {
+                    id
+                }
+            })
+        }
+    }
+
     return (
         <Button
             size="sm"
             variant="secondary"
-            onClick={handleClick}
+            // onClick={handleClick}
+            onClick={() => sendProps()}
         >
             Nuevo
         </Button>

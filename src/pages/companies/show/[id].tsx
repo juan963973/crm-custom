@@ -3,7 +3,6 @@ import {
     ButtonGroup, ToggleButton, Nav, Tabs, Tab
 } from "react-bootstrap";
 import { useRouter } from 'next/router'
-import { useEffect, useState } from "react";
 import { CaseDetailModel } from ".../../models/Case";
 import getCompanyData from "services/companyService";
 import Overview from "components/_common/overview";
@@ -12,7 +11,6 @@ import Overview2 from "components/_common/overview2";
 const page = "cases";
 
 export default function Show() {
-    // const [coso, setCoso] = useState([])
 
 
     const id = 1
