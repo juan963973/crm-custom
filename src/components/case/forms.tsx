@@ -10,12 +10,24 @@ import MultipleSelect from "components/_common/multiple-select";
 import "rsuite/dist/rsuite.min.css";
 import MultipleArray from "components/_common/array-select";
 
+import { useRouter } from 'next/router'
+
 const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
   const styles = {
-    disable:{
+    disable: {
       background: 'white'
     }
   }
+
+  const router = useRouter()
+  const {
+    query: { dataId },
+  } = router
+  const props = {
+    dataId
+  }
+
+
   return (
     <>
       <Container>
@@ -35,7 +47,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 onChange={handleChange}
                 keyFilter={"contactId"}
                 value={caseData.contactId}
-                disabled={caseData?.companyId !== null} 
+                disabled={caseData?.companyId !== null}
               />
             </Col>
 
@@ -62,14 +74,14 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           <Row align="end">
             <Col>Tipo de documento</Col>
             <Col sm={4} align="start">
-               <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="documentTypeName"
-                  defaultValue={reference.documentTypeName}
-                  style={styles.disable}
-                  disabled
-                />
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+                style={styles.disable}
+                disabled
+              />
             </Col>
 
             <Col>Correo electrónico</Col>
@@ -304,7 +316,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col sm={6}>
               <InputGroup className="mb-2">
                 <FormControl
-                  as="textarea" 
+                  as="textarea"
                   rows={3}
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
@@ -471,7 +483,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 className="input-group-text"
                 name="requestExtension"
                 onChange={(e) => handleChange(e)}
-                checked={caseData.requestExtension?caseData.requestExtension:false}
+                checked={caseData.requestExtension ? caseData.requestExtension : false}
               />
             </Col>
 

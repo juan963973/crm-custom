@@ -18,7 +18,8 @@ export default function Show() {
 
     let data: any = getCompanyData(id)
 
-    console.log('data', data)
+    let dataId = id
+
     return (
         <>
 
@@ -86,7 +87,7 @@ export default function Show() {
                             <Row style={{
                                 maxHeight: "25rem", overflow: "auto", backgroundColor: '#edf0f4'
                             }}>
-                                <Overview2 page={page} id={id} />
+                                <Overview2 page={page} id={id} dataId={dataId}/>
                             </Row>
 
 
