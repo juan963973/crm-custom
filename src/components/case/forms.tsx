@@ -9,7 +9,6 @@ import {
 import MultipleSelect from "components/_common/multiple-select";
 import "rsuite/dist/rsuite.min.css";
 import MultipleArray from "components/_common/array-select";
-import UseAutocomplete from "components/_common/component-select";
 
 const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
   const styles = {

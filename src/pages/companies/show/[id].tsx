@@ -3,19 +3,22 @@ import {
     ButtonGroup, ToggleButton, Nav, Tabs, Tab
 } from "react-bootstrap";
 import { useRouter } from 'next/router'
-import { useState } from "react";
 import { CaseDetailModel } from ".../../models/Case";
+import getCompanyData from "services/companyService";
 import Overview from "components/_common/overview";
 import Overview2 from "components/_common/overview2";
 
 const page = "cases";
 
 export default function Show() {
-    const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
-    const router = useRouter()
-    const id = 1
 
-    let data = cases
+
+    const id = 1
+    // let data = cases
+
+    let data: any = getCompanyData(id)
+
+    let dataId = id
 
     return (
         <>
@@ -28,18 +31,17 @@ export default function Show() {
                         </h4>
                     </Col>
                     <Col sm={1}>
-                        <img src="/contactIcon.png" style={{ height: '55px' }} />
+                        <img src="/compayIcon.png" style={{ height: '55px' }} />
                     </Col>
                     <Col>
                         <Row>
-                            <h4>Nombre Apellido</h4>
+                            <h4> {data.name} </h4>
                         </Row>
                         <Row>
                             <h6>Add tags</h6>
                         </Row>
                     </Col>
                     <Col align="end">
-                        <Button variant="primary">Enviar Correo</Button>{' '}
                         <Button variant="secondary">Editar</Button>{' '}
                         <Button variant="secondary">...</Button>{' '}
                         «
@@ -85,7 +87,7 @@ export default function Show() {
                             <Row style={{
                                 maxHeight: "25rem", overflow: "auto", backgroundColor: '#edf0f4'
                             }}>
-                                <Overview2 page={page} id={id} />
+                                <Overview2 page={page} id={id} dataId={dataId}/>
                             </Row>
 
 
