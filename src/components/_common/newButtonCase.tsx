@@ -16,7 +16,7 @@ export default function NewButtonCase({ dataId } : Props) {
             query: {
                 dataId
             }
-        })
+        }, '/cases/new/')
     }
 
     return (
