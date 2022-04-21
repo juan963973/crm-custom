@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Forms from "components/case/forms";
 import { injectStyle } from "react-toastify/dist/inject-style";
 import { CreateCaseModel } from "../../../models/Case";
-import { createCase, refenceField } from "../../../services/caseService";
+import { create, refenceField } from "../../../services/caseService";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -128,7 +128,7 @@ function New({ module }: any) {
     } else {
       let page = "Cases";
       try {
-        await createCase(page, casesData);
+        await create(page, casesData);
         toast.success("Se ha guardado con exito!", {
           position: "top-center",
           autoClose: 5000,
