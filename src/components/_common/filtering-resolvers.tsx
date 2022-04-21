@@ -21,19 +21,16 @@ export default function FilteringResolvers() {
     const handleChange = (values: any) => dispatchFilter({ type: typesFilter.setFilter,  payload: values.value})
     
     return (
-        <Row style={{ marginBottom: '10px' }}>
-            <Col>
-                <Col sm={2} align="start">
-                    <Select
-                        instanceId="resolutionAreas"
-                        name="resolutionAreas"
-                        options={resolverAreas()}
-                        onChange={handleChange}
-                        className="basic-select"
-                        classNamePrefix="select"
-                    />
-                </Col>
-            </Col>
-        </Row>
+            <div style={{width: '226px'}}>
+                <Select
+                    instanceId="resolutionAreas"
+                    name="resolutionAreas"
+                    options={resolverAreas()}
+                    onChange={handleChange}
+                    className="basic-select"
+                    classNamePrefix="select"
+                    placeholder="Seleccione Area Resolutora"
+                />
+            </div>
     )
 }

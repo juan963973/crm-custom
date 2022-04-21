@@ -107,7 +107,7 @@ const DataTable = ({module}:any) => {
     return (
         <>
         <Card style={styles}>
-            <Pagination
+            {/* <Pagination
                 prev
                 next
                 first
@@ -123,7 +123,7 @@ const DataTable = ({module}:any) => {
                 activePage={page}
                 onChangePage={setPage}
                 onChangeLimit={handleChangeLimit}
-            />
+            /> */}
             
                 <Table
                     style={styles}

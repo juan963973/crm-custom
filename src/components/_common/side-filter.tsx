@@ -85,8 +85,6 @@ const SideFilter = ({ module }: any) => {
     setCheckList(checkListBackup);
   }
 
-  console.log(checked.length);
-
   return (
     <>
       <Card className={styles.card}>
