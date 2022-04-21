@@ -4,34 +4,21 @@ import {
   Col,
   Form,
   InputGroup,
-  FormControl,
+  FormControl
 } from "react-bootstrap";
 import MultipleSelect from "components/_common/multiple-select";
 import "rsuite/dist/rsuite.min.css";
 import MultipleArray from "components/_common/array-select";
 
-import { useRouter } from 'next/router'
-
 const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
   const styles = {
     disable: {
-      background: 'white'
-    }
-  }
-
-  const router = useRouter()
-  const {
-    query: { dataId },
-  } = router
-  const props = {
-    dataId
-  }
-
-
+      background: "white",
+    },
+  };
   return (
     <>
       <Container>
-
         <Row className="mt-200" style={{ marginBottom: 40 }}>
           <Row>
             <Col>
@@ -39,19 +26,20 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
               <h4>Cliente</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" className="mt-1">
             <Col>Nombre y Apellido</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Info/list-contact"}
+                endpoint={"Search/contacts"}
                 onChange={handleChange}
                 keyFilter={"contactId"}
                 value={caseData.contactId}
                 disabled={caseData?.companyId !== null}
               />
+              {/* <UseAutocomplete/> */}
             </Col>
 
-            <Col>Empresa name</Col>
+            <Col>Nombre de Empresa</Col>
             <Col sm={4} align="start">
               <MultipleSelect
                 endpoint={"Search/company"}
@@ -144,7 +132,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
               </InputGroup>
             </Col>
 
-            <Col>Phone</Col>
+            <Col>Teléfono</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
@@ -187,7 +175,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col>Nombre y Apellido (Gestor)</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Info/list-contact"}
+                endpoint={"Search/contacts"}
                 onChange={handleChange}
                 keyFilter={"promoterId"}
                 value={caseData.promoterId}
@@ -245,7 +233,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             </Col>
           </Row>
           <Row align="end" className="mb-2">
-            <Col>Type</Col>
+            <Col>Tipo</Col>
             <Col sm={4} align="start">
               <MultipleSelect
                 endpoint={"Search/case-types"}
@@ -295,7 +283,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             </Col>
           </Row>
           <Row align="end">
-            <Col sm={2}>Subject</Col>
+            <Col sm={2}>Asunto</Col>
             <Col sm={6}>
               <InputGroup className="mb-2">
                 <FormControl
@@ -304,6 +292,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                   name="subject"
                   onChange={(e) => handleChange(e)}
                   defaultValue={caseData.subject}
+                  required
                 />
               </InputGroup>
             </Col>
@@ -339,7 +328,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             </Col>
           </Row>
           <Row align="end">
-            <Col>Case Origin</Col>
+            <Col>Origen de Caso</Col>
             <Col sm={4} align="start">
               <MultipleSelect
                 endpoint={"Search/case-origin"}
@@ -349,7 +338,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
               />
             </Col>
 
-            <Col>Case Owner</Col>
+            <Col>Propietario de Caso</Col>
             <Col sm={4} align="start">
               <MultipleSelect
                 endpoint={"Search/case-owner"}
@@ -362,7 +351,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
 
           <Row align="end" className="mt-2 mb-2">
             <Col sm={2}>
-              <Form.Label>Status</Form.Label>
+              <Form.Label>Estado</Form.Label>
             </Col>
             <Col sm={4} align="start">
               <MultipleSelect
@@ -406,7 +395,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
               <MultipleArray
                 endpoint={"Search/resolver-areas"}
                 handleChange={handleChange}
-                keyFilter={"resolutionAreaIds"}
+                keyFilter="resolutionAreaIds"
                 value={caseData.resolutionAreaIds}
               />
             </Col>
@@ -430,7 +419,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
               <MultipleArray
                 endpoint={"Search/resolver"}
                 handleChange={handleChange}
-                keyFilter={"resolverIds"}
+                keyFilter="resolverIds"
                 value={caseData.resolverIds}
               />
             </Col>
@@ -448,7 +437,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             </Col>
           </Row>
           <Row align="end">
-            <Col>Solution</Col>
+            <Col>Solución</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
@@ -483,11 +472,13 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 className="input-group-text"
                 name="requestExtension"
                 onChange={(e) => handleChange(e)}
-                checked={caseData.requestExtension ? caseData.requestExtension : false}
+                checked={
+                  caseData.requestExtension ? caseData.requestExtension : false
+                }
               />
             </Col>
 
-            <Col>Calificacion</Col>
+            <Col>Calificación</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
@@ -510,7 +501,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             </Col>
           </Row>
           <Row align="end">
-            <Col>Carga de archivo 1</Col>
+            <Col>Carga de archivo</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
