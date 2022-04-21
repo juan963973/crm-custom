@@ -9,7 +9,7 @@ import {
   Col,
   Button,
 } from "react-bootstrap";
-import styles from "../../../public/styles/Case.module.scss";
+import styles from "../../../public/styles/Common.module.scss";
 import Textfield from "components/_common/text-field";
 import MultipleSelect from "components/_common/multiple-select";
 import Datefield from "components/_common/date-field";
@@ -18,7 +18,7 @@ import { BsSearch } from "react-icons/bs";
 
 import { typesFilter } from "store/filter/filterReducer";
 import { useDispatchFilter } from "store/filter/FilterProvider";
-import { getFieldsFilter } from "services/caseService";
+import { getFieldsFilter } from "services/commonService";
 
 const SideFilter = ({ module }: any) => {
   const dispatchFilter = useDispatchFilter();
@@ -91,7 +91,7 @@ const SideFilter = ({ module }: any) => {
     <>
       <Card className={styles.card}>
         <Card.Header className={styles.header}>
-          <h6 className="mt-2">Filtrar Casos por:</h6>
+          <h6 className="mt-2">Filtrar por:</h6>
           <InputGroup className="mb-3 mt-2 fixed">
             <InputGroup.Text id="basic-addon1" className={styles.inputbotton}>
               <BsSearch />

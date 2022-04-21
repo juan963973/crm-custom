@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
-import { kanbanChangeStatus, kanbanView } from "services/caseService"
+import { kanbanChangeStatus, kanbanView } from "services/commonService"
 import styles from '../../../public/styles/Kanban.module.scss'
 import debounce from 'lodash.debounce';
 

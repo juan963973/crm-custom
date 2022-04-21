@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
-import { createCase, refenceField, updateCase } from "services/caseService";
+import { create, refenceField, update } from "services/caseService";
 
 function EditCase({ id, uri }: any) {
   const [casesData, setCasesData] = useState<CreateCaseModel>({
@@ -36,7 +36,7 @@ function EditCase({ id, uri }: any) {
 
   useEffect(() => {
     let page = _.startCase(uri);
-    updateCase(page, id)
+    update(page, id)
       .then((response: any) => {
         if (response.companyId !== null) {
           let key = "companyId";
@@ -158,7 +158,7 @@ function EditCase({ id, uri }: any) {
     } else {
       const page = "Cases";
       try {
-        await createCase(page, casesData);
+        await create(page, casesData);
       } catch (error) {
         console.log(error);
       }
