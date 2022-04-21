@@ -138,7 +138,9 @@ function New({ module }: any) {
           draggable: true,
           progress: undefined,
         });
-        router.push(`/cases`)
+        setTimeout(() => {
+          router.push(`/cases`)
+        }, 5000);
       } catch (error) {
         console.log(error);
       }
