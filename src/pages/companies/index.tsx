@@ -1,70 +1,61 @@
 import { useState } from "react";
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+
 import { Col, Container, Row, Button } from "react-bootstrap";
-import { useRouter } from 'next/router'
+
 import SideFilter from "components/_common/side-filter";
 import Kanban from "components/_common/kanban";
 
-import { FaFilter, FaList, FaColumns } from 'react-icons/fa';
-
 import DataTable from "components/_common/data-table";
 
-import FilteringResolvers from "components/_common/filtering-resolvers";
+import { BsFillHouseFill } from 'react-icons/bs';
 
 import FilterProvider from "store/filter/FilterProvider";
 import FilterContextResolutionAreasProvider from "store/filterResolutionAreas/FilterProvider";
 
+import CallToActions from "components/_common/call-to-actions";
+
 export default function Index({module}:any) {
-    const [viewFilter, setViewFilter] = useState(true);
+    const [viewFilter, setViewFilter] = useState(false);
     const [viewKanban, setViewKanban] = useState(false);
-    const router = useRouter()
 
-    const toggleViewFilter = () => setViewFilter(!viewFilter)
-    const toggleViewKanban = () => setViewKanban(!viewKanban)
-
-    const goToCreate = () => {
-        router.push(`${module}/new`)
-    }
-
-    const textList   = 'Vista de lista';
+    const ModuleText   = 'Empresas';
+    const textList   = 'Vista de Lista';
     const textKanban = 'Vista Kanban';
+
+    const params = {
+        ModuleText,
+        textList,
+        textKanban,
+        setViewFilter,
+        setViewKanban,
+        viewFilter,
+        viewKanban,
+        module
+    }
 
     return ( 
         <>
             <Container style={{background: '#edf0f4'}} fluid>
                 <FilterProvider>
                     <FilterContextResolutionAreasProvider>
-                        <Row style={{padding: '6px', background: '#FFF', marginTop: '70px'}}>
-                            <Col xs={1} >
-                                <Button variant="secondary" style={{background: '#FFF'}} onClick={toggleViewFilter}>
-                                    <div>
-                                        <FaFilter style={{color:"black"}} />
-                                    </div>
-                                </Button>
-                            </Col>
-                            <Col xs={6} >
-                                <FilteringResolvers />
-                            </Col>
-                            <Col xs={2} >
-                                <Button variant="secondary" style={{background: '#FFF', color: 'black'}} onClick={toggleViewKanban}>
-                                    <div>
-                                        {viewKanban ? 
-                                            <><FaList style={{color:"black"}} /> {textList}</>: 
-                                            <><FaColumns style={{color:"black"}} /> {textKanban}</>
-                                        }
-                                    </div>
-                                </Button>
-                            </Col>
-                            <Col xs={2} >
-                                
-                                <Button onClick={goToCreate}>Crear Caso</Button>
-                            </Col>
 
+                        <Row style={{padding: '16px 0 10px 0', background: '#FFF', marginTop: '50px'}}>
+                            <CallToActions params={params}  />
                         </Row>
+                        
                         <Row>
                             <Col xs={2} style={{marginLeft: '27px', padding: '7px 0' }}>
-                                <h6>{viewKanban ? textList: textKanban}</h6>
+                                <Breadcrumb>
+                                    <Breadcrumb.Item href="/"><BsFillHouseFill/> Inicio</Breadcrumb.Item>
+                                    {/* <Breadcrumb.Item active>
+                                        {!viewKanban ? textList.toLowerCase(): textKanban.toLowerCase()}
+                                    </Breadcrumb.Item> */}
+                                    <Breadcrumb.Item active>{ModuleText}</Breadcrumb.Item>
+                                </Breadcrumb>
                             </Col>
                         </Row>
+
                         <Row>
                             {viewFilter && (
                                 <Col xs={3}>
@@ -83,6 +74,7 @@ export default function Index({module}:any) {
 
                             </Col>
                         </Row>
+                        
                     </FilterContextResolutionAreasProvider>
                 </FilterProvider>
             </Container>
