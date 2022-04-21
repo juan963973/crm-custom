@@ -8,9 +8,8 @@ import { CaseDetailModel } from '../../models/Case';
 import Notes from "components/_common/notes";
 import NewButtonCase from "./newButtonCase";
 
-export default function Overview2({ page, id }: any) {
+export default function Overview2({ page, id, dataId }: any) {
     const [cases, setCases] = useState<CaseDetailModel>({} as CaseDetailModel)
-
     useEffect(() => {
 
         detail(page, id)
@@ -26,7 +25,7 @@ export default function Overview2({ page, id }: any) {
     }, [])
 
     let data = cases
-    console.log(cases)
+    // console.log(data)
     return (
         <>
             {/* <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center"> */}
@@ -563,7 +562,7 @@ export default function Overview2({ page, id }: any) {
                                 </h6>
                             </Col>
                             <Col align="end">
-                                <NewButtonCase />
+                                <NewButtonCase dataId={dataId} />
                             </Col>
                         </Row>
                         <Row style={{

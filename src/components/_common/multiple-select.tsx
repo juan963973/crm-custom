@@ -1,7 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import { multiSelectOption } from "services/filterService";
+import { multiSelectOption, multiSelectSimple } from "services/filterService";
 
 interface toolFunction {
   endpoint: string;
@@ -11,24 +10,36 @@ interface toolFunction {
   disabled?: boolean;
 }
 
+interface resultTool {
+  id: number;
+  value: string;
+}
+
 const MultipleSelect = ({
   endpoint,
   onChange,
   keyFilter,
-  value=null,
+  value = null,
   disabled = false,
 }: toolFunction) => {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await multiSelectOption(endpoint);
+        let result = [];
+        if (endpoint == "Search/contacts" || endpoint == "Search/company") {
+          result = await multiSelectOption(endpoint);
+        } else {
+          result = await multiSelectSimple(endpoint);
+        }
         setData(result);
       } catch (err) {
         console.log(err);
       }
     }
-   fetchData()
+
+    fetchData();
   }, []);
 
   return (
@@ -40,14 +51,14 @@ const MultipleSelect = ({
       defaultValue={value}
       disabled={disabled}
     >
-
       <option value={null}>Seleccione ...</option>
-      {data.map((res: any) => (
-        <option key={res.id} value={res.id}>
-          {res.value}
+      {data?.map(({ id, value }: resultTool) => (
+        <option key={id} value={id}>
+          {value}
         </option>
       ))}
     </Form.Select>
   );
 };
+
 export default MultipleSelect;

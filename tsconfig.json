@@ -17,6 +17,6 @@
     "baseUrl": "src",
     "strictNullChecks": false
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/_common/prueba-select.tsx", "src/pages/select-autocomplete.tsx"],
   "exclude": ["node_modules"]
 }

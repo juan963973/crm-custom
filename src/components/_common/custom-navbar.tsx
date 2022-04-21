@@ -1,4 +1,3 @@
-
 import Link from 'next/link'
 import { Button, Container, Form, FormControl, Nav, NavDropdown } from 'react-bootstrap'
 import Navbar from 'react-bootstrap/Navbar'
@@ -44,7 +43,20 @@ function CustomNavbar() {
               </NavDropdown> */}
             </Nav>
 
-            
+            {/* <Form className="d-flex">
+              <FormControl
+                type="search"
+                placeholder="Buscar"
+                className="me-2"
+                aria-label="Search"
+              />
+              
+              
+
+              <Button variant="outline-success">Buscar</Button>
+            </Form> */}
+
+            <SearchGlobal />
 
             <Nav>
               <SearchGlobal />
