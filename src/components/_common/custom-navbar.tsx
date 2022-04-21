@@ -41,7 +41,7 @@ function CustomNavbar() {
               <Button variant="outline-success">Buscar</Button>
             </Form> */}
 
-            {/* <SearchGlobal /> */}
+            <SearchGlobal />
 
             <Nav>
               <Nav.Link href="#deets">icon1</Nav.Link>

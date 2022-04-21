@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Forms from "components/case/forms";
-import { CreateCaseModel } from "../../models/Case";
-import { createCase, refenceField } from "../../services/caseService";
+import { CreateCaseModel } from "../../../models/Case";
+import { createCase, refenceField } from "../../../services/caseService";
+import { useRouter } from "next/router";
 
-function New() {
+function New({module}:any) {
   const [casesData, setCasesData] = useState<CreateCaseModel>({
     callDirectionId: 1,
     contactId: null,
-    companyId: null
+    companyId: null,
   } as CreateCaseModel);
   const [dataReference, setDataReference] = useState({
     documentTypeName: "",
@@ -27,6 +28,7 @@ function New() {
   });
 
   const [validated, setValidated] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e: any, name: string | null = null) => {
     if (!name) {
@@ -98,9 +100,8 @@ function New() {
     }
   };
 
-
   const handleSubmit = async (e: any) => {
-   const form = e.currentTarget;
+    const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
@@ -114,9 +115,16 @@ function New() {
     }
   };
 
+  console.log(module.split('/')[0])
+
   return (
     <>
-      <Form noValidate validated={validated} style={{marginTop:'58px'}} onSubmit={handleSubmit}>
+      <Form
+        noValidate
+        validated={validated}
+        style={{ marginTop: "58px" }}
+        onSubmit={handleSubmit}
+      >
         <Container className="shadow-sm p-3 mb-5 bg-white rounded mt-2">
           <Row className="justify-content-end">
             <Col sm={2}>
@@ -151,3 +159,8 @@ function New() {
 }
 
 export default New;
+
+export function getServerSideProps(req:any, res:any) {
+  const module = req.resolvedUrl;
+  return { props: { module } }
+}

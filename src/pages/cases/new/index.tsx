@@ -1,17 +1,18 @@
-import Forms from "components/case/forms";
-import _ from "lodash";
-import { CreateCaseModel } from "models/Case";
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import { toast, ToastContainer } from "react-toastify";
+import Forms from "components/case/forms";
 import { injectStyle } from "react-toastify/dist/inject-style";
-import { createCase, refenceField, updateCase } from "services/caseService";
+import { CreateCaseModel } from "../../../models/Case";
+import { createCase, refenceField } from "../../../services/caseService";
+import { useRouter } from "next/router";
+import { toast, ToastContainer } from "react-toastify";
 
-function EditCase({ id, uri }: any) {
+function New({ module }: any) {
   const [casesData, setCasesData] = useState<CreateCaseModel>({
     callDirectionId: 1,
+    contactId: null,
+    companyId: null,
   } as CreateCaseModel);
-
   const [dataReference, setDataReference] = useState({
     documentTypeName: "",
     email: "",
@@ -29,33 +30,11 @@ function EditCase({ id, uri }: any) {
   });
 
   const [validated, setValidated] = useState(false);
+  const router = useRouter();
 
   if (typeof window !== "undefined") {
     injectStyle();
   }
-
-  useEffect(() => {
-    let page = _.startCase(uri);
-    updateCase(page, id)
-      .then((response: any) => {
-        if (response.companyId !== null) {
-          let key = "companyId";
-          let value = response.companyId;
-          completeField(key, value);
-        } else if (response.contactId !== null) {
-          let key = "contactId";
-          let value = response.contactId;
-          completeField(key, value);
-        }
-        if (response.promoterId !== null) {
-          let key = "promoterId";
-          let value = response.promoterId;
-          completeField(key, value);
-        }
-        setCasesData(response);
-      })
-      .catch((e: any) => console.log(e));
-  }, []);
 
   const handleChange = (e: any, name: string | null = null) => {
     if (!name) {
@@ -76,7 +55,9 @@ function EditCase({ id, uri }: any) {
           value = e.target.value;
           break;
       }
-      if (key == "companyId" || key == "contactId" || key == "promoterId") {
+      if (key == "contactId" || key == "companyId" || key == "promoterId") {
+        console.log(key);
+
         completeField(key, value);
       }
       setCasesData({ ...casesData, [key]: value });
@@ -103,10 +84,11 @@ function EditCase({ id, uri }: any) {
 
         break;
       case "contactId":
-        page = "Info/cases/company-info";
+        page = "Info/cases/contact-info";
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);
+            console.log(res);
             setDataReference(res);
           } catch (error) {
             console.log(error);
@@ -126,12 +108,8 @@ function EditCase({ id, uri }: any) {
         break;
     }
   };
-
-  const handleSubmit = async (event: any) => {
-    const form = event.currentTarget;
-
-    event.preventDefault();
-    toast.success("Se ha modificado con exito!", {
+  const handleClose = () => {
+    toast.success("Se ha guardado con exito!", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -140,31 +118,34 @@ function EditCase({ id, uri }: any) {
       draggable: true,
       progress: undefined,
     });
+  };
 
-    setCasesData({ callDirectionId: 1 } as CreateCaseModel);
-    setDataReference({
-      documentTypeName: "",
-      email: "",
-      clientCode: "",
-      documentNumber: "",
-      branchName: null,
-      phone: "",
-      mobile: "",
-    });
-    setDataPromoter({ email: "", documentNumber: "", mobile: "" });
-
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const form = e.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
+      console.log("Falta Validar");
     } else {
-      const page = "Cases";
+      let page = "Cases";
       try {
         await createCase(page, casesData);
+        toast.success("Se ha guardado con exito!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        router.push(`/cases`)
       } catch (error) {
         console.log(error);
       }
     }
-    setValidated(true);
   };
+
+  console.log(module.split("/")[0]);
 
   return (
     <>
@@ -178,7 +159,7 @@ function EditCase({ id, uri }: any) {
           <Row className="justify-content-end">
             <Col sm={2}>
               {" "}
-              <h4>Editar Caso</h4>{" "}
+              <h4>Crear caso</h4>{" "}
             </Col>
             {/* <Col sm={2}>
               <Form.Select>
@@ -188,15 +169,18 @@ function EditCase({ id, uri }: any) {
               </Form.Select>
             </Col> */}
             <Col align="end">
-              <Button variant="secondary">Cancelar</Button>{" "}
+              <Button variant="secondary" onClick={handleClose}>
+                Cancelar
+              </Button>{" "}
               <Button variant="secondary">Guardar y nuevo</Button>{" "}
               <Button variant="primary" type="submit">
                 Guardar
               </Button>{" "}
             </Col>
           </Row>
-          <ToastContainer />
+          <ToastContainer/>
         </Container>
+
         <Forms
           handleChange={handleChange}
           reference={dataReference}
@@ -208,15 +192,9 @@ function EditCase({ id, uri }: any) {
   );
 }
 
-export default EditCase;
+export default New;
 
-export async function getServerSideProps(req: any, res: any) {
-  const {
-    query: { id },
-    resolvedUrl,
-  } = req;
-  const uri = resolvedUrl.split("/")[1];
-  return {
-    props: { id, uri },
-  };
+export function getServerSideProps(req: any, res: any) {
+  const module = req.resolvedUrl;
+  return { props: { module } };
 }
