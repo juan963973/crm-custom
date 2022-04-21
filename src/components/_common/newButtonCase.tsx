@@ -1,19 +1,29 @@
 import { useRouter } from 'next/router'
 import { Button } from 'react-bootstrap'
 
-export default function NewButtonCase() {
+interface Props {
+    dataId: any
+}
+
+export default function NewButtonCase({ dataId } : Props) {
     const router = useRouter()
 
-    const handleClick = (e: { preventDefault: () => void }) => {
-        e.preventDefault()
-        router.push('/cases/new/')
+    const id = 1
+
+    function sendProps(){
+        router.push({
+            pathname: '/cases/new/',
+            query: {
+                dataId
+            }
+        }, '/cases/new/')
     }
 
     return (
         <Button
             size="sm"
             variant="secondary"
-            onClick={handleClick}
+            onClick={() => sendProps()}
         >
             Nuevo
         </Button>

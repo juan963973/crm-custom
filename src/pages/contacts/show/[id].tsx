@@ -7,15 +7,20 @@ import { useState } from "react";
 import { CaseDetailModel } from ".../../models/Case";
 import Overview from "components/_common/overview";
 import Overview2 from "components/_common/overview2";
+import getContactData from "services/contactService";
 
 const page = "cases";
 
 export default function Show() {
-    const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
-    const router = useRouter()
+    // const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
+    // const router = useRouter()
     const id = 1
+    let data: any = getContactData(id)
 
-    let data = cases
+    let dataId = id
+
+
+    // let data = cases
 
     return (
         <>
@@ -32,7 +37,7 @@ export default function Show() {
                     </Col>
                     <Col>
                         <Row>
-                            <h4>Nombre Apellido</h4>
+                            <h4>{data.fullName}</h4>
                         </Row>
                         <Row>
                             <h6>Add tags</h6>
@@ -85,7 +90,7 @@ export default function Show() {
                             <Row style={{
                                 maxHeight: "25rem", overflow: "auto", backgroundColor: '#edf0f4'
                             }}>
-                                <Overview2 page={page} id={id} />
+                                <Overview2 page={page} id={id} dataId={dataId}/>
                             </Row>
 
 
