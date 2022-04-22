@@ -138,34 +138,34 @@ function EditCase({ id, uri }: any) {
     const form = event.currentTarget;
 
     event.preventDefault();
-    toast.success("Se ha modificado con exito!", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
 
-    setCasesData({ callDirectionId: 1 } as CreateCaseModel);
-    setDataReference({
-      documentTypeName: "",
-      email: "",
-      clientCode: "",
-      documentNumber: "",
-      branchName: null,
-      phone: "",
-      mobile: "",
-    });
-    setDataPromoter({ email: "", documentNumber: "", mobile: "" });
+    // setCasesData({ callDirectionId: 1 } as CreateCaseModel);
+    // setDataReference({
+    //   documentTypeName: "",
+    //   email: "",
+    //   clientCode: "",
+    //   documentNumber: "",
+    //   branchName: null,
+    //   phone: "",
+    //   mobile: "",
+    // });
+    // setDataPromoter({ email: "", documentNumber: "", mobile: "" });
 
     if (form.checkValidity() === false) {
       event.preventDefault();
     } else {
       const page = "Cases";
       try {
-        await create(page, casesData);
+        // await create(page, casesData);
+        toast.success("Se ha modificado con exito!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } catch (error) {
         console.log(error);
       }
