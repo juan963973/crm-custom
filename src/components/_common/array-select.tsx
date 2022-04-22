@@ -2,15 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { TagPicker } from "rsuite";
 
-interface propsTools{
+interface PropsTools{
   endpoint:string,
-  handleChange:(event?: any) => void;
+  handleChange:(event: any, keyFilter: string ) => void;
   keyFilter: string,
   value: number[]
 
 }
 
-const MultipleArray = ({endpoint, handleChange, keyFilter, value=[]}:any) => {
+const MultipleArray = ({endpoint, handleChange, keyFilter, value=[]}:PropsTools) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -33,6 +33,10 @@ const MultipleArray = ({endpoint, handleChange, keyFilter, value=[]}:any) => {
     }
     fetchData();
   }, []);
+
+  console.log(value);
+  
+  
   return (
     <TagPicker data={data} onChange={(e)=>handleChange(e,keyFilter)} style={{ width: "100%" }} defaultValue={value} value={value} />
   );

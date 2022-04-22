@@ -1,6 +1,7 @@
 import Forms from "components/case/forms";
 import _ from "lodash";
 import { CreateCaseModel } from "models/Case";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
@@ -29,6 +30,7 @@ function EditCase({ id, uri }: any) {
   });
 
   const [validated, setValidated] = useState(false);
+  const router = useRouter();
 
   if (typeof window !== "undefined") {
     injectStyle();
@@ -76,7 +78,7 @@ function EditCase({ id, uri }: any) {
           value = e.target.value;
           break;
       }
-      if (key == "companyId" || key == "contactId" || key == "promoterId") {
+      if (key == "contactId" || key == "companyId" || key == "promoterId") {
         completeField(key, value);
       }
       setCasesData({ ...casesData, [key]: value });
@@ -103,10 +105,11 @@ function EditCase({ id, uri }: any) {
 
         break;
       case "contactId":
-        page = "Info/cases/company-info";
+        page = "Info/cases/contact-info";
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);
+            console.log(res);
             setDataReference(res);
           } catch (error) {
             console.log(error);
@@ -127,38 +130,42 @@ function EditCase({ id, uri }: any) {
     }
   };
 
+  const handleClose = () =>{
+    window.history.back()
+  }
+
   const handleSubmit = async (event: any) => {
     const form = event.currentTarget;
 
     event.preventDefault();
-    toast.success("Se ha modificado con exito!", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
 
-    setCasesData({ callDirectionId: 1 } as CreateCaseModel);
-    setDataReference({
-      documentTypeName: "",
-      email: "",
-      clientCode: "",
-      documentNumber: "",
-      branchName: null,
-      phone: "",
-      mobile: "",
-    });
-    setDataPromoter({ email: "", documentNumber: "", mobile: "" });
+    // setCasesData({ callDirectionId: 1 } as CreateCaseModel);
+    // setDataReference({
+    //   documentTypeName: "",
+    //   email: "",
+    //   clientCode: "",
+    //   documentNumber: "",
+    //   branchName: null,
+    //   phone: "",
+    //   mobile: "",
+    // });
+    // setDataPromoter({ email: "", documentNumber: "", mobile: "" });
 
     if (form.checkValidity() === false) {
       event.preventDefault();
     } else {
       const page = "Cases";
       try {
-        await create(page, casesData);
+        // await create(page, casesData);
+        toast.success("Se ha modificado con exito!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } catch (error) {
         console.log(error);
       }
@@ -188,7 +195,7 @@ function EditCase({ id, uri }: any) {
               </Form.Select>
             </Col> */}
             <Col align="end">
-              <Button variant="secondary">Cancelar</Button>{" "}
+              <Button variant="secondary" onClick={handleClose}>Cancelar</Button>{" "}
               <Button variant="secondary">Guardar y nuevo</Button>{" "}
               <Button variant="primary" type="submit">
                 Guardar

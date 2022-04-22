@@ -56,8 +56,6 @@ function New({ module }: any) {
           break;
       }
       if (key == "contactId" || key == "companyId" || key == "promoterId") {
-        console.log(key);
-
         completeField(key, value);
       }
       setCasesData({ ...casesData, [key]: value });
@@ -108,17 +106,9 @@ function New({ module }: any) {
         break;
     }
   };
-  const handleClose = () => {
-    toast.success("Se ha guardado con exito!", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
+  const handleClose = () =>{
+    window.history.back()
+  }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
