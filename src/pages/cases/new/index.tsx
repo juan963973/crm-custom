@@ -121,7 +121,7 @@ function New({ module }: any) {
         await create(page, casesData);
         toast.success("Se ha guardado con exito!", {
           position: "top-center",
-          autoClose: 5000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -130,7 +130,7 @@ function New({ module }: any) {
         });
         setTimeout(() => {
           router.push(`/cases`)
-        }, 5000);
+        }, 2000);
       } catch (error) {
         console.log(error);
       }
