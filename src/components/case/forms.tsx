@@ -16,6 +16,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
       background: "white",
     },
   };
+  
   return (
     <>
       <Container>
@@ -393,7 +394,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col>Áreas Resolutoras</Col>
             <Col sm={4} align="start">
               <MultipleArray
-                endpoint={"Search/resolver-areas"}
+                endpoint="Search/resolver-areas"
                 handleChange={handleChange}
                 keyFilter="resolutionAreaIds"
                 value={caseData.resolutionAreaIds}
@@ -417,7 +418,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col>Personas Resolutoras</Col>
             <Col sm={4} align="start">
               <MultipleArray
-                endpoint={"Search/resolver"}
+                endpoint="Search/resolver"
                 handleChange={handleChange}
                 keyFilter="resolverIds"
                 value={caseData.resolverIds}

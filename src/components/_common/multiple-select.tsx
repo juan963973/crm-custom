@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { multiSelectOption, multiSelectSimple } from "services/filterService";
 
-interface toolFunction {
+interface ToolFunction {
   endpoint: string;
   onChange: (event?: any) => void;
   keyFilter: string;
@@ -10,7 +10,7 @@ interface toolFunction {
   disabled?: boolean;
 }
 
-interface resultTool {
+interface ResultTool {
   id: number;
   value: string;
 }
@@ -21,7 +21,7 @@ const MultipleSelect = ({
   keyFilter,
   value = null,
   disabled = false,
-}: toolFunction) => {
+}: ToolFunction) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const MultipleSelect = ({
       disabled={disabled}
     >
       <option value={null}>Seleccione ...</option>
-      {data?.map(({ id, value }: resultTool) => (
+      {data?.map(({ id, value }: ResultTool) => (
         <option key={id} value={id}>
           {value}
         </option>
