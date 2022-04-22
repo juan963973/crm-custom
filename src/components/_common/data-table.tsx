@@ -127,12 +127,12 @@ const DataTable = ({module}:any) => {
             
                 <Table
                     style={styles}
-                    height={420}
+                    height={560}
                     data={values}
                     loading={loading}
                     bordered
                     cellBordered
-                    autoHeight
+                    // autoHeight
                     affixHeader
                     affixHorizontalScrollbar
                 >
