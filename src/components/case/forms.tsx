@@ -339,14 +339,14 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
               />
             </Col>
 
-            <Col>Propietario de Caso</Col>
+            <Col>{/*Propietario de Caso*/}</Col>
             <Col sm={4} align="start">
-              <MultipleSelect
+              {/* <MultipleSelect
                 endpoint={"Search/case-owner"}
                 onChange={handleChange}
                 keyFilter={"caseOwnerId"}
                 value={caseData.caseOwnerId}
-              />
+              /> */}
             </Col>
           </Row>
 
