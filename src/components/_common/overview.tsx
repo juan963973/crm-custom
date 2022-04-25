@@ -52,7 +52,7 @@ export default function Overview({page, id}:any){
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row> <h6>Contact Person</h6></Row>
+                                <Row> <h6>CONTACT PERSON</h6></Row>
                             </Col>
                         </Row>
                         <Row>
@@ -79,7 +79,7 @@ export default function Overview({page, id}:any){
                         </Row>
                         <Row>
                             <Row>
-                                <Col> <h6>Nro. de Ticket - Cronómetro</h6> </Col>
+                                <Col> <h6>NRO. DE TICKET - CRONÓMETRO</h6> </Col>
                             </Row>
                             <Row>
                                 <Col style={{ color: 'gray' }}>Nro_Ticket_Finansys</Col>
@@ -454,7 +454,7 @@ export default function Overview({page, id}:any){
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row> <h6>Notas</h6></Row>
+                                <Row> <h6>NOTAS</h6></Row>
                             </Col>
                         </Row>
                         <Row>
@@ -476,7 +476,7 @@ export default function Overview({page, id}:any){
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row> <h6>Historial de Estado</h6></Row>
+                                <Row> <h6>HISTORIAL DEL ESTADO</h6></Row>
                             </Col>
                         </Row>
                         <Row>
@@ -506,7 +506,7 @@ export default function Overview({page, id}:any){
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row > <h6>Attachments</h6></Row>
+                                <Row > <h6>ATTACHMENTS</h6></Row>
                             </Col>
                         </Row>
                         <Row>
@@ -524,7 +524,7 @@ export default function Overview({page, id}:any){
                         <Row className='mt-200'>
                             <Col>
                                 <Row> <h6>
-                                    Open Activities</h6></Row>
+                                    OPEN ACTIVITIES</h6></Row>
                             </Col>
                         </Row>
                         <Row>
@@ -543,7 +543,7 @@ export default function Overview({page, id}:any){
                             <Col>
                                 <Row> <h6>
 
-                                    Closed Activities</h6></Row>
+                                    CLOSED ACTIVITIES</h6></Row>
                             </Col>
                         </Row>
                         <Row>

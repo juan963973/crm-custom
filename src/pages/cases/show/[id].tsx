@@ -31,7 +31,7 @@ export default function Show() {
                             <h4>HABILITACIÓN DE SOBREGIRO</h4>
                         </Row>
                         <Row>
-                            <h6>Descripción</h6>
+                            <h6>DESCRIPCIÓN</h6>
                         </Row>
                     </Col>
                     <Col align="end">
