@@ -230,7 +230,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           <Row>
             <Col>
               {" "}
-              <h4>CALIFICACIÓN DEL CASO</h4>{" "}
+              <h4>CLASIFICACIÓN DEL CASO</h4>{" "}
             </Col>
           </Row>
           <Row align="end" className="mb-2">
