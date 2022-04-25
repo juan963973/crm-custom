@@ -24,7 +24,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           <Row>
             <Col>
               {" "}
-              <h4>Cliente</h4>{" "}
+              <h4>CLIENTE</h4>{" "}
             </Col>
           </Row>
           <Row align="end" className="mt-1">
