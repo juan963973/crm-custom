@@ -339,7 +339,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
               />
             </Col>
 
-            <Col>{/*Propietario de Caso*/}</Col>
+            <Col>{/*Propietario de Caso*/}id ServiDesk</Col>
             <Col sm={4} align="start">
               {/* <MultipleSelect
                 endpoint={"Search/case-owner"}
@@ -347,6 +347,15 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 keyFilter={"caseOwnerId"}
                 value={caseData.caseOwnerId}
               /> */}
+              <InputGroup className="mb-2">
+                <FormControl
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  name="idServidesk"
+                  onChange={(e) => handleChange(e)}
+                  defaultValue={caseData.idServidesk}
+                />
+              </InputGroup>
             </Col>
           </Row>
 
@@ -365,9 +374,9 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
 
           <Row align="end">
-            <Col>id ServiDesk</Col>
+            <Col>{/*id ServiDesk*/}</Col>
             <Col sm={4}>
-              <InputGroup className="mb-2">
+              {/* <InputGroup className="mb-2">
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
@@ -375,7 +384,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                   onChange={(e) => handleChange(e)}
                   defaultValue={caseData.idServidesk}
                 />
-              </InputGroup>
+              </InputGroup> */}
             </Col>
 
             <Col></Col>
