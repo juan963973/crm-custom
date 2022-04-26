@@ -506,12 +506,12 @@ export default function Overview({page, id}:any){
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row > <h6>ATTACHMENTS</h6></Row>
+                                <Row > <h6>ADJUNTOS</h6></Row>
                             </Col>
                         </Row>
                         <Row>
                             <Col>
-                                <Row style={{ color: 'gray' }}>No Attachment</Row>
+                                <Row style={{ color: 'gray' }}>Sin adjuntos</Row>
                             </Col>
                         </Row>
                     </Card>
@@ -524,12 +524,12 @@ export default function Overview({page, id}:any){
                         <Row className='mt-200'>
                             <Col>
                                 <Row> <h6>
-                                    OPEN ACTIVITIES</h6></Row>
+                                    ACTIVIDADES ABIERTAS</h6></Row>
                             </Col>
                         </Row>
                         <Row>
                             <Col>
-                                <Row style={{ color: 'gray' }}>No records found</Row>
+                                <Row style={{ color: 'gray' }}>No se hallaron registros</Row>
                             </Col>
                         </Row>
                     </Card>
@@ -543,12 +543,12 @@ export default function Overview({page, id}:any){
                             <Col>
                                 <Row> <h6>
 
-                                    CLOSED ACTIVITIES</h6></Row>
+                                    ACTIVIDADES CERRADAS</h6></Row>
                             </Col>
                         </Row>
                         <Row>
                             <Col>
-                                <Row style={{ color: 'gray' }}>No records found</Row>
+                                <Row style={{ color: 'gray' }}>No se hallaron registros</Row>
                             </Col>
                         </Row>
                     </Card>
