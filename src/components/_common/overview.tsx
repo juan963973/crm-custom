@@ -290,18 +290,18 @@ export default function Overview({page, id}:any){
                                 <Col> <h6>RESOLUTORES DEL CASO</h6> </Col>
                             </Row>
                             <Row align="end">
-                                <Col >Áreas Resolutoras</Col>
+                                <Col style={{ color: 'gray' }}>Áreas Resolutoras</Col>
                                 <Col align="start">
                                     {cases?.resolverAreas ? cases.resolverAreas : ' - '}
                                 </Col>
 
-                                <Col>Oficial negocio</Col>
+                                <Col style={{ color: 'gray' }}>Oficial negocio</Col>
                                 <Col sm={4} align="start">
                                     {cases?.businessOfficerName ? cases.businessOfficerName : ' - '}
                                 </Col>
                             </Row>
                             <Row align="start">
-                                <Col >Personas Resolutoras</Col>
+                                <Col style={{ color: 'gray' }}>Personas Resolutoras</Col>
                                 <Col align="start">
                                     {cases?.resolvers ? cases.resolvers : ' - '}
                                 </Col>
@@ -314,23 +314,23 @@ export default function Overview({page, id}:any){
                                 <Col> <h6>RESOLUCIÓN / COMENTARIO</h6> </Col>
                             </Row>
                             <Row align="end">
-                                <Col >Solution</Col>
+                                <Col style={{ color: 'gray' }}>Solución</Col>
                                 <Col align="start">
                                     {cases?.solution ? cases.solution : ' - '}
                                 </Col>
 
-                                <Col>Comentario de Contacto / Cierre</Col>
+                                <Col style={{ color: 'gray' }}>Comentario de Contacto / Cierre</Col>
                                 <Col sm={4} align="start">
                                     -
                                 </Col>
                             </Row>
                             <Row align="end">
-                                <Col >¿Desea solicitar una prórroga del caso?</Col>
+                                <Col style={{ color: 'gray' }}>¿Desea solicitar una prórroga del caso?</Col>
                                 <Col align="start">
                                     {cases?.requestExtension ? cases.requestExtension : ' - '}
                                 </Col>
 
-                                <Col>Calificación</Col>
+                                <Col style={{ color: 'gray' }}>Resolución a favor del cliente</Col>
                                 <Col sm={4} align="start">
                                     -
                                 </Col>
@@ -343,7 +343,7 @@ export default function Overview({page, id}:any){
                                 <Col> <h6>COMENTARIOS</h6> </Col>
                             </Row>
                             <Row align="start">
-                                <Col >Comments</Col>
+                                <Col style={{ color: 'gray' }}>Comments</Col>
                                 <Col align="start">
                                     -
                                 </Col>
@@ -356,12 +356,12 @@ export default function Overview({page, id}:any){
                                 <Col> <h6>DATOS ADICIONALES</h6> </Col>
                             </Row>
                             <Row align="end">
-                                <Col >Add comment</Col>
+                                <Col style={{ color: 'gray' }}>Agregar comentarios</Col>
                                 <Col align="start">
                                     -
                                 </Col>
 
-                                <Col>No. of comments</Col>
+                                <Col style={{ color: 'gray' }}>Nro. de comentarios</Col>
                                 <Col sm={4} align="start">
                                     -
                                 </Col>
@@ -374,23 +374,23 @@ export default function Overview({page, id}:any){
                                 <Col> <h6>USO INTERNO - AUTOMATIZACIÓN</h6> </Col>
                             </Row>
                             <Row align="end">
-                                <Col >Notas_auto</Col>
+                                <Col style={{ color: 'gray' }}>Notas_auto</Col>
                                 <Col align="start">
                                     -
                                 </Col>
 
-                                <Col>Fecha/Hora Cierre</Col>
+                                <Col style={{ color: 'gray' }}>Fecha/Hora Cierre</Col>
                                 <Col sm={4} align="start">
                                     -
                                 </Col>
                             </Row>
                             <Row align="end">
-                                <Col >Nro Ticket (auto)</Col>
+                                <Col style={{ color: 'gray' }}>Nro Ticket (auto)</Col>
                                 <Col align="start">
                                     123456
                                 </Col>
 
-                                <Col>Actualizado</Col>
+                                <Col style={{ color: 'gray' }}>Actualizado</Col>
                                 <Col sm={4} align="start">
                                     -
                                 </Col>
@@ -400,37 +400,37 @@ export default function Overview({page, id}:any){
 
                         <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>
-                                <Col> <h6>AUTOMATIZACION - FORM</h6> </Col>
+                                <Col> <h6>AUTOMATIZACIÓN - FORM</h6> </Col>
                             </Row>
                             <Row align="end">
-                                <Col >Nombre/Empresa (auto)</Col>
+                                <Col style={{ color: 'gray' }}>Nombre/Empresa (auto)</Col>
                                 <Col align="start">
                                     -
                                 </Col>
 
-                                <Col>RUC (auto)</Col>
+                                <Col style={{ color: 'gray' }}>RUC (auto)</Col>
                                 <Col sm={4} align="start">
                                     -
                                 </Col>
                             </Row>
                             <Row align="end">
-                                <Col >Nombre (auto)</Col>
+                                <Col style={{ color: 'gray' }}>Nombre (auto)</Col>
                                 <Col align="start">
                                     -
                                 </Col>
 
-                                <Col>Apellido (auto)</Col>
+                                <Col style={{ color: 'gray' }}>Apellido (auto)</Col>
                                 <Col sm={4} align="start">
                                     -
                                 </Col>
                             </Row>
                             <Row align="end">
-                                <Col >Teléfono Gestor (auto)</Col>
+                                <Col style={{ color: 'gray' }}>Teléfono Gestor (auto)</Col>
                                 <Col align="start">
                                     -
                                 </Col>
 
-                                <Col>Email (auto)</Col>
+                                <Col style={{ color: 'gray' }}>Email (auto)</Col>
                                 <Col sm={4} align="start">
                                     -
                                 </Col>
