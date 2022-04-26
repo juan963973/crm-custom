@@ -274,7 +274,7 @@ export default function Overview({page, id}:any){
                                 </Col>
                             </Row>
                             <Row align="end">
-                                <Col style={{ color: 'gray' }}>id ServiDesk</Col>
+                                <Col sm={8} style={{ color: 'gray' }}>id ServiDesk</Col>
                                 <Col sm={4} align="start">
                                     {cases?.idServidesk ? cases.idServidesk : ' - '}
                                 </Col>
