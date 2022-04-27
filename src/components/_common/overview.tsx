@@ -52,7 +52,7 @@ export default function Overview({page, id}:any){
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row> <h6>CONTACT PERSON</h6></Row>
+                                <Row> <h6>CONTACTO</h6></Row>
                             </Col>
                         </Row>
                         <Row>
@@ -61,7 +61,7 @@ export default function Overview({page, id}:any){
                             </Col>
                             <Col>
                                 {/* <Row>{cases[0].contactName ? cases[0].contactName: ' - ' }</Row> */}
-                                <Row>ademirdemaria@hotmail.com (no tenemos)</Row>
+                                <Row>ademirdemaria@hotmail.com</Row>
                                 {/* <Row>{cases[0].contactPhone ? cases[0].contactPhone: ' - ' }</Row> */}
                             </Col>
                         </Row>
@@ -74,7 +74,7 @@ export default function Overview({page, id}:any){
                     <Card body>
                         <Row className='mt-200' style={{ marginBottom: 35 }}>
                             <Col>
-                                <Row> <h6>Hide details</h6></Row>
+                                <Row> <h6>Esconder detalles</h6></Row>
                             </Col>
                         </Row>
                         <Row>
@@ -138,7 +138,7 @@ export default function Overview({page, id}:any){
                                     {cases?.contactClientCode ? cases.contactClientCode : ' - '}
                                 </Col>
 
-                                <Col style={{ color: 'gray' }}>Phone</Col>
+                                <Col style={{ color: 'gray' }}>Teléfono</Col>
                                 <Col sm={4} align="start">
                                     {cases?.contactPhone ? cases.contactPhone : ' - '}
                                 </Col>
@@ -187,7 +187,7 @@ export default function Overview({page, id}:any){
                             </Row>
                             <Row className='mt-200'>
                                 <Col sm={3} style={{ color: 'gray', marginRight: 30 }} >
-                                    <Row className='d-flex justify-content-end'>Type</Row>
+                                    <Row className='d-flex justify-content-end'>Tipo</Row>
                                     <Row className='d-flex justify-content-end'>Subtipo</Row>
                                     <Row className='d-flex justify-content-end'>Tipificacion</Row>
                                 </Col>
@@ -205,7 +205,7 @@ export default function Overview({page, id}:any){
                             </Row>
                             <Row className='mt-200'>
                                 <Col sm={3} style={{ color: 'gray', marginRight: 30 }} >
-                                    <Row className='d-flex justify-content-end'>Subject</Row>
+                                    <Row className='d-flex justify-content-end'>Asunto</Row>
                                     <Row className='d-flex justify-content-end'>Descripción del Caso</Row>
                                 </Col>
                                 <Col>
@@ -220,12 +220,12 @@ export default function Overview({page, id}:any){
                                 <Col> <h6>DATOS DEL CASO</h6> </Col>
                             </Row>
                             <Row align="end">
-                                <Col style={{ color: 'gray' }}>Case Origin</Col>
+                                <Col style={{ color: 'gray' }}>Origen del caso</Col>
                                 <Col align="start">
                                     CALL {cases?.originName ? cases.originName : ' - '}
                                 </Col>
 
-                                <Col style={{ color: 'gray' }}>Case owner</Col>
+                                <Col style={{ color: 'gray' }}>Dueño del caso</Col>
                                 <Col sm={4} align="start">
                                     {cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}
                                 </Col>
@@ -242,18 +242,7 @@ export default function Overview({page, id}:any){
                                 </Col>
                             </Row>
                             <Row align="end">
-                                <Col style={{ color: 'gray' }}>Status</Col>
-                                <Col align="start">
-                                    PENDIENTE
-                                </Col>
-
-                                <Col style={{ color: 'gray' }}>Fecha/Hora Creado (auto)</Col>
-                                <Col sm={4} align="start">
-                                    {cases?.createdAt ? cases.createdAt : ' - '}
-                                </Col>
-                            </Row>
-                            <Row align="end">
-                                <Col style={{ color: 'gray' }}>Status</Col>
+                                <Col style={{ color: 'gray' }}>Estado</Col>
                                 <Col align="start">
                                     PENDIENTE
                                 </Col>
@@ -343,7 +332,7 @@ export default function Overview({page, id}:any){
                                 <Col> <h6>COMENTARIOS</h6> </Col>
                             </Row>
                             <Row align="start">
-                                <Col style={{ color: 'gray' }}>Comments</Col>
+                                <Col style={{ color: 'gray' }}>Comentarios</Col>
                                 <Col align="start">
                                     -
                                 </Col>
@@ -481,19 +470,19 @@ export default function Overview({page, id}:any){
                         </Row>
                         <Row>
                             <Col>
-                                <Row style={{ color: 'gray' }}>Status</Row>
+                                <Row style={{ color: 'gray' }}>Estado</Row>
                                 <Row>Cerrado</Row>
                             </Col>
                             <Col>
-                                <Row style={{ color: 'gray' }}>Duration (Days)</Row>
-                                <Row>0 days</Row>
+                                <Row style={{ color: 'gray' }}>Duración (días)</Row>
+                                <Row>0 días</Row>
                             </Col>
                             <Col>
-                                <Row style={{ color: 'gray' }}>Modified Time</Row>
+                                <Row style={{ color: 'gray' }}>Tiempo modificación</Row>
                                 <Row>Mar 7, 2022 05:41 AM</Row>
                             </Col>
                             <Col>
-                                <Row style={{ color: 'gray' }}>	Modified By</Row>
+                                <Row style={{ color: 'gray' }}>	Modificado por</Row>
                                 <Row>	Matias Samuel Yorki Samudio</Row>
                             </Col>
                         </Row>

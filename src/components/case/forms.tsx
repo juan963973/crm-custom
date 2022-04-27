@@ -20,8 +20,8 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
   return (
     <>
       <Container>
-        <Row className="mt-200" style={{ marginBottom: 40 }}>
-          <Row>
+        <Row className="mt-100" style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>CLIENTE</h4>{" "}
@@ -53,14 +53,14 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row className="mb-200" style={{ marginBottom: 40 }}>
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
           <Row>
-            <Col>
+            <Col style={{ marginBottom: 10 }}>
               {" "}
               <h4>DATOS DEL CLIENTE</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Tipo de documento</Col>
             <Col sm={4} align="start">
               <FormControl
@@ -88,7 +88,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             </Col>
           </Row>
 
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Nro. de Documento Cliente</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
@@ -119,7 +119,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             </Col>
           </Row>
 
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Código Cliente</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
@@ -147,7 +147,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             </Col>
           </Row>
 
-          <Row align="end" style={{ marginBottom: 40 }}>
+          <Row align="end">
             <Col>Sucursal Cliente</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
@@ -165,14 +165,14 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
+        <Row style={{ marginBottom: 30 }}>
           <Row>
-            <Col>
+            <Col style={{ marginBottom: 10 }}>
               {" "}
               <h4>DATOS DEL CONTACTO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Nombre y Apellido (Gestor)</Col>
             <Col sm={4} align="start">
               <MultipleSelect
@@ -226,14 +226,14 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
-          <Row>
+        <Row style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>CLASIFICACIÓN DEL CASO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end" className="mb-2">
+          <Row align="end" className="mb-2" style={{ marginTop: 10 }}>
             <Col>Tipo</Col>
             <Col sm={4} align="start">
               <MultipleSelect
@@ -247,7 +247,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col sm={4}></Col>
           </Row>
 
-          <Row align="end" className="mb-2">
+          <Row align="end" className="mb-2"  style={{ marginTop: 10 }}>
             <Col>Subtipo</Col>
             <Col sm={4} align="start">
               <MultipleSelect
@@ -261,7 +261,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col sm={4}></Col>
           </Row>
 
-          <Row align="end" className="mb-2">
+          <Row align="end" className="mb-2" style={{ marginTop: 10 }}>
             <Col>Tipificación</Col>
             <Col sm={4} align="start">
               <MultipleSelect
@@ -276,14 +276,14 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
-          <Row>
+        <Row style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>EXPLICACIÓN DEL CASO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" style={{ marginTop: 10 }}>
             <Col sm={2}>Asunto</Col>
             <Col sm={6}>
               <InputGroup className="mb-2">
@@ -301,7 +301,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col sm={4}></Col>
           </Row>
 
-          <Row align="end" style={{ marginBottom: 40 }}>
+          <Row align="end" style={{ marginTop: 10 }}>
             <Col sm={2}>Descripción del Caso</Col>
             <Col sm={6}>
               <InputGroup className="mb-2">
@@ -321,14 +321,14 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
-          <Row>
+        <Row style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>DATOS DEL CASO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Origen de Caso</Col>
             <Col sm={4} align="start">
               <MultipleSelect
@@ -359,7 +359,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             </Col>
           </Row>
 
-          <Row align="end" className="mt-2 mb-2">
+          <Row align="end" >
             <Col sm={2}>
               <Form.Label>Estado</Form.Label>
             </Col>
@@ -392,14 +392,14 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
-          <Row>
+        <Row style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>RESOLUTORES DEL CASO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Áreas Resolutoras</Col>
             <Col sm={4} align="start">
               <MultipleArray
@@ -439,14 +439,14 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
-          <Row>
+        <Row style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>RESOLUCIÓN / COMENTARIO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Solución</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
@@ -488,7 +488,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
               />
             </Col>
 
-            <Col>Calificación</Col>
+            <Col>Clasificación</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
@@ -503,8 +503,8 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
-          <Row>
+        <Row style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>DATOS ADICIONALES</h4>{" "}
