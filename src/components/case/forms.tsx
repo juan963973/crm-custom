@@ -4,19 +4,25 @@ import {
   Col,
   Form,
   InputGroup,
-  FormControl
+  FormControl,
 } from "react-bootstrap";
 import MultipleSelect from "components/_common/multiple-select";
 import "rsuite/dist/rsuite.min.css";
 import MultipleArray from "components/_common/array-select";
 
-const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
+const Forms = ({
+  handleChange,
+  reference,
+  dataPromoter,
+  caseData,
+  changeStatus,
+}: any) => {
   const styles = {
     disable: {
       background: "white",
     },
   };
-  
+
   return (
     <>
       <Container>
@@ -43,7 +49,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col>Nombre de Empresa</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/company"}
+                endpoint={"Search/companies"}
                 onChange={handleChange}
                 keyFilter={"companyId"}
                 value={caseData.companyId}
@@ -237,7 +243,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col>Tipo</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/case-types"}
+                endpoint={"Search/types"}
                 onChange={handleChange}
                 keyFilter={"typeId"}
                 value={caseData.typeId}
@@ -251,7 +257,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col>Subtipo</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/case-subtypes"}
+                endpoint={"Search/subtypes"}
                 onChange={handleChange}
                 keyFilter={"subtypeId"}
                 value={caseData.subtypeId}
@@ -265,7 +271,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col>Tipificación</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/typification-name"}
+                endpoint={"Search/typifications"}
                 onChange={handleChange}
                 keyFilter={"typificationId"}
                 value={caseData.typificationId}
@@ -295,6 +301,9 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                   defaultValue={caseData.subject}
                   required
                 />
+                <Form.Control.Feedback type="invalid">
+                  Please provide a valid state.
+                </Form.Control.Feedback>
               </InputGroup>
             </Col>
             <Col></Col>
@@ -332,10 +341,12 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col>Origen de Caso</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/case-origin"}
+                endpoint={"Search/origins"}
                 onChange={handleChange}
                 keyFilter={"originId"}
                 value={caseData.originId}
+                defaultValue="MOSTRADOR"
+                changeStatus={changeStatus}
               />
             </Col>
 
@@ -369,6 +380,8 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 onChange={handleChange}
                 keyFilter={"caseStatusId"}
                 value={caseData.caseStatusId}
+                defaultValue="ASIGNACION"
+                changeStatus={changeStatus}
               />
             </Col>
           </Row>
@@ -406,7 +419,9 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 endpoint="Search/resolver-areas"
                 handleChange={handleChange}
                 keyFilter="resolutionAreaIds"
-                value={caseData.resolutionAreaIds}
+                valueData={caseData.resolutionAreaIds}
+                defaultValue="Call Center"
+                changeStatus={changeStatus}
               />
             </Col>
             <Col>Oficial Negocio</Col>
@@ -427,10 +442,10 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col>Personas Resolutoras</Col>
             <Col sm={4} align="start">
               <MultipleArray
-                endpoint="Search/resolver"
+                endpoint="Search/resolvers"
                 handleChange={handleChange}
                 keyFilter="resolverIds"
-                value={caseData.resolverIds}
+                valueData={caseData.resolverIds}
               />
             </Col>
 

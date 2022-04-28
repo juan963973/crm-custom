@@ -106,6 +106,12 @@ function New({ module }: any) {
         break;
     }
   };
+
+  const changeStatus = (name:any, value:any) =>{
+    setCasesData({ ...casesData, [name]: value });
+  }
+
+
   const handleClose = () =>{
     window.history.back()
   }
@@ -136,8 +142,6 @@ function New({ module }: any) {
       }
     }
   };
-
-  console.log(module.split("/")[0]);
 
   return (
     <>
@@ -178,6 +182,7 @@ function New({ module }: any) {
           reference={dataReference}
           dataPromoter={dataPromoter}
           caseData={casesData}
+          changeStatus={changeStatus}
         />
       </Form>
     </>
