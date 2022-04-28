@@ -7,11 +7,11 @@ import { CaseDetailModel } from '../../models/Case';
 
 import Notes from "components/_common/notes";
 
-export default function Overview({page, id}:any){
+export default function Overview({ page, id }: any) {
     const [cases, setCases] = useState<CaseDetailModel>({} as CaseDetailModel)
 
     useEffect(() => {
-        
+
         detail(page, id)
 
             .then(data => {
@@ -26,16 +26,16 @@ export default function Overview({page, id}:any){
 
     let data = cases
     console.log(cases)
-    return(
+    return (
         <>
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
                 <Row style={{ width: '99%' }} >
                     <Card body >
                         <Row className='mt-200'>
                             <Col sm={3} style={{ color: 'gray', marginRight: 30 }} >
-                                <Row className='d-flex justify-content-end'>Status</Row>
-                                <Row className='d-flex justify-content-end'>Case Origin</Row>
-                                <Row className='d-flex justify-content-end'>Case Owner</Row>
+                                <Row className='d-flex justify-content-end'>Estado</Row>
+                                <Row className='d-flex justify-content-end'>Origen del caso</Row>
+                                <Row className='d-flex justify-content-end'>Propietario del caso</Row>
                             </Col>
                             <Col>
                                 <Row>{cases?.caseStatusName ? cases.caseStatusName : ' - '}</Row>
@@ -57,7 +57,7 @@ export default function Overview({page, id}:any){
                         </Row>
                         <Row>
                             <Col sm={1}>
-                                <Row>Img</Row>
+                                <Row><img src="/userIcon.png" width="30" /></Row>
                             </Col>
                             <Col>
                                 {/* <Row>{cases[0].contactName ? cases[0].contactName: ' - ' }</Row> */}
@@ -72,12 +72,12 @@ export default function Overview({page, id}:any){
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
                     <Card body>
-                        <Row className='mt-200' style={{ marginBottom: 35 }}>
+                        {/* <Row className='mt-200' style={{ marginBottom: 35 }}>
                             <Col>
                                 <Row> <h6>Esconder detalles</h6></Row>
                             </Col>
-                        </Row>
-                        <Row>
+                        </Row> */}
+                        {/* <Row style={{ marginTop: 30 }}>
                             <Row>
                                 <Col> <h6>NRO. DE TICKET - CRONÓMETRO</h6> </Col>
                             </Row>
@@ -87,7 +87,7 @@ export default function Overview({page, id}:any){
                                 <Col style={{ color: 'gray' }}> Tiempo (auto) </Col>
                                 <Col>{cases?.time ? cases.time : ' - '}</Col>
                             </Row>
-                        </Row>
+                        </Row> */}
 
                         <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>
@@ -118,7 +118,7 @@ export default function Overview({page, id}:any){
 
                                 <Col style={{ color: 'gray' }}>Correo electronico</Col>
                                 <Col sm={4} align="start">
-                                    example@example.com (no tenemos)
+                                    example@example.com
                                 </Col>
                             </Row>
                             <Row align="end">
@@ -225,31 +225,20 @@ export default function Overview({page, id}:any){
                                     CALL {cases?.originName ? cases.originName : ' - '}
                                 </Col>
 
-                                <Col style={{ color: 'gray' }}>Dueño del caso</Col>
-                                <Col sm={4} align="start">
-                                    {cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}
-                                </Col>
-                            </Row>
-                            <Row align="end">
                                 <Col style={{ color: 'gray' }}>Nro. ticket</Col>
-                                <Col align="start">
+                                <Col sm={4} align="start">
                                     {cases?.ticketNumber ? cases.ticketNumber : ' - '}
                                 </Col>
-
-                                <Col style={{ color: 'gray' }}>Fecha/Hora Creado</Col>
-                                <Col sm={4} align="start">
-                                    {cases?.createdAt ? cases.createdAt : ' - '}
-                                </Col>
                             </Row>
                             <Row align="end">
-                                <Col style={{ color: 'gray' }}>Estado</Col>
+                                <Col style={{ color: 'gray' }}>Fecha/Hora Creado</Col>
                                 <Col align="start">
-                                    PENDIENTE
+                                    {cases?.createdAt ? cases.createdAt : ' - '}
                                 </Col>
 
-                                <Col style={{ color: 'gray' }}>Fecha/Hora Creado (auto)</Col>
+                                <Col style={{ color: 'gray' }}>Estado</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.createdAt ? cases.createdAt : ' - '}
+                                    PENDIENTE
                                 </Col>
                             </Row>
                             <Row align="end">
@@ -258,20 +247,12 @@ export default function Overview({page, id}:any){
                                     {cases?.callDirection ? cases.callDirection : ' - '}
                                 </Col>
 
-                                <Col style={{ color: 'gray' }}></Col>
-                                <Col align="start">
-                                </Col>
-                            </Row>
-                            <Row align="end">
-                                <Col sm={8} style={{ color: 'gray' }}>id ServiDesk</Col>
+                                <Col style={{ color: 'gray' }}>d ServiDesk</Col>
                                 <Col sm={4} align="start">
                                     {cases?.idServidesk ? cases.idServidesk : ' - '}
                                 </Col>
-
-                                <Col style={{ color: 'gray' }}></Col>
-                                <Col align="start">
-                                </Col>
                             </Row>
+
                         </Row>
 
                         <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
@@ -313,21 +294,20 @@ export default function Overview({page, id}:any){
                                     -
                                 </Col>
                             </Row>
-                            <Row align="end">
-                                <Col style={{ color: 'gray' }}>¿Desea solicitar una prórroga del caso?</Col>
-                                <Col align="start">
-                                    {cases?.requestExtension ? cases.requestExtension : ' - '}
-                                </Col>
-
+                            <Row sm={4} align="end">
                                 <Col style={{ color: 'gray' }}>Resolución a favor del cliente</Col>
                                 <Col sm={4} align="start">
                                     -
                                 </Col>
+                                {/* <Col style={{ color: 'gray' }}>¿Desea solicitar una prórroga del caso?</Col>
+                                <Col align="start">
+                                    {cases?.requestExtension ? cases.requestExtension : ' - '}
+                                </Col> */}
                             </Row>
 
                         </Row>
 
-                        <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
+                        {/* <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>
                                 <Col> <h6>COMENTARIOS</h6> </Col>
                             </Row>
@@ -338,27 +318,27 @@ export default function Overview({page, id}:any){
                                 </Col>
                             </Row>
 
-                        </Row>
+                        </Row> */}
 
                         <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>
                                 <Col> <h6>DATOS ADICIONALES</h6> </Col>
                             </Row>
-                            <Row align="end">
+                            <Row align="end" sm={4}>
                                 <Col style={{ color: 'gray' }}>Agregar comentarios</Col>
                                 <Col align="start">
                                     -
                                 </Col>
 
-                                <Col style={{ color: 'gray' }}>Nro. de comentarios</Col>
+                                {/* <Col style={{ color: 'gray' }}>Nro. de comentarios</Col>
                                 <Col sm={4} align="start">
                                     -
-                                </Col>
+                                </Col> */}
                             </Row>
 
                         </Row>
 
-                        <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
+                        {/* <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>
                                 <Col> <h6>USO INTERNO - AUTOMATIZACIÓN</h6> </Col>
                             </Row>
@@ -424,7 +404,7 @@ export default function Overview({page, id}:any){
                                     -
                                 </Col>
                             </Row>
-                        </Row>
+                        </Row> */}
 
 
 
@@ -454,7 +434,7 @@ export default function Overview({page, id}:any){
                                     placeholder="Add a note..."
                                 />
                             </InputGroup> */}
-                           <Notes /> 
+                            <Notes />
                         </Row>
                     </Card>
                 </Row>

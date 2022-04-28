@@ -46,14 +46,14 @@ export default function Show() {
             <Container style={{ display: 'block' }}>
                 <Row>
                     <Col sm={2}>
-                        <b>Related List</b>
-                        <p>Notes</p>
+                        <b>Lista relacionada</b>
+                        <p>Notas</p>
                         <p>Historial de Estado</p>
-                        <p>Attachments</p>
-                        <p>Open activities</p>
-                        <p>Close activities</p>
-                        <p>Links</p>
-                        <p className="text-primary">Add link</p>
+                        <p>Adjuntos</p>
+                        <p>Actividades abiertas</p>
+                        <p>Actividades cerradas</p>
+                        <p>Enlaces</p>
+                        {/* <p className="text-primary">Add link</p> */}
                     </Col>
 
                     <Col style={{
@@ -64,7 +64,7 @@ export default function Show() {
 
                                 <Col sm={4} style={{ width: 'auto' }}>
 
-                                    <Button variant="primary">Overview</Button>
+                                    <Button variant="primary">Resumen</Button>
                                     {/* 
                                     <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example" className="flex-row" variant="pills">
                                         <Tab eventKey="overview" title="Overview">
