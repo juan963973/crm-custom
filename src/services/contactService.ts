@@ -22,7 +22,7 @@ export async function updateCase(page:any,id:any): Promise<any[]> {
 export default function getContactData(id: number) {
     const [data, setData] = useState([])
 useEffect(() => {
-    axios.get((`https://localhost:5001/v1/api/Contacts/${id}`)).then((response) => {
+    axios.get((`https://localhost:5001/v1/api/Contacts/${id}/details`)).then((response) => {
         setData(response.data)
     });
 }, []);

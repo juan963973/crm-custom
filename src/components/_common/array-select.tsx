@@ -38,19 +38,20 @@ const MultipleArray = ({endpoint, handleChange, keyFilter, valueData=[],defaultV
   }, []);
   
   const defaultValueMultiple = () => {
-    console.log(valueData.length);
-    if(valueData.length === 0 && defaultValue){
-      const _id:any = data.filter((item) => item.label === defaultValue)
-      // console.log(_id[0]?.value)
-      // if(countTry==0){
-      //   setCount(1)
-      //   changeStatus(keyFilter,[_id[0]?.value])
-      // }
-      return [_id[0]?.value]
-    }else{
-      //setCount(0)
-      return valueData
-    }
+    // console.log(valueData.length);
+    // if(valueData.length === 0 && defaultValue){
+    //   const _id:any = data.filter((item) => item.label === defaultValue)
+    //   // console.log(_id[0]?.value)
+    //   // if(countTry==0){
+    //   //   setCount(1)
+    //   //   changeStatus(keyFilter,[_id[0]?.value])
+    //   // }
+    //   return [_id[0]?.value]
+    // }else{
+    //   //setCount(0)
+    //   return valueData
+    // }
+    return valueData
   }
 
   

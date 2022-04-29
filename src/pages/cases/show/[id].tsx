@@ -64,7 +64,7 @@ export default function Show() {
 
                                 <Col sm={4} style={{ width: 'auto' }}>
 
-                                    <Button variant="primary">Resumen</Button>
+                                    <Button variant="primary">Visión general</Button>
                                     {/* 
                                     <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example" className="flex-row" variant="pills">
                                         <Tab eventKey="overview" title="Overview">

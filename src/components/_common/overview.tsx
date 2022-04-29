@@ -26,6 +26,9 @@ export default function Overview({ page, id }: any) {
 
     let data = cases
     console.log(cases)
+    console.log('********************')
+    console.log('id', id)
+    console.log('********************')
     return (
         <>
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
@@ -33,7 +36,7 @@ export default function Overview({ page, id }: any) {
                     <Card body >
                         <Row className='mt-200'>
                             <Col sm={3} style={{ color: 'gray', marginRight: 30 }} >
-                                <Row className='d-flex justify-content-end'>Estado</Row>
+                                <Row className='d-flex justify-content-end' >Estado</Row>
                                 <Row className='d-flex justify-content-end'>Origen del caso</Row>
                                 <Row className='d-flex justify-content-end'>Propietario del caso</Row>
                             </Col>
@@ -42,6 +45,12 @@ export default function Overview({ page, id }: any) {
                                 <Row>{cases?.originName ? cases.originName : ' - '}</Row>
                                 <Row>{cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}</Row>
                             </Col>
+                        </Row>
+
+                        new
+                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
+                            <Col className='d-flex justify-content-end'>Estado</Col>
+                            <Col>{cases?.caseStatusName ? cases.caseStatusName : ' - '}</Col>
                         </Row>
                     </Card>
                 </Row>
@@ -247,7 +256,7 @@ export default function Overview({ page, id }: any) {
                                     {cases?.callDirection ? cases.callDirection : ' - '}
                                 </Col>
 
-                                <Col style={{ color: 'gray' }}>d ServiDesk</Col>
+                                <Col style={{ color: 'gray' }}>id ServiDesk</Col>
                                 <Col sm={4} align="start">
                                     {cases?.idServidesk ? cases.idServidesk : ' - '}
                                 </Col>
@@ -267,7 +276,7 @@ export default function Overview({ page, id }: any) {
 
                                 <Col style={{ color: 'gray' }}>Oficial negocio</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.businessOfficerName ? cases.businessOfficerName : ' - '}
+                                    {cases?.businessOfficer ? cases.businessOfficer : ' - '}
                                 </Col>
                             </Row>
                             <Row align="start">
