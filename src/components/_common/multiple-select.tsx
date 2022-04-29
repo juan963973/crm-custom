@@ -11,6 +11,8 @@ interface ToolFunction {
   defaultValue?:string,
   disabled?: boolean;
   changeStatus?:(keyFilter:string, value:number)=>void
+  styleRequired?:any;
+  required?:boolean;
 }
 
 interface ResultTool {
@@ -25,7 +27,9 @@ const MultipleSelect = ({
   value = null,
   disabled = false,
   defaultValue,
-  changeStatus
+  changeStatus,
+  styleRequired,
+  required
 }: ToolFunction) => {
   const [data, setData] = useState([]);
 
@@ -47,28 +51,30 @@ const MultipleSelect = ({
     fetchData();
   }, []);
 
-  const defaultValueMultiple = () => {
-    if(!value && defaultValue){
-      const _id:any = data.filter((item) => item.value === defaultValue)
-      setTimeout(() => {
-        changeStatus(keyFilter,_id[0]?.id)
-      }, 1000);
-      return _id[0]?.id
-    }else{
-      return value
-    }
-  }
+  // const defaultValueMultiple = () => {
+  //   if(!value && defaultValue){
+  //     const _id:any = data.filter((item) => item.value === defaultValue)
+  //     setTimeout(() => {
+  //       changeStatus(keyFilter,_id[0]?.id)
+  //     }, 1000);
+  //     return _id[0]?.id
+  //   }else{
+  //     return value
+  //   }
+  // }
   
   return (
     <Form.Select
       onChange={onChange}
       id={keyFilter}
       name={keyFilter}
-      defaultValue={value?value:defaultValueMultiple()}
-      value={value?value:defaultValueMultiple()}
+      defaultValue={value}
+      value={value}
       disabled={disabled}
+      style={styleRequired}
+      required={true}
     >
-      <option value={null}>Seleccione...</option>
+      <option>Seleccione...</option>
       {data?.map(({ id, value }: ResultTool) => (
         <option key={id} value={id}>
           {value}

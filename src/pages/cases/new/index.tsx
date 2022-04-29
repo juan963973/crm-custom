@@ -107,14 +107,13 @@ function New({ module }: any) {
     }
   };
 
-  const changeStatus = (name:any, value:any) =>{
-    setCasesData({ ...casesData, [name]: value });
-  }
+  // const changeStatus = (name:any, value:any) =>{
+  //   setCasesData({ ...casesData, [name]: value });
+  // }
 
-
-  const handleClose = () =>{
-    window.history.back()
-  }
+  const handleClose = () => {
+    window.history.back();
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -124,23 +123,43 @@ function New({ module }: any) {
     } else {
       let page = "Cases";
       try {
-        await create(page, casesData);
-        toast.success("Se ha guardado con exito!", {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        setTimeout(() => {
-          router.push(`/cases`)
-        }, 2000);
+        if (
+          (casesData.companyId == null || casesData.contactId == null) &&
+          !casesData.typeId &&
+          !casesData.originId &&
+          !casesData.resolutionAreaIds &&
+          !casesData.subtypeId &&
+          !casesData.typificationId
+        ) {
+          toast.error("Los campos obligatorios no pueden estar vacias!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          await create(page, casesData);
+          toast.success("Se ha guardado con exito!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setTimeout(() => {
+            router.push(`/cases`);
+          }, 2000);
+        }
       } catch (error) {
         console.log(error);
       }
     }
+    setValidated(true);
   };
 
   return (
@@ -174,7 +193,7 @@ function New({ module }: any) {
               </Button>{" "}
             </Col>
           </Row>
-          <ToastContainer/>
+          <ToastContainer />
         </Container>
 
         <Forms
@@ -182,7 +201,7 @@ function New({ module }: any) {
           reference={dataReference}
           dataPromoter={dataPromoter}
           caseData={casesData}
-          changeStatus={changeStatus}
+          //changeStatus={changeStatus}
         />
       </Form>
     </>
