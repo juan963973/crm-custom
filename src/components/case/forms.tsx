@@ -15,12 +15,31 @@ const Forms = ({
   reference,
   dataPromoter,
   caseData,
-  changeStatus,
+  //changeStatus,
 }: any) => {
   const styles = {
     disable: {
       background: "white",
     },
+    required:{
+      borderLeftColor:"#E74C3C"
+    },
+    complete:{
+      borderLeftColor:"gray"
+    },
+    multiple:{
+      required:{
+        borderLeftColor:"#E74C3C",
+        width: "100%"
+      },
+      complete:{
+        borderLeftColor:"gray",
+        width: "100%"
+      },
+      size:{
+        width: "100%"
+      }
+    }
   };
 
   return (
@@ -247,7 +266,12 @@ const Forms = ({
                 onChange={handleChange}
                 keyFilter={"typeId"}
                 value={caseData.typeId}
+                styleRequired={styles.required}
+                required={true}
               />
+              <Form.Control.Feedback type="invalid">
+                  Tipo no puede estar vacío
+              </Form.Control.Feedback>
             </Col>
             <Col></Col>
             <Col sm={4}></Col>
@@ -261,7 +285,12 @@ const Forms = ({
                 onChange={handleChange}
                 keyFilter={"subtypeId"}
                 value={caseData.subtypeId}
+                styleRequired={styles.required}
+                required={true}
               />
+              <Form.Control.Feedback type="invalid">
+                Subtipo no puede estar vacío
+              </Form.Control.Feedback>
             </Col>
             <Col></Col>
             <Col sm={4}></Col>
@@ -275,7 +304,12 @@ const Forms = ({
                 onChange={handleChange}
                 keyFilter={"typificationId"}
                 value={caseData.typificationId}
+                styleRequired={styles.required}
+                required={true}
               />
+              <Form.Control.Feedback type="invalid">
+                Tipificación no puede estar vacío
+              </Form.Control.Feedback>
             </Col>
             <Col></Col>
             <Col sm={4}></Col>
@@ -299,10 +333,11 @@ const Forms = ({
                   name="subject"
                   onChange={(e) => handleChange(e)}
                   defaultValue={caseData.subject}
+                  style={!caseData.subject?styles.required:styles.complete}
                   required
                 />
                 <Form.Control.Feedback type="invalid">
-                  Please provide a valid state.
+                  Asunto no puede estar vacío
                 </Form.Control.Feedback>
               </InputGroup>
             </Col>
@@ -346,8 +381,13 @@ const Forms = ({
                 keyFilter={"originId"}
                 value={caseData.originId}
                 defaultValue="MOSTRADOR"
-                changeStatus={changeStatus}
+                styleRequired={styles.required}
+                required={true}
+                //changeStatus={changeStatus}
               />
+              <Form.Control.Feedback type="invalid">
+                Origen de Caso no puede estar vacío
+              </Form.Control.Feedback>
             </Col>
 
             <Col>{/*Propietario de Caso*/}id ServiDesk</Col>
@@ -381,8 +421,13 @@ const Forms = ({
                 keyFilter={"caseStatusId"}
                 value={caseData.caseStatusId}
                 defaultValue="ASIGNACION"
-                changeStatus={changeStatus}
+                //changeStatus={changeStatus}
+                styleRequired={styles.required}
+                required={true}
               />
+              <Form.Control.Feedback type="invalid">
+                  Estado no puede estar vacío
+              </Form.Control.Feedback>
             </Col>
           </Row>
 
@@ -421,7 +466,8 @@ const Forms = ({
                 keyFilter="resolutionAreaIds"
                 valueData={caseData.resolutionAreaIds}
                 defaultValue="Call Center"
-                changeStatus={changeStatus}
+                styleRequire={styles.multiple.required}
+                //changeStatus={changeStatus}
               />
             </Col>
             <Col>Oficial Negocio</Col>
@@ -446,6 +492,7 @@ const Forms = ({
                 handleChange={handleChange}
                 keyFilter="resolverIds"
                 valueData={caseData.resolverIds}
+                styleRequire={styles.multiple.size}
               />
             </Col>
 
