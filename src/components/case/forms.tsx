@@ -4,27 +4,52 @@ import {
   Col,
   Form,
   InputGroup,
-  FormControl
+  FormControl,
 } from "react-bootstrap";
 import MultipleSelect from "components/_common/multiple-select";
 import "rsuite/dist/rsuite.min.css";
 import MultipleArray from "components/_common/array-select";
 
-const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
+const Forms = ({
+  handleChange,
+  reference,
+  dataPromoter,
+  caseData,
+  //changeStatus,
+}: any) => {
   const styles = {
     disable: {
       background: "white",
     },
+    required:{
+      borderLeftColor:"#E74C3C"
+    },
+    complete:{
+      borderLeftColor:"gray"
+    },
+    multiple:{
+      required:{
+        borderLeftColor:"#E74C3C",
+        width: "100%"
+      },
+      complete:{
+        borderLeftColor:"gray",
+        width: "100%"
+      },
+      size:{
+        width: "100%"
+      }
+    }
   };
-  
+
   return (
     <>
       <Container>
-        <Row className="mt-200" style={{ marginBottom: 40 }}>
-          <Row>
+        <Row className="mt-100" style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
-              <h4>Cliente</h4>{" "}
+              <h4>CLIENTE</h4>{" "}
             </Col>
           </Row>
           <Row align="end" className="mt-1">
@@ -43,7 +68,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col>Nombre de Empresa</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/company"}
+                endpoint={"Search/companies"}
                 onChange={handleChange}
                 keyFilter={"companyId"}
                 value={caseData.companyId}
@@ -53,14 +78,14 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row className="mb-200" style={{ marginBottom: 40 }}>
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
           <Row>
-            <Col>
+            <Col style={{ marginBottom: 10 }}>
               {" "}
               <h4>DATOS DEL CLIENTE</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Tipo de documento</Col>
             <Col sm={4} align="start">
               <FormControl
@@ -88,7 +113,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             </Col>
           </Row>
 
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Nro. de Documento Cliente</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
@@ -119,7 +144,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             </Col>
           </Row>
 
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Código Cliente</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
@@ -147,7 +172,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             </Col>
           </Row>
 
-          <Row align="end" style={{ marginBottom: 40 }}>
+          <Row align="end">
             <Col>Sucursal Cliente</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
@@ -165,14 +190,14 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
+        <Row style={{ marginBottom: 30 }}>
           <Row>
-            <Col>
+            <Col style={{ marginBottom: 10 }}>
               {" "}
               <h4>DATOS DEL CONTACTO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Nombre y Apellido (Gestor)</Col>
             <Col sm={4} align="start">
               <MultipleSelect
@@ -226,64 +251,79 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
-          <Row>
+        <Row style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
-              <h4>CALIFICACIÓN DEL CASO</h4>{" "}
+              <h4>CLASIFICACIÓN DEL CASO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end" className="mb-2">
+          <Row align="end" className="mb-2" style={{ marginTop: 10 }}>
             <Col>Tipo</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/case-types"}
+                endpoint={"Search/types"}
                 onChange={handleChange}
                 keyFilter={"typeId"}
                 value={caseData.typeId}
+                styleRequired={styles.required}
+                required={true}
               />
+              <Form.Control.Feedback type="invalid">
+                  Tipo no puede estar vacío
+              </Form.Control.Feedback>
             </Col>
             <Col></Col>
             <Col sm={4}></Col>
           </Row>
 
-          <Row align="end" className="mb-2">
+          <Row align="end" className="mb-2"  style={{ marginTop: 10 }}>
             <Col>Subtipo</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/case-subtypes"}
+                endpoint={"Search/subtypes"}
                 onChange={handleChange}
                 keyFilter={"subtypeId"}
                 value={caseData.subtypeId}
+                styleRequired={styles.required}
+                required={true}
               />
+              <Form.Control.Feedback type="invalid">
+                Subtipo no puede estar vacío
+              </Form.Control.Feedback>
             </Col>
             <Col></Col>
             <Col sm={4}></Col>
           </Row>
 
-          <Row align="end" className="mb-2">
+          <Row align="end" className="mb-2" style={{ marginTop: 10 }}>
             <Col>Tipificación</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/typification-name"}
+                endpoint={"Search/typifications"}
                 onChange={handleChange}
                 keyFilter={"typificationId"}
                 value={caseData.typificationId}
+                styleRequired={styles.required}
+                required={true}
               />
+              <Form.Control.Feedback type="invalid">
+                Tipificación no puede estar vacío
+              </Form.Control.Feedback>
             </Col>
             <Col></Col>
             <Col sm={4}></Col>
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
-          <Row>
+        <Row style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>EXPLICACIÓN DEL CASO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" style={{ marginTop: 10 }}>
             <Col sm={2}>Asunto</Col>
             <Col sm={6}>
               <InputGroup className="mb-2">
@@ -293,15 +333,19 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                   name="subject"
                   onChange={(e) => handleChange(e)}
                   defaultValue={caseData.subject}
+                  style={!caseData.subject?styles.required:styles.complete}
                   required
                 />
+                <Form.Control.Feedback type="invalid">
+                  Asunto no puede estar vacío
+                </Form.Control.Feedback>
               </InputGroup>
             </Col>
             <Col></Col>
             <Col sm={4}></Col>
           </Row>
 
-          <Row align="end" style={{ marginBottom: 40 }}>
+          <Row align="end" style={{ marginTop: 10 }}>
             <Col sm={2}>Descripción del Caso</Col>
             <Col sm={6}>
               <InputGroup className="mb-2">
@@ -321,25 +365,32 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
-          <Row>
+        <Row style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>DATOS DEL CASO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Origen de Caso</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/case-origin"}
+                endpoint={"Search/origins"}
                 onChange={handleChange}
                 keyFilter={"originId"}
                 value={caseData.originId}
+                defaultValue="MOSTRADOR"
+                styleRequired={styles.required}
+                required={true}
+                //changeStatus={changeStatus}
               />
+              <Form.Control.Feedback type="invalid">
+                Origen de Caso no puede estar vacío
+              </Form.Control.Feedback>
             </Col>
 
-            <Col>{/*Propietario de Caso*/}</Col>
+            <Col>{/*Propietario de Caso*/}id ServiDesk</Col>
             <Col sm={4} align="start">
               {/* <MultipleSelect
                 endpoint={"Search/case-owner"}
@@ -347,26 +398,6 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 keyFilter={"caseOwnerId"}
                 value={caseData.caseOwnerId}
               /> */}
-            </Col>
-          </Row>
-
-          <Row align="end" className="mt-2 mb-2">
-            <Col sm={2}>
-              <Form.Label>Estado</Form.Label>
-            </Col>
-            <Col sm={4} align="start">
-              <MultipleSelect
-                endpoint={"Search/case-status"}
-                onChange={handleChange}
-                keyFilter={"caseStatusId"}
-                value={caseData.caseStatusId}
-              />
-            </Col>
-          </Row>
-
-          <Row align="end">
-            <Col>id ServiDesk</Col>
-            <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
                   aria-label="Default"
@@ -377,27 +408,66 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
                 />
               </InputGroup>
             </Col>
+          </Row>
+
+          <Row align="end" >
+            <Col sm={2}>
+              <Form.Label>Estado</Form.Label>
+            </Col>
+            <Col sm={4} align="start">
+              <MultipleSelect
+                endpoint={"Search/case-status"}
+                onChange={handleChange}
+                keyFilter={"caseStatusId"}
+                value={caseData.caseStatusId}
+                defaultValue="ASIGNACION"
+                //changeStatus={changeStatus}
+                styleRequired={styles.required}
+                required={true}
+              />
+              <Form.Control.Feedback type="invalid">
+                  Estado no puede estar vacío
+              </Form.Control.Feedback>
+            </Col>
+          </Row>
+
+          <Row align="end">
+            <Col>{/*id ServiDesk*/}</Col>
+            <Col sm={4}>
+              {/* <InputGroup className="mb-2">
+                <FormControl
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  name="idServidesk"
+                  onChange={(e) => handleChange(e)}
+                  defaultValue={caseData.idServidesk}
+                />
+              </InputGroup> */}
+            </Col>
 
             <Col></Col>
             <Col sm={4}></Col>
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
-          <Row>
+        <Row style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>RESOLUTORES DEL CASO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Áreas Resolutoras</Col>
             <Col sm={4} align="start">
               <MultipleArray
                 endpoint="Search/resolver-areas"
                 handleChange={handleChange}
                 keyFilter="resolutionAreaIds"
-                value={caseData.resolutionAreaIds}
+                valueData={caseData.resolutionAreaIds}
+                defaultValue="Call Center"
+                styleRequire={styles.multiple.required}
+                //changeStatus={changeStatus}
               />
             </Col>
             <Col>Oficial Negocio</Col>
@@ -418,10 +488,11 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
             <Col>Personas Resolutoras</Col>
             <Col sm={4} align="start">
               <MultipleArray
-                endpoint="Search/resolver"
+                endpoint="Search/resolvers"
                 handleChange={handleChange}
                 keyFilter="resolverIds"
-                value={caseData.resolverIds}
+                valueData={caseData.resolverIds}
+                styleRequire={styles.multiple.size}
               />
             </Col>
 
@@ -430,14 +501,14 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
-          <Row>
+        <Row style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>RESOLUCIÓN / COMENTARIO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
+          <Row align="end" style={{ marginBottom: 10 }}>
             <Col>Solución</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
@@ -479,7 +550,7 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
               />
             </Col>
 
-            <Col>Calificación</Col>
+            <Col>Clasificación</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
@@ -494,8 +565,8 @@ const Forms = ({ handleChange, reference, dataPromoter, caseData }: any) => {
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 40 }}>
-          <Row>
+        <Row style={{ marginBottom: 30 }}>
+          <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>DATOS ADICIONALES</h4>{" "}

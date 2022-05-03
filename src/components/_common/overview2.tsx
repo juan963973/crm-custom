@@ -580,6 +580,7 @@ export default function Overview2({ page, id, dataId }: any) {
                                     borderLeft: 'none',
                                     borderRight: 'none'
                                 }}>
+                                <Col>Nro. Ticket</Col>
                                 <Col>Asunto</Col>
                                 <Col>Estatus</Col>
                                 <Col>Tipo</Col>
@@ -596,6 +597,7 @@ export default function Overview2({ page, id, dataId }: any) {
                                     borderRight: 'none'
                                 }}>
                                 <Col>NO DEFINIDO </Col>
+                                <Col> </Col>
                                 <Col>ASIGNACION</Col>
                                 <Col>CONSULTA</Col>
                             </Row>
