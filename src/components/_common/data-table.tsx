@@ -144,7 +144,7 @@ const DataTable = ({module}:any) => {
             
                 <Table
                     style={styles}
-                    height={560}
+                    height={503}
                     data={values}
                     loading={loading}
                     bordered
@@ -152,6 +152,7 @@ const DataTable = ({module}:any) => {
                     // autoHeight
                     affixHeader
                     affixHorizontalScrollbar
+                    affixVerticalScrollbar
                     locale={tableLocale}
                 >
                     <Column width={100} align="center" fixed resizable>
