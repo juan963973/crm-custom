@@ -75,6 +75,22 @@ const DataTable = ({module}:any) => {
 
     const styles = { borderRadius:'10px 10px 0px 0px' }
 
+    const tableLocale = {
+        emptyMessage: 'No hay datos.',
+        loading: 'Cargando.'
+    };
+
+    // const PaginationLocaleType = {
+    //     more: "Más",
+    //     prev: "Antes"
+    //     next: "",
+    //     first?: string;
+    //     last?: string;
+    //     limit?: string;
+    //     total?: string;
+    //     skip?: string;
+    // }
+
     const CheckCell = ({
         rowData,
         onChange,
@@ -107,7 +123,7 @@ const DataTable = ({module}:any) => {
     return (
         <>
         <Card style={styles}>
-            {/* <Pagination
+            <Pagination
                 prev
                 next
                 first
@@ -123,18 +139,19 @@ const DataTable = ({module}:any) => {
                 activePage={page}
                 onChangePage={setPage}
                 onChangeLimit={handleChangeLimit}
-            /> */}
+            />
             
                 <Table
                     style={styles}
-                    height={420}
+                    height={560}
                     data={values}
                     loading={loading}
                     bordered
                     cellBordered
-                    autoHeight
+                    // autoHeight
                     affixHeader
                     affixHorizontalScrollbar
+                    locale={tableLocale}
                 >
                     <Column width={100} align="center" fixed resizable>
                         <HeaderCell style={{ padding: 0 }}>
