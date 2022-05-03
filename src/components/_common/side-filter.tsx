@@ -20,6 +20,8 @@ import { typesFilter } from "store/filter/filterReducer";
 import { useDispatchFilter } from "store/filter/FilterProvider";
 import { getFieldsFilter } from "services/commonService";
 
+const escapeRegexCharacters = (str:string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 const SideFilter = ({ module }: any) => {
   const dispatchFilter = useDispatchFilter();
 
@@ -59,10 +61,11 @@ const SideFilter = ({ module }: any) => {
   };
 
   const handleChangeSearch = (event: any) => {
-    var query = event.target.value;
+    var query = escapeRegexCharacters(event.target.value);
+    
     setCheckList(
       checkListBackup.filter((item) => {
-        return item?.key?.toLowerCase().includes(query.toLowerCase());
+        return item?.title?.toLowerCase().includes(escapeRegexCharacters(query.toLowerCase()));
       })
     );
   };
