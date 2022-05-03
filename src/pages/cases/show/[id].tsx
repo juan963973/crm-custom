@@ -10,10 +10,10 @@ import Overview from "components/_common/overview";
 
 const page = "cases";
 
-export default function Show() {
+export default function Show({ id, uri }: any) {
     const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
     const router = useRouter()
-    const id = 1
+    // const id = id
 
     let data = cases
 
@@ -95,3 +95,15 @@ export default function Show() {
         </>
     )
 }
+
+export async function getServerSideProps(req: any, res: any) {
+    const {
+      query: { id },
+      resolvedUrl,
+    } = req;
+    const uri = resolvedUrl.split("/")[1];
+    console.log('id', id)
+    return {
+      props: { id, uri },
+    };
+  }
