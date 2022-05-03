@@ -4,6 +4,7 @@ import {
 } from "react-bootstrap";
 import { useRouter } from 'next/router'
 import { useState } from "react";
+import React, { forwardRef, useRef } from 'react'
 import { CaseDetailModel } from ".../../models/Case";
 import Overview from "components/_common/overview";
 

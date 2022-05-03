@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { detail } from "../../services/caseService";
 import { CaseDetailModel } from '../../models/Case';
 
+import HistoryState from "components/_common/historyState"
 import Notes from "components/_common/notes";
 
 export default function Overview({ page, id }: any) {
@@ -34,23 +35,17 @@ export default function Overview({ page, id }: any) {
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
                 <Row style={{ width: '99%' }} >
                     <Card body >
-                        <Row className='mt-200'>
-                            <Col sm={3} style={{ color: 'gray', marginRight: 30 }} >
-                                <Row className='d-flex justify-content-end' >Estado</Row>
-                                <Row className='d-flex justify-content-end'>Origen del caso</Row>
-                                <Row className='d-flex justify-content-end'>Propietario del caso</Row>
-                            </Col>
-                            <Col>
-                                <Row>{cases?.caseStatusName ? cases.caseStatusName : ' - '}</Row>
-                                <Row>{cases?.originName ? cases.originName : ' - '}</Row>
-                                <Row>{cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}</Row>
-                            </Col>
-                        </Row>
-
-                        new
-                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
+                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }} className='mt-200'>
                             <Col className='d-flex justify-content-end'>Estado</Col>
                             <Col>{cases?.caseStatusName ? cases.caseStatusName : ' - '}</Col>
+                        </Row>
+                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
+                            <Col className='d-flex justify-content-end'>Origen del caso</Col>
+                            <Col>{cases?.originName ? cases.originName : ' - '}</Col>
+                        </Row>
+                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
+                            <Col className='d-flex justify-content-end'>Propietario del caso</Col>
+                            <Col>{cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}</Col>
                         </Row>
                     </Card>
                 </Row>
@@ -449,35 +444,7 @@ export default function Overview({ page, id }: any) {
                 </Row>
             </Row>
 
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
-                <Row style={{ width: '99%' }}>
-                    <Card body>
-                        <Row className='mt-200'>
-                            <Col>
-                                <Row> <h6>HISTORIAL DEL ESTADO</h6></Row>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Row style={{ color: 'gray' }}>Estado</Row>
-                                <Row>Cerrado</Row>
-                            </Col>
-                            <Col>
-                                <Row style={{ color: 'gray' }}>Duración (días)</Row>
-                                <Row>0 días</Row>
-                            </Col>
-                            <Col>
-                                <Row style={{ color: 'gray' }}>Tiempo modificación</Row>
-                                <Row>Mar 7, 2022 05:41 AM</Row>
-                            </Col>
-                            <Col>
-                                <Row style={{ color: 'gray' }}>	Modificado por</Row>
-                                <Row>	Matias Samuel Yorki Samudio</Row>
-                            </Col>
-                        </Row>
-                    </Card>
-                </Row>
-            </Row>
+            <HistoryState />
 
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
