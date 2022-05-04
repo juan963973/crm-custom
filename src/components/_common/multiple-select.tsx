@@ -13,6 +13,8 @@ interface ToolFunction {
   changeStatus?:(keyFilter:string, value:number)=>void
   styleRequired?:any;
   required?:boolean;
+  params?:any
+  paramsRequired?:any
 }
 
 interface ResultTool {
@@ -29,7 +31,9 @@ const MultipleSelect = ({
   defaultValue,
   changeStatus,
   styleRequired,
-  required
+  required = true,
+  params,
+  paramsRequired
 }: ToolFunction) => {
   const [data, setData] = useState([]);
 
@@ -62,6 +66,17 @@ const MultipleSelect = ({
   //     return value
   //   }
   // }
+
+  //console.log(paramsRequired);
+  
+  // if(defaultValue!=undefined && params && value===null){
+  //   const _id:any = data.filter((item) => item.value === defaultValue)
+  //   const {casesData, setCasesData} = params
+  //   setTimeout(() => {
+  //     setCasesData({...casesData, [keyFilter]:_id[0]?.id})
+  //   }, 100);
+  //   console.log(casesData)
+  // }
   
   return (
     <Form.Select
@@ -72,7 +87,7 @@ const MultipleSelect = ({
       value={value}
       disabled={disabled}
       style={styleRequired}
-      required={true}
+      isInvalid={paramsRequired}
     >
       <option>Seleccione...</option>
       {data?.map(({ id, value }: ResultTool) => (

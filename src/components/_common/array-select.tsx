@@ -47,8 +47,6 @@ const MultipleArray = ({
   // const defaultValueMultiple = () => {
   //   return valueData
   // }
-  console.log("imprime");
-  
 
   return (
     <TagPicker
