@@ -16,7 +16,8 @@ const Forms = ({
   dataPromoter,
   caseData,
   params,
-  paramsRequired
+  paramsRequired,
+  cascade
 }: any) => {
   const styles = {
     disable: {
@@ -291,7 +292,7 @@ const Forms = ({
             <Col>Subtipo</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/subtypes"}
+                endpoint={cascade.subtypeId}
                 onChange={handleChange}
                 keyFilter={"subtypeId"}
                 value={caseData.subtypeId}
@@ -311,7 +312,7 @@ const Forms = ({
             <Col>Tipificación</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/typifications"}
+                endpoint={cascade.typificationId}
                 onChange={handleChange}
                 keyFilter={"typificationId"}
                 value={caseData.typificationId}

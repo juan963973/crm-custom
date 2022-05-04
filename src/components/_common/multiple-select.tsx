@@ -53,7 +53,7 @@ const MultipleSelect = ({
     }
 
     fetchData();
-  }, []);
+  }, [endpoint]);
 
   // const defaultValueMultiple = () => {
   //   if(!value && defaultValue){

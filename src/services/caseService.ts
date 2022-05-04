@@ -23,3 +23,9 @@ export async function update(page:any,id:any): Promise<any[]> {
     const res = await axios.get<any[]>(`https://localhost:5001/v1/api/${page}/${id}`)
     return res.data
 }
+
+export async function cascadeValue(page:any,id:any): Promise<any[]> {
+    
+    const res = await axios.get<any[]>(`https://localhost:5001/v1/api/${page}/${id}`)
+    return res.data
+}
