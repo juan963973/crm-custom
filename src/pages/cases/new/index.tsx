@@ -30,6 +30,10 @@ function New({ module }: any) {
   });
 
   const [validated, setValidated] = useState(false);
+  const [customerValid, setCustomerValid] = useState(false)
+  const [requiredType, setRequiredType] = useState(false);
+  const [requiredSubType, setRequiredSubType] = useState(false);
+  const [requiredTipifications, setRequiredTipifications] = useState(false);
   const router = useRouter();
 
   if (typeof window !== "undefined") {
@@ -118,19 +122,14 @@ function New({ module }: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const form = e.currentTarget;
+    console.log(form)
     if (form.checkValidity() === false) {
       console.log("Falta Validar");
     } else {
       let page = "Cases";
+      let validation = true;
       try {
-        if (
-          (casesData.companyId == null || casesData.contactId == null) &&
-          !casesData.typeId &&
-          !casesData.originId &&
-          !casesData.resolutionAreaIds &&
-          !casesData.subtypeId &&
-          !casesData.typificationId
-        ) {
+        if (casesData.companyId == null && casesData.contactId == null) {
           toast.error("Los campos obligatorios no pueden estar vacias!", {
             position: "top-center",
             autoClose: 2000,
@@ -140,7 +139,34 @@ function New({ module }: any) {
             draggable: true,
             progress: undefined,
           });
-        } else {
+          validation = false;
+          setCustomerValid(true)
+        }else{
+          setCustomerValid(false)
+        }
+        
+        if (!casesData.typeId) {
+          setRequiredType(true);
+          validation = false;
+        }else{
+          setRequiredType(false);
+        } 
+
+        if (!casesData.subtypeId) {
+          setRequiredSubType(true);
+          validation= false;
+        }else{
+          setRequiredSubType(false);
+        }
+        
+        if (!casesData.typificationId) {
+          setRequiredTipifications(true);
+          validation = false;
+        }else{
+          setRequiredTipifications(false);
+        }
+
+        if(validation) {
           await create(page, casesData);
           toast.success("Se ha guardado con exito!", {
             position: "top-center",
@@ -160,6 +186,18 @@ function New({ module }: any) {
       }
     }
     setValidated(true);
+  };
+
+  const params = {
+    setCasesData,
+    casesData,
+  };
+
+  const paramsRequired = {
+    requiredType,
+    requiredSubType,
+    requiredTipifications,
+    customerValid
   };
 
   return (
@@ -201,7 +239,8 @@ function New({ module }: any) {
           reference={dataReference}
           dataPromoter={dataPromoter}
           caseData={casesData}
-          //changeStatus={changeStatus}
+          params={params}
+          paramsRequired={paramsRequired}
         />
       </Form>
     </>
