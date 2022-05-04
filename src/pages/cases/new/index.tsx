@@ -6,6 +6,7 @@ import { CreateCaseModel } from "../../../models/Case";
 import { create, refenceField } from "../../../services/caseService";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
+import HeaderForms from "components/_common/header-forms";
 
 function New({ module }: any) {
   const [casesData, setCasesData] = useState<CreateCaseModel>({
@@ -131,7 +132,7 @@ function New({ module }: any) {
           !casesData.subtypeId &&
           !casesData.typificationId
         ) {
-          toast.error("Los campos obligatorios no pueden estar vacias!", {
+          toast.error("Los campos obligatorios no pueden estar vacios!", {
             position: "top-center",
             autoClose: 2000,
             hideProgressBar: false,
@@ -167,34 +168,12 @@ function New({ module }: any) {
       <Form
         noValidate
         validated={validated}
-        style={{ marginTop: "58px" }}
         onSubmit={handleSubmit}
       >
-        <Container className="shadow-sm p-3 mb-5 bg-white rounded mt-2">
-          <Row className="justify-content-end">
-            <Col sm={2}>
-              {" "}
-              <h4>Crear caso</h4>{" "}
-            </Col>
-            {/* <Col sm={2}>
-              <Form.Select>
-                <option value="1">Diseños</option>
-                <option value="2">Standard</option>
-                <option value="3">Test</option>
-              </Form.Select>
-            </Col> */}
-            <Col align="end">
-              <Button variant="secondary" onClick={handleClose}>
-                Cancelar
-              </Button>{" "}
-              <Button variant="secondary">Guardar y nuevo</Button>{" "}
-              <Button variant="primary" type="submit">
-                Guardar
-              </Button>{" "}
-            </Col>
-          </Row>
+        <div className="shadow-sm p-3 mb-5 bg-white rounded container-fluid" style={{zIndex: 9999, marginTop: "-71px", position: "fixed" }}>
+          <HeaderForms title="Crear Caso" handleClose={handleClose} />
           <ToastContainer />
-        </Container>
+        </div>
 
         <Forms
           handleChange={handleChange}

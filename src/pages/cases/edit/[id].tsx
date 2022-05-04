@@ -1,4 +1,5 @@
 import Forms from "components/case/forms";
+import HeaderForms from "components/_common/header-forms";
 import _ from "lodash";
 import { CreateCaseModel } from "models/Case";
 import { useRouter } from "next/router";
@@ -181,29 +182,10 @@ function EditCase({ id, uri }: any) {
         style={{ marginTop: "58px" }}
         onSubmit={handleSubmit}
       >
-        <Container className="shadow-sm p-3 mb-5 bg-white rounded mt-2">
-          <Row className="justify-content-end">
-            <Col sm={2}>
-              {" "}
-              <h4>Editar Caso</h4>{" "}
-            </Col>
-            {/* <Col sm={2}>
-              <Form.Select>
-                <option value="1">Diseños</option>
-                <option value="2">Standard</option>
-                <option value="3">Test</option>
-              </Form.Select>
-            </Col> */}
-            <Col align="end">
-              <Button variant="secondary" onClick={handleClose}>Cancelar</Button>{" "}
-              <Button variant="secondary">Guardar y nuevo</Button>{" "}
-              <Button variant="primary" type="submit">
-                Guardar
-              </Button>{" "}
-            </Col>
-          </Row>
+        <div className="shadow-sm p-3 mb-5 bg-white rounded container-fluid" style={{zIndex: 9999, marginTop: "-71px", position: "fixed" }}>
+          <HeaderForms title="Editar Caso" handleClose={handleClose} />
           <ToastContainer />
-        </Container>
+        </div>
         <Forms
           handleChange={handleChange}
           reference={dataReference}

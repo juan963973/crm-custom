@@ -14,9 +14,7 @@ export default function CallToActions({params}:any) {
     
     const router = useRouter();
 
-    const goToCreate = () => {
-        router.push(`${module}/new`)
-    }
+    const goToCreate = () => router.push(`${module}/new`)
 
     return (
         <>
@@ -30,8 +28,11 @@ export default function CallToActions({params}:any) {
             <Col xs={2} >
                 <FilteringResolvers />
             </Col>
-            {/* <Col xs={2} >
-                <Button variant="secondary" style={{background: '#FFF', color: 'black'}} onClick={toggleViewKanban}>
+            {/* <Col align='end'>
+                
+            </Col>  */}
+            <Col align='end'>
+                <Button variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }} onClick={toggleViewKanban}>
                     <div>
                         {viewKanban ? 
                             <><FaList style={{color:"black"}} /> {textList}</>: 
@@ -39,8 +40,6 @@ export default function CallToActions({params}:any) {
                         }
                     </div>
                 </Button>
-            </Col> */}   
-            <Col align='end'>
                 <Button onClick={goToCreate}>Crear {ModuleText}</Button>
             </Col>
         </>
