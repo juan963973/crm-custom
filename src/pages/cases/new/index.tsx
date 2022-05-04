@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Forms from "components/case/forms";
 import { injectStyle } from "react-toastify/dist/inject-style";
 import { CreateCaseModel } from "../../../models/Case";
-import { create, refenceField, cascadeValue } from "../../../services/caseService";
+import { create, refenceField } from "../../../services/caseService";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import HeaderForms from "components/_common/header-forms";
@@ -81,13 +81,6 @@ function New({ module }: any) {
       return;
     }
   };
-
-  const cascadeCondition = (key:any, value:any) =>{
-      if(key=="typeId"){
-        let page = "";
-        cascadeValue(page,value);
-      }
-  }
 
   const completeField = async (key: any, value: any) => {
     let page;

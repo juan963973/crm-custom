@@ -30,7 +30,13 @@ function EditCase({ id, uri }: any) {
     mobile: "",
   });
 
+  const [endpointCascade, setEndpointCascade] = useState({subtypeId: "Search/subtypes", typificationId:"Search/typifications"})
+
   const [validated, setValidated] = useState(false);
+  const [customerValid, setCustomerValid] = useState(false)
+  const [requiredType, setRequiredType] = useState(false);
+  const [requiredSubType, setRequiredSubType] = useState(false);
+  const [requiredTipifications, setRequiredTipifications] = useState(false);
   const router = useRouter();
 
   if (typeof window !== "undefined") {
@@ -81,6 +87,15 @@ function EditCase({ id, uri }: any) {
       }
       if (key == "contactId" || key == "companyId" || key == "promoterId") {
         completeField(key, value);
+      }
+      let page = "";
+      if(key == "typeId"){
+        page = `Search/subtypes?${key}=${value}`;
+        setEndpointCascade({...endpointCascade, subtypeId:page})
+      }
+      if(key == "subtypeId"){
+        page = `Search/typifications?${key}=${value}`;
+        setEndpointCascade({...endpointCascade, typificationId:page})
       }
       setCasesData({ ...casesData, [key]: value });
       return;
@@ -135,43 +150,86 @@ function EditCase({ id, uri }: any) {
     window.history.back()
   }
 
-  const handleSubmit = async (event: any) => {
-    const form = event.currentTarget;
-
-    event.preventDefault();
-
-    // setCasesData({ callDirectionId: 1 } as CreateCaseModel);
-    // setDataReference({
-    //   documentTypeName: "",
-    //   email: "",
-    //   clientCode: "",
-    //   documentNumber: "",
-    //   branchName: null,
-    //   phone: "",
-    //   mobile: "",
-    // });
-    // setDataPromoter({ email: "", documentNumber: "", mobile: "" });
-
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    console.log(form)
     if (form.checkValidity() === false) {
-      event.preventDefault();
+      console.log("Falta Validar");
     } else {
-      const page = "Cases";
+      let page = `Cases/${id}`;
+
+      let validation = true;
       try {
-        // await create(page, casesData);
-        toast.success("Se ha modificado con exito!", {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        if (casesData.companyId == null && casesData.contactId == null) {
+          toast.error("Los campos obligatorios no pueden estar vacios!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          validation = false;
+          setCustomerValid(true)
+        }else{
+          setCustomerValid(false)
+        }
+        
+        if (!casesData.typeId) {
+          setRequiredType(true);
+          validation = false;
+        }else{
+          setRequiredType(false);
+        } 
+
+        if (!casesData.subtypeId) {
+          setRequiredSubType(true);
+          validation= false;
+        }else{
+          setRequiredSubType(false);
+        }
+        
+        if (!casesData.typificationId) {
+          setRequiredTipifications(true);
+          validation = false;
+        }else{
+          setRequiredTipifications(false);
+        }
+
+        if(validation) {
+          //await update(page, casesData);
+          toast.success("Se ha modificado con exito!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setTimeout(() => {
+            router.push(`/cases`);
+          }, 2000);
+        }
       } catch (error) {
         console.log(error);
       }
     }
     setValidated(true);
+  };
+
+  const params = {
+    setCasesData,
+    casesData,
+  };
+
+  const paramsRequired = {
+    requiredType,
+    requiredSubType,
+    requiredTipifications,
+    customerValid
   };
 
   return (
@@ -191,6 +249,9 @@ function EditCase({ id, uri }: any) {
           reference={dataReference}
           dataPromoter={dataPromoter}
           caseData={casesData}
+          params={params}
+          paramsRequired={paramsRequired}
+          cascade={endpointCascade}
         />
       </Form>
     </>

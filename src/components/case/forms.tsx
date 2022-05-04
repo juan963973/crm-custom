@@ -24,14 +24,14 @@ const Forms = ({
       background: "white",
     },
     required:{
-      borderLeftColor:"#E74C3C"
+      borderLeft:"4px solid #E74C3C"
     },
     complete:{
       borderLeftColor:"gray"
     },
     multiple:{
       required:{
-        borderLeftColor:"#E74C3C",
+        borderLeft:"4px solid #E74C3C",
         width: "100%"
       },
       complete:{
