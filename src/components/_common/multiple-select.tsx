@@ -67,7 +67,7 @@ const MultipleSelect = ({
   //   }
   // }
 
-  console.log(paramsRequired);
+  //console.log(paramsRequired);
   
   // if(defaultValue!=undefined && params && value===null){
   //   const _id:any = data.filter((item) => item.value === defaultValue)

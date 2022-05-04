@@ -65,7 +65,7 @@ const Forms = ({
                 paramsRequired={paramsRequired.customerValid}
               />
               <Form.Control.Feedback type="invalid">
-                  Ambos campos no puede estar vacío
+                  Ambos campos no pueden estar vacío
               </Form.Control.Feedback>
               {/* <UseAutocomplete/> */}
             </Col>
@@ -81,7 +81,7 @@ const Forms = ({
                 paramsRequired={paramsRequired.customerValid}
               />
               <Form.Control.Feedback type="invalid">
-                  Ambos campos no puede estar vacío
+                  Ambos campos no pueden estar vacío
               </Form.Control.Feedback>
             </Col>
           </Row>
