@@ -23,7 +23,7 @@ function EditCase({ id, uri }: any) {
     phone: "",
     mobile: "",
   });
-
+  console.log(id)
   const [dataPromoter, setDataPromoter] = useState({
     email: "",
     documentNumber: "",
@@ -199,7 +199,7 @@ function EditCase({ id, uri }: any) {
         }
 
         if(validation) {
-          //await update(page, casesData);
+          //await saveUpdate(page, casesData);
           toast.success("Se ha modificado con exito!", {
             position: "top-center",
             autoClose: 2000,
