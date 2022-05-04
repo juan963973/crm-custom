@@ -6,7 +6,7 @@ import { BsFillGearFill, BsFillBellFill, BsSearch, BsCalendarEventFill, BsFillFi
 import SearchGlobal from './searchGlobal'
 
 import Image from 'next/image'
-import logo from '../../../public/logo.png'
+import logo from '../../../public/logo.svg'
 
 function CustomNavbar() {
     return (
