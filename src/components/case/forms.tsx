@@ -15,7 +15,8 @@ const Forms = ({
   reference,
   dataPromoter,
   caseData,
-  //changeStatus,
+  params,
+  paramsRequired
 }: any) => {
   const styles = {
     disable: {
@@ -61,7 +62,11 @@ const Forms = ({
                 keyFilter={"contactId"}
                 value={caseData.contactId}
                 disabled={caseData?.companyId !== null}
+                paramsRequired={paramsRequired.customerValid}
               />
+              <Form.Control.Feedback type="invalid">
+                  Ambos campos no puede estar vacío
+              </Form.Control.Feedback>
               {/* <UseAutocomplete/> */}
             </Col>
 
@@ -73,7 +78,11 @@ const Forms = ({
                 keyFilter={"companyId"}
                 value={caseData.companyId}
                 disabled={caseData?.contactId !== null}
+                paramsRequired={paramsRequired.customerValid}
               />
+              <Form.Control.Feedback type="invalid">
+                  Ambos campos no puede estar vacío
+              </Form.Control.Feedback>
             </Col>
           </Row>
         </Row>
@@ -267,7 +276,8 @@ const Forms = ({
                 keyFilter={"typeId"}
                 value={caseData.typeId}
                 styleRequired={styles.required}
-                required={true}
+                required={!caseData.typeId?true:false}
+                paramsRequired={paramsRequired.requiredType}
               />
               <Form.Control.Feedback type="invalid">
                   Tipo no puede estar vacío
@@ -286,7 +296,8 @@ const Forms = ({
                 keyFilter={"subtypeId"}
                 value={caseData.subtypeId}
                 styleRequired={styles.required}
-                required={true}
+                required={!caseData.subtypeId?true:false}
+                paramsRequired={paramsRequired.requiredSubType}
               />
               <Form.Control.Feedback type="invalid">
                 Subtipo no puede estar vacío
@@ -305,7 +316,8 @@ const Forms = ({
                 keyFilter={"typificationId"}
                 value={caseData.typificationId}
                 styleRequired={styles.required}
-                required={true}
+                required={!caseData.typificationId?true:false}
+                paramsRequired={paramsRequired.requiredTipifications}
               />
               <Form.Control.Feedback type="invalid">
                 Tipificación no puede estar vacío
@@ -381,8 +393,9 @@ const Forms = ({
                 keyFilter={"originId"}
                 value={caseData.originId}
                 defaultValue="MOSTRADOR"
+                params={params}
                 styleRequired={styles.required}
-                required={true}
+                required={!caseData.originId?true:false}
                 //changeStatus={changeStatus}
               />
               <Form.Control.Feedback type="invalid">
@@ -421,9 +434,9 @@ const Forms = ({
                 keyFilter={"caseStatusId"}
                 value={caseData.caseStatusId}
                 defaultValue="ASIGNACION"
-                //changeStatus={changeStatus}
+                params={params}
                 styleRequired={styles.required}
-                required={true}
+                required={!caseData.caseStatusId?true:false}
               />
               <Form.Control.Feedback type="invalid">
                   Estado no puede estar vacío
