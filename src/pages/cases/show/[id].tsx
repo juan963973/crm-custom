@@ -4,15 +4,16 @@ import {
 } from "react-bootstrap";
 import { useRouter } from 'next/router'
 import { useState } from "react";
+import React, { forwardRef, useRef } from 'react'
 import { CaseDetailModel } from ".../../models/Case";
 import Overview from "components/_common/overview";
 
 const page = "cases";
 
-export default function Show() {
+export default function Show({ id, uri }: any) {
     const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
     const router = useRouter()
-    const id = 1
+    // const id = id
 
     let data = cases
 
@@ -64,7 +65,7 @@ export default function Show() {
 
                                 <Col sm={4} style={{ width: 'auto' }}>
 
-                                    <Button variant="primary">Resumen</Button>
+                                    <Button variant="primary">Visión general</Button>
                                     {/* 
                                     <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example" className="flex-row" variant="pills">
                                         <Tab eventKey="overview" title="Overview">
@@ -94,3 +95,15 @@ export default function Show() {
         </>
     )
 }
+
+export async function getServerSideProps(req: any, res: any) {
+    const {
+      query: { id },
+      resolvedUrl,
+    } = req;
+    const uri = resolvedUrl.split("/")[1];
+    console.log('id', id)
+    return {
+      props: { id, uri },
+    };
+  }

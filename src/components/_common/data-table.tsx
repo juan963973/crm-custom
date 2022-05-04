@@ -80,16 +80,16 @@ const DataTable = ({module}:any) => {
         loading: 'Cargando.'
     };
 
-    // const PaginationLocaleType = {
-    //     more: "Más",
-    //     prev: "Antes"
-    //     next: "",
-    //     first?: string;
-    //     last?: string;
-    //     limit?: string;
-    //     total?: string;
-    //     skip?: string;
-    // }
+    const PaginationLocaleType = {
+        more: "Más",
+        prev: "Antes",
+        next: "Siguiente",
+        first: "Primero",
+        last: "Último",
+        limit: '{0} / página',
+        total: "Total de filas: {0}",
+        skip: "Ir a {0}"
+    }
 
     const CheckCell = ({
         rowData,
@@ -139,11 +139,12 @@ const DataTable = ({module}:any) => {
                 activePage={page}
                 onChangePage={setPage}
                 onChangeLimit={handleChangeLimit}
+                locale={PaginationLocaleType}
             />
             
                 <Table
                     style={styles}
-                    height={560}
+                    height={503}
                     data={values}
                     loading={loading}
                     bordered
@@ -151,6 +152,7 @@ const DataTable = ({module}:any) => {
                     // autoHeight
                     affixHeader
                     affixHorizontalScrollbar
+                    affixVerticalScrollbar
                     locale={tableLocale}
                 >
                     <Column width={100} align="center" fixed resizable>

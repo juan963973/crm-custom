@@ -68,7 +68,7 @@ const Comments = ({ currentUserId }: any) => {
         <div className="comments">
             <CommentForm submitLabel='Guardar' handleSubmit={addComment} />
             <div className="comments-container">
-                {backendComments.map((rootComment) => (
+                {backendComments?.map((rootComment) => (
                     <Comment
                         key={rootComment.id}
                         comment={rootComment}
