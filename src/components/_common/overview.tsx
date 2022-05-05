@@ -441,7 +441,7 @@ export default function Overview({ page, id }: any) {
                 </Row>
             </Row>
 
-            <HistoryState />
+            <HistoryState statusHistories={cases.statusHistories}/>
 
             <AttachFiles />
 

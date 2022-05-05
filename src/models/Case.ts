@@ -34,6 +34,7 @@ export interface CasesModel {
 }
 
 export interface CaseDetailModel {
+    statusHistories: any;
     businessOfficer: any;
     id:                      number;
     caseStatusName:          string;
