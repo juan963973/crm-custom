@@ -1,5 +1,5 @@
 import { Card, Col, Row } from "react-bootstrap";
-import AttachFilesButton from "./comments/AttachFilesButton";
+import AttachFilesButton from "./AttachFilesButton";
 
 export default function AttachFiles() {
 
@@ -10,8 +10,6 @@ export default function AttachFiles() {
                 <Card body>
                     <Row className='mt-200'>
                         <Col><h6>ARCHIVOS ADJUNTOS</h6></Col>
-                        <Col align="end"> <button className="comment-form-button btn btn-primary btn-sm"
-                        >Adjuntar</button></Col>
 
                         <Col align="end">
                             <AttachFilesButton />

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import AttachFilesLoad from "./AttachFilesLoad";
 
 export default function AttachFilesButton(){
     const [show, setShow] = useState(false);
@@ -8,8 +9,8 @@ export default function AttachFilesButton(){
 
     return (
         <>
-          <Button variant="primary" onClick={handleShow}>
-            Launch demo modal
+          <Button variant="primary" className="btn btn-primary btn-sm" onClick={handleShow}>
+            Adjuntar
           </Button>
     
           <Modal show={show} onHide={handleClose}>
@@ -17,6 +18,7 @@ export default function AttachFilesButton(){
               <Modal.Title>Adjuntar archivo</Modal.Title>
             </Modal.Header>
             <Modal.Body>Haga clic aquí o suelte los archivos para adjuntarlos.
+              <AttachFilesLoad />
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
