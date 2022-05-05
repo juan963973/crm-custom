@@ -15,7 +15,7 @@ export default function HistoryState() {
                 <Card body>
                     <Row className='mt-200'>
                         <Col>
-                            <Row> <h6>HISTORIAL DEL ESTADO</h6></Row>
+                            <Row><h6>HISTORIAL DEL ESTADO</h6></Row>
                         </Col>
                     </Row>
                     <Row>
@@ -34,7 +34,7 @@ export default function HistoryState() {
                             <Col>Tiempo modificación</Col>
                             <Col>Modificado por</Col>
                         </Row>
-                        {data.map((item: { value: boolean | ReactChild | ReactFragment | ReactPortal }) => (
+                        {data.map((item: { value: boolean | ReactChild | ReactFragment | ReactPortal; id: boolean | ReactChild | ReactFragment | ReactPortal }) => (
                             <Row style={{
                                 marginBottom: 10,
                                 marginTop: 10,
@@ -48,7 +48,7 @@ export default function HistoryState() {
                                 <Col>{item.value}</Col>
                                 <Col>0 días</Col>
                                 <Col>Mar 7, 2022 05:41 AM</Col>
-                                <Col>Responsable</Col>
+                                <Col>Responsable {item.id}</Col>
                             </Row>
                         ))}
                     </Row>

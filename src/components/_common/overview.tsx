@@ -7,6 +7,7 @@ import { CaseDetailModel } from '../../models/Case';
 
 import HistoryState from "components/_common/historyState"
 import Notes from "components/_common/notes";
+import AttachFiles from "components/_common/attachFiles";
 
 export default function Overview({ page, id }: any) {
     const [cases, setCases] = useState<CaseDetailModel>({} as CaseDetailModel)
@@ -442,22 +443,9 @@ export default function Overview({ page, id }: any) {
 
             <HistoryState />
 
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
-                <Row style={{ width: '99%' }}>
-                    <Card body>
-                        <Row className='mt-200'>
-                            <Col>
-                                <Row > <h6>ADJUNTOS</h6></Row>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Row style={{ color: 'gray' }}>Sin adjuntos</Row>
-                            </Col>
-                        </Row>
-                    </Card>
-                </Row>
-            </Row>
+            <AttachFiles />
+
+            
 
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
