@@ -18,7 +18,7 @@ export default function AttachFilesButton(){
               <Modal.Title>Adjuntar archivo</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <AttachFilesLoad />
+              <AttachFilesLoad show={show}/>
               </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>

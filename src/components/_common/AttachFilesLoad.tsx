@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import axios from 'axios';
 import useFileUpload from 'react-use-file-upload';
+import { Button } from 'react-bootstrap';
 
 export default function AttachFilesLoad() {
   const {
@@ -30,57 +31,71 @@ export default function AttachFilesLoad() {
     } catch (error) {
       console.error('Failed to submit files.');
     }
+    alert('func')
   };
 
   return (
     <div>
       <div className="form-container">
-        {/* Display the files to be uploaded */}
-        <div>
-          <ul>
-            {fileNames.map((name) => (
-              <li key={name}>
-                <span>{name}</span>
-
-                <span onClick={() => removeFile(name)}>
-                  <i className="fa fa-times" />
-                </span>
-              </li>
-            ))}
-          </ul>
-
-          {files.length > 0 && (
-            <ul>
-              <li>File types found: {fileTypes.join(', ')}</li>
-              <li>Total Size: {totalSize}</li>
-              <li>Total Bytes: {totalSizeInBytes}</li>
-
-              <li className="clear-all">
-                <button onClick={() => clearAllFiles()}>Clear All</button>
-              </li>
-            </ul>
-          )}
-        </div>
-
         {/* Provide a drop zone and an alternative button inside it to upload files. */}
         <div
 
+          onClick={() => inputRef.current.click()}
           onDragEnter={handleDragDropEvent}
           onDragOver={handleDragDropEvent}
           onDrop={(e) => {
             handleDragDropEvent(e);
             setFiles(e, 'a');
           }}
+
+          style={{
+            color: 'gray',
+            marginBottom: 10,
+            marginTop: 10,
+            borderColor: 'rgb(237, 240, 244)',
+            borderStyle: 'dashed',
+            borderWidth: '2px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            alignSelf: 'ceneter',
+            height: '80px'
+          }}
         >
           <p>Haga clic aquí o suelte los archivos aquí para adjuntarlos</p>
 
-          <button onClick={() => inputRef.current.click()}>Or select files to upload</button>
+          {/* <button onClick={() => inputRef.current.click()}>Or select files to upload</button> */}
 
           {/* Hide the crappy looking default HTML input */}
           <input ref={inputRef} type="file" multiple style={{ display: 'none' }} onChange={(e) => setFiles(e, 'a')} />
         </div>
-      </div>
+        {/* Display the files to be uploaded */}
+        <div>
+          <ul>
+            {fileNames.map((name) => (
+              <div key={name}
+              >
+                <img src="/foldericon.png" width="20" height="20" />
+                <span style={{ marginLeft: 5, marginRight: 5, }}>{name}</span>
+                <img src="/closeicon.png" width="12" height="12" onClick={() => removeFile(name)} />
+              </div>
+            ))}
+          </ul>
 
+          {files.length > 0 && (
+            <ul>
+              {/* <li>File types found: {fileTypes.join(', ')}</li>
+              <li>Total Size: {totalSize}</li>
+              <li>Total Bytes: {totalSizeInBytes}</li> */}
+
+              <div className="clear-all">
+                <Button variant="danger" className="btn-sm" onClick={() => clearAllFiles()}>Limpiar archivos</Button>
+              </div>
+            </ul>
+          )}
+
+        </div>
+      </div>
       <div className="submit">
         <button onClick={handleSubmit}>Submit</button>
       </div>
