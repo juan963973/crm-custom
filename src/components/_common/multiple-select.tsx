@@ -40,7 +40,7 @@ const MultipleSelect = ({
   useEffect(() => {
     async function fetchData() {
       try {
-        let result = [];
+        let result:any;
         if (endpoint == "Search/contacts" || endpoint == "Search/companies") {
           result = await multiSelectOption(endpoint);
         } else {
@@ -53,7 +53,7 @@ const MultipleSelect = ({
     }
 
     fetchData();
-  }, []);
+  }, [endpoint]);
 
   // const defaultValueMultiple = () => {
   //   if(!value && defaultValue){
@@ -67,16 +67,6 @@ const MultipleSelect = ({
   //   }
   // }
 
-  //console.log(paramsRequired);
-  
-  // if(defaultValue!=undefined && params && value===null){
-  //   const _id:any = data.filter((item) => item.value === defaultValue)
-  //   const {casesData, setCasesData} = params
-  //   setTimeout(() => {
-  //     setCasesData({...casesData, [keyFilter]:_id[0]?.id})
-  //   }, 100);
-  //   console.log(casesData)
-  // }
   
   return (
     <Form.Select
@@ -89,7 +79,7 @@ const MultipleSelect = ({
       style={styleRequired}
       isInvalid={paramsRequired}
     >
-      <option>Seleccione...</option>
+      <option key={undefined} value={undefined}>Seleccione...</option>
       {data?.map(({ id, value }: ResultTool) => (
         <option key={id} value={id}>
           {value}

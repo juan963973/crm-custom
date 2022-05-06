@@ -16,21 +16,22 @@ const Forms = ({
   dataPromoter,
   caseData,
   params,
-  paramsRequired
+  paramsRequired,
+  cascade
 }: any) => {
   const styles = {
     disable: {
       background: "white",
     },
     required:{
-      borderLeftColor:"#E74C3C"
+      borderLeft:"4px solid #E74C3C"
     },
     complete:{
       borderLeftColor:"gray"
     },
     multiple:{
       required:{
-        borderLeftColor:"#E74C3C",
+        borderLeft:"4px solid #E74C3C",
         width: "100%"
       },
       complete:{
@@ -292,7 +293,7 @@ const Forms = ({
               <Col>Subtipo</Col>
               <Col sm={4} align="start">
                 <MultipleSelect
-                  endpoint={"Search/subtypes"}
+                  endpoint={cascade.subtypeId}
                   onChange={handleChange}
                   keyFilter={"subtypeId"}
                   value={caseData.subtypeId}
@@ -312,7 +313,7 @@ const Forms = ({
               <Col>Tipificación</Col>
               <Col sm={4} align="start">
                 <MultipleSelect
-                  endpoint={"Search/typifications"}
+                  endpoint={cascade.typificationId}
                   onChange={handleChange}
                   keyFilter={"typificationId"}
                   value={caseData.typificationId}
@@ -396,11 +397,11 @@ const Forms = ({
                   defaultValue="MOSTRADOR"
                   params={params}
                   styleRequired={styles.required}
-                  required={!caseData.originId?true:false}
+                  paramsRequired={paramsRequired.originValid}
                   //changeStatus={changeStatus}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Origen de Caso no puede estar vacío
+                  Origen de caso no puede estar vacío
                 </Form.Control.Feedback>
               </Col>
 
@@ -438,6 +439,7 @@ const Forms = ({
                   params={params}
                   styleRequired={styles.required}
                   required={!caseData.caseStatusId?true:false}
+                  paramsRequired={paramsRequired.statusValid}
                 />
                 <Form.Control.Feedback type="invalid">
                     Estado no puede estar vacío
@@ -486,7 +488,7 @@ const Forms = ({
               </Col>
               <Col>Oficial Negocio</Col>
               <Col sm={4}>
-                <InputGroup className="mb-2">
+                {/* <InputGroup className="mb-2">
                   <FormControl
                     aria-label="Default"
                     aria-describedby="inputGroup-sizing-default"
@@ -494,7 +496,13 @@ const Forms = ({
                     onChange={(e) => handleChange(e)}
                     defaultValue={caseData.businessOfficer}
                   />
-                </InputGroup>
+                </InputGroup> */}
+                <MultipleSelect
+                  endpoint={"Search/clerks"}
+                  onChange={handleChange}
+                  keyFilter={"businessOfficerId"}
+                  value={reference.officialId}
+                />
               </Col>
             </Row>
 

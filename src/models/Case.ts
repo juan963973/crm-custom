@@ -85,7 +85,7 @@ export interface CreateCaseModel {
     idServidesk:	    string,
     resolutionAreaIds:	number,
     resolverIds:        number,
-    businessOfficer:	string,
+    businessOfficerId:	number,
     solution:	        string,
     clientComment:	    string,
     qualification:	    string,

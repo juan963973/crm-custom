@@ -8,7 +8,8 @@ interface PropsTools {
   keyFilter: string;
   valueData: number[];
   defaultValue?: string;
-  styleRequire?:any
+  styleRequire?:any,
+  paramsRequired?:boolean
   //changeStatus?:(keyFilter:string,value:any)=>void
 }
 
@@ -18,7 +19,8 @@ const MultipleArray = ({
   keyFilter,
   valueData = [],
   defaultValue,
-  styleRequire
+  styleRequire,
+  paramsRequired
   //changeStatus,
 }: PropsTools) => {
 
@@ -56,6 +58,7 @@ const MultipleArray = ({
      // style={"100%"}
       defaultValue={valueData}
       value={valueData}
+      
     />
   );
 };
