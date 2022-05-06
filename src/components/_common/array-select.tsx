@@ -31,7 +31,7 @@ const MultipleArray = ({
     async function fetchData() {
       try {
         const res = await axios.get(
-          `https://localhost:5001/v1/api/${endpoint}`
+          `${process.env.BASE_URL}/${endpoint}`
         );
 
         var dataArray = res.data.map((item: any) => {

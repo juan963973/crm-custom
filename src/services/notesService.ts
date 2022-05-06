@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseURLP = "https://localhost:5001/v1/api/Notes/Case";
+const baseURLP = "${process.env.BASE_URL}/Notes/Case";
 
 export async function createNote(text: string, moduleId: number, module: string){
     try {

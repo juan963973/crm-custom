@@ -9,7 +9,7 @@ import {
 } from "./notes_api"
 import { createNote } from "services/notesService";
 
-const baseURLE = "https://localhost:5001/v1/api/Notes";
+const baseURLE = "${process.env.BASE_URL}/Notes";
 
 
 const Comments = ({ currentUserId }: any) => {
@@ -18,7 +18,7 @@ const Comments = ({ currentUserId }: any) => {
     const rootComments = backendComments
     const addComment = async (text: any) => {
         await createNote(text, 2, 'Case')
-        axios.get("https://localhost:5001/v1/api/Cases/2/details").then((response) => {
+        axios.get("${process.env.BASE_URL}/Cases/2/details").then((response) => {
             setBackendComments(response.data.notes)
         });
     }
@@ -59,7 +59,7 @@ const Comments = ({ currentUserId }: any) => {
     }
 
     useEffect(() => {
-        axios.get("https://localhost:5001/v1/api/Cases/2/details").then((response) => {
+        axios.get("${process.env.BASE_URL}/Cases/2/details").then((response) => {
             setBackendComments(response.data.notes)
         });
     }, []);
