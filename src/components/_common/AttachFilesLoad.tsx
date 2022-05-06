@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import axios from 'axios';
 import useFileUpload from 'react-use-file-upload';
 
-export default function AttachFilesLoad(){
+export default function AttachFilesLoad() {
   const {
     files,
     fileNames,
@@ -23,24 +23,20 @@ export default function AttachFilesLoad(){
 
     const formData = createFormData();
 
-    // try {
-    //   axios.post('https://some-api.com', formData, {
-    //     'content-type': 'multipart/form-data',
-    //   });
-    // } catch (error) {
-    //   console.error('Failed to submit files.');
-    // }
+    try {
+      axios.post('https://some-api.com', formData, {
+        'content-type': 'multipart/form-data',
+      });
+    } catch (error) {
+      console.error('Failed to submit files.');
+    }
   };
 
   return (
-    <div css={CSS}>
-      <h1>Upload Files</h1>
-
-      <p>Please use the form to your right to upload any file(s) of your choosing.</p>
-
+    <div>
       <div className="form-container">
         {/* Display the files to be uploaded */}
-        <div css={ListCSS}>
+        <div>
           <ul>
             {fileNames.map((name) => (
               <li key={name}>
@@ -68,7 +64,7 @@ export default function AttachFilesLoad(){
 
         {/* Provide a drop zone and an alternative button inside it to upload files. */}
         <div
-          css={DropzoneCSS}
+
           onDragEnter={handleDragDropEvent}
           onDragOver={handleDragDropEvent}
           onDrop={(e) => {
@@ -76,7 +72,7 @@ export default function AttachFilesLoad(){
             setFiles(e, 'a');
           }}
         >
-          <p>Drag and drop files here</p>
+          <p>Haga clic aquí o suelte los archivos aquí para adjuntarlos</p>
 
           <button onClick={() => inputRef.current.click()}>Or select files to upload</button>
 

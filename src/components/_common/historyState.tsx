@@ -1,12 +1,9 @@
 import axios from "axios"
 import { ReactChild, ReactFragment, ReactPortal, useEffect, useState } from "react"
 import { Card, Col, Row } from "react-bootstrap"
+import AttachFilesLoad from "./AttachFilesLoad"
 
 export default function HistoryState(cases: any) {
-    console.log('\\\\\\\\\\\\\\\\\\\\\\\\\\\\')
-    console.log(cases.statusHistories)
-    console.log(typeof (cases))
-    console.log('////////////////////////////')
 
     return (
         <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
@@ -33,7 +30,7 @@ export default function HistoryState(cases: any) {
                             <Col>Tiempo modificación</Col>
                             <Col>Modificado por</Col>
                         </Row>
-                        {cases.statusHistories.map((item: { caseStatusName: boolean | ReactChild | ReactFragment | ReactPortal; duration: boolean | ReactChild | ReactFragment | ReactPortal; modifiedAt: boolean | ReactChild | ReactFragment | ReactPortal; modifiedByName: boolean | ReactChild | ReactFragment | ReactPortal }) => (
+                        {cases.statusHistories?.map((item: { caseStatusName: boolean | ReactChild | ReactFragment | ReactPortal; duration: boolean | ReactChild | ReactFragment | ReactPortal; modifiedAt: boolean | ReactChild | ReactFragment | ReactPortal; modifiedByName: boolean | ReactChild | ReactFragment | ReactPortal }) => (
                             <Row style={{
                                 marginBottom: 10,
                                 marginTop: 10,

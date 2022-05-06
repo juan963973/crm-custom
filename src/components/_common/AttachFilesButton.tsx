@@ -17,9 +17,9 @@ export default function AttachFilesButton(){
             <Modal.Header closeButton>
               <Modal.Title>Adjuntar archivo</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Haga clic aquí o suelte los archivos para adjuntarlos.
-              
-            </Modal.Body>
+            <Modal.Body>
+              <AttachFilesLoad />
+              </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Cancelar
