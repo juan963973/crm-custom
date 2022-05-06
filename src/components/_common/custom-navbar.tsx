@@ -9,6 +9,10 @@ import Image from 'next/image'
 import logo from '../../../public/logo.svg'
 
 function CustomNavbar() {
+  // const saved = localStorage.getItem("auth");
+  // const initialValue = JSON.parse(saved);
+  // console.log(initialValue);
+
     return (
       <Navbar bg="dark" variant="dark" expand="lg" fixed="top" style={{ padding: 0 }}>
         <Container fluid>

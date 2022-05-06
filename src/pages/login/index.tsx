@@ -42,14 +42,16 @@ export default function Login() {
             return
         }
 
- 
-        axios.post('http://localhost:5001/api/login', body)
+        //TODO: encriptar password
+        axios.get(`https://localhost:5001/v1/api/users/${body.email}/${body.password}`)
         .then(({ data }) => {
-            //   localStorage.setItem('auth', '"yes"')
-            router.push(`/`);
+            // console.log(data)
+
+            localStorage.setItem('auth', JSON.stringify(data))
+            router.push('/');
         })
         .catch(({ response }) => {
-            toast.error(response.data.msg, {
+            toast.error(response, {
                 position: "top-center",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -104,7 +106,7 @@ export default function Login() {
                             <div className="form-outline mb-4">
                                 <Form.Control
                                     autoFocus
-                                    type='email'
+                                    type='text'
                                     name='email'
                                     placeholder='Escriba una dirección de correo electrónico válida'
                                     value={body.email}
