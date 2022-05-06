@@ -487,7 +487,7 @@ const Forms = ({
               </Col>
               <Col>Oficial Negocio</Col>
               <Col sm={4}>
-                <InputGroup className="mb-2">
+                {/* <InputGroup className="mb-2">
                   <FormControl
                     aria-label="Default"
                     aria-describedby="inputGroup-sizing-default"
@@ -495,7 +495,13 @@ const Forms = ({
                     onChange={(e) => handleChange(e)}
                     defaultValue={caseData.businessOfficer}
                   />
-                </InputGroup>
+                </InputGroup> */}
+                <MultipleSelect
+                  endpoint={"Search/clerks"}
+                  onChange={handleChange}
+                  keyFilter={"businessOfficer"}
+                  value={reference.officialId}
+                />
               </Col>
             </Row>
 

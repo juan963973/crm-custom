@@ -86,7 +86,7 @@ function New({ module }: any) {
     let page;
     switch (key) {
       case "companyId":
-        page = "Info/cases/contact-info";
+        page = "Info/cases/company-info";
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);

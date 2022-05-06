@@ -22,7 +22,7 @@ export async function update(page:any,id:any): Promise<any[]> {
     return res.data
 }
 
-export async function saveUpdate(page:any): Promise<any[]> {
-    const res = await axios.get<any[]>(`https://localhost:5001/v1/api/${page}`)
+export async function saveUpdate(page:any,model:CreateCaseModel): Promise<any[]> {
+    const res = await axios.put<any[]>(`https://localhost:5001/v1/api/${page}`,model)
     return res.data
 }

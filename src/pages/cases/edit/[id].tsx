@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
-import { create, refenceField, update } from "services/caseService";
+import { create, refenceField, saveUpdate, update } from "services/caseService";
 
 function EditCase({ id, uri }: any) {
   const [casesData, setCasesData] = useState<CreateCaseModel>({
@@ -199,7 +199,7 @@ function EditCase({ id, uri }: any) {
         }
 
         if(validation) {
-          //await saveUpdate(page, casesData);
+          await saveUpdate(page, casesData);
           toast.success("Se ha modificado con exito!", {
             position: "top-center",
             autoClose: 2000,
