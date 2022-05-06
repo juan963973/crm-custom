@@ -20,7 +20,7 @@ function SelectAutocomplete() {
 
       const {
         data: { items, count },
-      } = await axios.get(`https://localhost:5001/v1/api/Search/contacts`, {
+      } = await axios.get(`${process.env.BASE_URL}/Search/contacts`, {
         params,
       });
 
