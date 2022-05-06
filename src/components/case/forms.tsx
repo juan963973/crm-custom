@@ -397,11 +397,11 @@ const Forms = ({
                   defaultValue="MOSTRADOR"
                   params={params}
                   styleRequired={styles.required}
-                  required={!caseData.originId?true:false}
+                  paramsRequired={paramsRequired.originValid}
                   //changeStatus={changeStatus}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Origen de Caso no puede estar vacío
+                  Origen de caso no puede estar vacío
                 </Form.Control.Feedback>
               </Col>
 
@@ -439,6 +439,7 @@ const Forms = ({
                   params={params}
                   styleRequired={styles.required}
                   required={!caseData.caseStatusId?true:false}
+                  paramsRequired={paramsRequired.statusValid}
                 />
                 <Form.Control.Feedback type="invalid">
                     Estado no puede estar vacío
@@ -499,7 +500,7 @@ const Forms = ({
                 <MultipleSelect
                   endpoint={"Search/clerks"}
                   onChange={handleChange}
-                  keyFilter={"businessOfficer"}
+                  keyFilter={"businessOfficerId"}
                   value={reference.officialId}
                 />
               </Col>

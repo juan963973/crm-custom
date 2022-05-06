@@ -12,6 +12,7 @@ import { create, refenceField, saveUpdate, update } from "services/caseService";
 function EditCase({ id, uri }: any) {
   const [casesData, setCasesData] = useState<CreateCaseModel>({
     callDirectionId: 1,
+    businessOfficerId: 1
   } as CreateCaseModel);
 
   const [dataReference, setDataReference] = useState({
@@ -23,19 +24,25 @@ function EditCase({ id, uri }: any) {
     phone: "",
     mobile: "",
   });
-  console.log(id)
+  console.log(id);
   const [dataPromoter, setDataPromoter] = useState({
     email: "",
     documentNumber: "",
     mobile: "",
   });
 
-  const [endpointCascade, setEndpointCascade] = useState({subtypeId: "Search/subtypes", typificationId:"Search/typifications"})
+  const [endpointCascade, setEndpointCascade] = useState({
+    subtypeId: "Search/subtypes",
+    typificationId: "Search/typifications",
+  });
 
   const [validated, setValidated] = useState(false);
-  const [customerValid, setCustomerValid] = useState(false)
+  const [customerValid, setCustomerValid] = useState(false);
+  const [originValid, setOriginValid] = useState(false);
+  const [statusValid, setStatusValid] = useState(false);
   const [requiredType, setRequiredType] = useState(false);
   const [requiredSubType, setRequiredSubType] = useState(false);
+  const [requiredResolverArea, setRequiredResolverArea] = useState(false);
   const [requiredTipifications, setRequiredTipifications] = useState(false);
   const router = useRouter();
 
@@ -89,13 +96,13 @@ function EditCase({ id, uri }: any) {
         completeField(key, value);
       }
       let page = "";
-      if(key == "typeId"){
+      if (key == "typeId") {
         page = `Search/subtypes?${key}=${value}`;
-        setEndpointCascade({...endpointCascade, subtypeId:page})
+        setEndpointCascade({ ...endpointCascade, subtypeId: page });
       }
-      if(key == "subtypeId"){
+      if (key == "subtypeId") {
         page = `Search/typifications?${key}=${value}`;
-        setEndpointCascade({...endpointCascade, typificationId:page})
+        setEndpointCascade({ ...endpointCascade, typificationId: page });
       }
       setCasesData({ ...casesData, [key]: value });
       return;
@@ -114,6 +121,7 @@ function EditCase({ id, uri }: any) {
           try {
             const res: any = await refenceField(page, value);
             setDataReference(res);
+            //setCasesData({ ...casesData, businessOfficerId: res.officialId });
           } catch (error) {
             console.log(error);
           }
@@ -125,8 +133,8 @@ function EditCase({ id, uri }: any) {
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);
-            console.log(res);
             setDataReference(res);
+            //setCasesData({ ...casesData, businessOfficerId: res.officialId });
           } catch (error) {
             console.log(error);
           }
@@ -146,14 +154,14 @@ function EditCase({ id, uri }: any) {
     }
   };
 
-  const handleClose = () =>{
-    window.history.back()
-  }
+  const handleClose = () => {
+    window.history.back();
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const form = e.currentTarget;
-    console.log(form)
+    console.log(form);
     if (form.checkValidity() === false) {
       console.log("Falta Validar");
     } else {
@@ -162,43 +170,55 @@ function EditCase({ id, uri }: any) {
       let validation = true;
       try {
         if (casesData.companyId == null && casesData.contactId == null) {
-          toast.error("Los campos obligatorios no pueden estar vacios!", {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
           validation = false;
-          setCustomerValid(true)
-        }else{
-          setCustomerValid(false)
+          setCustomerValid(true);
+        } else {
+          setCustomerValid(false);
         }
-        
+
         if (!casesData.typeId) {
           setRequiredType(true);
           validation = false;
-        }else{
+        } else {
           setRequiredType(false);
-        } 
+        }
 
         if (!casesData.subtypeId) {
           setRequiredSubType(true);
-          validation= false;
-        }else{
+          validation = false;
+        } else {
           setRequiredSubType(false);
         }
-        
+
         if (!casesData.typificationId) {
           setRequiredTipifications(true);
           validation = false;
-        }else{
+        } else {
           setRequiredTipifications(false);
         }
 
-        if(validation) {
+        if (!casesData.caseStatusId) {
+          setStatusValid(true);
+          validation = false;
+        } else {
+          setStatusValid(false);
+        }
+
+        if (!casesData.originId) {
+          setOriginValid(true);
+          validation = false;
+        } else {
+          setOriginValid(false);
+        }
+
+        if (!casesData.resolutionAreaIds) {
+          setRequiredResolverArea(true);
+          validation = false;
+        } else {
+          setRequiredResolverArea(false);
+        }
+
+        if (validation) {
           await saveUpdate(page, casesData);
           toast.success("Se ha modificado con exito!", {
             position: "top-center",
@@ -229,7 +249,10 @@ function EditCase({ id, uri }: any) {
     requiredType,
     requiredSubType,
     requiredTipifications,
-    customerValid
+    customerValid,
+    requiredResolverArea,
+    originValid,
+    statusValid
   };
 
   return (
@@ -240,7 +263,10 @@ function EditCase({ id, uri }: any) {
         style={{ marginTop: "58px" }}
         onSubmit={handleSubmit}
       >
-        <div className="shadow-sm p-3 mb-5 bg-white rounded container-fluid" style={{zIndex: 9999, marginTop: "-71px", position: "fixed" }}>
+        <div
+          className="shadow-sm p-3 mb-5 bg-white rounded container-fluid"
+          style={{ zIndex: 9999, marginTop: "-71px", position: "fixed" }}
+        >
           <HeaderForms title="Editar Caso" handleClose={handleClose} />
           <ToastContainer />
         </div>
