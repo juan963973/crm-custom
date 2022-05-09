@@ -8,10 +8,13 @@ export default function AttachFilesButton() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [btn, setBtn] = useState(false);
+
   const childRef = useRef();
 
   const submitButton = () => {
-    childRef.current.getAlert()
+    // childRef.current.getAlert()
+    setBtn(true)
     handleClose()
   }
   
@@ -27,14 +30,14 @@ export default function AttachFilesButton() {
           <Modal.Title>Adjuntar archivo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AttachFilesLoad />
+          <AttachFilesLoad btn={btn}/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cancelar
           </Button>
           <Button variant="primary" onClick={submitButton}>
-          <Child ref={childRef} />
+          {/* <Child ref={childRef} /> */}
             Adjuntar
           </Button>
         </Modal.Footer>

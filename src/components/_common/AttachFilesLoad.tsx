@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import useFileUpload from 'react-use-file-upload';
 import { Button } from 'react-bootstrap';
 
-export default function AttachFilesLoad() {
+export default function AttachFilesLoad(btn:any) {
+  console.log("btn::", btn)
   const {
     files,
     fileNames,
@@ -17,21 +18,41 @@ export default function AttachFilesLoad() {
     removeFile,
   } = useFileUpload();
 
+  useEffect(() => {
+    if(btn) {
+      const a = (e:any) => handleSubmit(e)
+      
+      const formData = createFormData();
+
+      async () => {
+        console.log("entro en le async")
+        try {
+          await axios.post('https://some-api.com', formData, {
+            'content-type': 'multipart/form-data',
+          });
+        } catch (error) {
+          console.error('Failed to submit files.');
+        }
+        console.log('funcionaaaaaa')
+      }
+    }
+  }, [])
+
   const inputRef = useRef();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
 
     const formData = createFormData();
 
-    try {
-      axios.post('https://some-api.com', formData, {
-        'content-type': 'multipart/form-data',
-      });
-    } catch (error) {
-      console.error('Failed to submit files.');
-    }
-    alert('func')
+    // try {
+    //   axios.post('https://some-api.com', formData, {
+    //     'content-type': 'multipart/form-data',
+    //   });
+    // } catch (error) {
+    //   console.error('Failed to submit files.');
+    // }
+    console.log('funcionaaaaaa')
   };
 
   return (
@@ -96,9 +117,9 @@ export default function AttachFilesLoad() {
 
         </div>
       </div>
-      <div className="submit">
+      {/* <div className="submit">
         <button onClick={handleSubmit}>Submit</button>
-      </div>
+      </div> */}
     </div>
   );
 };
