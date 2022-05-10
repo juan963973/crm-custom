@@ -8,7 +8,8 @@ interface PropsTools {
   keyFilter: string;
   valueData: number[];
   defaultValue?: string;
-  styleRequire?:any
+  styleRequire?:any,
+  paramsRequired?:boolean
   //changeStatus?:(keyFilter:string,value:any)=>void
 }
 
@@ -18,7 +19,8 @@ const MultipleArray = ({
   keyFilter,
   valueData = [],
   defaultValue,
-  styleRequire
+  styleRequire,
+  paramsRequired
   //changeStatus,
 }: PropsTools) => {
 
@@ -29,7 +31,7 @@ const MultipleArray = ({
     async function fetchData() {
       try {
         const res = await axios.get(
-          `https://localhost:5001/v1/api/${endpoint}`
+          `${process.env.BASE_URL}/${endpoint}`
         );
 
         var dataArray = res.data.map((item: any) => {
@@ -56,6 +58,7 @@ const MultipleArray = ({
      // style={"100%"}
       defaultValue={valueData}
       value={valueData}
+      
     />
   );
 };

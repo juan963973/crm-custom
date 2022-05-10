@@ -13,6 +13,7 @@ function New({ module }: any) {
     callDirectionId: 1,
     contactId: null,
     companyId: null,
+    businessOfficerId: 1
   } as CreateCaseModel);
   const [dataReference, setDataReference] = useState({
     documentTypeName: "",
@@ -22,6 +23,7 @@ function New({ module }: any) {
     branchName: null,
     phone: "",
     mobile: "",
+    officialId:null
   });
 
   const [dataPromoter, setDataPromoter] = useState({
@@ -30,10 +32,15 @@ function New({ module }: any) {
     mobile: "",
   });
 
+  const [endpointCascade, setEndpointCascade] = useState({subtypeId: "Search/subtypes", typificationId:"Search/typifications"})
+
   const [validated, setValidated] = useState(false);
-  const [customerValid, setCustomerValid] = useState(false)
+  const [customerValid, setCustomerValid] = useState(false);
+  const [originValid, setOriginValid] = useState(false);
+  const [statusValid, setStatusValid] = useState(false);
   const [requiredType, setRequiredType] = useState(false);
   const [requiredSubType, setRequiredSubType] = useState(false);
+  const [requiredResolverArea, setRequiredResolverArea] = useState(false);
   const [requiredTipifications, setRequiredTipifications] = useState(false);
   const router = useRouter();
 
@@ -62,8 +69,22 @@ function New({ module }: any) {
       }
       if (key == "contactId" || key == "companyId" || key == "promoterId") {
         completeField(key, value);
+        console.log("dentro de condicion");
+        
       }
+      let page = "";
+      if(key == "typeId"){
+        page = `Search/subtypes?${key}=${value}`;
+        setEndpointCascade({...endpointCascade, subtypeId:page})
+      }
+      if(key == "subtypeId"){
+        page = `Search/typifications?${key}=${value}`;
+        setEndpointCascade({...endpointCascade, typificationId:page})
+      }
+      console.log("fuera de condicion");
+      
       setCasesData({ ...casesData, [key]: value });
+      console.log("value::",value)
       return;
     } else {
       setCasesData({ ...casesData, [name]: e });
@@ -75,11 +96,13 @@ function New({ module }: any) {
     let page;
     switch (key) {
       case "companyId":
-        page = "Info/cases/contact-info";
+        page = "Info/cases/company-info";
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);
             setDataReference(res);
+            //setCasesData({ ...casesData, businessOfficerId: res.officialId });
+            
           } catch (error) {
             console.log(error);
           }
@@ -91,8 +114,8 @@ function New({ module }: any) {
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);
-            console.log(res);
             setDataReference(res);
+            //setCasesData({ ...casesData, businessOfficerId: res.officialId });
           } catch (error) {
             console.log(error);
           }
@@ -131,15 +154,6 @@ function New({ module }: any) {
       let validation = true;
       try {
         if (casesData.companyId == null && casesData.contactId == null) {
-          toast.error("Los campos obligatorios no pueden estar vacios!", {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
           validation = false;
           setCustomerValid(true)
         }else{
@@ -165,6 +179,27 @@ function New({ module }: any) {
           validation = false;
         }else{
           setRequiredTipifications(false);
+        }
+
+        if (!casesData.resolutionAreaIds) {
+          setRequiredResolverArea(true);
+          validation = false;
+        }else{
+          setRequiredResolverArea(false);
+        }
+
+        if (!casesData.caseStatusId) {
+          setStatusValid(true);
+          validation = false;
+        } else {
+          setStatusValid(false);
+        }
+
+        if (!casesData.originId) {
+          setOriginValid(true);
+          validation = false;
+        } else {
+          setOriginValid(false);
         }
 
         if(validation) {
@@ -198,7 +233,10 @@ function New({ module }: any) {
     requiredType,
     requiredSubType,
     requiredTipifications,
-    customerValid
+    customerValid,
+    requiredResolverArea,
+    originValid,
+    statusValid
   };
 
   return (
@@ -220,6 +258,7 @@ function New({ module }: any) {
           caseData={casesData}
           params={params}
           paramsRequired={paramsRequired}
+          cascade={endpointCascade}
         />
       </Form>
     </>

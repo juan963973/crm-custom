@@ -10,7 +10,6 @@ function SelectAutocomplete() {
   const [selectedValue, setSelectedOption] = useState("");
 
   const loadOptions = async (pageIndex: any) => {
-
     try {
       const params = {
         pageIndex,
@@ -21,23 +20,28 @@ function SelectAutocomplete() {
 
       const {
         data: { items, count },
-      } = await axios.get(`https://localhost:5001/v1/api/Search/contacts`, {
+      } = await axios.get(`${process.env.BASE_URL}/Search/contacts`, {
         params,
       });
 
-      const dataOptions = items.map(({ id, value }: any) => ({
-        label: value,
-        value: id,
-      }));
+      const prueba = items.map((index: any) => {
+        let label = index.value;
+        let value = index.id;
+        return { label: label, value: value };
+      });
 
-      
+      const desglos = prueba.map((index: any) => {
+        return { ...options, index };
+      });
 
-      const itemsData = options.concat(dataOptions);
-      setOptions(itemsData);
+      const desglosado = desglos.map((index: any) => {
+        return index.index;
+      });
+
+      setOptions(desglosado);
       setNextPageLoading(false);
-      setHasNextPage(itemsData.length < count);
-      setPage(pageIndex+1);
-
+      setHasNextPage(desglosado.length < count);
+      setPage(pageIndex + 1);
     } catch (err) {
       console.log(err);
     }
