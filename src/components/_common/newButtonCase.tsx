@@ -2,19 +2,21 @@ import { useRouter } from 'next/router'
 import { Button } from 'react-bootstrap'
 
 interface Props {
-    dataId: any
+    dataIdCase: any
 }
 
-export default function NewButtonCase({ dataId } : Props) {
+export default function NewButtonCase({ dataIdCase } : Props) {
     const router = useRouter()
 
-    const id = 1
+    const id = dataIdCase.id
+    console.log('dataIdCase', dataIdCase)
+    console.log(JSON.stringify(dataIdCase))
 
     function sendProps(){
         router.push({
-            pathname: '/cases/new/',
+            pathname: `/cases/new/${id}`,
             query: {
-                dataId
+                data: JSON.stringify(dataIdCase)
             }
         }, '/cases/new/')
     }
