@@ -19,6 +19,7 @@ export default function AttachFilesButton() {
       importFile(id, file)
       console.log('formData', formData)
     }
+    alert('Archivo(s) enviados con exito')
   }
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({    
