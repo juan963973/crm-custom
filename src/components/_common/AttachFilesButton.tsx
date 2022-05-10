@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useCallback, useRef, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import { useDropzone } from 'react-dropzone';
@@ -19,16 +18,18 @@ export default function AttachFilesButton() {
       importFile(id, file)
       console.log('formData', formData)
     }
-    alert('Archivo(s) enviados con exito')
+    // alert('Archivo(s) enviados con exito')
   }
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({    
     maxFiles:2,
     accept: {
       'image/png': ['.png'],
-      'image/png': ['.jpg'],
-      'text/html': ['.html', '.htm'],
-    }
+      'image/jpg': ['.jpg'],
+      'application/pdf': ['.pdf']
+    },
+    maxSize:1024000,
+    
   });
 
   // console.log(props.id)
@@ -44,6 +45,10 @@ export default function AttachFilesButton() {
   const submitButton = () => {
     uploadFiles()
     handleClose()
+  }
+
+  const cancelButton = () => {
+    files.onFileDialogCancel()
   }
 
   return (
