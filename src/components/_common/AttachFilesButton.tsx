@@ -3,11 +3,10 @@ import { Button, Col, Modal, Row } from "react-bootstrap";
 import { useDropzone } from 'react-dropzone';
 import importFile from "services/attachService";
 
-export default function AttachFilesButton() {
+export default function AttachFilesButton(id: any) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const id = 1
 
   const uploadFiles = () => {
     let formData = new FormData();
@@ -45,10 +44,6 @@ export default function AttachFilesButton() {
   const submitButton = () => {
     uploadFiles()
     handleClose()
-  }
-
-  const cancelButton = () => {
-    files.onFileDialogCancel()
   }
 
   return (

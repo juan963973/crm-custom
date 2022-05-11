@@ -430,7 +430,7 @@ export default function Overview({ page, id }: any) {
                         <Row>
                             {/* <InputGroup className="mb-3">
                                 <FormControl
-                                    aria-label="Example text with button addon"
+                           C         aria-label="Example text with button addon"
                                     aria-describedby="basic-addon1"
                                     placeholder="Add a note..."
                                 />
@@ -443,7 +443,7 @@ export default function Overview({ page, id }: any) {
 
             <HistoryState statusHistories={cases.statusHistories}/>
 
-            <AttachFiles />
+            <AttachFiles id={id} attachments={cases.attachments}/>
 
             
 
