@@ -208,12 +208,12 @@ export default function Overview({ page, id }: any) {
                             <Row className='mt-200'>
                                 <Col sm={3} style={{ color: 'gray', marginRight: 30 }} >
                                     <Row className='d-flex justify-content-end'>
-                                    {cases?.caseStatusName ? cases.caseStatusName : ' - '}
+                                    Asunto
                                     </Row>
                                     <Row className='d-flex justify-content-end'>Descripción del Caso</Row>
                                 </Col>
                                 <Col>
-                                    <Row>CONSULTA</Row>
+                                    <Row>{cases?.caseStatusName ? cases.caseStatusName : ' - '}</Row>
                                     <Row>{cases?.description ? cases.description : ' - '}</Row>
                                 </Col>
                             </Row>
@@ -226,7 +226,7 @@ export default function Overview({ page, id }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Origen del caso</Col>
                                 <Col align="start">
-                                    CALL {cases?.originName ? cases.originName : ' - '}
+                                    {cases?.originName ? cases.originName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Nro. ticket</Col>
