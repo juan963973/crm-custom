@@ -1,20 +1,12 @@
 import { ReactChild, ReactFragment, ReactPortal } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import AttachFilesButton from "./AttachFilesButton";
-import { viewFile } from "services/attachService";
+import { urlFile } from "services/attachService";
 import { deleteFile } from "services/attachService";
 
 export default function AttachFiles(props: { attachments: any[]; id: any; }) {
     let dataFile = props.attachments
-    console.log('mis hijos', dataFile)
-    console.log('mis hijos', typeof (dataFile))
 
-    function viewFileTrigger(id: any){
-        viewFile(id)
-    }
-    function deleteFileTrigger(id: any){
-        deleteFile(id)
-    }
     return (
 
         <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
@@ -41,17 +33,16 @@ export default function AttachFiles(props: { attachments: any[]; id: any; }) {
                                     borderRight: 'none',
                                     borderTop: 'none'
                                 }}>
-                                    <Col>{item.id}</Col>
-                                    <Col>{item.url}</Col>
+                                    <Col sm={1}>{item.id}</Col>
+                                    <Col sm={9}>{item.url}</Col>
                                     <Col>
                                         <Button variant="primary" className="btn btn-primary btn-sm"
-                                        onClick={viewFileTrigger(item.id)}>
+                                        href={`${urlFile}${item.id}`}>
                                             Ver
                                         </Button>
-                                    </Col>
-                                    <Col>
+
                                         <Button variant="danger" className="btn btn-primary btn-sm"
-                                         onClick={deleteFileTrigger(item.id)}>
+                                         onClick={() => deleteFile(item.id)}>
                                             Eliminar
                                         </Button>
                                     </Col>
