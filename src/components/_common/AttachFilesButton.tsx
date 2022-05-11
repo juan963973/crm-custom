@@ -1,7 +1,8 @@
 import React, { useCallback, useRef, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
-import { useDropzone } from 'react-dropzone';
-import importFile from "services/attachService";
+import { useDropzone, FileWithPath } from 'react-dropzone';
+import { importFile } from "services/attachService";
+
 
 export default function AttachFilesButton(id: any) {
   const [show, setShow] = useState(false);
@@ -21,13 +22,27 @@ export default function AttachFilesButton(id: any) {
   }
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({    
-    maxFiles:2,
+    maxFiles:10,
     accept: {
       'image/png': ['.png'],
       'image/jpg': ['.jpg'],
-      'application/pdf': ['.pdf']
+      'image/jpeg': ['.jpeg'],
+      'application/pdf': ['.pdf'],
+      'image/bmp': ['.bmp'],
+      'application/vnd.oasis.opendocument.presentation': ['.odp'],
+      'application/vnd.oasis.opendocument.spreadsheet': ['.ods'],
+      'application/vnd.oasis.opendocument.text': ['.odt'],
+      'application/vnd.ms-powerpoint': ['.ppt'],
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation': ['.pptx'],
+      'application/rtf': ['.rtf'],
+      'image/svg+xml': ['.svg'],
+      'image/tiff': ['.tiff'],
+      'image/tif': ['.tif'],
+      'text/plain': ['.txt'],
+      'application/vnd.ms-excel': ['.xls'],
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
     },
-    maxSize:1024000,
+    maxSize:10485760,
     
   });
 

@@ -6,6 +6,14 @@ import { deleteFile } from "services/attachService";
 
 export default function AttachFiles(props: { attachments: any[]; id: any; }) {
     let dataFile = props.attachments
+    console.log(dataFile)
+
+    function substr(str) {
+        var length = 120;
+        // var myString = str;
+        var myTruncatedString = str.substring(100, length);
+        return myTruncatedString
+    }
 
     return (
 
@@ -32,17 +40,19 @@ export default function AttachFiles(props: { attachments: any[]; id: any; }) {
                                     borderLeft: 'none',
                                     borderRight: 'none',
                                     borderTop: 'none'
-                                }}>
-                                    <Col sm={1}>{item.id}</Col>
-                                    <Col sm={9}>{item.url}</Col>
+                                }} >
+                                    {/* <Col sm={1}>{item.id}</Col> */}
+                                    <Col sm={1}> <img src="/attachments.png" width="20" height="20" /></Col>
+                                    <Col sm={9}>{substr(item.url)}</Col>
                                     <Col>
+                                   
                                         <Button variant="primary" className="btn btn-primary btn-sm"
-                                        href={`${urlFile}${item.id}`}>
+                                            href={`${urlFile}${item.id}`}>
                                             Ver
                                         </Button>
 
                                         <Button variant="danger" className="btn btn-primary btn-sm"
-                                         onClick={() => deleteFile(item.id)}>
+                                            onClick={() => deleteFile(item.id)}>
                                             Eliminar
                                         </Button>
                                     </Col>
