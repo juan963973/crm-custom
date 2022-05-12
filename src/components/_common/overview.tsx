@@ -427,7 +427,7 @@ export default function Overview({ page, id }: any) {
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row> <h6>NOTAS</h6></Row>
+                                <Row> <h6 id="notes">NOTAS</h6></Row>
                             </Col>
                         </Row>
                         <Row>
@@ -455,7 +455,7 @@ export default function Overview({ page, id }: any) {
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row> <h6>
+                                <Row> <h6 id="openActivities">
                                     ACTIVIDADES ABIERTAS</h6></Row>
                             </Col>
                         </Row>
@@ -473,7 +473,7 @@ export default function Overview({ page, id }: any) {
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row> <h6>
+                                <Row> <h6 id="closedActivities">
 
                                     ACTIVIDADES CERRADAS</h6></Row>
                             </Col>

@@ -48,12 +48,14 @@ export default function Show({ id, uri }: any) {
                 <Row>
                     <Col sm={2}>
                         <b>Lista relacionada</b>
-                        <p>Notas</p>
-                        <p>Historial de Estado</p>
-                        <p>Adjuntos</p>
-                        <p>Actividades abiertas</p>
-                        <p>Actividades cerradas</p>
-                        <p>Enlaces</p>
+                        <Col>
+                        <div><a href="#notes">Notas</a></div>
+                        <div><a href="#historyState">Historial de Estado</a></div>
+                        <div><a href="#attachments">Adjuntos</a></div>
+                        <div><a href="#openActivities">Actividades abiertas</a></div>
+                        <div> <a href="#closedActivities">Actividades cerradas</a></div>
+                        {/* <div><p>Enlaces</p></div> */}
+                        </Col>  
                         {/* <p className="text-primary">Add link</p> */}
                     </Col>
 
