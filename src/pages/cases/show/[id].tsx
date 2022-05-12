@@ -102,7 +102,6 @@ export async function getServerSideProps(req: any, res: any) {
       resolvedUrl,
     } = req;
     const uri = resolvedUrl.split("/")[1];
-    console.log('id', id)
     return {
       props: { id, uri },
     };

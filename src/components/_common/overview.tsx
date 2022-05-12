@@ -27,6 +27,7 @@ export default function Overview({ page, id }: any) {
     }, [])
 
     let data = cases
+    console.log('cases', cases)
     return (
         <>
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
@@ -62,7 +63,7 @@ export default function Overview({ page, id }: any) {
                             </Col>
                             <Col>
                                 {/* <Row>{cases[0].contactName ? cases[0].contactName: ' - ' }</Row> */}
-                                <Row>ademirdemaria@hotmail.com</Row>
+                                <Row>ademirdemaria@hotmail.com (en duro)</Row>
                                 {/* <Row>{cases[0].contactPhone ? cases[0].contactPhone: ' - ' }</Row> */}
                             </Col>
                         </Row>
@@ -119,7 +120,7 @@ export default function Overview({ page, id }: any) {
 
                                 <Col style={{ color: 'gray' }}>Correo electronico</Col>
                                 <Col sm={4} align="start">
-                                    example@example.com
+                                    example@example.com (en duro)
                                 </Col>
                             </Row>
                             <Row align="end">
@@ -206,11 +207,13 @@ export default function Overview({ page, id }: any) {
                             </Row>
                             <Row className='mt-200'>
                                 <Col sm={3} style={{ color: 'gray', marginRight: 30 }} >
-                                    <Row className='d-flex justify-content-end'>Asunto</Row>
+                                    <Row className='d-flex justify-content-end'>
+                                    Asunto
+                                    </Row>
                                     <Row className='d-flex justify-content-end'>Descripción del Caso</Row>
                                 </Col>
                                 <Col>
-                                    <Row>CONSULTA</Row>
+                                    <Row>{cases?.caseStatusName ? cases.caseStatusName : ' - '}</Row>
                                     <Row>{cases?.description ? cases.description : ' - '}</Row>
                                 </Col>
                             </Row>
@@ -223,7 +226,7 @@ export default function Overview({ page, id }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Origen del caso</Col>
                                 <Col align="start">
-                                    CALL {cases?.originName ? cases.originName : ' - '}
+                                    {cases?.originName ? cases.originName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Nro. ticket</Col>
@@ -239,7 +242,7 @@ export default function Overview({ page, id }: any) {
 
                                 <Col style={{ color: 'gray' }}>Estado</Col>
                                 <Col sm={4} align="start">
-                                    PENDIENTE
+                                {cases?.caseStatusName ? cases.caseStatusName : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
@@ -430,7 +433,7 @@ export default function Overview({ page, id }: any) {
                         <Row>
                             {/* <InputGroup className="mb-3">
                                 <FormControl
-                                    aria-label="Example text with button addon"
+                           C         aria-label="Example text with button addon"
                                     aria-describedby="basic-addon1"
                                     placeholder="Add a note..."
                                 />
@@ -443,7 +446,7 @@ export default function Overview({ page, id }: any) {
 
             <HistoryState statusHistories={cases.statusHistories}/>
 
-            <AttachFiles />
+            <AttachFiles id={id} attachments={cases.attachments}/>
 
             
 
