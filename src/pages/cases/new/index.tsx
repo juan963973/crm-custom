@@ -48,11 +48,6 @@ function New({ module, query }: any) {
   var arrayData:any;
 
   const router = useRouter();
-  if(query.data){
-    const {id, view} = JSON.parse(query.data);
-    console.log("::",id)
-    //let value = {...casesData,}
-  }
     
 
   if (typeof window !== "undefined") {
@@ -98,6 +93,20 @@ function New({ module, query }: any) {
       }
       return;
     } else {
+      if(query.data){
+        const {id, view} = JSON.parse(query.data);
+        let value = {...casesData,[view]:id}
+        arrayData = {...arrayData,...value};
+        if(view == "contactId"){
+          const res: any = await refenceField("Info/cases/contact-info", id);
+          setDataReference(res);
+          arrayData = {...arrayData,businessOfficerId: res.officialId}
+        }else if(view=="companyId"){
+          const res: any = await refenceField("Info/cases/company-info", id);
+          setDataReference(res);
+          arrayData = {...arrayData,businessOfficerId: res.officialId}
+        }
+      }
       arrayData = {...arrayData,[name]: e };
       setCasesData({ ...casesData, ...arrayData});      
       return;
