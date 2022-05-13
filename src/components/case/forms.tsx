@@ -1,5 +1,4 @@
 import {
-  Container,
   Row,
   Col,
   Form,
@@ -15,7 +14,6 @@ const Forms = ({
   reference,
   dataPromoter,
   caseData,
-  params,
   paramsRequired,
   cascade
 }: any) => {
@@ -45,7 +43,6 @@ const Forms = ({
   };
 
   return (
-    <>
       <div className="container-fluid" style={{ marginTop: "126px" }}>
         <div style={{ paddingLeft: "25px" }} >
           <Row className="mt-100" style={{ marginBottom: 30 }}>
@@ -395,10 +392,8 @@ const Forms = ({
                   keyFilter={"originId"}
                   value={caseData.originId}
                   defaultValue="MOSTRADOR"
-                  params={params}
                   styleRequired={styles.required}
                   paramsRequired={paramsRequired.originValid}
-                  //changeStatus={changeStatus}
                 />
                 <Form.Control.Feedback type="invalid">
                   Origen de caso no puede estar vacío
@@ -436,7 +431,6 @@ const Forms = ({
                   keyFilter={"caseStatusId"}
                   value={caseData.caseStatusId}
                   defaultValue="ASIGNACION"
-                  params={params}
                   styleRequired={styles.required}
                   required={!caseData.caseStatusId?true:false}
                   paramsRequired={paramsRequired.statusValid}
@@ -612,7 +606,6 @@ const Forms = ({
           </Row>
         </div>
       </div>
-    </>
   );
 };
 

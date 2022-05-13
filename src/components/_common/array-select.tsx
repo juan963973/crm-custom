@@ -17,7 +17,7 @@ const MultipleArray = ({
   endpoint,
   handleChange,
   keyFilter,
-  valueData = [],
+  valueData,
   defaultValue,
   styleRequire,
   paramsRequired
@@ -38,7 +38,15 @@ const MultipleArray = ({
           var items = { label: item.value, value: item.id };
           return items;
         });
+
         setData(dataArray);
+
+        if(defaultValue && !valueData){
+          const _id = dataArray.filter((item:any) => item.label === defaultValue)
+          
+          handleChange([_id[0].value],keyFilter)
+        }
+
       } catch (err) {
         console.log(err);
       }
@@ -52,10 +60,10 @@ const MultipleArray = ({
 
   return (
     <TagPicker
+      id={keyFilter}
       data={data}
       onChange={(e) => handleChange(e, keyFilter)}
       style={styleRequire}
-     // style={"100%"}
       defaultValue={valueData}
       value={valueData}
       
