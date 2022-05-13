@@ -41,10 +41,10 @@ export default function Overview({ page, id }: any) {
                             <Col className='d-flex justify-content-end'>Origen del caso</Col>
                             <Col>{cases?.originName ? cases.originName : ' - '}</Col>
                         </Row>
-                        {/* <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
+                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
                             <Col className='d-flex justify-content-end'>Propietario del caso</Col>
                             <Col>{cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}</Col>
-                        </Row> */}
+                        </Row>
                     </Card>
                 </Row>
             </Row>
@@ -98,7 +98,7 @@ export default function Overview({ page, id }: any) {
 
                                 <Col style={{ color: 'gray' }}>Correo electronico</Col>
                                 <Col sm={4} align="start">
-                                    example@example.com (en duro)
+                                    {cases?.contactEmail ? cases.contactEmail : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
@@ -140,7 +140,7 @@ export default function Overview({ page, id }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Nombre y apellido gestor</Col>
                                 <Col align="start">
-                                    {cases?.promoterFullName ? cases.promoterFullName : ' - '}
+                                    {cases?.contactFullname ? cases.contactFullname : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Nro. de documento gestor</Col>
@@ -186,7 +186,7 @@ export default function Overview({ page, id }: any) {
                             <Row className='mt-200'>
                                 <Col sm={3} style={{ color: 'gray', marginRight: 30 }} >
                                     <Row className='d-flex justify-content-end'>
-                                    Asunto
+                                        Asunto
                                     </Row>
                                     <Row className='d-flex justify-content-end'>Descripción del Caso</Row>
                                 </Col>
@@ -220,7 +220,7 @@ export default function Overview({ page, id }: any) {
 
                                 <Col style={{ color: 'gray' }}>Estado</Col>
                                 <Col sm={4} align="start">
-                                {cases?.caseStatusName ? cases.caseStatusName : ' - '}
+                                    {cases?.caseStatusName ? cases.caseStatusName : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
@@ -422,11 +422,11 @@ export default function Overview({ page, id }: any) {
                 </Row>
             </Row>
 
-            <HistoryState statusHistories={cases.statusHistories}/>
+            <HistoryState statusHistories={cases.statusHistories} />
 
-            <AttachFiles id={id} attachments={cases.attachments}/>
+            <AttachFiles id={id} attachments={cases.attachments} />
 
-            
+
 
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
