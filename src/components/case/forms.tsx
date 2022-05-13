@@ -197,8 +197,8 @@ const Forms = ({
               <Col sm={4}></Col>
             </Row>
           </Row>
-
-          <Row style={{ marginBottom: 30 }}>
+          
+          {/* <Row style={{ marginBottom: 30 }}>
             <Row>
               <Col style={{ marginBottom: 10 }}>
                 {" "}
@@ -257,7 +257,7 @@ const Forms = ({
                 </InputGroup>
               </Col>
             </Row>
-          </Row>
+          </Row> */}
 
           <Row style={{ marginBottom: 30 }}>
             <Row style={{ marginBottom: 10 }}>
