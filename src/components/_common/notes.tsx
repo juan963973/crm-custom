@@ -1,10 +1,10 @@
 import Comments from "./comments/comments";
 
 
-export default function Notes() {
+export default function Notes( {id} : any ) {
     return(
         <>
-        <Comments currentUserId='2'/>
+        <Comments currentUserId={id}/>
         </>
     )
 }
