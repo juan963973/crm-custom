@@ -140,23 +140,23 @@ export default function Overview({ page, id }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Nombre y apellido gestor</Col>
                                 <Col align="start">
-                                    {cases?.contactFullname ? cases.contactFullname : ' - '}
+                                    {cases?.contactFullname ? cases.contactFullname : ' - '} - (en duro)
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Nro. de documento gestor</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promoterDocumentNumber ? cases.promoterDocumentNumber : ' - '}
+                                    {/* {cases?.promoterDocumentNumber ? cases.promoterDocumentNumber : ' - '} */} - (en duro)
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Celular gestor</Col>
                                 <Col align="start">
-                                    {cases?.promoterPhone ? cases.promoterPhone : ' - '}
+                                    {/* {cases?.promoterPhone ? cases.promoterPhone : ' - '} */} - (en duro)
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Email gestor</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promoterEmail ? cases.promoterEmail : ' - '}
+                                    {/* {cases?.promoterEmail ? cases.promoterEmail : ' - '} */} - (en duro)
                                 </Col>
                             </Row>
                         </Row>
@@ -183,16 +183,31 @@ export default function Overview({ page, id }: any) {
                             <Row>
                                 <Col> <h6>EXPLICACIÓN DEL CASO</h6> </Col>
                             </Row>
-                            <Row className='mt-200'>
-                                <Col sm={3} style={{ color: 'gray', marginRight: 30 }} >
-                                    <Row className='d-flex justify-content-end'>
-                                        Asunto
-                                    </Row>
-                                    <Row className='d-flex justify-content-end'>Descripción del Caso</Row>
+
+
+                            <Row align="end">
+                                <Col style={{ color: 'gray' }}>Asunto</Col>
+                                <Col align="start">
+                                <Row>
+                                    {/* {cases?.caseStatusName ? cases.caseStatusName : ' - '} */}
+                                    - (en duro)
+                                </Row>
                                 </Col>
-                                <Col>
-                                    <Row>{cases?.caseStatusName ? cases.caseStatusName : ' - '}</Row>
-                                    <Row>{cases?.description ? cases.description : ' - '}</Row>
+
+                                <Col style={{ color: 'gray' }}>Descripción del caso</Col>
+                                <Col sm={4} align="start">
+                                {cases?.description ? cases.description : ' - '}
+                                </Col>
+                            </Row>
+                            <Row align="end">
+                                <Col style={{ color: 'gray' }}>Moneda</Col>
+                                <Col align="start">
+                                    - (en duro)
+                                </Col>
+
+                                <Col style={{ color: 'gray' }}>Monto del reclamo</Col>
+                                <Col sm={4} align="start">
+                                - (en duro)
                                 </Col>
                             </Row>
                         </Row>
@@ -226,12 +241,33 @@ export default function Overview({ page, id }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Dirección de llamada</Col>
                                 <Col align="start">
-                                    {cases?.callDirection ? cases.callDirection : ' - '}
+                                    {cases?.callDirectionName ? cases.callDirectionName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>id ServiDesk</Col>
                                 <Col sm={4} align="start">
                                     {cases?.idServidesk ? cases.idServidesk : ' - '}
+                                </Col>
+                            </Row>
+                            <Row align="end">
+                                <Col style={{ color: 'gray' }}>Sucursal de recepción</Col>
+                                <Col align="start">
+                                 - en duro
+                                </Col>
+
+                                <Col style={{ color: 'gray' }}>Fecha/hora de Recepción</Col>
+                                <Col sm={4} align="start">
+                                - en duro
+                                </Col>
+                            </Row>
+                            <Row align="end">
+                                <Col style={{ color: 'gray' }}>Sucursal Afectada (Reclamo)</Col>
+                                <Col align="start">
+                                - en duro
+                                </Col>
+
+                                <Col style={{ color: 'gray' }}></Col>
+                                <Col sm={4} align="start">
                                 </Col>
                             </Row>
 
@@ -249,7 +285,7 @@ export default function Overview({ page, id }: any) {
 
                                 <Col style={{ color: 'gray' }}>Oficial negocio</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.businessOfficer ? cases.businessOfficer : ' - '}
+                                    {cases?.businessOfficerUserName ? cases.businessOfficerUserName : ' - '}
                                 </Col>
                             </Row>
                             <Row align="start">
@@ -271,15 +307,15 @@ export default function Overview({ page, id }: any) {
                                     {cases?.solution ? cases.solution : ' - '}
                                 </Col>
 
-                                <Col style={{ color: 'gray' }}>Comentario de Contacto / Cierre</Col>
+                                <Col style={{ color: 'gray' }}>Comentario de Cierre del Caso</Col>
                                 <Col sm={4} align="start">
-                                    -
+                                    - (en duro)
                                 </Col>
                             </Row>
                             <Row sm={4} align="end">
                                 <Col style={{ color: 'gray' }}>Resolución a favor del cliente</Col>
                                 <Col sm={4} align="start">
-                                    -
+                                - (en duro)
                                 </Col>
                                 {/* <Col style={{ color: 'gray' }}>¿Desea solicitar una prórroga del caso?</Col>
                                 <Col align="start">
@@ -309,7 +345,7 @@ export default function Overview({ page, id }: any) {
                             <Row align="end" sm={4}>
                                 <Col style={{ color: 'gray' }}>Agregar comentarios</Col>
                                 <Col align="start">
-                                    -
+                                    -- (en duro)
                                 </Col>
 
                                 {/* <Col style={{ color: 'gray' }}>Nro. de comentarios</Col>
@@ -416,7 +452,7 @@ export default function Overview({ page, id }: any) {
                                     placeholder="Add a note..."
                                 />
                             </InputGroup> */}
-                            <Notes />
+                            <Notes id={id}/>
                         </Row>
                     </Card>
                 </Row>

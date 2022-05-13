@@ -11,7 +11,7 @@ export default function AttachFiles(props: { attachments: any[]; id: any; }) {
     function substr(str: string) {
         var length = 120;
         // var myString = str;
-        var myTruncatedString = str.substring(100, length);
+        var myTruncatedString = str.split('/').pop();
         return myTruncatedString
     }
 
@@ -43,7 +43,7 @@ export default function AttachFiles(props: { attachments: any[]; id: any; }) {
                                 }} >
                                     {/* <Col sm={1}>{item.id}</Col> */}
                                     <Col sm={1}> <img src="/attachments.png" width="20" height="20" /></Col>
-                                    <Col sm={10}>{substr(item.url)}</Col>
+                                    <Col sm={10}>{item.url.split("\\").pop()}</Col>
                                     <Col style={ { display: "flex"}}>
                                    
                                         <Button variant="primary" className="btn btn-primary btn-sm"
