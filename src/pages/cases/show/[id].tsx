@@ -1,12 +1,18 @@
 import {
-    Button, Col, Container, Form, Row, Card, InputGroup, FormControl,
-    ButtonGroup, ToggleButton, Nav, Tabs, Tab
+    Button,
+    Col,
+    Container,
+    Row,
+    DropdownButton,
+    Dropdown,
 } from "react-bootstrap";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { useState } from "react";
-import React, { forwardRef, useRef } from 'react'
+import React, { forwardRef, useRef } from "react";
 import { CaseDetailModel } from ".../../models/Case";
 import Overview from "components/_common/overview";
+import { toast, ToastContainer } from "react-toastify";
+import { injectStyle } from "react-toastify/dist/inject-style";
 
 const page = "cases";
 
@@ -17,11 +23,46 @@ export default function Show({ id, uri }: any) {
 
     let data = cases
 
+    if (typeof window !== "undefined") {
+
+        injectStyle();
+
+    }
+
+    const deleteHandle = () => {
+
+        toast.success("Registro eliminado con exito!", {
+
+            position: "top-center",
+
+            autoClose: 2000,
+
+            hideProgressBar: false,
+
+            closeOnClick: true,
+
+            pauseOnHover: true,
+
+            draggable: true,
+
+            progress: undefined,
+
+        });
+
+        setTimeout(() => {
+
+            router.push(`/cases`);
+
+        }, 2000);
+
+    };
+
     return (
         <>
 
             <Container className="shadow-sm p-3 mb-3 bg-white rounded mt-2">
-                <Row style={{marginTop: '50px'}}>
+                <ToastContainer />
+                <Row style={{ marginTop: '50px' }}>
                     <Col sm={2}  >
                         <h4>
                             ←
@@ -37,7 +78,13 @@ export default function Show({ id, uri }: any) {
                     </Col>
                     <Col align="end">
                         <Button variant="secondary">Edit</Button>{' '}
-                        <Button variant="secondary">...</Button>{' '}
+                        <DropdownButton align="end" id="dropdown-basic-button" title="...">
+                            <Dropdown.Item href="#/action-1">Clonar</Dropdown.Item>
+                            <Dropdown.Item onClick={deleteHandle}>Eliminar</Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                            </DropdownButton>{" "}
+
+
                         «
                         »
                     </Col>
@@ -49,13 +96,13 @@ export default function Show({ id, uri }: any) {
                     <Col sm={2}>
                         <b>Lista relacionada</b>
                         <Col>
-                        <div><a href="#notes">Notas</a></div>
-                        <div><a href="#historyState">Historial de Estado</a></div>
-                        <div><a href="#attachments">Adjuntos</a></div>
-                        <div><a href="#openActivities">Actividades abiertas</a></div>
-                        <div> <a href="#closedActivities">Actividades cerradas</a></div>
-                        {/* <div><p>Enlaces</p></div> */}
-                        </Col>  
+                            <div><a href="#notes">Notas</a></div>
+                            <div><a href="#historyState">Historial de Estado</a></div>
+                            <div><a href="#attachments">Adjuntos</a></div>
+                            <div><a href="#openActivities">Actividades abiertas</a></div>
+                            <div> <a href="#closedActivities">Actividades cerradas</a></div>
+                            {/* <div><p>Enlaces</p></div> */}
+                        </Col>
                         {/* <p className="text-primary">Add link</p> */}
                     </Col>
 
@@ -80,31 +127,30 @@ export default function Show({ id, uri }: any) {
                                 </Col>
                             </Row>
 
-                            <Row style={{
-                                maxHeight: "25rem", overflow: "auto", backgroundColor: '#edf0f4'
-                            }}>
+                            <Row
+                                style={{
+                                    maxHeight: "25rem",
+                                    overflow: "auto",
+                                    backgroundColor: "#edf0f4",
+                                }}
+                            >
                                 <Overview page={page} id={id} />
                             </Row>
-
-
-
                         </Row>
                     </Col>
                 </Row>
             </Container>
-
-
         </>
-    )
+    );
 }
 
 export async function getServerSideProps(req: any, res: any) {
     const {
-      query: { id },
-      resolvedUrl,
+        query: { id },
+        resolvedUrl,
     } = req;
     const uri = resolvedUrl.split("/")[1];
     return {
-      props: { id, uri },
+        props: { id, uri },
     };
-  }
+}

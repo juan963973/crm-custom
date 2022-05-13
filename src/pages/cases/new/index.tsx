@@ -13,8 +13,8 @@ function New({ module }: any) {
     callDirectionId: 1,
     contactId: null,
     companyId: null,
-    businessOfficerId: 1
   } as CreateCaseModel);
+  
   const [dataReference, setDataReference] = useState({
     documentTypeName: "",
     email: "",
@@ -23,7 +23,7 @@ function New({ module }: any) {
     branchName: null,
     phone: "",
     mobile: "",
-    officialId:null
+    officialId: null,
   });
 
   const [dataPromoter, setDataPromoter] = useState({
@@ -32,7 +32,10 @@ function New({ module }: any) {
     mobile: "",
   });
 
-  const [endpointCascade, setEndpointCascade] = useState({subtypeId: "Search/subtypes", typificationId:"Search/typifications"})
+  const [endpointCascade, setEndpointCascade] = useState({
+    subtypeId: "Search/subtypes",
+    typificationId: "Search/typifications",
+  });
 
   const [validated, setValidated] = useState(false);
   const [customerValid, setCustomerValid] = useState(false);
@@ -42,16 +45,20 @@ function New({ module }: any) {
   const [requiredSubType, setRequiredSubType] = useState(false);
   const [requiredResolverArea, setRequiredResolverArea] = useState(false);
   const [requiredTipifications, setRequiredTipifications] = useState(false);
+  var arrayData:any;
+
   const router = useRouter();
 
   if (typeof window !== "undefined") {
     injectStyle();
   }
 
-  const handleChange = (e: any, name: string | null = null) => {
+  const handleChange = async (e: any, name: string | null = null) => {
     if (!name) {
       let key = e.target.name;
       let value;
+      let page = "";
+
       switch (e.target.type) {
         case "checkbox":
           value = e.target.checked;
@@ -67,33 +74,33 @@ function New({ module }: any) {
           value = e.target.value;
           break;
       }
+
       if (key == "contactId" || key == "companyId" || key == "promoterId") {
-        completeField(key, value);
-        console.log("dentro de condicion");
-        
+        await completeField(key, value);
+      } else {
+        if (key == "typeId") {
+          page = `Search/subtypes?${key}=${value}`;
+          setEndpointCascade({ ...endpointCascade, subtypeId: page });
+        }
+
+        if (key == "subtypeId") {
+          page = `Search/typifications?${key}=${value}`;
+          setEndpointCascade({ ...endpointCascade, typificationId: page });
+        }
+
+        setCasesData({ ...casesData, [key]: value });
       }
-      let page = "";
-      if(key == "typeId"){
-        page = `Search/subtypes?${key}=${value}`;
-        setEndpointCascade({...endpointCascade, subtypeId:page})
-      }
-      if(key == "subtypeId"){
-        page = `Search/typifications?${key}=${value}`;
-        setEndpointCascade({...endpointCascade, typificationId:page})
-      }
-      console.log("fuera de condicion");
-      
-      setCasesData({ ...casesData, [key]: value });
-      console.log("value::",value)
       return;
     } else {
-      setCasesData({ ...casesData, [name]: e });
+      arrayData = {...arrayData,[name]: e };
+      setCasesData({ ...casesData, ...arrayData});      
       return;
     }
   };
 
   const completeField = async (key: any, value: any) => {
     let page;
+
     switch (key) {
       case "companyId":
         page = "Info/cases/company-info";
@@ -101,11 +108,30 @@ function New({ module }: any) {
           try {
             const res: any = await refenceField(page, value);
             setDataReference(res);
-            //setCasesData({ ...casesData, businessOfficerId: res.officialId });
-            
+            setCasesData({
+              ...casesData,
+              businessOfficerId: res.officialId,
+              [key]: value,
+            });
           } catch (error) {
             console.log(error);
           }
+        } else {
+          setCasesData({
+            ...casesData,
+            businessOfficerId: null,
+            [key]: value,
+          });
+          setDataReference({
+            documentTypeName: "",
+            email: "",
+            clientCode: "",
+            documentNumber: "",
+            branchName: null,
+            phone: "",
+            mobile: "",
+            officialId: null,
+          });
         }
 
         break;
@@ -115,10 +141,30 @@ function New({ module }: any) {
           try {
             const res: any = await refenceField(page, value);
             setDataReference(res);
-            //setCasesData({ ...casesData, businessOfficerId: res.officialId });
+            setCasesData({
+              ...casesData,
+              businessOfficerId: res.officialId,
+              [key]: value,
+            });
           } catch (error) {
             console.log(error);
           }
+        } else {
+          setCasesData({
+            ...casesData,
+            businessOfficerId: null,
+            [key]: value,
+          });
+          setDataReference({
+            documentTypeName: "",
+            email: "",
+            clientCode: "",
+            documentNumber: "",
+            branchName: null,
+            phone: "",
+            mobile: "",
+            officialId: null,
+          });
         }
         break;
       case "promoterId":
@@ -126,6 +172,7 @@ function New({ module }: any) {
         try {
           const res: any = await refenceField(page, value);
           setDataPromoter(res);
+          setCasesData({ ...casesData, [key]: value });
         } catch (error) {
           console.log(error);
         }
@@ -135,10 +182,6 @@ function New({ module }: any) {
     }
   };
 
-  // const changeStatus = (name:any, value:any) =>{
-  //   setCasesData({ ...casesData, [name]: value });
-  // }
-
   const handleClose = () => {
     window.history.back();
   };
@@ -146,7 +189,7 @@ function New({ module }: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const form = e.currentTarget;
-    console.log(form)
+    console.log(form);
     if (form.checkValidity() === false) {
       console.log("Falta Validar");
     } else {
@@ -155,36 +198,36 @@ function New({ module }: any) {
       try {
         if (casesData.companyId == null && casesData.contactId == null) {
           validation = false;
-          setCustomerValid(true)
-        }else{
-          setCustomerValid(false)
+          setCustomerValid(true);
+        } else {
+          setCustomerValid(false);
         }
-        
+
         if (!casesData.typeId) {
           setRequiredType(true);
           validation = false;
-        }else{
+        } else {
           setRequiredType(false);
-        } 
+        }
 
         if (!casesData.subtypeId) {
           setRequiredSubType(true);
-          validation= false;
-        }else{
+          validation = false;
+        } else {
           setRequiredSubType(false);
         }
-        
+
         if (!casesData.typificationId) {
           setRequiredTipifications(true);
           validation = false;
-        }else{
+        } else {
           setRequiredTipifications(false);
         }
 
         if (!casesData.resolutionAreaIds) {
           setRequiredResolverArea(true);
           validation = false;
-        }else{
+        } else {
           setRequiredResolverArea(false);
         }
 
@@ -202,7 +245,7 @@ function New({ module }: any) {
           setOriginValid(false);
         }
 
-        if(validation) {
+        if (validation) {
           await create(page, casesData);
           toast.success("Se ha guardado con exito!", {
             position: "top-center",
@@ -224,11 +267,6 @@ function New({ module }: any) {
     setValidated(true);
   };
 
-  const params = {
-    setCasesData,
-    casesData,
-  };
-
   const paramsRequired = {
     requiredType,
     requiredSubType,
@@ -236,31 +274,28 @@ function New({ module }: any) {
     customerValid,
     requiredResolverArea,
     originValid,
-    statusValid
+    statusValid,
   };
 
   return (
     <>
-      <Form
-        noValidate
-        validated={validated}
-        onSubmit={handleSubmit}
-      >
-        <div className="shadow-sm p-3 mb-5 bg-white rounded container-fluid" style={{zIndex: 9999, marginTop: "-71px", position: "fixed" }}>
-          <HeaderForms title="Crear Caso" handleClose={handleClose} />
-          <ToastContainer />
-        </div>
-
-        <Forms
-          handleChange={handleChange}
-          reference={dataReference}
-          dataPromoter={dataPromoter}
-          caseData={casesData}
-          params={params}
-          paramsRequired={paramsRequired}
-          cascade={endpointCascade}
-        />
-      </Form>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <div
+            className="shadow-sm p-3 mb-5 bg-white rounded container-fluid"
+            style={{ zIndex: 9999, marginTop: "-71px", position: "fixed" }}
+          >
+            <HeaderForms title="Crear Caso" handleClose={handleClose} />
+            <ToastContainer />
+          </div>
+          <Forms
+            handleChange={handleChange}
+            reference={dataReference}
+            dataPromoter={dataPromoter}
+            caseData={casesData}
+            paramsRequired={paramsRequired}
+            cascade={endpointCascade}
+          />
+        </Form>
     </>
   );
 }
@@ -269,5 +304,7 @@ export default New;
 
 export function getServerSideProps(req: any, res: any) {
   const module = req.resolvedUrl;
+  //const query = req.query
+  console.log(req.query);
   return { props: { module } };
 }
