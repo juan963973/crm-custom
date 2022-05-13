@@ -41,32 +41,10 @@ export default function Overview({ page, id }: any) {
                             <Col className='d-flex justify-content-end'>Origen del caso</Col>
                             <Col>{cases?.originName ? cases.originName : ' - '}</Col>
                         </Row>
-                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
+                        {/* <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
                             <Col className='d-flex justify-content-end'>Propietario del caso</Col>
                             <Col>{cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}</Col>
-                        </Row>
-                    </Card>
-                </Row>
-            </Row>
-
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
-                <Row style={{ width: '99%' }}>
-                    <Card body>
-                        <Row className='mt-200'>
-                            <Col>
-                                <Row> <h6>CONTACTO</h6></Row>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={1}>
-                                <Row><img src="/userIcon.png" width="30" /></Row>
-                            </Col>
-                            <Col>
-                                {/* <Row>{cases[0].contactName ? cases[0].contactName: ' - ' }</Row> */}
-                                <Row>ademirdemaria@hotmail.com (en duro)</Row>
-                                {/* <Row>{cases[0].contactPhone ? cases[0].contactPhone: ' - ' }</Row> */}
-                            </Col>
-                        </Row>
+                        </Row> */}
                     </Card>
                 </Row>
             </Row>
@@ -427,7 +405,7 @@ export default function Overview({ page, id }: any) {
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row> <h6>NOTAS</h6></Row>
+                                <Row> <h6 id="notes">NOTAS</h6></Row>
                             </Col>
                         </Row>
                         <Row>
@@ -455,7 +433,7 @@ export default function Overview({ page, id }: any) {
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row> <h6>
+                                <Row> <h6 id="openActivities">
                                     ACTIVIDADES ABIERTAS</h6></Row>
                             </Col>
                         </Row>
@@ -473,7 +451,7 @@ export default function Overview({ page, id }: any) {
                     <Card body>
                         <Row className='mt-200'>
                             <Col>
-                                <Row> <h6>
+                                <Row> <h6 id="closedActivities">
 
                                     ACTIVIDADES CERRADAS</h6></Row>
                             </Col>
