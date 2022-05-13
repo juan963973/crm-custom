@@ -131,13 +131,12 @@ export default function Show({ id, uri }: any) {
 }
 
 export async function getServerSideProps(req: any, res: any) {
-  const {
-    query: { id },
-    resolvedUrl,
-  } = req;
-  const uri = resolvedUrl.split("/")[1];
-  console.log("id", id);
-  return {
-    props: { id, uri },
-  };
-}
+    const {
+      query: { id },
+      resolvedUrl,
+    } = req;
+    const uri = resolvedUrl.split("/")[1];
+    return {
+      props: { id, uri },
+    };
+  }
