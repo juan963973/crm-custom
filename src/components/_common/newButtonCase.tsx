@@ -14,11 +14,11 @@ export default function NewButtonCase({ dataIdCase } : Props) {
 
     function sendProps(){
         router.push({
-            pathname: `/cases/new/${id}`,
+            pathname: `/cases/new`,
             query: {
                 data: JSON.stringify(dataIdCase)
             }
-        }, '/cases/new/')
+        }, '/cases/new')
     }
 
     return (

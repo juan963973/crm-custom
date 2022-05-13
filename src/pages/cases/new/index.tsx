@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import HeaderForms from "components/_common/header-forms";
 
-function New({ module }: any) {
+function New({ module, query }: any) {
   const [casesData, setCasesData] = useState<CreateCaseModel>({
     callDirectionId: 1,
     contactId: null,
@@ -48,6 +48,12 @@ function New({ module }: any) {
   var arrayData:any;
 
   const router = useRouter();
+  if(query.data){
+    const {id, view} = JSON.parse(query.data);
+    console.log("::",id)
+    //let value = {...casesData,}
+  }
+    
 
   if (typeof window !== "undefined") {
     injectStyle();
@@ -304,7 +310,6 @@ export default New;
 
 export function getServerSideProps(req: any, res: any) {
   const module = req.resolvedUrl;
-  //const query = req.query
-  console.log(req.query);
-  return { props: { module } };
+  const query = req.query
+  return { props: { module, query } };
 }
