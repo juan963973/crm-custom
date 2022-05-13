@@ -76,17 +76,18 @@ export default function Show({ id, uri }: any) {
                             <h6>DESCRIPCIÓN</h6>
                         </Row>
                     </Col>
-                    <Col align="end">
-                        <Button variant="secondary">Edit</Button>{' '}
-                        <DropdownButton align="end" id="dropdown-basic-button" title="...">
-                            <Dropdown.Item href="#/action-1">Clonar</Dropdown.Item>
-                            <Dropdown.Item onClick={deleteHandle}>Eliminar</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                            </DropdownButton>{" "}
-
-
-                        «
-                        »
+                    <Col  sm={3} style={{ marginLeft: 'auto' }}>
+                        <Row >
+                            <Col > <Button variant="secondary">Edit</Button>{' '}</Col>
+                            <Col>
+                                <DropdownButton align="end" id="dropdown-basic-button" title="...">
+                                    <Dropdown.Item href="#/action-1">Clonar</Dropdown.Item>
+                                    <Dropdown.Item onClick={deleteHandle}>Eliminar</Dropdown.Item>
+                                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                </DropdownButton>{" "}
+                            </Col>
+                            <Col>«  »</Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
