@@ -97,11 +97,11 @@ export default function Show({ id, uri }: any) {
                     <Col sm={2}>
                         <b>Lista relacionada</b>
                         <Col>
-                            <div><a href="#notes">Notas</a></div>
-                            <div><a href="#historyState">Historial de Estado</a></div>
-                            <div><a href="#attachments">Adjuntos</a></div>
-                            <div><a href="#openActivities">Actividades abiertas</a></div>
-                            <div> <a href="#closedActivities">Actividades cerradas</a></div>
+                            <div><a href="#notes" style={{ textDecoration: 'none'}}>Notas</a></div>
+                            <div><a href="#historyState" style={{ textDecoration: 'none'}}>Historial de Estado</a></div>
+                            <div><a href="#attachments" style={{ textDecoration: 'none'}}>Adjuntos</a></div>
+                            <div><a href="#openActivities" style={{ textDecoration: 'none'}}>Actividades abiertas</a></div>
+                            <div> <a href="#closedActivities" style={{ textDecoration: 'none'}}>Actividades cerradas</a></div>
                             {/* <div><p>Enlaces</p></div> */}
                         </Col>
                         {/* <p className="text-primary">Add link</p> */}

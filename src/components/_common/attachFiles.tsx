@@ -43,18 +43,18 @@ export default function AttachFiles(props: { attachments: any[]; id: any; }) {
                                 }} >
                                     {/* <Col sm={1}>{item.id}</Col> */}
                                     <Col sm={1}> <img src="/attachments.png" width="20" height="20" /></Col>
-                                    <Col sm={8}>{substr(item.url)}</Col>
-                                    <Col style={ { display: "flex", justifyContent: "space-around"}}>
+                                    <Col sm={10}>{substr(item.url)}</Col>
+                                    <Col style={ { display: "flex"}}>
                                    
                                         <Button variant="primary" className="btn btn-primary btn-sm"
                                             href={`${urlFile}${item.id}`}>
                                             Ver
                                         </Button>
 
-                                        <Button variant="danger" className="btn btn-primary btn-sm"
+                                        {/* <Button variant="danger" className="btn btn-primary btn-sm"
                                             onClick={() => deleteFile(item.id)}>
                                             Eliminar
-                                        </Button>
+                                        </Button> */}
                                     </Col>
                                 </Row>
                             )))

@@ -34,6 +34,7 @@ export interface CasesModel {
 }
 
 export interface CaseDetailModel {
+    contactEmail: any;
     attachments: any;
     statusHistories: any;
     businessOfficer: any;
