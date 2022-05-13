@@ -297,7 +297,7 @@ function New({ module, query }: any) {
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <div
             className="shadow-sm p-3 mb-5 bg-white rounded container-fluid"
-            style={{ zIndex: 9999, marginTop: "-71px", position: "fixed" }}
+            style={{ zIndex: 9, marginTop: "-71px", position: "fixed" }}
           >
             <HeaderForms title="Crear Caso" handleClose={handleClose} />
             <ToastContainer />
