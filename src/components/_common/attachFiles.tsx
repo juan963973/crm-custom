@@ -8,7 +8,7 @@ export default function AttachFiles(props: { attachments: any[]; id: any; }) {
     let dataFile = props.attachments
     console.log(dataFile)
 
-    function substr(str) {
+    function substr(str: string) {
         var length = 120;
         // var myString = str;
         var myTruncatedString = str.substring(100, length);
@@ -21,7 +21,7 @@ export default function AttachFiles(props: { attachments: any[]; id: any; }) {
             <Row style={{ width: '99%' }}>
                 <Card body>
                     <Row className='mt-200'>
-                        <Col><h6>ARCHIVOS ADJUNTOS</h6></Col>
+                        <Col><h6 id='attachments'>ARCHIVOS ADJUNTOS</h6></Col>
 
                         <Col align="end">
                             <AttachFilesButton id={props.id} />
@@ -43,8 +43,8 @@ export default function AttachFiles(props: { attachments: any[]; id: any; }) {
                                 }} >
                                     {/* <Col sm={1}>{item.id}</Col> */}
                                     <Col sm={1}> <img src="/attachments.png" width="20" height="20" /></Col>
-                                    <Col sm={9}>{substr(item.url)}</Col>
-                                    <Col>
+                                    <Col sm={8}>{substr(item.url)}</Col>
+                                    <Col style={ { display: "flex", justifyContent: "space-around"}}>
                                    
                                         <Button variant="primary" className="btn btn-primary btn-sm"
                                             href={`${urlFile}${item.id}`}>

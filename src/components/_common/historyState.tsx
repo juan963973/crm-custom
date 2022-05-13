@@ -11,7 +11,7 @@ export default function HistoryState(cases: any) {
                 <Card body>
                     <Row className='mt-200'>
                         <Col>
-                            <Row><h6>HISTORIAL DEL ESTADO</h6></Row>
+                            <Row><h6 id="historyState">HISTORIAL DEL ESTADO</h6></Row>
                         </Col>
                     </Row>
                     <Row>
