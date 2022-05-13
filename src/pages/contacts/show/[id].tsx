@@ -21,7 +21,7 @@ export default function Show() {
 
     let dataIdCase = {
         id: id,
-        view: 'contacts'
+        view: 'contactId'
     }
 
 

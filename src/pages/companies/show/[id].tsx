@@ -20,7 +20,7 @@ export default function Show() {
 
     let dataIdCase = {
         id: id,
-        view: 'companies'
+        view: 'companyId'
     }
 
     return (
