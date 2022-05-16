@@ -62,13 +62,11 @@ export default function Show({ id, uri }: any) {
 
             <Container className="shadow-sm p-3 mb-3 bg-white rounded mt-2">
                 <ToastContainer />
-                <Row style={{ marginTop: '50px' }}>
-                    <Col sm={2}  >
-                        <h4>
-                            ←
-                        </h4>
+                <Row style={{ marginTop: '50px', display: 'flex' }}>
+                    <Col sm={2} style={{ alignItems: 'center'}} >
+                        <img src="/backIcon.png" alt="Atrás" height="20" style={{ alignItems: 'center' }} onClick={() => {alert('func')}}/>
                     </Col>
-                    <Col sm={5} style={{ marginLeft: '-13%' }}>
+                    <Col sm={5} style={{ marginLeft: '-10%' }}>
                         <Row>
                             <h4>HABILITACIÓN DE SOBREGIRO</h4>
                         </Row>
