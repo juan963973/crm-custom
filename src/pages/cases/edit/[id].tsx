@@ -265,7 +265,7 @@ function EditCase({ id, uri }: any) {
       >
         <div
           className="shadow-sm p-3 mb-5 bg-white rounded container-fluid"
-          style={{ zIndex: 9999, marginTop: "-71px", position: "fixed" }}
+          style={{ zIndex: 9, marginTop: "-71px", position: "fixed" }}
         >
           <HeaderForms title="Editar Caso" handleClose={handleClose} />
           <ToastContainer />
