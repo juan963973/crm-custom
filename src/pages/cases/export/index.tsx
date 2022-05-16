@@ -4,9 +4,12 @@ import {
     Container,
     Row
 } from "react-bootstrap";
-import { ToastContainer } from "react-toastify";
+
 import { DateRangePicker, Form, Panel } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
+
+import { toast, ToastContainer } from "react-toastify";
+import { injectStyle } from "react-toastify/dist/inject-style";
 
 export default function Show() {
     const styles = {
@@ -17,12 +20,26 @@ export default function Show() {
         }
     };
 
-    const initFormValue = {
+    if (typeof window !== "undefined") {
+        injectStyle();
+    }
 
+    const initFormValue = {
         dateRangePicker: [new Date(), new Date()],
     };
 
-
+    const handleSubmit = () => {
+        toast.success("Será enviado un email con el adjunto solicitado", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        console.log(initFormValue)
+    }
 
     return (
         <>
@@ -32,7 +49,7 @@ export default function Show() {
                 <Row style={{ marginTop: '50px' }}>
                     <Col sm={5}>
                         <Row>
-                            <h4>Reporte para el Banco Central del Paraguay</h4>
+                            <h4>Reporte para el BCP</h4>
                         </Row>
                     </Col>
                 </Row>
@@ -67,7 +84,7 @@ export default function Show() {
                     </Row>
                     <Row style={{ marginTop: '25px', marginBottom: '60px' }}>
                         <Col sm={2} style={{ marginLeft: '200px', width: '600px' }}>
-                            <Button onClick={() => {(alert('send')); console.log('DateRangePicker', initFormValue)}}>Exportar</Button>
+                            <Button onClick={handleSubmit}>Exportar</Button>
                         </Col>
                     </Row>
                 </Row>

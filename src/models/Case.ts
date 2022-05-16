@@ -34,6 +34,22 @@ export interface CasesModel {
 }
 
 export interface CaseDetailModel {
+    clientDocumentNumber: any;
+    clientMobile: any;
+    clientClientCode: any;
+    promotorName: any;
+    promotorDocumentNumber: any;
+    promotorPhone: any;
+    promotorEmail: any;
+    clientDocumentTypeName: any;
+    closedComment: any;
+    resolutionClientFavorName: any;
+    affectedBranchName: any;
+    receptionBranchName: any;
+    claimAmount: any;
+    currencyName: any;
+    subject: any;
+    caseStasubjecttsubjectusName: ReactNode;
     businessOfficerUserName: any;
     callDirectionName: any;
     contactEmail: any;

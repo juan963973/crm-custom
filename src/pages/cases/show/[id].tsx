@@ -64,7 +64,7 @@ export default function Show({ id, uri }: any) {
                 <ToastContainer />
                 <Row style={{ marginTop: '50px', display: 'flex' }}>
                     <Col sm={2} style={{ alignItems: 'center'}} >
-                        <img src="/backIcon.png" alt="Atrás" height="20" style={{ alignItems: 'center' }} onClick={() => {alert('func')}}/>
+                        <img src="/backIcon.png" alt="Atrás" height="20" style={{ alignItems: 'center' }} onClick={() => {window.history.back()}}/>
                     </Col>
                     <Col sm={5} style={{ marginLeft: '-10%' }}>
                         <Row>
