@@ -5,12 +5,23 @@ import {
     Row
 } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
-import { DateRangePicker } from "rsuite";
+import { DateRangePicker, Form, Panel } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
-const styles = { width: 300, display: 'block', marginBottom: 10 };
-
 
 export default function Show() {
+    const styles = {
+        radioGroupLabel: {
+            padding: '8px 12px',
+            display: 'inline-block',
+            verticalAlign: 'middle'
+        }
+    };
+
+    const initFormValue = {
+
+        dateRangePicker: [new Date(), new Date()],
+    };
+
 
 
     return (
@@ -35,21 +46,32 @@ export default function Show() {
                             <Col sm={4} style={{ width: 'auto', paddingTop: "5px", paddingBottom: "5px" }}>
 
                                 <Row> <h6>Fecha</h6></Row>
-                                <Row> <DateRangePicker style={styles} id="something"/> </Row>
+                                <Row>
+                                    <Panel>
+                                        <Form>
+                                            <Form.Group controlId="dateRangePicker">
+                                                <Form.ControlLabel>Seleccione un rango de fechas:</Form.ControlLabel>
+                                                <Form.Control name="dateRangePicker" accepter={DateRangePicker} />
+                                            </Form.Group>
+
+
+                                        </Form>
+                                    </Panel>
+                                </Row>
 
                             </Col>
-                            
+
                         </Row>
 
-                        
+
                     </Row>
                     <Row style={{ marginTop: '25px', marginBottom: '60px' }}>
-                        <Col sm={2} style={{  marginLeft: '200px', width: '600px' }}> 
-                            <Button onClick={() => (SubmitEvent('func'))}>Exportar</Button>
+                        <Col sm={2} style={{ marginLeft: '200px', width: '600px' }}>
+                            <Button onClick={() => {(alert('send')); console.log('DateRangePicker', initFormValue)}}>Exportar</Button>
                         </Col>
                     </Row>
                 </Row>
-            </Container>
+            </Container >
 
 
             <Container className="p-3 mb-3 bg-white rounded mt-2">
@@ -64,9 +86,9 @@ export default function Show() {
             </Container>
 
             <Container>
-                <Row style={{ backgroundColor: '#edf0f4', width: '600px', marginTop: '25px', marginBottom: '60px' }}>
-                    <Col sm={3} style={{ backgroundColor: '#edf0f4'}}>
-                        Some content
+                <Row style={{ backgroundColor: '#edf0f4', justifyContent: 'center' }}>
+                    <Col sm={3} style={{ backgroundColor: '#edf0f4', justifyContent: 'center'  }}>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/pwJuFbyhZFE" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                     </Col>
 
                 </Row>
