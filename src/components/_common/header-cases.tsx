@@ -11,7 +11,7 @@ import React from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
 
-export default function Header(props: {subject: any}) {
+export default function HeaderCases(props: {subject: any}) {
 
     if (typeof window !== "undefined") {
 

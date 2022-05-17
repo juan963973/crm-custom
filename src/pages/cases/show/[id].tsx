@@ -11,7 +11,7 @@ import { CaseDetailModel } from ".../../models/Case";
 import Overview from "components/_common/overview";
 import { detail } from "services/caseService";
 
-import Header from "components/_common/header";
+import HeaderCases from "components/_common/header-cases";
 
 const page = "cases";
 
@@ -36,7 +36,7 @@ export default function Show({ id, uri }: any) {
 
     return (
         <>
-            < Header subject={cases.subject} />
+            < HeaderCases subject={cases.subject} />
 
             <Container style={{ display: 'block' }}>
                 <Row>
