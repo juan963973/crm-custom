@@ -14,6 +14,8 @@ import Overview from "components/_common/overview";
 import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
 
+import Header from "components/_common/header";
+
 const page = "cases";
 
 export default function Show({ id, uri }: any) {
@@ -59,12 +61,12 @@ export default function Show({ id, uri }: any) {
 
     return (
         <>
-
+            < Header />
             <Container className="shadow-sm p-3 mb-3 bg-white rounded mt-2">
                 <ToastContainer />
                 <Row style={{ marginTop: '50px', display: 'flex' }}>
-                    <Col sm={2} style={{ alignItems: 'center'}} >
-                        <img src="/backIcon.png" alt="Atrás" height="20" style={{ alignItems: 'center' }} onClick={() => {window.history.back()}}/>
+                    <Col sm={2} style={{ alignItems: 'center' }} >
+                        <img src="/backIcon.png" alt="Atrás" height="20" style={{ alignItems: 'center' }} onClick={() => { window.history.back() }} />
                     </Col>
                     <Col sm={5} style={{ marginLeft: '-10%' }}>
                         <Row>
@@ -74,7 +76,7 @@ export default function Show({ id, uri }: any) {
                             <h6>DESCRIPCIÓN</h6>
                         </Row>
                     </Col>
-                    <Col  sm={3} style={{ marginLeft: 'auto' }}>
+                    <Col sm={3} style={{ marginLeft: 'auto' }}>
                         <Row >
                             <Col > <Button variant="secondary">Edit</Button>{' '}</Col>
                             <Col>
@@ -95,11 +97,11 @@ export default function Show({ id, uri }: any) {
                     <Col sm={2}>
                         <b>Lista relacionada</b>
                         <Col>
-                            <div><a href="#notes" style={{ textDecoration: 'none'}}>Notas</a></div>
-                            <div><a href="#historyState" style={{ textDecoration: 'none'}}>Historial de Estado</a></div>
-                            <div><a href="#attachments" style={{ textDecoration: 'none'}}>Adjuntos</a></div>
-                            <div><a href="#openActivities" style={{ textDecoration: 'none'}}>Actividades abiertas</a></div>
-                            <div> <a href="#closedActivities" style={{ textDecoration: 'none'}}>Actividades cerradas</a></div>
+                            <div><a href="#notes" style={{ textDecoration: 'none' }}>Notas</a></div>
+                            <div><a href="#historyState" style={{ textDecoration: 'none' }}>Historial de Estado</a></div>
+                            <div><a href="#attachments" style={{ textDecoration: 'none' }}>Adjuntos</a></div>
+                            <div><a href="#openActivities" style={{ textDecoration: 'none' }}>Actividades abiertas</a></div>
+                            <div> <a href="#closedActivities" style={{ textDecoration: 'none' }}>Actividades cerradas</a></div>
                             {/* <div><p>Enlaces</p></div> */}
                         </Col>
                         {/* <p className="text-primary">Add link</p> */}
