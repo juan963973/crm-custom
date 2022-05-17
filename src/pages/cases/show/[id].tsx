@@ -2,17 +2,13 @@ import {
     Button,
     Col,
     Container,
-    Row,
-    DropdownButton,
-    Dropdown,
+    Row
 } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import React, { forwardRef, useRef } from "react";
+import React from "react";
 import { CaseDetailModel } from ".../../models/Case";
 import Overview from "components/_common/overview";
-import { toast, ToastContainer } from "react-toastify";
-import { injectStyle } from "react-toastify/dist/inject-style";
 import { detail } from "services/caseService";
 
 import Header from "components/_common/header";
@@ -40,7 +36,7 @@ export default function Show({ id, uri }: any) {
 
     return (
         <>
-            < Header cases={cases} />
+            < Header subject={cases.subject} />
 
             <Container style={{ display: 'block' }}>
                 <Row>
