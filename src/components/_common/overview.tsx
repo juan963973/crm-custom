@@ -1,33 +1,12 @@
 import React from "react";
-import { Col, Row, Card, InputGroup, FormControl } from "react-bootstrap";
-import { useEffect, useState } from "react";
-
-import { detail } from "../../services/caseService";
-import { CaseDetailModel } from '../../models/Case';
+import { Col, Row, Card } from "react-bootstrap";
 
 import HistoryState from "components/_common/historyState"
 import Notes from "components/_common/notes";
 import AttachFiles from "components/_common/attachFiles";
 
-export default function Overview({ page, id }: any) {
-    const [cases, setCases] = useState<CaseDetailModel>({} as CaseDetailModel)
+export default function Overview({ page, id, cases }: any) {
 
-    useEffect(() => {
-
-        detail(page, id)
-
-            .then(data => {
-
-                setCases(data)
-
-            })
-
-            .catch(e => console.log(e));
-
-    }, [])
-
-    let data = cases
-    console.log('cases', cases)
     return (
         <>
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
