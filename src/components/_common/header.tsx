@@ -60,7 +60,7 @@ export default function Header(props: {subject: any}) {
                             <h4>{props.subject}</h4>
                         </Row>
                     </Col>
-                    <Col sm={3} style={{ marginLeft: 'auto' }}>
+                    <Col sm={2} style={{ marginLeft: 'auto' }}>
                         <Row>
                             <Col > <Button variant="secondary" size="sm">Edit</Button>{' '}</Col>
                             <Col>
@@ -70,7 +70,6 @@ export default function Header(props: {subject: any}) {
                                     <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                                 </DropdownButton>{" "}
                             </Col>
-                            <Col>«  »</Col>
                         </Row>
                     </Col>
                 </Row>
