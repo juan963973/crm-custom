@@ -60,11 +60,11 @@ export default function Header(props: {subject: any}) {
                             <h4>{props.subject}</h4>
                         </Row>
                     </Col>
-                    <Col sm={2} style={{ marginLeft: 'auto' }}>
-                        <Row>
-                            <Col > <Button variant="secondary" size="sm">Edit</Button>{' '}</Col>
+                    <Col sm={2} style={{ marginLeft: 'auto', display: 'flex', justifyContent: 'flex-end' }} align='end'>
+                        <Row align='end' style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                            <Col > <Button variant="secondary" style={{background: '#FFF', color: 'black' }}>Edit</Button>{' '}</Col>
                             <Col>
-                                <DropdownButton size="sm" align="end" id="dropdown-basic-button" title="...">
+                                <DropdownButton variant="secondary"align="end" id="dropdown-basic-button" title="..." style={{background: '#FFF', color: 'black' }}>
                                     <Dropdown.Item href="#/action-1">Clonar</Dropdown.Item>
                                     <Dropdown.Item onClick={deleteHandle}>Eliminar</Dropdown.Item>
                                     <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>

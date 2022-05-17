@@ -59,9 +59,9 @@ export default function Show({ id, uri }: any) {
                         <Row>
                             <Row sm={4} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#edf0f4' }}>
 
-                                <Col sm={4} style={{ width: 'auto', paddingTop: "5px", paddingBottom: "5px" }}>
+                                <Col sm={4} style={{ width: 'auto', paddingTop: "5px", paddingBottom: "5px", marginLeft: '6px' }}>
 
-                                    <Button variant="primary">Visión    </Button>
+                                    <Button variant="primary">Visión general</Button>
                                     {/* 
                                     <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example" className="flex-row" variant="pills">
                                         <Tab eventKey="overview" title="Overview">
