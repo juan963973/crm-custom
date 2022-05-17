@@ -81,7 +81,7 @@ export default function Show({ id, uri }: any) {
                                     backgroundColor: "#edf0f4",
                                 }}
                             >
-                                <Overview page={page} id={id} />
+                                <Overview page={page} id={id} cases={cases}/>
                             </Row>
                         </Row>
                     </Col>
