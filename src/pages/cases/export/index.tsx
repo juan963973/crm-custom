@@ -11,6 +11,8 @@ import "rsuite/dist/rsuite.min.css";
 import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
 
+import {canAccess} from "auth/canAccess"
+
 export default function Show() {
     const styles = {
         radioGroupLabel: {
@@ -43,54 +45,55 @@ export default function Show() {
 
     return (
         <>
-
-            <Container className="p-3 mb-3 bg-white rounded mt-2">
-                <ToastContainer />
-                <Row style={{ marginTop: '50px' }}>
-                    <Col sm={5}>
-                        <Row>
-                            <h4>Reporte para el BCP</h4>
-                        </Row>
-                    </Col>
-                </Row>
-            </Container>
-
-            <Container>
-                <Row style={{ backgroundColor: '#edf0f4' }}>
-                    <Row style={{ width: '600px' }}>
-                        <Row sm={4} style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-
-                            <Col sm={4} style={{ width: 'auto', paddingTop: "5px", paddingBottom: "5px" }}>
-
-                                <Row> <h6>Fecha</h6></Row>
+            {canAccess(`/cases/visitreport`) && (
+                <>
+                    <Container className="p-3 mb-3 bg-white rounded mt-2">
+                        <ToastContainer />
+                        <Row style={{ marginTop: '50px' }}>
+                            <Col sm={5}>
                                 <Row>
-                                    <Panel>
-                                        <Form>
-                                            <Form.Group controlId="dateRangePicker">
-                                                <Form.ControlLabel>Seleccione un rango de fechas:</Form.ControlLabel>
-                                                <Form.Control name="dateRangePicker" accepter={DateRangePicker} />
-                                            </Form.Group>
+                                    <h4>Reporte para el BCP</h4>
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Container>
+
+                    <Container>
+                        <Row style={{ backgroundColor: '#edf0f4' }}>
+                            <Row style={{ width: '600px' }}>
+                                <Row sm={4} style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+
+                                    <Col sm={4} style={{ width: 'auto', paddingTop: "5px", paddingBottom: "5px" }}>
+
+                                        <Row> <h6>Fecha</h6></Row>
+                                        <Row>
+                                            <Panel>
+                                                <Form>
+                                                    <Form.Group controlId="dateRangePicker">
+                                                        <Form.ControlLabel>Seleccione un rango de fechas:</Form.ControlLabel>
+                                                        <Form.Control name="dateRangePicker" accepter={DateRangePicker} />
+                                                    </Form.Group>
 
 
-                                        </Form>
-                                    </Panel>
+                                                </Form>
+                                            </Panel>
+                                        </Row>
+
+                                    </Col>
+
                                 </Row>
 
-                            </Col>
 
+                            </Row>
+                            <Row style={{ marginTop: '25px', marginBottom: '60px' }}>
+                                <Col sm={2} style={{ marginLeft: '200px', width: '600px' }}>
+                                    <Button onClick={handleSubmit}>Exportar</Button>
+                                </Col>
+                            </Row>
                         </Row>
-
-
-                    </Row>
-                    <Row style={{ marginTop: '25px', marginBottom: '60px' }}>
-                        <Col sm={2} style={{ marginLeft: '200px', width: '600px' }}>
-                            <Button onClick={handleSubmit}>Exportar</Button>
-                        </Col>
-                    </Row>
-                </Row>
-            </Container >
-
-
+                    </Container >
+                </>
+            )}
             <Container className="p-3 mb-3 bg-white rounded mt-2">
                 <ToastContainer />
                 <Row style={{ marginTop: '50px' }}>

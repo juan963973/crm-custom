@@ -45,9 +45,9 @@ export default function CallToActions({params}:any) {
                         }
                     </div>
                 </Button>
-                {/* {canAccess(`${module}/new`) && ( */}
+                {canAccess(`${module}/visitreport`) && (
                     <Button onClick={exportCase} variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }}>Tablero {ModuleText}</Button>
-                {/* )} */}
+                )}
                 {canAccess(`${module}/new`) && (
                     <Button onClick={goToCreate}>Crear {ModuleText}</Button>
                 )}

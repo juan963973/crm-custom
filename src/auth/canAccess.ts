@@ -1,5 +1,4 @@
 export const canAccess = (url:string, type:string = "") => {
-    
     let auth
     if (typeof window !== 'undefined') {
         auth = localStorage?.getItem('auth')
