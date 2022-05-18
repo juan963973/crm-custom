@@ -1,5 +1,4 @@
 import {
-  Container,
   Row,
   Col,
   Form,
@@ -15,22 +14,22 @@ const Forms = ({
   reference,
   dataPromoter,
   caseData,
-  params,
-  paramsRequired
+  paramsRequired,
+  cascade
 }: any) => {
   const styles = {
     disable: {
       background: "white",
     },
     required:{
-      borderLeftColor:"#E74C3C"
+      borderLeft:"4px solid #E74C3C"
     },
     complete:{
       borderLeftColor:"gray"
     },
     multiple:{
       required:{
-        borderLeftColor:"#E74C3C",
+        borderLeft:"4px solid #E74C3C",
         width: "100%"
       },
       complete:{
@@ -44,7 +43,6 @@ const Forms = ({
   };
 
   return (
-    <>
       <div className="container-fluid" style={{ marginTop: "126px" }}>
         <div style={{ paddingLeft: "25px" }} >
           <Row className="mt-100" style={{ marginBottom: 30 }}>
@@ -199,8 +197,8 @@ const Forms = ({
               <Col sm={4}></Col>
             </Row>
           </Row>
-
-          <Row style={{ marginBottom: 30 }}>
+          
+          {/* <Row style={{ marginBottom: 30 }}>
             <Row>
               <Col style={{ marginBottom: 10 }}>
                 {" "}
@@ -259,7 +257,7 @@ const Forms = ({
                 </InputGroup>
               </Col>
             </Row>
-          </Row>
+          </Row> */}
 
           <Row style={{ marginBottom: 30 }}>
             <Row style={{ marginBottom: 10 }}>
@@ -292,7 +290,7 @@ const Forms = ({
               <Col>Subtipo</Col>
               <Col sm={4} align="start">
                 <MultipleSelect
-                  endpoint={"Search/subtypes"}
+                  endpoint={cascade.subtypeId}
                   onChange={handleChange}
                   keyFilter={"subtypeId"}
                   value={caseData.subtypeId}
@@ -312,7 +310,7 @@ const Forms = ({
               <Col>Tipificación</Col>
               <Col sm={4} align="start">
                 <MultipleSelect
-                  endpoint={"Search/typifications"}
+                  endpoint={cascade.typificationId}
                   onChange={handleChange}
                   keyFilter={"typificationId"}
                   value={caseData.typificationId}
@@ -394,13 +392,11 @@ const Forms = ({
                   keyFilter={"originId"}
                   value={caseData.originId}
                   defaultValue="MOSTRADOR"
-                  params={params}
                   styleRequired={styles.required}
-                  required={!caseData.originId?true:false}
-                  //changeStatus={changeStatus}
+                  paramsRequired={paramsRequired.originValid}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Origen de Caso no puede estar vacío
+                  Origen de caso no puede estar vacío
                 </Form.Control.Feedback>
               </Col>
 
@@ -435,9 +431,9 @@ const Forms = ({
                   keyFilter={"caseStatusId"}
                   value={caseData.caseStatusId}
                   defaultValue="ASIGNACION"
-                  params={params}
                   styleRequired={styles.required}
                   required={!caseData.caseStatusId?true:false}
+                  paramsRequired={paramsRequired.statusValid}
                 />
                 <Form.Control.Feedback type="invalid">
                     Estado no puede estar vacío
@@ -486,7 +482,7 @@ const Forms = ({
               </Col>
               <Col>Oficial Negocio</Col>
               <Col sm={4}>
-                <InputGroup className="mb-2">
+                {/* <InputGroup className="mb-2">
                   <FormControl
                     aria-label="Default"
                     aria-describedby="inputGroup-sizing-default"
@@ -494,7 +490,13 @@ const Forms = ({
                     onChange={(e) => handleChange(e)}
                     defaultValue={caseData.businessOfficer}
                   />
-                </InputGroup>
+                </InputGroup> */}
+                <MultipleSelect
+                  endpoint={"Search/clerks"}
+                  onChange={handleChange}
+                  keyFilter={"businessOfficerId"}
+                  value={reference.officialId}
+                />
               </Col>
             </Row>
 
@@ -604,7 +606,6 @@ const Forms = ({
           </Row>
         </div>
       </div>
-    </>
   );
 };
 

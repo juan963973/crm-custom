@@ -1,59 +1,55 @@
 import {
-    Button, Col, Container, Form, Row, Card, InputGroup, FormControl,
-    ButtonGroup, ToggleButton, Nav, Tabs, Tab
+    Button,
+    Col,
+    Container,
+    Row
 } from "react-bootstrap";
-import { useRouter } from 'next/router'
-import { useState } from "react";
-import React, { forwardRef, useRef } from 'react'
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import React from "react";
 import { CaseDetailModel } from ".../../models/Case";
 import Overview from "components/_common/overview";
+import { detail } from "services/caseService";
+
+import HeaderCases from "components/_common/header-cases";
 
 const page = "cases";
 
 export default function Show({ id, uri }: any) {
     const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
+    useEffect(() => {
+
+        detail(page, id)
+
+            .then(data => {
+
+                setCases(data)
+
+            })
+
+            .catch(e => console.log(e));
+
+    }, [])
     const router = useRouter()
-    // const id = id
 
     let data = cases
 
     return (
         <>
-
-            <Container className="shadow-sm p-3 mb-3 bg-white rounded mt-2">
-                <Row style={{marginTop: '50px'}}>
-                    <Col sm={2}  >
-                        <h4>
-                            ←
-                        </h4>
-                    </Col>
-                    <Col sm={5} style={{ marginLeft: '-13%' }}>
-                        <Row>
-                            <h4>HABILITACIÓN DE SOBREGIRO</h4>
-                        </Row>
-                        <Row>
-                            <h6>DESCRIPCIÓN</h6>
-                        </Row>
-                    </Col>
-                    <Col align="end">
-                        <Button variant="secondary">Edit</Button>{' '}
-                        <Button variant="secondary">...</Button>{' '}
-                        «
-                        »
-                    </Col>
-                </Row>
-            </Container>
+            < HeaderCases subject={cases.subject} />
 
             <Container style={{ display: 'block' }}>
                 <Row>
                     <Col sm={2}>
                         <b>Lista relacionada</b>
-                        <p>Notas</p>
-                        <p>Historial de Estado</p>
-                        <p>Adjuntos</p>
-                        <p>Actividades abiertas</p>
-                        <p>Actividades cerradas</p>
-                        <p>Enlaces</p>
+                        <Col>
+                            <div><a href="#notes" style={{ textDecoration: 'none' }}>Notas</a></div>
+                            <div><a href="#historyState" style={{ textDecoration: 'none' }}>Historial de Estado</a></div>
+                            <div><a href="#attachments" style={{ textDecoration: 'none' }}>Adjuntos</a></div>
+                            <div><a href="#openActivities" style={{ textDecoration: 'none' }}>Actividades abiertas</a></div>
+                            <div> <a href="#closedActivities" style={{ textDecoration: 'none' }}>Actividades cerradas</a></div>
+                            {/* <div><p>Enlaces</p></div> */}
+                        </Col>
                         {/* <p className="text-primary">Add link</p> */}
                     </Col>
 
@@ -63,7 +59,7 @@ export default function Show({ id, uri }: any) {
                         <Row>
                             <Row sm={4} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#edf0f4' }}>
 
-                                <Col sm={4} style={{ width: 'auto' }}>
+                                <Col sm={4} style={{ width: 'auto', paddingTop: "5px", paddingBottom: "5px", marginLeft: '6px' }}>
 
                                     <Button variant="primary">Visión general</Button>
                                     {/* 
@@ -78,32 +74,30 @@ export default function Show({ id, uri }: any) {
                                 </Col>
                             </Row>
 
-                            <Row style={{
-                                maxHeight: "25rem", overflow: "auto", backgroundColor: '#edf0f4'
-                            }}>
-                                <Overview page={page} id={id} />
+                            <Row
+                                style={{
+                                    maxHeight: "25rem",
+                                    overflow: "auto",
+                                    backgroundColor: "#edf0f4",
+                                }}
+                            >
+                                <Overview page={page} id={id} cases={cases}/>
                             </Row>
-
-
-
                         </Row>
                     </Col>
                 </Row>
             </Container>
-
-
         </>
-    )
+    );
 }
 
 export async function getServerSideProps(req: any, res: any) {
     const {
-      query: { id },
-      resolvedUrl,
+        query: { id },
+        resolvedUrl,
     } = req;
     const uri = resolvedUrl.split("/")[1];
-    console.log('id', id)
     return {
-      props: { id, uri },
+        props: { id, uri },
     };
-  }
+}

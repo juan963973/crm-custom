@@ -16,6 +16,10 @@ export default function CallToActions({params}:any) {
 
     const goToCreate = () => router.push(`${module}/new`)
 
+    const exportCase = () => {
+        window.open("http://localhost:3000/cases/export");
+    }
+
     return (
         <>
             <Col xs={1} style={{width: '65px'}} >
@@ -31,6 +35,7 @@ export default function CallToActions({params}:any) {
             {/* <Col align='end'>
                 
             </Col>  */}
+            
             <Col align='end'>
                 <Button variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }} onClick={toggleViewKanban}>
                     <div>
@@ -40,7 +45,10 @@ export default function CallToActions({params}:any) {
                         }
                     </div>
                 </Button>
-                {canAccess(`${module}/new`, "") && (
+                {/* {canAccess(`${module}/new`) && ( */}
+                    <Button onClick={exportCase} variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }}>Tablero {ModuleText}</Button>
+                {/* )} */}
+                {canAccess(`${module}/new`) && (
                     <Button onClick={goToCreate}>Crear {ModuleText}</Button>
                 )}
             </Col>

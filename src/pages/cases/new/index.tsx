@@ -8,12 +8,13 @@ import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import HeaderForms from "components/_common/header-forms";
 
-function New({ module }: any) {
+function New({ module, query }: any) {
   const [casesData, setCasesData] = useState<CreateCaseModel>({
     callDirectionId: 1,
     contactId: null,
     companyId: null,
   } as CreateCaseModel);
+  
   const [dataReference, setDataReference] = useState({
     documentTypeName: "",
     email: "",
@@ -22,6 +23,7 @@ function New({ module }: any) {
     branchName: null,
     phone: "",
     mobile: "",
+    officialId: null,
   });
 
   const [dataPromoter, setDataPromoter] = useState({
@@ -30,21 +32,34 @@ function New({ module }: any) {
     mobile: "",
   });
 
+  const [endpointCascade, setEndpointCascade] = useState({
+    subtypeId: "Search/subtypes",
+    typificationId: "Search/typifications",
+  });
+
   const [validated, setValidated] = useState(false);
-  const [customerValid, setCustomerValid] = useState(false)
+  const [customerValid, setCustomerValid] = useState(false);
+  const [originValid, setOriginValid] = useState(false);
+  const [statusValid, setStatusValid] = useState(false);
   const [requiredType, setRequiredType] = useState(false);
   const [requiredSubType, setRequiredSubType] = useState(false);
+  const [requiredResolverArea, setRequiredResolverArea] = useState(false);
   const [requiredTipifications, setRequiredTipifications] = useState(false);
+  var arrayData:any;
+
   const router = useRouter();
+    
 
   if (typeof window !== "undefined") {
     injectStyle();
   }
 
-  const handleChange = (e: any, name: string | null = null) => {
+  const handleChange = async (e: any, name: string | null = null) => {
     if (!name) {
       let key = e.target.name;
       let value;
+      let page = "";
+
       switch (e.target.type) {
         case "checkbox":
           value = e.target.checked;
@@ -60,29 +75,78 @@ function New({ module }: any) {
           value = e.target.value;
           break;
       }
+
       if (key == "contactId" || key == "companyId" || key == "promoterId") {
-        completeField(key, value);
+        await completeField(key, value);
+      } else {
+        if (key == "typeId") {
+          page = `Search/subtypes?${key}=${value}`;
+          setEndpointCascade({ ...endpointCascade, subtypeId: page });
+        }
+
+        if (key == "subtypeId") {
+          page = `Search/typifications?${key}=${value}`;
+          setEndpointCascade({ ...endpointCascade, typificationId: page });
+        }
+
+        setCasesData({ ...casesData, [key]: value });
       }
-      setCasesData({ ...casesData, [key]: value });
       return;
     } else {
-      setCasesData({ ...casesData, [name]: e });
+      if(query.data){
+        const {id, view} = JSON.parse(query.data);
+        let value = {...casesData,[view]:id}
+        arrayData = {...arrayData,...value};
+        if(view == "contactId"){
+          const res: any = await refenceField("Info/cases/contact-info", id);
+          setDataReference(res);
+          arrayData = {...arrayData,businessOfficerId: res.officialId}
+        }else if(view=="companyId"){
+          const res: any = await refenceField("Info/cases/company-info", id);
+          setDataReference(res);
+          arrayData = {...arrayData,businessOfficerId: res.officialId}
+        }
+      }
+      arrayData = {...arrayData,[name]: e };
+      setCasesData({ ...casesData, ...arrayData});      
       return;
     }
   };
 
   const completeField = async (key: any, value: any) => {
     let page;
+
     switch (key) {
       case "companyId":
-        page = "Info/cases/contact-info";
+        page = "Info/cases/company-info";
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);
             setDataReference(res);
+            setCasesData({
+              ...casesData,
+              businessOfficerId: res.officialId,
+              [key]: value,
+            });
           } catch (error) {
             console.log(error);
           }
+        } else {
+          setCasesData({
+            ...casesData,
+            businessOfficerId: null,
+            [key]: value,
+          });
+          setDataReference({
+            documentTypeName: "",
+            email: "",
+            clientCode: "",
+            documentNumber: "",
+            branchName: null,
+            phone: "",
+            mobile: "",
+            officialId: null,
+          });
         }
 
         break;
@@ -91,11 +155,31 @@ function New({ module }: any) {
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);
-            console.log(res);
             setDataReference(res);
+            setCasesData({
+              ...casesData,
+              businessOfficerId: res.officialId,
+              [key]: value,
+            });
           } catch (error) {
             console.log(error);
           }
+        } else {
+          setCasesData({
+            ...casesData,
+            businessOfficerId: null,
+            [key]: value,
+          });
+          setDataReference({
+            documentTypeName: "",
+            email: "",
+            clientCode: "",
+            documentNumber: "",
+            branchName: null,
+            phone: "",
+            mobile: "",
+            officialId: null,
+          });
         }
         break;
       case "promoterId":
@@ -103,6 +187,7 @@ function New({ module }: any) {
         try {
           const res: any = await refenceField(page, value);
           setDataPromoter(res);
+          setCasesData({ ...casesData, [key]: value });
         } catch (error) {
           console.log(error);
         }
@@ -112,10 +197,6 @@ function New({ module }: any) {
     }
   };
 
-  // const changeStatus = (name:any, value:any) =>{
-  //   setCasesData({ ...casesData, [name]: value });
-  // }
-
   const handleClose = () => {
     window.history.back();
   };
@@ -123,7 +204,7 @@ function New({ module }: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const form = e.currentTarget;
-    console.log(form)
+    console.log(form);
     if (form.checkValidity() === false) {
       console.log("Falta Validar");
     } else {
@@ -131,43 +212,55 @@ function New({ module }: any) {
       let validation = true;
       try {
         if (casesData.companyId == null && casesData.contactId == null) {
-          toast.error("Los campos obligatorios no pueden estar vacios!", {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
           validation = false;
-          setCustomerValid(true)
-        }else{
-          setCustomerValid(false)
+          setCustomerValid(true);
+        } else {
+          setCustomerValid(false);
         }
-        
+
         if (!casesData.typeId) {
           setRequiredType(true);
           validation = false;
-        }else{
+        } else {
           setRequiredType(false);
-        } 
+        }
 
         if (!casesData.subtypeId) {
           setRequiredSubType(true);
-          validation= false;
-        }else{
+          validation = false;
+        } else {
           setRequiredSubType(false);
         }
-        
+
         if (!casesData.typificationId) {
           setRequiredTipifications(true);
           validation = false;
-        }else{
+        } else {
           setRequiredTipifications(false);
         }
 
-        if(validation) {
+        if (!casesData.resolutionAreaIds) {
+          setRequiredResolverArea(true);
+          validation = false;
+        } else {
+          setRequiredResolverArea(false);
+        }
+
+        if (!casesData.caseStatusId) {
+          setStatusValid(true);
+          validation = false;
+        } else {
+          setStatusValid(false);
+        }
+
+        if (!casesData.originId) {
+          setOriginValid(true);
+          validation = false;
+        } else {
+          setOriginValid(false);
+        }
+
+        if (validation) {
           await create(page, casesData);
           toast.success("Se ha guardado con exito!", {
             position: "top-center",
@@ -189,39 +282,35 @@ function New({ module }: any) {
     setValidated(true);
   };
 
-  const params = {
-    setCasesData,
-    casesData,
-  };
-
   const paramsRequired = {
     requiredType,
     requiredSubType,
     requiredTipifications,
-    customerValid
+    customerValid,
+    requiredResolverArea,
+    originValid,
+    statusValid,
   };
 
   return (
     <>
-      <Form
-        noValidate
-        validated={validated}
-        onSubmit={handleSubmit}
-      >
-        <div className="shadow-sm p-3 mb-5 bg-white rounded container-fluid" style={{zIndex: 9999, marginTop: "-71px", position: "fixed" }}>
-          <HeaderForms title="Crear Caso" handleClose={handleClose} />
-          <ToastContainer />
-        </div>
-
-        <Forms
-          handleChange={handleChange}
-          reference={dataReference}
-          dataPromoter={dataPromoter}
-          caseData={casesData}
-          params={params}
-          paramsRequired={paramsRequired}
-        />
-      </Form>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <div
+            className="shadow-sm p-3 mb-5 bg-white rounded container-fluid"
+            style={{ zIndex: 9, marginTop: "-71px", position: "fixed" }}
+          >
+            <HeaderForms title="Crear Caso" handleClose={handleClose} />
+            <ToastContainer />
+          </div>
+          <Forms
+            handleChange={handleChange}
+            reference={dataReference}
+            dataPromoter={dataPromoter}
+            caseData={casesData}
+            paramsRequired={paramsRequired}
+            cascade={endpointCascade}
+          />
+        </Form>
     </>
   );
 }
@@ -230,5 +319,6 @@ export default New;
 
 export function getServerSideProps(req: any, res: any) {
   const module = req.resolvedUrl;
-  return { props: { module } };
+  const query = req.query
+  return { props: { module, query } };
 }

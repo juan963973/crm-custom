@@ -18,7 +18,10 @@ export default function Show() {
 
     let data: any = getCompanyData(id)
 
-    let dataId = id
+    let dataIdCase = {
+        id: id,
+        view: 'companyId'
+    }
 
     return (
         <>
@@ -87,7 +90,7 @@ export default function Show() {
                             <Row style={{
                                 maxHeight: "25rem", overflow: "auto", backgroundColor: '#edf0f4'
                             }}>
-                                <Overview2 page={page} id={id} dataId={dataId}/>
+                                <Overview2 page={page} id={id} dataIdCase={dataIdCase}/>
                             </Row>
 
 
