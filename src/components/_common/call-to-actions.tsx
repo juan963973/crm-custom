@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { Col, Row, Button } from "react-bootstrap";
 import { FaFilter, FaList, FaColumns } from 'react-icons/fa';
 import FilteringResolvers from "components/_common/filtering-resolvers";
-
+import { canAccess } from 'auth/canAccess';
 
 export default function CallToActions({params}:any) {
     const {ModuleText, textList, textKanban, setViewFilter, setViewKanban, viewFilter, viewKanban, module} = params
@@ -40,7 +40,9 @@ export default function CallToActions({params}:any) {
                         }
                     </div>
                 </Button>
-                <Button onClick={goToCreate}>Crear {ModuleText}</Button>
+                {canAccess(`${module}/new`, "") && (
+                    <Button onClick={goToCreate}>Crear {ModuleText}</Button>
+                )}
             </Col>
         </>
     )

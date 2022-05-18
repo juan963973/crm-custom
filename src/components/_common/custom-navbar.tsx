@@ -2,16 +2,30 @@
 import Link from 'next/link'
 import { Button, Container, Form, FormControl, Nav, NavDropdown } from 'react-bootstrap'
 import Navbar from 'react-bootstrap/Navbar'
+import { useRouter } from 'next/router';
 import { BsFillGearFill, BsFillBellFill, BsSearch, BsCalendarEventFill, BsFillFileEarmarkPlusFill, BsGrid3X3GapFill } from "react-icons/bs"
-import SearchGlobal from './searchGlobal'
 
 import Image from 'next/image'
 import logo from '../../../public/logo.svg'
 
+import SearchGlobal from './searchGlobal'
+import { canAccess } from 'auth/canAccess';
+
+
+
 function CustomNavbar() {
-  // const saved = localStorage.getItem("auth");
-  // const initialValue = JSON.parse(saved);
-  // console.log(initialValue);
+    const router = useRouter();
+
+    const handleLogout = () => {
+      localStorage.removeItem('auth');
+      router.push('/login')
+    }
+
+    const routes = [
+      { url: '/contacts', title: 'Contactos' },
+      { url: '/companies', title: 'Empresas' },
+      { url: '/cases', title: 'Casos' }
+    ]  
 
     return (
       <Navbar bg="dark" variant="dark" expand="lg" fixed="top" style={{ padding: 0 }}>
@@ -30,15 +44,18 @@ function CustomNavbar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link>
-                <Link href="/contacts"><span style={{color:'white'}}>Contactos</span></Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link href="/companies"><span style={{color:'white'}}>Empresas</span></Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link href="/cases"><span style={{color:'white'}}>Casos</span></Link>
-              </Nav.Link>
+              {
+                routes.map((index:any) => (
+                  <>
+                    {canAccess(index?.url, "url") && (
+                      <Nav.Link>
+                        <Link href={index.url}><span style={{color:'white'}}>{index.title}</span></Link>
+                      </Nav.Link>
+                    )}
+                  </>
+                  
+                )) 
+              }
               {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -62,9 +79,17 @@ function CustomNavbar() {
               <Nav.Link href="#deets">
                 <BsCalendarEventFill className='icons-navbar' />
               </Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
+              <Nav.Link onClick={handleLogout}>
                 <BsFillGearFill className='icons-navbar' />
               </Nav.Link>
+              {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <BsFillGearFill className='icons-navbar' />
+                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+              </NavDropdown> */}
               <Nav.Link eventKey={2} href="#memes">
                 <BsGrid3X3GapFill className='icons-navbar' />
               </Nav.Link>
