@@ -12,17 +12,10 @@ import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
 
 export default function Login() {
-    const [body, setBody] = useState({ email: '', password: '' })
+    const [body, setBody] = useState({ userName: '', password: '' })
     const router = useRouter();
     const [textButton, setTextButton] = useState('Iniciar Sesión')
     const [btnDisabled, setBtnDisabled] = useState(false)
-
-    // useEffect(() => {
-    //     let auth:any = localStorage.getItem('auth')
-    //     if(auth) {
-    //         router.push('/');
-    //     }
-    // }, [])
 
     const inputChange = ({ target }:any) => {
         const { name, value } = target
@@ -35,10 +28,6 @@ export default function Login() {
     if (typeof window !== "undefined") {
         injectStyle();
     }
-  
-    // function validateForm() {
-    //     setBtnDisabled(body.email.length > 0 && body.password.length > 0);
-    // }
     
     const localStorageSetItem = async (data:any) => {
         await localStorage.setItem('auth', JSON.stringify(data))
@@ -48,7 +37,7 @@ export default function Login() {
         event.preventDefault();
         setTextButton('Iniciando ');
         setBtnDisabled(true);
-        if(body.email.length == 0 || body.password.length == 0) {
+        if(body.userName.length == 0 || body.password.length == 0) {
             toast.error("Los campos son obligatorios!", {
                 position: "top-center",
                 autoClose: 2000,
@@ -64,7 +53,7 @@ export default function Login() {
         }
 
         //TODO: encriptar password
-        axios.get(`https://localhost:5001/v1/api/users/${body.email}/${body.password}`)
+        axios.post('https://localhost:5001/v1/api/users/login', body)
             .then(({ data }) => {
                 localStorageSetItem(data).then(() => router.push('/'))
             }).catch(({ response }) => {
@@ -125,9 +114,9 @@ export default function Login() {
                                 <Form.Control
                                     autoFocus
                                     type='text'
-                                    name='email'
+                                    name='userName'
                                     placeholder='Escriba una dirección de correo electrónico válida'
-                                    value={body.email}
+                                    value={body.userName}
                                     onChange={inputChange}
                                 />
                             </div>
