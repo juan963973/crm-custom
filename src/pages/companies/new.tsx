@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import Forms from "components/case/forms";
 import { CreateCaseModel } from "../../models/Case";
 import { create, refenceField } from "../../services/caseService";
+import FormCompany from "components/company/forms";
+import HeaderForms from "components/_common/header-forms";
+import { toast, ToastContainer } from "react-toastify";
 
 function New() {
   const [casesData, setCasesData] = useState<CreateCaseModel>({
     callDirectionId: 1,
     contactId: null,
-    companyId: null
+    companyId: null,
   } as CreateCaseModel);
   const [dataReference, setDataReference] = useState({
     documentTypeName: "",
@@ -98,53 +100,43 @@ function New() {
     }
   };
 
-
   const handleSubmit = async (e: any) => {
-   const form = e.currentTarget;
+    e.preventDefault();
+    const form = e.currentTarget;
     if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
+      console.log("falta validar")
     } else {
-      let page = "Cases";
-      try {
-        await create(page, casesData);
-      } catch (error) {
-        console.log(error);
-      }
+      toast.success("Se ha guardado con exito!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
+  };
+
+  const handleClose = () => {
+    window.history.back();
   };
 
   return (
     <>
-      <Form noValidate validated={validated} style={{marginTop:'58px'}} onSubmit={handleSubmit}>
-        <Container className="shadow-sm p-3 mb-5 bg-white rounded mt-2">
-          <Row className="justify-content-end">
-            <Col sm={2}>
-              {" "}
-              <h4>Crear caso</h4>{" "}
-            </Col>
-            <Col sm={2}>
-              <Form.Select>
-                <option value="1">Diseños</option>
-                <option value="2">Standard</option>
-                <option value="3">Test</option>
-              </Form.Select>
-            </Col>
-            <Col align="end">
-              <Button variant="secondary">Cancelar</Button>{" "}
-              <Button variant="secondary">Guardar y nuevo</Button>{" "}
-              <Button variant="primary" type="submit">
-                Guardar
-              </Button>{" "}
-            </Col>
-          </Row>
-        </Container>
-        <Forms
-          handleChange={handleChange}
-          reference={dataReference}
-          dataPromoter={dataPromoter}
-          caseData={casesData}
-        />
+      <Form
+        noValidate
+        validated={validated}
+        onSubmit={handleSubmit}
+      >
+        <div
+          className="shadow-sm p-3 mb-5 bg-white rounded container-fluid"
+          style={{ zIndex: 9, marginTop: "-71px", position: "fixed" }}
+        >
+          <HeaderForms title="Crear Empresa" handleClose={handleClose} />
+          <ToastContainer />
+        </div>
+        <FormCompany />
       </Form>
     </>
   );

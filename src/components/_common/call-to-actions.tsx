@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { Col, Row, Button } from "react-bootstrap";
 import { FaFilter, FaList, FaColumns } from 'react-icons/fa';
 import FilteringResolvers from "components/_common/filtering-resolvers";
-
+import { canAccess } from 'auth/canAccess';
 
 export default function CallToActions({params}:any) {
     const {ModuleText, textList, textKanban, setViewFilter, setViewKanban, viewFilter, viewKanban, module} = params
@@ -15,6 +15,10 @@ export default function CallToActions({params}:any) {
     const router = useRouter();
 
     const goToCreate = () => router.push(`${module}/new`)
+
+    const exportCase = () => {
+        window.open("http://localhost:3000/cases/export");
+    }
 
     return (
         <>
@@ -31,6 +35,7 @@ export default function CallToActions({params}:any) {
             {/* <Col align='end'>
                 
             </Col>  */}
+            
             <Col align='end'>
                 <Button variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }} onClick={toggleViewKanban}>
                     <div>
@@ -40,7 +45,12 @@ export default function CallToActions({params}:any) {
                         }
                     </div>
                 </Button>
-                <Button onClick={goToCreate}>Crear {ModuleText}</Button>
+                {canAccess(`${module}/visitreport`) && (
+                    <Button onClick={exportCase} variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }}>Tablero {ModuleText}</Button>
+                )}
+                {canAccess(`${module}/new`) && (
+                    <Button onClick={goToCreate}>Crear {ModuleText}</Button>
+                )}
             </Col>
         </>
     )

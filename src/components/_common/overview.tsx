@@ -1,33 +1,12 @@
 import React from "react";
-import { Col, Row, Card, InputGroup, FormControl } from "react-bootstrap";
-import { useEffect, useState } from "react";
-
-import { detail } from "../../services/caseService";
-import { CaseDetailModel } from '../../models/Case';
+import { Col, Row, Card } from "react-bootstrap";
 
 import HistoryState from "components/_common/historyState"
 import Notes from "components/_common/notes";
 import AttachFiles from "components/_common/attachFiles";
 
-export default function Overview({ page, id }: any) {
-    const [cases, setCases] = useState<CaseDetailModel>({} as CaseDetailModel)
+export default function Overview({ page, id, cases }: any) {
 
-    useEffect(() => {
-
-        detail(page, id)
-
-            .then(data => {
-
-                setCases(data)
-
-            })
-
-            .catch(e => console.log(e));
-
-    }, [])
-
-    let data = cases
-    console.log('cases', cases)
     return (
         <>
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
@@ -41,10 +20,10 @@ export default function Overview({ page, id }: any) {
                             <Col className='d-flex justify-content-end'>Origen del caso</Col>
                             <Col>{cases?.originName ? cases.originName : ' - '}</Col>
                         </Row>
-                        {/* <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
+                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
                             <Col className='d-flex justify-content-end'>Propietario del caso</Col>
                             <Col>{cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}</Col>
-                        </Row> */}
+                        </Row>
                     </Card>
                 </Row>
             </Row>
@@ -93,29 +72,30 @@ export default function Overview({ page, id }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Tipo de Documento</Col>
                                 <Col align="start">
-                                    {cases?.contactDocumentTypeName ? cases.contactDocumentTypeName : ' - '}
+                                    {cases?.clientDocumentTypeName ? cases.clientDocumentTypeName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Correo electronico</Col>
                                 <Col sm={4} align="start">
-                                    example@example.com (en duro)
+                                    {/* {cases?.contactEmail ? cases.contactEmail : ' - '} */}
+                                    ***
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Nro. de Documento Cliente</Col>
                                 <Col align="start">
-                                    {cases?.contactDocumentNumber ? cases.contactDocumentNumber : ' - '}
+                                    {cases?.clientDocumentNumber ? cases.clientDocumentNumber : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Celular</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.contactMobile ? cases.contactMobile : ' - '}
+                                    {cases?.clientMobile ? cases.clientMobile : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Código Cliente</Col>
                                 <Col align="start">
-                                    {cases?.contactClientCode ? cases.contactClientCode : ' - '}
+                                    {cases?.clientClientCode ? cases.clientClientCode : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Teléfono</Col>
@@ -140,23 +120,23 @@ export default function Overview({ page, id }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Nombre y apellido gestor</Col>
                                 <Col align="start">
-                                    {cases?.promoterFullName ? cases.promoterFullName : ' - '}
+                                    {cases?.promotorName ? cases.promotorName : ' - '} - (en duro)
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Nro. de documento gestor</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promoterDocumentNumber ? cases.promoterDocumentNumber : ' - '}
+                                    {cases?.promotorDocumentNumber ? cases.promotorDocumentNumber : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Celular gestor</Col>
                                 <Col align="start">
-                                    {cases?.promoterPhone ? cases.promoterPhone : ' - '}
+                                    {cases?.promotorPhone ? cases.promotorPhone : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Email gestor</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promoterEmail ? cases.promoterEmail : ' - '}
+                                    {cases?.promotorEmail ? cases.promotorEmail : ' - '}
                                 </Col>
                             </Row>
                         </Row>
@@ -183,16 +163,30 @@ export default function Overview({ page, id }: any) {
                             <Row>
                                 <Col> <h6>EXPLICACIÓN DEL CASO</h6> </Col>
                             </Row>
-                            <Row className='mt-200'>
-                                <Col sm={3} style={{ color: 'gray', marginRight: 30 }} >
-                                    <Row className='d-flex justify-content-end'>
-                                    Asunto
+
+
+                            <Row align="end">
+                                <Col style={{ color: 'gray' }}>Asunto</Col>
+                                <Col align="start">
+                                    <Row>
+                                        {cases?.subject ? cases.subject : ' - '}
                                     </Row>
-                                    <Row className='d-flex justify-content-end'>Descripción del Caso</Row>
                                 </Col>
-                                <Col>
-                                    <Row>{cases?.caseStatusName ? cases.caseStatusName : ' - '}</Row>
-                                    <Row>{cases?.description ? cases.description : ' - '}</Row>
+
+                                <Col style={{ color: 'gray' }}>Descripción del caso</Col>
+                                <Col sm={4} align="start">
+                                    {cases?.description ? cases.description : ' - '}
+                                </Col>
+                            </Row>
+                            <Row align="end">
+                                <Col style={{ color: 'gray' }}>Moneda</Col>
+                                <Col align="start">
+                                    {cases?.currencyName ? cases.currencyName : ' - '}
+                                </Col>
+
+                                <Col style={{ color: 'gray' }}>Monto del reclamo</Col>
+                                <Col sm={4} align="start">
+                                    {cases?.claimAmount ? cases.claimAmount : ' - '}
                                 </Col>
                             </Row>
                         </Row>
@@ -220,18 +214,39 @@ export default function Overview({ page, id }: any) {
 
                                 <Col style={{ color: 'gray' }}>Estado</Col>
                                 <Col sm={4} align="start">
-                                {cases?.caseStatusName ? cases.caseStatusName : ' - '}
+                                    {cases?.caseStatusName ? cases.caseStatusName : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Dirección de llamada</Col>
                                 <Col align="start">
-                                    {cases?.callDirection ? cases.callDirection : ' - '}
+                                    {cases?.callDirectionName ? cases.callDirectionName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>id ServiDesk</Col>
                                 <Col sm={4} align="start">
                                     {cases?.idServidesk ? cases.idServidesk : ' - '}
+                                </Col>
+                            </Row>
+                            <Row align="end">
+                                <Col style={{ color: 'gray' }}>Sucursal de recepción</Col>
+                                <Col align="start">
+                                    {cases?.receptionBranchName ? cases.receptionBranchName : ' - '}
+                                </Col>
+
+                                <Col style={{ color: 'gray' }}>Fecha/hora de Recepción</Col>
+                                <Col sm={4} align="start">
+                                    - en duro
+                                </Col>
+                            </Row>
+                            <Row align="end">
+                                <Col style={{ color: 'gray' }}>Sucursal Afectada (Reclamo)</Col>
+                                <Col align="start">
+                                    {cases?.affectedBranchName ? cases.affectedBranchName : ' - '}
+                                </Col>
+
+                                <Col style={{ color: 'gray' }}></Col>
+                                <Col sm={4} align="start">
                                 </Col>
                             </Row>
 
@@ -249,7 +264,7 @@ export default function Overview({ page, id }: any) {
 
                                 <Col style={{ color: 'gray' }}>Oficial negocio</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.businessOfficer ? cases.businessOfficer : ' - '}
+                                    {cases?.businessOfficerUserName ? cases.businessOfficerUserName : ' - '}
                                 </Col>
                             </Row>
                             <Row align="start">
@@ -271,15 +286,15 @@ export default function Overview({ page, id }: any) {
                                     {cases?.solution ? cases.solution : ' - '}
                                 </Col>
 
-                                <Col style={{ color: 'gray' }}>Comentario de Contacto / Cierre</Col>
+                                <Col style={{ color: 'gray' }}>Comentario de Cierre del Caso</Col>
                                 <Col sm={4} align="start">
-                                    -
+                                    {cases?.closedComment ? cases.closedComment : ' - '}
                                 </Col>
                             </Row>
                             <Row sm={4} align="end">
                                 <Col style={{ color: 'gray' }}>Resolución a favor del cliente</Col>
                                 <Col sm={4} align="start">
-                                    -
+                                    {cases?.resolutionClientFavorName ? cases.resolutionClientFavorName : ' - '}
                                 </Col>
                                 {/* <Col style={{ color: 'gray' }}>¿Desea solicitar una prórroga del caso?</Col>
                                 <Col align="start">
@@ -309,7 +324,7 @@ export default function Overview({ page, id }: any) {
                             <Row align="end" sm={4}>
                                 <Col style={{ color: 'gray' }}>Agregar comentarios</Col>
                                 <Col align="start">
-                                    -
+                                    -- (en duro)
                                 </Col>
 
                                 {/* <Col style={{ color: 'gray' }}>Nro. de comentarios</Col>
@@ -416,17 +431,17 @@ export default function Overview({ page, id }: any) {
                                     placeholder="Add a note..."
                                 />
                             </InputGroup> */}
-                            <Notes />
+                            <Notes id={id} />
                         </Row>
                     </Card>
                 </Row>
             </Row>
 
-            <HistoryState statusHistories={cases.statusHistories}/>
+            <HistoryState statusHistories={cases.statusHistories} />
 
-            <AttachFiles id={id} attachments={cases.attachments}/>
+            <AttachFiles id={id} attachments={cases.attachments} />
 
-            
+
 
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
