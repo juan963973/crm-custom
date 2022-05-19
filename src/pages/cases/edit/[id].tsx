@@ -230,7 +230,7 @@ function EditCase({ id, uri }: any) {
             progress: undefined,
           });
           setTimeout(() => {
-            router.push(`/cases`);
+            // router.push(`/cases`);
           }, 2000);
         }
       } catch (error) {
