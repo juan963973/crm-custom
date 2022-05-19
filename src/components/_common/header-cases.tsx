@@ -57,7 +57,7 @@ export default function HeaderCases(props: {subject: any}) {
                     </Col>
                     <Col sm={5} style={{ marginRight: 'auto'}}>
                         <Row>
-                            <h4>{props.subject}</h4>
+                            <h4>{props?.subject ? props.subject : 'Sin datos del asunto'}</h4>
                         </Row>
                     </Col>
                     <Col sm={2} style={{ marginLeft: 'auto', display: 'flex', justifyContent: 'flex-end' }} align='end'>
