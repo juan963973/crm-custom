@@ -26,3 +26,8 @@ export async function saveUpdate(page:any,model:CreateCaseModel): Promise<any[]>
     const res = await axios.put<any[]>(`${process.env.BASE_URL}/${page}`,model)
     return res.data
 }
+
+export async function deleteCase(page:any): Promise<any[]> {
+    const res = await axios.delete<any[]>(`${process.env.BASE_URL}/${page}`)
+    return res.data
+}
