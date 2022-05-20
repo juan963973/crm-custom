@@ -299,7 +299,7 @@ function New({ module, query }: any) {
             className="shadow-sm p-3 mb-5 bg-white rounded container-fluid"
             style={{ zIndex: 9, marginTop: "-71px", position: "fixed" }}
           >
-            <HeaderForms title="Crear Caso" handleClose={handleClose} />
+            <HeaderForms title="Crear Contacto" handleClose={handleClose} />
             <ToastContainer />
           </div>
           <Forms

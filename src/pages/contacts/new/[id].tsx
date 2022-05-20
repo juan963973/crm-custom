@@ -129,7 +129,7 @@ function New({module}:any) {
           <Row className="justify-content-end">
             <Col sm={2}>
               {" "}
-              <h4>CREAR CASO</h4>{" "}
+              <h4>CREAR Contacto</h4>{" "}
             </Col>
             <Col sm={2}>
               <Form.Select>

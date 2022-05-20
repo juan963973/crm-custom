@@ -64,312 +64,62 @@ const Forms = ({
   return (
     <div className="container-fluid" style={{ marginTop: "126px" }}>
       <div style={{ paddingLeft: "25px" }}>
-        <Row className="mt-100" style={{ marginBottom: 30 }}>
+        <Row className="mt-100" style={{ marginBottom: 20 }}>
           <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
-              <h4>CLIENTE</h4>{" "}
+              <h4>DATOS BASICOS</h4>{" "}
             </Col>
           </Row>
           <Row align="end" className="mt-1">
-            <Col>Nombre y Apellido</Col>
-            <Col sm={4} align="start">
-              {/* <MultipleSelect
-                  value={contactData.contactId}
-                  paramsRequired={paramsRequired.customerValid}
-                /> */}
-              <CustomAsyncPaginate
-                searchEndpoint="contacts"
-                disabled={contactData?.companyId !== null}
-                keyFilter={"contactId"}
-                onChange={handleChange}
-                value={async () => {
-                  return await valueField(contactData.contactId, "contactId");
-                }}
-              />
-              <Form.Control.Feedback type="invalid">
-                Ambos campos no pueden estar vacío
-              </Form.Control.Feedback>
-              {/* <CustomAsyncPaginate/> */}
-            </Col>
-
-            <Col>Nombre de Empresa</Col>
-            <Col sm={4} align="start">
-              {/* <MultipleSelect
-                endpoint={"Search/companies"}
-                onChange={handleChange}
-                keyFilter={"companyId"}
-                value={contactData.companyId}
-                disabled={contactData?.contactId !== null}
-                paramsRequired={paramsRequired.customerValid}
-              /> */}
-              <CustomAsyncPaginate
-                searchEndpoint="contacts"
-                disabled={contactData?.contactId !== null}
-                keyFilter={"companyId"}
-                onChange={handleChange}
-                value={async () => {
-                  return await valueField(contactData.companyId, "companyId");
-                }}
-              />
-              <Form.Control.Feedback type="invalid">
-                Ambos campos no pueden estar vacío
-              </Form.Control.Feedback>
-            </Col>
-          </Row>
-        </Row>
-
-        <Row className="mb-200" style={{ marginBottom: 30 }}>
-          <Row>
-            <Col style={{ marginBottom: 10 }}>
-              {" "}
-              <h4>DATOS DEL CLIENTE</h4>{" "}
-            </Col>
-          </Row>
-          <Row align="end" style={{ marginBottom: 10 }}>
-            <Col>Tipo de documento</Col>
-            <Col sm={4} align="start">
-              <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
-                style={styles.disable}
-                disabled
-              />
-            </Col>
-
-            <Col>Correo electrónico</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="email"
-                  defaultValue={reference.email}
-                  style={styles.disable}
-                  disabled
-                />
-              </InputGroup>
-            </Col>
-          </Row>
-
-          <Row align="end" style={{ marginBottom: 10 }}>
-            <Col>Nro. de Documento Cliente</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <Form.Control
-                  type="text"
-                  required
-                  name="contactDocumentNumber"
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  defaultValue={reference.documentNumber}
-                  style={styles.disable}
-                  disabled
-                />
-              </InputGroup>
-            </Col>
-
-            <Col>Celular</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  defaultValue={reference.mobile}
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  style={styles.disable}
-                  disabled
-                />
-              </InputGroup>
-            </Col>
-          </Row>
-
-          <Row align="end" style={{ marginBottom: 10 }}>
-            <Col>Código Cliente</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  defaultValue={reference.clientCode}
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  style={styles.disable}
-                  disabled
-                />
-              </InputGroup>
-            </Col>
-
-            <Col>Teléfono</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  defaultValue={reference.phone}
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  style={styles.disable}
-                  disabled
-                />
-              </InputGroup>
-            </Col>
-          </Row>
-
-          <Row align="end">
-            <Col>Sucursal Cliente</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  defaultValue={reference.branchName}
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  style={styles.disable}
-                  disabled
-                />
-              </InputGroup>
-            </Col>
-            <Col></Col>
-            <Col sm={4}></Col>
-          </Row>
-        </Row>
-
-        {/* <Row style={{ marginBottom: 30 }}>
-            <Row>
-              <Col style={{ marginBottom: 10 }}>
-                {" "}
-                <h4>DATOS DEL CONTACTO</h4>{" "}
-              </Col>
-            </Row>
-            <Row align="end" style={{ marginBottom: 10 }}>
-              <Col>Nombre y Apellido (Gestor)</Col>
-              <Col sm={4} align="start">
-                <MultipleSelect
-                  endpoint={"Search/contacts"}
-                  onChange={handleChange}
-                  keyFilter={"promoterId"}
-                  value={contactData.promoterId}
-                />
-              </Col>
-
-              <Col>Nro. de Documento Gestor</Col>
-              <Col sm={4}>
-                <InputGroup className="mb-2">
-                  <FormControl
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                    defaultValue={dataPromoter.documentNumber}
-                    style={styles.disable}
-                    disabled
-                  />
-                </InputGroup>
-              </Col>
-            </Row>
-
-            <Row align="end">
-              <Col>Celular Gestor</Col>
-              <Col sm={4}>
-                <InputGroup className="mb-2">
-                  <FormControl
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                    defaultValue={dataPromoter.mobile}
-                    style={styles.disable}
-                    disabled
-                  />
-                </InputGroup>
-              </Col>
-
-              <Col>Email Gestor</Col>
-              <Col sm={4}>
-                <InputGroup className="mb-2">
-                  <FormControl
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                    defaultValue={dataPromoter.email}
-                    style={styles.disable}
-                    disabled
-                  />
-                </InputGroup>
-              </Col>
-            </Row>
-          </Row> */}
-
-        <Row style={{ marginBottom: 30 }}>
-          <Row style={{ marginBottom: 10 }}>
-            <Col>
-              {" "}
-              <h4>CLASIFICACIÓN DEL CASO</h4>{" "}
-            </Col>
-          </Row>
-          <Row align="end" className="mb-2" style={{ marginTop: 10 }}>
-            <Col>Tipo</Col>
+            <Col>Tipo de Documento</Col>
             <Col sm={4} align="start">
               <MultipleSelect
                 endpoint={"Search/types"}
                 onChange={handleChange}
                 keyFilter={"typeId"}
                 value={contactData.typeId}
-                styleRequired={styles.required}
-                required={!contactData.typeId ? true : false}
                 paramsRequired={paramsRequired.requiredType}
               />
               <Form.Control.Feedback type="invalid">
                 Tipo no puede estar vacío
               </Form.Control.Feedback>
             </Col>
-            <Col></Col>
-            <Col sm={4}></Col>
-          </Row>
 
-          <Row align="end" className="mb-2" style={{ marginTop: 10 }}>
-            <Col>Subtipo</Col>
+            <Col>Nacionalidad</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={cascade.subtypeId}
+                endpoint={"Search/types"}
                 onChange={handleChange}
-                keyFilter={"subtypeId"}
-                value={contactData.subtypeId}
-                styleRequired={styles.required}
-                required={!contactData.subtypeId ? true : false}
-                paramsRequired={paramsRequired.requiredSubType}
+                keyFilter={"typeId"}
+                value={contactData.typeId}
+                paramsRequired={paramsRequired.requiredType}
               />
               <Form.Control.Feedback type="invalid">
-                Subtipo no puede estar vacío
+                Tipo no puede estar vacío
               </Form.Control.Feedback>
             </Col>
-            <Col></Col>
-            <Col sm={4}></Col>
-          </Row>
-
-          <Row align="end" className="mb-2" style={{ marginTop: 10 }}>
-            <Col>Tipificación</Col>
-            <Col sm={4} align="start">
-              <MultipleSelect
-                endpoint={cascade.typificationId}
-                onChange={handleChange}
-                keyFilter={"typificationId"}
-                value={contactData.typificationId}
-                styleRequired={styles.required}
-                required={!contactData.typificationId ? true : false}
-                paramsRequired={paramsRequired.requiredTipifications}
-              />
-              <Form.Control.Feedback type="invalid">
-                Tipificación no puede estar vacío
-              </Form.Control.Feedback>
-            </Col>
-            <Col></Col>
-            <Col sm={4}></Col>
+              {/* <Col>Nombre de Empresa</Col>
+              <Col sm={4} align="start">
+                <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+              </Col> */}
           </Row>
         </Row>
-
-        <Row style={{ marginBottom: 30 }}>
-          <Row style={{ marginBottom: 10 }}>
-            <Col>
-              {" "}
-              <h4>EXPLICACIÓN DEL CASO</h4>{" "}
-            </Col>
-          </Row>
-          <Row align="end" style={{ marginTop: 10 }}>
-            <Col sm={2}>Asunto</Col>
-            <Col sm={6}>
+        <Row>
+          <Row align="end" style={{ marginBottom: 10 }}>
+            <Col>Nro Documento</Col>
+            <Col sm={4} align="start">
               <InputGroup className="mb-2">
                 <FormControl
                   aria-label="Default"
@@ -385,233 +135,614 @@ const Forms = ({
                 </Form.Control.Feedback>
               </InputGroup>
             </Col>
-            <Col></Col>
-            <Col sm={4}></Col>
+            <Col>Genero Contacto</Col>
+            <Col sm={4} align="start">
+              <MultipleSelect
+                endpoint={"Search/types"}
+                onChange={handleChange}
+                keyFilter={"typeId"}
+                value={contactData.typeId}
+                paramsRequired={paramsRequired.requiredType}
+              />
+              <Form.Control.Feedback type="invalid">
+                Tipo no puede estar vacío
+              </Form.Control.Feedback>
+            </Col>
           </Row>
-
-          <Row align="end" style={{ marginTop: 10 }}>
-            <Col sm={2}>Descripción del Caso</Col>
-            <Col sm={6}>
+          <Row align="end" style={{ marginBottom: 10 }}>
+              <Col>Nombre</Col>
+              <Col sm={4} align="start">
               <InputGroup className="mb-2">
                 <FormControl
-                  as="textarea"
-                  rows={3}
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="description"
+                  name="subject"
                   onChange={(e) => handleChange(e)}
-                  defaultValue={contactData.description}
+                  defaultValue={contactData.subject}
+                  style={!contactData.subject ? styles.required : styles.complete}
+                  required
                 />
+                <Form.Control.Feedback type="invalid">
+                  Asunto no puede estar vacío
+                </Form.Control.Feedback>
               </InputGroup>
+              </Col>
+
+              <Col>Fecha de Nacimiento</Col>
+              <Col sm={4}>
+                <InputGroup className="mb-2">
+                  <FormControl
+                    type="date"
+                    aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default"
+                    name="email"
+                    defaultValue={reference.email}
+                  />
+                </InputGroup>
+              </Col>
+          </Row>
+          <Row align="end" style={{ marginBottom: 10 }}>
+            <Col>Apellidos</Col>
+            <Col sm={4} align="start">
+              <InputGroup className="mb-2">
+                <FormControl
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  name="subject"
+                  onChange={(e) => handleChange(e)}
+                  defaultValue={contactData.subject}
+                  style={!contactData.subject ? styles.required : styles.complete}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  Asunto no puede estar vacío
+                </Form.Control.Feedback>
+              </InputGroup>
+            </Col>
+            <Col>Tipo de Cartera</Col>
+            <Col sm={4} align="start">
+              <MultipleSelect
+                endpoint={"Search/types"}
+                onChange={handleChange}
+                keyFilter={"typeId"}
+                value={contactData.typeId}
+                paramsRequired={paramsRequired.requiredType}
+              />
+              <Form.Control.Feedback type="invalid">
+                Tipo no puede estar vacío
+              </Form.Control.Feedback>
+            </Col>
+          </Row>
+          <Row align="end" style={{ marginBottom: 10 }}>
+            <Col>Estado Civil</Col>
+            <Col sm={4} align="start">
+              <MultipleSelect
+                endpoint={"Search/types"}
+                onChange={handleChange}
+                keyFilter={"typeId"}
+                value={contactData.typeId}
+                paramsRequired={paramsRequired.requiredType}
+              />
+              <Form.Control.Feedback type="invalid">
+                Tipo no puede estar vacío
+              </Form.Control.Feedback>
             </Col>
             <Col></Col>
             <Col sm={4}></Col>
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 30 }}>
-          <Row style={{ marginBottom: 10 }}>
-            <Col>
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
               {" "}
-              <h4>DATOS DEL CASO</h4>{" "}
+              <h4>DATOS DEL CLIENTE</h4>{" "}
             </Col>
           </Row>
-          <Row align="end" style={{ marginBottom: 10 }}>
-            <Col>Origen de Caso</Col>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Codigo Cliente</Col>
             <Col sm={4} align="start">
-              <MultipleSelect
-                endpoint={"Search/origins"}
-                onChange={handleChange}
-                keyFilter={"originId"}
-                value={contactData.originId}
-                defaultValue="MOSTRADOR"
-                styleRequired={styles.required}
-                paramsRequired={paramsRequired.originValid}
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
               />
-              <Form.Control.Feedback type="invalid">
-                Origen de caso no puede estar vacío
-              </Form.Control.Feedback>
             </Col>
 
-            <Col>{/*Propietario de Caso*/}id ServiDesk</Col>
+            <Col>Es Cliente?</Col>
             <Col sm={4} align="start">
-              {/* <MultipleSelect
-                  endpoint={"Search/contact-owner"}
+              <MultipleSelect
+                endpoint={"Search/types"}
+                onChange={handleChange}
+                keyFilter={"typeId"}
+                value={contactData.typeId}
+                paramsRequired={paramsRequired.requiredType}
+              />
+              <Form.Control.Feedback type="invalid">
+                Tipo no puede estar vacío
+              </Form.Control.Feedback>
+            </Col>
+          </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Estado</Col>
+            <Col sm={4} align="start">
+              <MultipleSelect
+                  endpoint={"Search/types"}
                   onChange={handleChange}
-                  keyFilter={"contactOwnerId"}
-                  value={contactData.contactOwnerId}
-                /> */}
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="idServidesk"
-                  onChange={(e) => handleChange(e)}
-                  defaultValue={contactData.idServidesk}
+                  keyFilter={"typeId"}
+                  value={contactData.typeId}
+                  paramsRequired={paramsRequired.requiredType}
                 />
-              </InputGroup>
-            </Col>
-          </Row>
-
-          <Row align="end">
-            <Col sm={2}>
-              <Form.Label>Estado</Form.Label>
-            </Col>
-            <Col sm={4} align="start">
-              <MultipleSelect
-                endpoint={"Search/contact-status"}
-                onChange={handleChange}
-                keyFilter={"contactStatusId"}
-                value={contactData.contactStatusId}
-                defaultValue="ASIGNACION"
-                styleRequired={styles.required}
-                required={!contactData.contactStatusId ? true : false}
-                paramsRequired={paramsRequired.statusValid}
-              />
-              <Form.Control.Feedback type="invalid">
-                Estado no puede estar vacío
-              </Form.Control.Feedback>
-            </Col>
-          </Row>
-
-          <Row align="end">
-            <Col>{/*id ServiDesk*/}</Col>
-            <Col sm={4}>
-              {/* <InputGroup className="mb-2">
-                  <FormControl
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                    name="idServidesk"
-                    onChange={(e) => handleChange(e)}
-                    defaultValue={contactData.idServidesk}
-                  />
-                </InputGroup> */}
+                <Form.Control.Feedback type="invalid">
+                  Tipo no puede estar vacío
+                </Form.Control.Feedback>
             </Col>
 
             <Col></Col>
             <Col sm={4}></Col>
           </Row>
-        </Row>
 
-        <Row style={{ marginBottom: 30 }}>
-          <Row style={{ marginBottom: 10 }}>
-            <Col>
-              {" "}
-              <h4>RESOLUTORES DEL CASO</h4>{" "}
-            </Col>
-          </Row>
-          <Row align="end" style={{ marginBottom: 10 }}>
-            <Col>Áreas Resolutoras</Col>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Tipo Contacto</Col>
             <Col sm={4} align="start">
-              <MultipleArray
-                endpoint="Search/resolver-areas"
-                handleChange={handleChange}
-                keyFilter="resolutionAreaIds"
-                valueData={contactData.resolutionAreaIds}
-                defaultValue="Call Center"
-                styleRequire={styles.multiple.required}
-                //changeStatus={changeStatus}
-              />
-            </Col>
-            <Col>Oficial Negocio</Col>
-            <Col sm={4}>
-              {/* <InputGroup className="mb-2">
-                  <FormControl
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                    name="businessOfficer"
-                    onChange={(e) => handleChange(e)}
-                    defaultValue={contactData.businessOfficer}
-                  />
-                </InputGroup> */}
               <MultipleSelect
-                endpoint={"Search/clerks"}
-                onChange={handleChange}
-                keyFilter={"businessOfficerId"}
-                value={reference.officialId}
-              />
-            </Col>
-          </Row>
-
-          <Row align="end">
-            <Col>Personas Resolutoras</Col>
-            <Col sm={4} align="start">
-              <MultipleArray
-                endpoint="Search/resolvers"
-                handleChange={handleChange}
-                keyFilter="resolverIds"
-                valueData={contactData.resolverIds}
-                styleRequire={styles.multiple.size}
-              />
+                  endpoint={"Search/types"}
+                  onChange={handleChange}
+                  keyFilter={"typeId"}
+                  value={contactData.typeId}
+                  paramsRequired={paramsRequired.requiredType}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Tipo no puede estar vacío
+                </Form.Control.Feedback>
             </Col>
 
             <Col></Col>
             <Col sm={4}></Col>
           </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Tipo Cliente</Col>
+            <Col sm={4} align="start">
+              <MultipleSelect
+                  endpoint={"Search/types"}
+                  onChange={handleChange}
+                  keyFilter={"typeId"}
+                  value={contactData.typeId}
+                  paramsRequired={paramsRequired.requiredType}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Tipo no puede estar vacío
+                </Form.Control.Feedback>
+            </Col>
+            <Col></Col>
+            <Col sm={4}></Col>
+          </Row>
+
         </Row>
 
-        <Row style={{ marginBottom: 30 }}>
-          <Row style={{ marginBottom: 10 }}>
-            <Col>
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
               {" "}
-              <h4>RESOLUCIÓN / COMENTARIO</h4>{" "}
+              <h4>DATOS DE CONTACTO</h4>{" "}
             </Col>
           </Row>
-          <Row align="end" style={{ marginBottom: 10 }}>
-            <Col>Solución</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="solution"
-                  onChange={(e) => handleChange(e)}
-                  defaultValue={contactData.solution}
-                />
-              </InputGroup>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Correo electrónico</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
             </Col>
 
-            <Col>Comentario de Contacto / Cierre</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="clientComment"
-                  onChange={(e) => handleChange(e)}
-                  defaultValue={contactData.clientComment}
-                />
-              </InputGroup>
+            <Col>Móvil</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
             </Col>
           </Row>
 
-          <Row align="end">
-            <Col>Desea solicitar una prórroga para el caso?</Col>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Correo electrónico secundario</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+
+            <Col>Telefono Fijo</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+          </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col></Col>
             <Col sm={4}>
+              
+            </Col>
+
+            <Col>Teléfono</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+          </Row>
+
+        </Row>
+
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
+              {" "}
+              <h4>DIRECCION DEL CONTACTO</h4>{" "}
+            </Col>
+          </Row>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Dirección</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+
+            <Col>Departamento Contacto</Col>
+            <Col sm={4} align="start">
+              <MultipleSelect
+                endpoint={"Search/types"}
+                onChange={handleChange}
+                keyFilter={"typeId"}
+                value={contactData.typeId}
+                paramsRequired={paramsRequired.requiredType}
+              />
+            </Col>
+          </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Nro Domicilio</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+
+            <Col>Ciudad</Col>
+            <Col sm={4} align="start">
+              <MultipleSelect
+                endpoint={"Search/types"}
+                onChange={handleChange}
+                keyFilter={"typeId"}
+                value={contactData.typeId}
+                paramsRequired={paramsRequired.requiredType}
+              />
+            </Col>
+          </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Referencia</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+
+            <Col>Barrio</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+          </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Enviar correspondencia a esta dirección?</Col>
+            <Col sm={4} align="start">
               <input
-                type="checkbox"
-                className="input-group-text"
-                name="requestExtension"
-                onChange={(e) => handleChange(e)}
-                checked={
-                  contactData.requestExtension ? contactData.requestExtension : false
-                }
+                  type="checkbox"
+                  className="input-group-text"
+                  name="requestExtension"
+                  onChange={(e) => handleChange(e)}
+                  checked={
+                    contactData.requestExtension ? contactData.requestExtension : false
+                  }
               />
             </Col>
 
-            <Col>Clasificación</Col>
+            <Col></Col>
             <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="qualification"
-                  onChange={(e) => handleChange(e)}
-                  defaultValue={contactData.qualification}
-                />
-              </InputGroup>
+              
             </Col>
           </Row>
+
+        </Row>
+
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
+              {" "}
+              <h4>DATOS LABORALES</h4>{" "}
+            </Col>
+          </Row>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Lugar de Trabajo</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+
+            <Col>Teléfono Laboral</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+          </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Salario Actual</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+
+            <Col>Desea registrar los datos de su asistente?</Col>
+            <Col sm={4} align="start">
+              <input
+                  type="checkbox"
+                  className="input-group-text"
+                  name="requestExtension"
+                  onChange={(e) => handleChange(e)}
+                  checked={
+                    contactData.requestExtension ? contactData.requestExtension : false
+                  }
+              />
+            </Col>
+          </Row>
+        </Row>
+
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
+              {" "}
+              <h4>DATOS EMPRESA</h4>{" "}
+            </Col>
+          </Row>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Nombre de Empresa</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+            </Col>
+
+            <Col>Actividad Economica</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+          </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Empresas Lookup</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+            </Col>
+
+            <Col></Col>
+            <Col sm={4}>
+              
+            </Col>
+          </Row>
+        </Row>
+
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
+              {" "}
+              <h4>DESCRIPCION DEL CONTACTO</h4>{" "}
+            </Col>
+          </Row>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Descripción</Col>
+            <Col sm={4} align="start">
+              {/* <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              /> */}
+              <Form.Control as="textarea"  />
+            </Col>
+
+            <Col>No participación del correo electrónico</Col>
+            <Col sm={4} align="start">
+              <input
+                  type="checkbox"
+                  className="input-group-text"
+                  name="requestExtension"
+                  onChange={(e) => handleChange(e)}
+                  checked={
+                    contactData.requestExtension ? contactData.requestExtension : false
+                  }
+              />
+            </Col>
+          </Row>
+
+        </Row>
+
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
+              {" "}
+              <h4>ATENCION</h4>{" "}
+            </Col>
+          </Row>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Banca</Col>
+            <Col sm={4} align="start">
+              <MultipleSelect
+                endpoint={"Search/types"}
+                onChange={handleChange}
+                keyFilter={"typeId"}
+                value={contactData.typeId}
+                paramsRequired={paramsRequired.requiredType}
+              />
+            </Col>
+
+            <Col>Team Leader</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+            </Col>
+          </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Sucursal BC</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+            </Col>
+
+            <Col>Supervisor</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+            </Col>
+          </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Gerente</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+            </Col>
+
+            <Col>Oficial</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+            </Col>
+          </Row>
+          
         </Row>
 
         <Row style={{ marginBottom: 30 }}>
