@@ -5,11 +5,12 @@ import {
     Row
 } from "react-bootstrap";
 
-import { DateRangePicker, Form, Panel } from "rsuite";
+import { DatePicker, Form, Panel } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 
 import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
+import exportReport from "services/exportReport";
 
 export default function Show() {
     const styles = {
@@ -24,10 +25,6 @@ export default function Show() {
         injectStyle();
     }
 
-    const initFormValue = {
-        dateRangePicker: [new Date(), new Date()],
-    };
-
     const handleSubmit = () => {
         toast.success("Será enviado un email con el adjunto solicitado", {
             position: "top-center",
@@ -38,8 +35,12 @@ export default function Show() {
             draggable: true,
             progress: undefined,
         });
-        console.log(initFormValue)
+        exportReport(dayOne, dayTwo)
+        console.log('Rango de fechas ingresada', dayOne, dayTwo)
     }
+
+    let dayOne: string;
+    let dayTwo: string;
 
     return (
         <>
@@ -67,8 +68,20 @@ export default function Show() {
                                     <Panel>
                                         <Form>
                                             <Form.Group controlId="dateRangePicker">
-                                                <Form.ControlLabel>Seleccione un rango de fechas:</Form.ControlLabel>
-                                                <Form.Control name="dateRangePicker" accepter={DateRangePicker} />
+                                                <DatePicker
+                                                    format="MM-dd-yyyy"
+                                                    placeholder="Ingrese rango de fecha desde"
+                                                    oneTap
+                                                    onSelect={(date: { getMonth: () => number; getDate: () => any; getFullYear: () => any; }) => dayOne = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`}
+                                                    
+                                                />
+                                                <DatePicker
+                                                    format="MM-dd-yyyy"
+                                                    placeholder="Ingrese rango de fecha hasta"
+                                                    oneTap
+                                                    onSelect={(date: { getMonth: () => number; getDate: () => any; getFullYear: () => any; }) => dayTwo = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`}
+                                                    
+                                                />
                                             </Form.Group>
 
 
@@ -104,8 +117,8 @@ export default function Show() {
 
             <Container>
                 <Row style={{ backgroundColor: '#edf0f4', justifyContent: 'center' }}>
-                    <Col sm={3} style={{ backgroundColor: '#edf0f4', justifyContent: 'center'  }}>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/pwJuFbyhZFE" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <Col sm={3} style={{ backgroundColor: '#edf0f4', justifyContent: 'center' }}>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/pwJuFbyhZFE" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                     </Col>
 
                 </Row>
