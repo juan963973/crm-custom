@@ -1,7 +1,6 @@
 import axios from "axios"
 import { ReactChild, ReactFragment, ReactPortal, useEffect, useState } from "react"
 import { Card, Col, Row } from "react-bootstrap"
-import AttachFilesLoad from "./AttachFilesLoad"
 
 export default function HistoryState(cases: any) {
 
