@@ -10,33 +10,33 @@ import { RouteGuard } from '../auth/RouteGuard';
 import axios from 'axios';
 
 // const instance = axios.create();
-axios.interceptors.request.use(
-    (req) => {
-        let auth:any = localStorage.getItem('auth')
-        if(auth) {
-            auth = JSON.parse(auth);
-            req.headers.Authorization = `Bearer ${auth.token.access_token}`;
-        }
-        return req;
-    },
-    (err) => {
-        return Promise.reject(err);
-    }
-);
+// axios.interceptors.request.use(
+//     (req) => {
+//         let auth:any = localStorage.getItem('auth')
+//         if(auth) {
+//             auth = JSON.parse(auth);
+//             req.headers.Authorization = `Bearer ${auth.token.access_token}`;
+//         }
+//         return req;
+//     },
+//     (err) => {
+//         return Promise.reject(err);
+//     }
+// );
 
-// For POST requests
-axios.interceptors.response.use(
-    (res) => {
-        // Add configurations here
-        if (res.status === 201) {
-            console.log('Posted Successfully from interceptor');
-        }
-        return res;
-    },
-    (err) => {
-        return Promise.reject(err);
-    }
-);
+// // For POST requests
+// axios.interceptors.response.use(
+//     (res) => {
+//         // Add configurations here
+//         if (res.status === 201) {
+//             console.log('Posted Successfully from interceptor');
+//         }
+//         return res;
+//     },
+//     (err) => {
+//         return Promise.reject(err);
+//     }
+// );
 
 
 type NextPageWithLayout = NextPage & {
