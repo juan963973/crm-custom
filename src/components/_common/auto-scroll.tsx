@@ -1,21 +1,19 @@
-import React, { useCallback, useState } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 
 import { AsyncPaginate } from "react-select-async-paginate";
 import { seletScroll } from "services/filterService";
 import debounce from "lodash.debounce";
 import { refenceField } from "services/contactService";
+import {A} from "ts-toolbelt";
 
-export const CustomAsyncPaginate = ({ searchEndpoint, disabled, keyFilter, onChange, value }: any) => {
-  //const [value, setValue] = useState(null);
-
-  var options: any = [];
-  var countPage = 0;
-  var countSearch = 0;
-  let keySearch: string = "";
-
-  //console.log(value());
+  export const CustomAsyncPaginate = ({ searchEndpoint, disabled, keyFilter, onChange, defaultValue }: any) => {
+  const [data, setData] = useState(null);
   
-
+  let options: any = [];
+  let countPage = 0;
+  let countSearch = 0;
+  let keySearch: string = "";
+  
   const loadOptions = async (search: any, prevOptions: any) => {
     let filteredOptions;
     console.log(search);
@@ -81,11 +79,12 @@ export const CustomAsyncPaginate = ({ searchEndpoint, disabled, keyFilter, onCha
     keySearch += e.key;
   };
 
-  const changeValue = (e:any) =>{
+  const changeValue = (e:any) => {
     if(e){
+      setData(e)
       const {value, label} = e;
       onChange( value, keyFilter);
-    }else{
+    } else {
       let valueData;
       onChange(valueData=null, keyFilter);
       return;
@@ -95,7 +94,7 @@ export const CustomAsyncPaginate = ({ searchEndpoint, disabled, keyFilter, onCha
   return (
     <AsyncPaginate
       onKeyDown={handleKey}
-      value={value}
+      value={defaultValue ??  data}
       loadOptions={loadOptions}
       onChange={changeValue}
       isDisabled={disabled}

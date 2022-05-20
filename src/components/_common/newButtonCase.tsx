@@ -17,7 +17,7 @@ export default function NewButtonCase({ dataIdCase } : Props) {
             pathname: `/cases/new`,
             query: {
                 data: JSON.stringify(dataIdCase)
-            }
+            },
         }, '/cases/new')
     }
 
