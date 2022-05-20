@@ -44,7 +44,7 @@ type NextPageWithLayout = NextPage & {
 }
 
 type AppPropsWithLayout = AppProps & {
-    // Component: NextPageWithLayout 
+    // Component: NextPageWithLayout
     Component: any
 }
 
