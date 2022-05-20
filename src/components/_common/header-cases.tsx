@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
+import { canAccess } from "auth/canAccess";
 
 export default function HeaderCases(props: {subject: any}) {
 
@@ -66,7 +67,9 @@ export default function HeaderCases(props: {subject: any}) {
                             <Col>
                                 <DropdownButton variant="secondary"align="end" id="dropdown-basic-button" title="..." style={{background: '#FFF', color: 'black' }}>
                                     <Dropdown.Item href="#/action-1">Clonar</Dropdown.Item>
-                                    <Dropdown.Item onClick={deleteHandle}>Eliminar</Dropdown.Item>
+                                    {canAccess(`/cases/delete`) && (
+                                        <Dropdown.Item onClick={deleteHandle}>Eliminar</Dropdown.Item>
+                                    )}
                                     <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                                 </DropdownButton>{" "}
                             </Col>

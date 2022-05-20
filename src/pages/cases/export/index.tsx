@@ -12,6 +12,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
 import exportReport from "services/exportReport";
 
+import {canAccess} from "auth/canAccess"
+
 export default function Show() {
     const styles = {
         radioGroupLabel: {
@@ -44,24 +46,25 @@ export default function Show() {
 
     return (
         <>
-
-            <Container className="p-3 mb-3 bg-white rounded mt-2">
-                <ToastContainer />
-                <Row style={{ marginTop: '50px' }}>
-                    <Col sm={5}>
-                        <Row>
-                            <h4>Reporte para el BCP</h4>
+            {canAccess(`/cases/visitreport`) && (
+                <>
+                    <Container className="p-3 mb-3 bg-white rounded mt-2">
+                        <ToastContainer />
+                        <Row style={{ marginTop: '50px' }}>
+                            <Col sm={5}>
+                                <Row>
+                                    <h4>Reporte para el BCP</h4>
+                                </Row>
+                            </Col>
                         </Row>
-                    </Col>
-                </Row>
-            </Container>
+                    </Container>
 
-            <Container>
-                <Row style={{ backgroundColor: '#edf0f4' }}>
-                    <Row style={{ width: '600px' }}>
-                        <Row sm={4} style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                    <Container>
+                        <Row style={{ backgroundColor: '#edf0f4' }}>
+                            <Row style={{ width: '600px' }}>
+                                <Row sm={4} style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
 
-                            <Col sm={4} style={{ width: 'auto', paddingTop: "5px", paddingBottom: "5px" }}>
+                                    <Col sm={4} style={{ width: 'auto', paddingTop: "5px", paddingBottom: "5px" }}>
 
                                 <Row> <h6>Fecha</h6></Row>
                                 <Row>
@@ -85,25 +88,25 @@ export default function Show() {
                                             </Form.Group>
 
 
-                                        </Form>
-                                    </Panel>
+                                                </Form>
+                                            </Panel>
+                                        </Row>
+
+                                    </Col>
+
                                 </Row>
 
-                            </Col>
 
+                            </Row>
+                            <Row style={{ marginTop: '25px', marginBottom: '60px' }}>
+                                <Col sm={2} style={{ marginLeft: '200px', width: '600px' }}>
+                                    <Button onClick={handleSubmit}>Exportar</Button>
+                                </Col>
+                            </Row>
                         </Row>
-
-
-                    </Row>
-                    <Row style={{ marginTop: '25px', marginBottom: '60px' }}>
-                        <Col sm={2} style={{ marginLeft: '200px', width: '600px' }}>
-                            <Button onClick={handleSubmit}>Exportar</Button>
-                        </Col>
-                    </Row>
-                </Row>
-            </Container >
-
-
+                    </Container >
+                </>
+            )}
             <Container className="p-3 mb-3 bg-white rounded mt-2">
                 <ToastContainer />
                 <Row style={{ marginTop: '50px' }}>
