@@ -19,7 +19,7 @@ const Comment = ({
     const isEditing = activeComment && activeComment.type === 'editing' && activeComment.id === comment.id
     return (
         <Row className="comment" style={{marginBottom: '10px'}}>
-            <Col sm={2}>
+            <Col sm={1} style={{ marginRight: '15px'}}>
                 <div className="comment-image-container">
                     <img src="/userIcon.png" width="60" height="60" />
                 </div>

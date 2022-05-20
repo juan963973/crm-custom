@@ -29,7 +29,7 @@ export default function FilteringResolvers() {
                     onChange={handleChange}
                     className="basic-select"
                     classNamePrefix="select"
-                    placeholder="Seleccione Area Resolutora"
+                    placeholder="Seleccione Área Resolutora"
                 />
             </div>
     )
