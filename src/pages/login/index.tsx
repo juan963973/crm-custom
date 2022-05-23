@@ -53,7 +53,7 @@ export default function Login() {
         }
 
         //TODO: encriptar password
-        axios.post('https://localhost:5001/v1/api/users/login', body)
+        axios.post(`${process.env.BASE_URL}/users/login`, body)
             .then(({ data }) => {
 
                 let data1 = {

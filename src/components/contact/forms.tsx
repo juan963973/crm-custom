@@ -778,6 +778,114 @@ const Forms = ({
           <Row align="end" style={{ marginBottom: 20 }}>
             <Col>Posibles clientes</Col>
             <Col sm={4} align="start">
+                <MultipleArray
+                  endpoint="Search/resolver-areas"
+                  handleChange={handleChange}
+                  keyFilter="resolutionAreaIds"
+                  valueData={contactData.resolutionAreaIds}
+                  defaultValue="Call Center"
+                  styleRequire={styles.multiple.size}
+                  //changeStatus={changeStatus}
+                />
+            </Col>
+
+            <Col></Col>
+            <Col sm={4}>
+              
+            </Col>
+          </Row>
+        </Row>
+
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
+              {" "}
+              <h4>DATOS REGISTRO</h4>{" "}
+            </Col>
+          </Row>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col></Col>
+            <Col sm={4}>
+              
+            </Col>
+            <Col>Propietario de Contacto</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+            </Col>
+          </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col></Col>
+            <Col sm={4}>
+              
+            </Col>
+            <Col>Modificado</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+          </Row>
+        </Row>
+
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
+              {" "}
+              <h4>OTROS CAMPOS</h4>{" "}
+            </Col>
+          </Row>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Gerente Sucursal User</Col>
+            <Col sm={4} align="start">
+                <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+            </Col>
+
+            <Col>Supervisor User</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+            </Col>
+          </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Team Leader User</Col>
+            <Col sm={4} align="start">
               <CustomAsyncPaginate
                   searchEndpoint="contacts"
                   disabled={contactData?.contactId !== null}
@@ -792,11 +900,70 @@ const Forms = ({
                 </Form.Control.Feedback>
             </Col>
 
+            <Col>Oficial User</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+            </Col>
+          </Row>
+          
+        </Row>
+
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
+              {" "}
+              <h4>PRODUCTOS PREAPROBADOS</h4>{" "}
+            </Col>
+          </Row>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Tarjeta Preaprobada</Col>
+            <Col sm={4} align="start">
+              <Form.Control as="textarea"  />
+            </Col>
+
+            <Col>Prestamo Preaprobado</Col>
+            <Col sm={4} align="start">
+              <Form.Control as="textarea"  />
+            </Col>
+          </Row>
+
+        </Row>
+
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
+              {" "}
+              <h4>PRODUCTOS PREAPROBADOS</h4>{" "}
+            </Col>
+          </Row>
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Actualizado</Col>
+            <Col sm={4} align="start">
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col>
+
             <Col></Col>
-            <Col sm={4}>
+            <Col sm={4} align="start">
               
             </Col>
           </Row>
+
         </Row>
       </div>
     </div>
