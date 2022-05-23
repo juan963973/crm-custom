@@ -131,20 +131,13 @@ function New({module, query}: any) {
                     try {
                         const res: any = await refenceField(page, value);
                         setDataReference(res);
-                        setCasesData({
-                            ...casesData,
-                            businessOfficerId: res.officialId,
-                            [key]: value,
-                        });
+                        arrayData = {...arrayData, businessOfficerId: res.officialId}
                     } catch (error) {
                         console.log(error);
                     }
                 } else {
-                    setCasesData({
-                        ...casesData,
-                        businessOfficerId: null,
-                        [key]: value,
-                    });
+                    arrayData = {...arrayData, businessOfficerId: null}
+
                     setDataReference({
                         documentTypeName: "",
                         email: "",
@@ -164,20 +157,13 @@ function New({module, query}: any) {
                     try {
                         const res: any = await refenceField(page, value);
                         setDataReference(res);
-                        setCasesData({
-                            ...casesData,
-                            businessOfficerId: res.officialId,
-                            [key]: value,
-                        });
+                        arrayData = {...arrayData, businessOfficerId: res.officialId}
                     } catch (error) {
                         console.log(error);
                     }
                 } else {
-                    setCasesData({
-                        ...casesData,
-                        businessOfficerId: null,
-                        [key]: value,
-                    });
+                    arrayData = {...arrayData, businessOfficerId: null}
+
                     setDataReference({
                         documentTypeName: "",
                         email: "",

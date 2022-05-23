@@ -278,6 +278,7 @@ const Forms = ({
             <Col>Tipo</Col>
             <Col sm={4} align="start">
               <MultipleSelect
+                  placeholder={"Tipos"}
                 endpoint={"Search/types"}
                 onChange={handleChange}
                 keyFilter={"typeId"}
@@ -479,6 +480,7 @@ const Forms = ({
             <Col>Áreas Resolutoras</Col>
             <Col sm={4} align="start">
               <MultipleArray
+                  placeholder={"Areas Resolutoras"}
                 endpoint="Search/resolver-areas"
                 handleChange={handleChange}
                 keyFilter="resolutionAreaIds"
@@ -512,6 +514,7 @@ const Forms = ({
             <Col>Personas Resolutoras</Col>
             <Col sm={4} align="start">
               <MultipleArray
+                  placeholder={"Personas Resolutoras"}
                 endpoint="Search/resolvers"
                 handleChange={handleChange}
                 keyFilter="resolverIds"
