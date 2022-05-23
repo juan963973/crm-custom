@@ -37,7 +37,7 @@ export default function Login() {
         event.preventDefault();
         setTextButton('Iniciando ');
         setBtnDisabled(true);
-        if(body.userName.length == 0 || body.password.length == 0) {
+        if (body.userName.length == 0 || body.password.length == 0) {
             toast.error("Los campos son obligatorios!", {
                 position: "top-center",
                 autoClose: 2000,
@@ -46,7 +46,7 @@ export default function Login() {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-            });            
+            });
             setTextButton('Iniciar Sesión');
             setBtnDisabled(false);
             return
