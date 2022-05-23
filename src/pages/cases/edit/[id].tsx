@@ -230,7 +230,7 @@ function EditCase({ id, uri }: any) {
             progress: undefined,
           });
           setTimeout(() => {
-            // router.push(`/cases`);
+            router.push(`/cases`);
           }, 2000);
         }
       } catch (error) {
@@ -268,8 +268,8 @@ function EditCase({ id, uri }: any) {
           style={{ zIndex: 9, marginTop: "-71px", position: "fixed" }}
         >
           <HeaderForms title="Editar Caso" handleClose={handleClose} />
-          <ToastContainer />
         </div>
+        <ToastContainer />
         <Forms
           handleChange={handleChange}
           reference={dataReference}
