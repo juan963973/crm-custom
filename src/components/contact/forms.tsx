@@ -745,27 +745,57 @@ const Forms = ({
           
         </Row>
 
-        <Row style={{ marginBottom: 30 }}>
-          <Row style={{ marginBottom: 10 }}>
-            <Col>
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
               {" "}
-              <h4>DATOS ADICIONALES</h4>{" "}
+              <h4>DATOS LEADS</h4>{" "}
             </Col>
           </Row>
-          <Row align="end">
-            <Col>Carga de archivo</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  type="file"
-                  name="attachmentFile"
-                  onChange={(e) => handleChange(e)}
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Fuente de Posible cliente</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
                 />
-              </InputGroup>
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
             </Col>
 
             <Col></Col>
-            <Col sm={4}></Col>
+            <Col sm={4}>
+              
+            </Col>
+          </Row>
+
+          <Row align="end" style={{ marginBottom: 20 }}>
+            <Col>Posibles clientes</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="contacts"
+                  disabled={contactData?.contactId !== null}
+                  keyFilter={"companyId"}
+                  onChange={handleChange}
+                  value={async () => {
+                    return await valueField(contactData.companyId, "companyId");
+                  }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Ambos campos no pueden estar vacío
+                </Form.Control.Feedback>
+            </Col>
+
+            <Col></Col>
+            <Col sm={4}>
+              
+            </Col>
           </Row>
         </Row>
       </div>
