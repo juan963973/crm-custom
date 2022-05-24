@@ -4,6 +4,7 @@ import "rsuite/dist/rsuite.min.css";
 import MultipleArray from "components/_common/array-select";
 import { CustomAsyncPaginate } from "components/_common/auto-scroll";
 import { refenceField } from "services/caseService";
+import {useEffect} from "react";
 
 const Forms = ({
   handleChange,
@@ -38,29 +39,6 @@ const Forms = ({
     },
   };
 
-  const valueField = async (id: any, label: any) => {
-
-    if(!id)
-      return;
-
-    let page;
-    let valueData;
-    switch (label) {
-      case "contactId":
-        page = "Info/cases/contact-info";
-        valueData = await refenceField(page, id);
-        return valueData
-        break;
-      case "companyId":
-        page = "Info/cases/company-info";
-        valueData = await refenceField(page, id);
-        return valueData
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
     <div className="container-fluid" style={{ marginTop: "126px" }}>
       <div style={{ paddingLeft: "25px" }}>
@@ -83,9 +61,7 @@ const Forms = ({
                 disabled={caseData?.companyId !== null}
                 keyFilter={"contactId"}
                 onChange={handleChange}
-                value={async () => {
-                  return await valueField(caseData.contactId, "contactId");
-                }}
+                defaultValue={ {value: caseData.contactId, label: reference.fullName}}
               />
               <Form.Control.Feedback type="invalid">
                 Ambos campos no pueden estar vacío
@@ -103,14 +79,13 @@ const Forms = ({
                 disabled={caseData?.contactId !== null}
                 paramsRequired={paramsRequired.customerValid}
               /> */}
+              
               <CustomAsyncPaginate
                 searchEndpoint="contacts"
                 disabled={caseData?.contactId !== null}
                 keyFilter={"companyId"}
                 onChange={handleChange}
-                value={async () => {
-                  return await valueField(caseData.companyId, "companyId");
-                }}
+                defaultValue={{value: caseData.companyId, label: reference.name}}
               />
               <Form.Control.Feedback type="invalid">
                 Ambos campos no pueden estar vacío
@@ -303,6 +278,7 @@ const Forms = ({
             <Col>Tipo</Col>
             <Col sm={4} align="start">
               <MultipleSelect
+                  placeholder={"Tipos"}
                 endpoint={"Search/types"}
                 onChange={handleChange}
                 keyFilter={"typeId"}
@@ -504,6 +480,7 @@ const Forms = ({
             <Col>Áreas Resolutoras</Col>
             <Col sm={4} align="start">
               <MultipleArray
+                  placeholder={"Areas Resolutoras"}
                 endpoint="Search/resolver-areas"
                 handleChange={handleChange}
                 keyFilter="resolutionAreaIds"
@@ -537,6 +514,7 @@ const Forms = ({
             <Col>Personas Resolutoras</Col>
             <Col sm={4} align="start">
               <MultipleArray
+                  placeholder={"Personas Resolutoras"}
                 endpoint="Search/resolvers"
                 handleChange={handleChange}
                 keyFilter="resolverIds"

@@ -17,7 +17,7 @@ export default function CallToActions({params}:any) {
     const goToCreate = () => router.push(`${module}/new`)
 
     const exportCase = () => {
-        window.open("http://localhost:3000/cases/export");
+        window.open("http://192.168.121.16:3000/cases/export");
     }
 
     return (

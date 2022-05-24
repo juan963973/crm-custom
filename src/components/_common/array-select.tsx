@@ -9,7 +9,8 @@ interface PropsTools {
   valueData: number[];
   defaultValue?: string;
   styleRequire?:any,
-  paramsRequired?:boolean
+  paramsRequired?:boolean,
+  placeholder?: string
   //changeStatus?:(keyFilter:string,value:any)=>void
 }
 
@@ -20,7 +21,8 @@ const MultipleArray = ({
   valueData,
   defaultValue,
   styleRequire,
-  paramsRequired
+  paramsRequired,
+    placeholder
   //changeStatus,
 }: PropsTools) => {
 
@@ -60,6 +62,7 @@ const MultipleArray = ({
 
   return (
     <TagPicker
+        placeholder={placeholder}
       id={keyFilter}
       data={data}
       onChange={(e) => handleChange(e, keyFilter)}
