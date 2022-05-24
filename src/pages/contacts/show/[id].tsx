@@ -97,9 +97,6 @@ export default function Show() {
                             }}>
                                 <Overview2 page={page} id={id} dataIdCase={dataIdCase}/>
                             </Row>
-
-
-
                         </Row>
                     </Col>
                 </Row>

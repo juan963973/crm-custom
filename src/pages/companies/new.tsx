@@ -134,8 +134,8 @@ function New() {
           style={{ zIndex: 9, marginTop: "-71px", position: "fixed" }}
         >
           <HeaderForms title="Crear Empresa" handleClose={handleClose} />
-          <ToastContainer />
         </div>
+        <ToastContainer />
         <FormCompany />
       </Form>
     </>
