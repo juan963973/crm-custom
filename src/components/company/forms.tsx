@@ -1,9 +1,31 @@
 import { CustomAsyncPaginate } from "components/_common/auto-scroll";
 import { Col, Form, InputGroup, Row, FormControl } from "react-bootstrap";
 
-
-
-const FormCompany = () => {
+const FormCompany = ({ handleChange }: any) => {
+  const styles = {
+    disable: {
+      background: "white",
+    },
+    required: {
+      borderLeft: "4px solid #E74C3C",
+    },
+    complete: {
+      borderLeftColor: "gray",
+    },
+    multiple: {
+      required: {
+        borderLeft: "4px solid #E74C3C",
+        width: "100%",
+      },
+      complete: {
+        borderLeftColor: "gray",
+        width: "100%",
+      },
+      size: {
+        width: "100%",
+      },
+    },
+  };
   return (
     <div className="container-fluid" style={{ marginTop: "126px" }}>
       <div style={{ paddingLeft: "25px" }}>
@@ -19,9 +41,38 @@ const FormCompany = () => {
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
+                  style={styles.required}
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="companyName"
+                  name="name"
+                  onChange={handleChange}
+                />
+              </InputGroup>
+            </Col>
+
+            <Col>Ruc</Col>
+            <Col sm={4}>
+              <InputGroup className="mb-2">
+                <FormControl
+                  style={styles.required}
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  name="ruc"
+                  onChange={handleChange}
+                />
+              </InputGroup>
+            </Col>
+          </Row>
+
+          <Row align="end" className="mt-1">
+            <Col>Tipo Cliente</Col>
+            <Col sm={4}>
+              <InputGroup className="mb-2">
+                <FormControl
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  name="clientTypeId"
+                  onChange={handleChange}
                 />
               </InputGroup>
             </Col>
@@ -32,8 +83,9 @@ const FormCompany = () => {
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="dateFundation"
+                  name="foundation"
                   type="date"
+                  onChange={handleChange}
                 />
               </InputGroup>
             </Col>
@@ -47,30 +99,7 @@ const FormCompany = () => {
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
                   name="nationality"
-                />
-              </InputGroup>
-            </Col>
-
-            <Col>Ruc</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="rucCompany"
-                />
-              </InputGroup>
-            </Col>
-          </Row>
-
-          <Row align="end" className="mt-1">
-            <Col>Tipo Cliente</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="customerType"
+                  onChange={handleChange}
                 />
               </InputGroup>
             </Col>
