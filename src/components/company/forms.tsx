@@ -1,7 +1,9 @@
 import { CustomAsyncPaginate } from "components/_common/auto-scroll";
+import SelectCountry from "components/_common/select-country";
 import { Col, Form, InputGroup, Row, FormControl } from "react-bootstrap";
+import { PaisesService } from "services/companyService";
 
-const FormCompany = ({ handleChange }: any) => {
+const FormCompany = ({ handleChange, companyData }: any) => {
   const styles = {
     disable: {
       background: "white",
@@ -26,6 +28,7 @@ const FormCompany = ({ handleChange }: any) => {
       },
     },
   };
+
   return (
     <div className="container-fluid" style={{ marginTop: "126px" }}>
       <div style={{ paddingLeft: "25px" }}>
@@ -46,6 +49,7 @@ const FormCompany = ({ handleChange }: any) => {
                   aria-describedby="inputGroup-sizing-default"
                   name="name"
                   onChange={handleChange}
+                  value={companyData.name}
                 />
               </InputGroup>
             </Col>
@@ -59,6 +63,7 @@ const FormCompany = ({ handleChange }: any) => {
                   aria-describedby="inputGroup-sizing-default"
                   name="ruc"
                   onChange={handleChange}
+                  value={companyData.ruc}
                 />
               </InputGroup>
             </Col>
@@ -73,6 +78,7 @@ const FormCompany = ({ handleChange }: any) => {
                   aria-describedby="inputGroup-sizing-default"
                   name="clientTypeId"
                   onChange={handleChange}
+                  value={companyData.clientTypeId}
                 />
               </InputGroup>
             </Col>
@@ -86,6 +92,7 @@ const FormCompany = ({ handleChange }: any) => {
                   name="foundation"
                   type="date"
                   onChange={handleChange}
+                  value={companyData.foundation}
                 />
               </InputGroup>
             </Col>
@@ -94,16 +101,10 @@ const FormCompany = ({ handleChange }: any) => {
           <Row align="end" className="mt-1">
             <Col>Nacionalidad</Col>
             <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
-                  onChange={handleChange}
-                />
-              </InputGroup>
+            <SelectCountry 
+              handleChange={handleChange}
+            />
             </Col>
-
             <Col></Col>
             <Col sm={4}></Col>
           </Row>
@@ -144,7 +145,9 @@ const FormCompany = ({ handleChange }: any) => {
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
+                  name="description"
+                  onChange={handleChange}
+                  value={companyData.description}
                 />
               </InputGroup>
             </Col>
@@ -167,14 +170,18 @@ const FormCompany = ({ handleChange }: any) => {
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
+                  name="employersQuantity"
+                  onChange={handleChange}
+                  value={companyData.employersQuantity}
                 />
               </InputGroup>
             </Col>
 
             <Col>Entidad Financiera para pago de Salarios</Col>
             <Col sm={4}>
-              <Form.Select aria-label="Default select example">
+              <Form.Select 
+                  aria-label="Default select example"
+              >
                 <option>Open this select menu</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -184,7 +191,7 @@ const FormCompany = ({ handleChange }: any) => {
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Actividad Económica</Col>
+            <Col>Actividad Económica (core)</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl

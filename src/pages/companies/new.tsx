@@ -62,7 +62,10 @@ function New() {
           <HeaderForms title="Crear Empresa" handleClose={handleClose} />
         </div>
         <ToastContainer />
-        <FormCompany />
+        <FormCompany 
+          handleChange={handleChange} 
+          companyData = {companyData}
+        />
       </Form>
     </>
   );
