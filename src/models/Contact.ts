@@ -1,97 +1,112 @@
 export interface ContactsModel {
-    "id": number;
-    "Creado el": Date;
-    "Numero de Ticket": string;
-    "Tipo": string;
-    "Subtipo": string;
-    "Tipificacion": string;
-    "Sucursal Recepcion": string;
-    "Hora de Recepcion": string;
-    "Sucursal Afectada": string;
-    "Estado": string;
-    "Origen": string;
-    "Subject": string;
-    "Descripcion": string;
-    "Dueño del caso": string;
-    "Areas Resolutoras": string;
-    "Empresa": string;
-    "Direccion de Llamada": string;
-    "Tags": string;
-    "Actualizado el": string;
-    "Solucion": string;
-    "Comentario": string;
-    "Pedido de extension": boolean;
-    "Oficial de Negocios": string;
-    "Promotor": string;
-    "Numero de Comentarios": number;
-    "Contacto": string;
-    "Email": string;
-    "Nro de Cliente":string;
-    "Telfono Contacto":string;
-    "Contacto Full name":string;
-    "Sucursal Cliente":string;
-    "Layout":string;
+    "Id": number,
+    "Nombre de Contacto": string,
+    "Código Cliente": string,
+    "Oficial": string,
+    "Estado": string,
+    "Nro. Documento": string,
+    "Es Cliente Salario?": string,
+    "Es Cliente?": string,
+    "Correo electrónico": string,
+    "Móvil": string,
+    "Salario Actual": string,
+    "Teléfono Fijo": string,
+    "Teléfono Laboral": string,
+    "Edad Contacto": string,
+    "Nombre de Empresa": string,
+    "Codigo Empresa": string,
+    "Apellidos": string,
+    "Tarjeta Preaprobada": string,
+    "Prestamo": string
 }
 
-export interface ContactDetailModel {
-    attachments: any;
-    statusHistories: any;
-    businessOfficer: any;
-    id:                      number;
-    caseStatusName:          string;
-    originName:              string;
-    caseOwnerUserName:       string;
-    contactFullname:         string;
-    contactPhone:            null;
-    ticketNumber:            string;
-    time:                    string;
-    companyName:             string;
-    contactDocumentTypeName: string;
-    contactDocumentNumber:   null;
-    contactClientCode:       null;
-    contactBranchName:       null;
-    contactMobile:           null;
-    promoterFullName:        string;
-    promoterPhone:           null;
-    promoterDocumentNumber:  null;
-    promoterEmail:           null;
-    typeName:                string;
-    subtypeName:             string;
-    typificationName:        string;
-    description:             null;
-    design:                  null;
-    callDirection:           string;
-    updatedAt:               null;
-    createdAt:               string;
-    idServidesk:             null;
-    resolverAreas:           any[];
-    resolvers:               any[];
-    businessOfficerName:     null;
-    solution:                null;
-    requestExtension:        string;
-}
-    
-export interface CreateContactModel {
-    contactId:	        number,
-    companyId:	        number,
-    promoterId:	        number,
-    callDirectionId:	number,
-    typeId:	            number,
-    subtypeId:	        number,
-    typificationId:	    number,
-    subject:	        string,
-    description:	    string,
-    originId:	        number,
-    caseOwnerId:	    number,
-    caseStatusId:	    number,
-    idServidesk:	    string,
-    resolutionAreaIds:	number,
-    resolverIds:        number,
-    businessOfficerId:	number,
-    solution:	        string,
-    clientComment:	    string,
-    qualification:	    string,
-    requestExtension:	boolean,
-    attachmentFile:	    string
+// export interface ContactDetailModel {
+//     attachments: any;
+//     statusHistories: any;
+//     businessOfficer: any;
+//     id:                      number;
+//     caseStatusName:          string;
+//     originName:              string;
+//     caseOwnerUserName:       string;
+//     contactFullname:         string;
+//     contactPhone:            null;
+//     ticketNumber:            string;
+//     time:                    string;
+//     companyName:             string;
+//     contactDocumentTypeName: string;
+//     contactDocumentNumber:   null;
+//     contactClientCode:       null;
+//     contactBranchName:       null;
+//     contactMobile:           null;
+//     promoterFullName:        string;
+//     promoterPhone:           null;
+//     promoterDocumentNumber:  null;
+//     promoterEmail:           null;
+//     typeName:                string;
+//     subtypeName:             string;
+//     typificationName:        string;
+//     description:             null;
+//     design:                  null;
+//     callDirection:           string;
+//     updatedAt:               null;
+//     createdAt:               string;
+//     idServidesk:             null;
+//     resolverAreas:           any[];
+//     resolvers:               any[];
+//     businessOfficerName:     null;
+//     solution:                null;
+//     requestExtension:        string;
+// }
 
-}
+export interface CreateContactModel{
+    firstName: string,
+    lastName: string,
+    email: string,
+    documentNumber: string,
+    mobile: string,
+    clientCode: string,
+    department: string,
+    documentTypeId: number,
+    civilStatusId: number,
+    nationality: string,
+    genderId: number,
+    dateOfBirth: Date,
+    contactAge: number,
+    walletTypeId: number,
+    clientStatus: string,
+    contactTypeId: number,
+    clientType: string,
+    isClient: string,
+    isClerk: string,
+    isClientSalary: string,
+    secondaryEmail: string,
+    landline: string,
+    phone: string,
+    address: string,
+    homeNumber: string,
+    reference: string,
+    city: string,
+    neighborhood: string,
+    mailingStreet: string,
+    mailingCountry: string,
+    mailingState: string,
+    mailingCity: string,
+    workPlace: string,
+    currentSalary: number,
+    workPhone: string,
+    companiesIds: any[],
+    economicActivity: string,
+    description: string,
+    bancaId: number,
+    branchId: number,
+    branchManagerClerkId: number,
+    branchManagerUserId: number,
+    supervisorUserId: number,
+    teamLeaderUserId: number,
+    teamLeaderClerkId: number,
+    supervisorClerkId: number,
+    officialId: number,
+    sendMailInThisDirection: boolean,
+    companyId:number,
+    ContactOwnerId:number
+  }

@@ -75,15 +75,11 @@ const Forms = ({
             <Col>Tipo de Documento</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/types"}
+                endpoint={"Search/document-types"}
                 onChange={handleChange}
-                keyFilter={"typeId"}
-                value={contactData.typeId}
-                paramsRequired={paramsRequired.requiredType}
+                keyFilter={"documentTypeId"}
+                value={contactData.documentTypeId}
               />
-              <Form.Control.Feedback type="invalid">
-                Tipo no puede estar vacío
-              </Form.Control.Feedback>
             </Col>
 
             <Col>Nacionalidad</Col>
@@ -91,29 +87,10 @@ const Forms = ({
               <MultipleSelect
                 endpoint={"Search/types"}
                 onChange={handleChange}
-                keyFilter={"typeId"}
-                value={contactData.typeId}
-                paramsRequired={paramsRequired.requiredType}
+                keyFilter={"nationality"}
+                value={contactData.nationality}
               />
-              <Form.Control.Feedback type="invalid">
-                Tipo no puede estar vacío
-              </Form.Control.Feedback>
             </Col>
-              {/* <Col>Nombre de Empresa</Col>
-              <Col sm={4} align="start">
-                <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
-                  onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
-                  }}
-                />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
-              </Col> */}
           </Row>
         </Row>
         <Row>
@@ -124,14 +101,14 @@ const Forms = ({
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="subject"
+                  name="documentNumber"
                   onChange={(e) => handleChange(e)}
-                  defaultValue={contactData.subject}
-                  style={!contactData.subject ? styles.required : styles.complete}
+                  defaultValue={contactData.documentNumber}
+                  style={!contactData.documentNumber ? styles.required : styles.complete}
                   required
                 />
                 <Form.Control.Feedback type="invalid">
-                  Asunto no puede estar vacío
+                  Este campo no puede estar vacío
                 </Form.Control.Feedback>
               </InputGroup>
             </Col>
@@ -140,13 +117,9 @@ const Forms = ({
               <MultipleSelect
                 endpoint={"Search/types"}
                 onChange={handleChange}
-                keyFilter={"typeId"}
-                value={contactData.typeId}
-                paramsRequired={paramsRequired.requiredType}
+                keyFilter={"genderId"}
+                value={contactData.genderId}
               />
-              <Form.Control.Feedback type="invalid">
-                Tipo no puede estar vacío
-              </Form.Control.Feedback>
             </Col>
           </Row>
           <Row align="end" style={{ marginBottom: 10 }}>
@@ -156,14 +129,14 @@ const Forms = ({
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="subject"
+                  name="firstName"
                   onChange={(e) => handleChange(e)}
-                  defaultValue={contactData.subject}
-                  style={!contactData.subject ? styles.required : styles.complete}
+                  defaultValue={contactData.firstName}
+                  style={!contactData.firstName ? styles.required : styles.complete}
                   required
                 />
                 <Form.Control.Feedback type="invalid">
-                  Asunto no puede estar vacío
+                  Este campo no puede estar vacío
                 </Form.Control.Feedback>
               </InputGroup>
               </Col>
@@ -175,8 +148,8 @@ const Forms = ({
                     type="date"
                     aria-label="Default"
                     aria-describedby="inputGroup-sizing-default"
-                    name="email"
-                    defaultValue={reference.email}
+                    name="dateOfBirth"
+                    defaultValue={reference.dateOfBirth}
                   />
                 </InputGroup>
               </Col>
@@ -188,14 +161,14 @@ const Forms = ({
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="subject"
+                  name="lastName"
                   onChange={(e) => handleChange(e)}
-                  defaultValue={contactData.subject}
-                  style={!contactData.subject ? styles.required : styles.complete}
+                  defaultValue={contactData.lastName}
+                  style={!contactData.lastName ? styles.required : styles.complete}
                   required
                 />
                 <Form.Control.Feedback type="invalid">
-                  Asunto no puede estar vacío
+                  Este campo no puede estar vacío
                 </Form.Control.Feedback>
               </InputGroup>
             </Col>
@@ -204,9 +177,8 @@ const Forms = ({
               <MultipleSelect
                 endpoint={"Search/types"}
                 onChange={handleChange}
-                keyFilter={"typeId"}
-                value={contactData.typeId}
-                paramsRequired={paramsRequired.requiredType}
+                keyFilter={"walletTypeId"}
+                value={contactData.walletTypeId}
               />
               <Form.Control.Feedback type="invalid">
                 Tipo no puede estar vacío
@@ -219,13 +191,9 @@ const Forms = ({
               <MultipleSelect
                 endpoint={"Search/types"}
                 onChange={handleChange}
-                keyFilter={"typeId"}
-                value={contactData.typeId}
-                paramsRequired={paramsRequired.requiredType}
+                keyFilter={"civilStatusId"}
+                value={contactData.civilStatusId}
               />
-              <Form.Control.Feedback type="invalid">
-                Tipo no puede estar vacío
-              </Form.Control.Feedback>
             </Col>
             <Col></Col>
             <Col sm={4}></Col>
@@ -245,8 +213,8 @@ const Forms = ({
               <FormControl
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
+                name="clientCode"
+                defaultValue={reference.clientCode}
               />
             </Col>
 
@@ -255,13 +223,9 @@ const Forms = ({
               <MultipleSelect
                 endpoint={"Search/types"}
                 onChange={handleChange}
-                keyFilter={"typeId"}
-                value={contactData.typeId}
-                paramsRequired={paramsRequired.requiredType}
+                keyFilter={"isClient"}
+                value={contactData.isClient}
               />
-              <Form.Control.Feedback type="invalid">
-                Tipo no puede estar vacío
-              </Form.Control.Feedback>
             </Col>
           </Row>
 
@@ -271,54 +235,42 @@ const Forms = ({
               <MultipleSelect
                   endpoint={"Search/types"}
                   onChange={handleChange}
-                  keyFilter={"typeId"}
-                  value={contactData.typeId}
-                  paramsRequired={paramsRequired.requiredType}
+                  keyFilter={"clientStatus"}
+                  value={contactData.clientStatus}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Tipo no puede estar vacío
-                </Form.Control.Feedback>
             </Col>
 
-            <Col></Col>
-            <Col sm={4}></Col>
+            <Col>Es Cliente Salario?</Col>
+            <Col sm={4}>
+                <MultipleSelect
+                  endpoint={"Search/types"}
+                  onChange={handleChange}
+                  keyFilter={"isClientSalary"}
+                  value={contactData.isClientSalary}
+                />
+            </Col>
           </Row>
 
+
           <Row align="end" style={{ marginBottom: 20 }}>
-            <Col>Tipo Contacto</Col>
+            <Col>Tipo Persona</Col>
             <Col sm={4} align="start">
               <MultipleSelect
                   endpoint={"Search/types"}
                   onChange={handleChange}
-                  keyFilter={"typeId"}
-                  value={contactData.typeId}
-                  paramsRequired={paramsRequired.requiredType}
+                  keyFilter={"clientType"}
+                  value={contactData.clientType}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Tipo no puede estar vacío
-                </Form.Control.Feedback>
             </Col>
-
-            <Col></Col>
-            <Col sm={4}></Col>
-          </Row>
-
-          <Row align="end" style={{ marginBottom: 20 }}>
-            <Col>Tipo Cliente</Col>
-            <Col sm={4} align="start">
-              <MultipleSelect
+            <Col>Es funcionario?</Col>
+            <Col sm={4}>
+            <MultipleSelect
                   endpoint={"Search/types"}
                   onChange={handleChange}
-                  keyFilter={"typeId"}
-                  value={contactData.typeId}
-                  paramsRequired={paramsRequired.requiredType}
+                  keyFilter={"isClerk"}
+                  value={contactData.isClerk}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Tipo no puede estar vacío
-                </Form.Control.Feedback>
             </Col>
-            <Col></Col>
-            <Col sm={4}></Col>
           </Row>
 
         </Row>
@@ -336,8 +288,8 @@ const Forms = ({
               <FormControl
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
+                name="email"
+                defaultValue={reference.email}
               />
             </Col>
 
@@ -346,8 +298,8 @@ const Forms = ({
               <FormControl
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
+                name="mobile"
+                defaultValue={reference.mobile}
               />
             </Col>
           </Row>
@@ -374,23 +326,6 @@ const Forms = ({
             </Col>
           </Row>
 
-          <Row align="end" style={{ marginBottom: 20 }}>
-            <Col></Col>
-            <Col sm={4}>
-              
-            </Col>
-
-            <Col>Teléfono</Col>
-            <Col sm={4} align="start">
-              <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
-              />
-            </Col>
-          </Row>
-
         </Row>
 
         <Row className="mb-200" style={{ marginBottom: 30 }}>
@@ -406,8 +341,8 @@ const Forms = ({
               <FormControl
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
+                name="address"
+                defaultValue={reference.address}
               />
             </Col>
 
@@ -416,9 +351,8 @@ const Forms = ({
               <MultipleSelect
                 endpoint={"Search/types"}
                 onChange={handleChange}
-                keyFilter={"typeId"}
-                value={contactData.typeId}
-                paramsRequired={paramsRequired.requiredType}
+                keyFilter={"department"}
+                value={contactData.department}
               />
             </Col>
           </Row>
@@ -429,8 +363,8 @@ const Forms = ({
               <FormControl
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
+                name="homeNumber"
+                defaultValue={reference.homeNumber}
               />
             </Col>
 
@@ -439,9 +373,8 @@ const Forms = ({
               <MultipleSelect
                 endpoint={"Search/types"}
                 onChange={handleChange}
-                keyFilter={"typeId"}
-                value={contactData.typeId}
-                paramsRequired={paramsRequired.requiredType}
+                keyFilter={"city"}
+                value={contactData.city}
               />
             </Col>
           </Row>
@@ -452,8 +385,8 @@ const Forms = ({
               <FormControl
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
+                name="reference"
+                defaultValue={reference.reference}
               />
             </Col>
 
@@ -462,8 +395,8 @@ const Forms = ({
               <FormControl
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
+                name="neighborhood"
+                defaultValue={reference.neighborhood}
               />
             </Col>
           </Row>
@@ -474,10 +407,10 @@ const Forms = ({
               <input
                   type="checkbox"
                   className="input-group-text"
-                  name="requestExtension"
+                  name="sendMailInThisDirection"
                   onChange={(e) => handleChange(e)}
                   checked={
-                    contactData.requestExtension ? contactData.requestExtension : false
+                    contactData.sendMailInThisDirection ? contactData.sendMailInThisDirection : false
                   }
               />
             </Col>
@@ -503,8 +436,8 @@ const Forms = ({
               <FormControl
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
+                name="workPlace"
+                defaultValue={reference.workPlace}
               />
             </Col>
 
@@ -513,8 +446,8 @@ const Forms = ({
               <FormControl
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
+                name="workPhone"
+                defaultValue={reference.workPhone}
               />
             </Col>
           </Row>
@@ -525,22 +458,13 @@ const Forms = ({
               <FormControl
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
+                name="currentSalary"
+                defaultValue={reference.currentSalary}
               />
             </Col>
 
-            <Col>Desea registrar los datos de su asistente?</Col>
+            <Col></Col>
             <Col sm={4} align="start">
-              <input
-                  type="checkbox"
-                  className="input-group-text"
-                  name="requestExtension"
-                  onChange={(e) => handleChange(e)}
-                  checked={
-                    contactData.requestExtension ? contactData.requestExtension : false
-                  }
-              />
             </Col>
           </Row>
         </Row>
@@ -556,17 +480,14 @@ const Forms = ({
             <Col>Nombre de Empresa</Col>
             <Col sm={4} align="start">
               <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
+                  searchEndpoint="companies"
+                  disabled={false}
                   keyFilter={"companyId"}
                   onChange={handleChange}
                   value={async () => {
                     return await valueField(contactData.companyId, "companyId");
                   }}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
             </Col>
 
             <Col>Actividad Economica</Col>
@@ -574,8 +495,8 @@ const Forms = ({
               <FormControl
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
+                name="economicActivity"
+                defaultValue={reference.economicActivity}
               />
             </Col>
           </Row>
@@ -584,17 +505,14 @@ const Forms = ({
             <Col>Empresas Lookup</Col>
             <Col sm={4} align="start">
               <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
+                  searchEndpoint="companies"
+                  disabled={false}
+                  keyFilter={"companiesIds"}
                   onChange={handleChange}
                   value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
+                    return await valueField(contactData.companiesIds, "companiesIds");
                   }}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
             </Col>
 
             <Col></Col>
@@ -614,26 +532,21 @@ const Forms = ({
           <Row align="end" style={{ marginBottom: 20 }}>
             <Col>Descripción</Col>
             <Col sm={4} align="start">
-              {/* <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
-              /> */}
-              <Form.Control as="textarea"  />
+                <InputGroup className="mb-2">
+                  <FormControl
+                    as="textarea"
+                    rows={3}
+                    aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default"
+                    name="description"
+                    onChange={(e) => handleChange(e)}
+                    defaultValue={contactData.description}
+                  />
+                </InputGroup>
             </Col>
 
-            <Col>No participación del correo electrónico</Col>
+            <Col></Col>
             <Col sm={4} align="start">
-              <input
-                  type="checkbox"
-                  className="input-group-text"
-                  name="requestExtension"
-                  onChange={(e) => handleChange(e)}
-                  checked={
-                    contactData.requestExtension ? contactData.requestExtension : false
-                  }
-              />
             </Col>
           </Row>
 
@@ -652,26 +565,22 @@ const Forms = ({
               <MultipleSelect
                 endpoint={"Search/types"}
                 onChange={handleChange}
-                keyFilter={"typeId"}
-                value={contactData.typeId}
-                paramsRequired={paramsRequired.requiredType}
+                keyFilter={"bancaId"}
+                value={contactData.bancaId}
               />
             </Col>
 
             <Col>Team Leader</Col>
             <Col sm={4} align="start">
               <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
+                  searchEndpoint="clerks"
+                  disabled={false}
+                  keyFilter={"teamLeaderClerkId"}
                   onChange={handleChange}
                   value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
+                    return await valueField(contactData.teamLeaderClerkId, "teamLeaderClerkId");
                   }}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
             </Col>
           </Row>
 
@@ -680,11 +589,11 @@ const Forms = ({
             <Col sm={4} align="start">
               <CustomAsyncPaginate
                   searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
+                  disabled={false}
+                  keyFilter={"branchId"}
                   onChange={handleChange}
                   value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
+                    return await valueField(contactData.branchId, "branchId");
                   }}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -695,17 +604,14 @@ const Forms = ({
             <Col>Supervisor</Col>
             <Col sm={4} align="start">
               <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
+                  searchEndpoint="clerks"
+                  disabled={false}
+                  keyFilter={"supervisorClerkId"}
                   onChange={handleChange}
                   value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
+                    return await valueField(contactData.supervisorClerkId, "supervisorClerkId");
                   }}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
             </Col>
           </Row>
 
@@ -713,12 +619,12 @@ const Forms = ({
             <Col>Gerente</Col>
             <Col sm={4} align="start">
               <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
+                  searchEndpoint="clerks"
+                  disabled={false}
+                  keyFilter={"branchManagerClerkId"}
                   onChange={handleChange}
                   value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
+                    return await valueField(contactData.branchManagerClerkId, "branchManagerClerkId");
                   }}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -729,12 +635,12 @@ const Forms = ({
             <Col>Oficial</Col>
             <Col sm={4} align="start">
               <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
+                  searchEndpoint="clerks"
+                  disabled={false}
+                  keyFilter={"officialId"}
                   onChange={handleChange}
                   value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
+                    return await valueField(contactData.officialId, "officialId");
                   }}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -749,74 +655,28 @@ const Forms = ({
           <Row>
             <Col style={{ marginBottom: 10 }}>
               {" "}
-              <h4>DATOS LEADS</h4>{" "}
-            </Col>
-          </Row>
-          <Row align="end" style={{ marginBottom: 20 }}>
-            <Col>Fuente de Posible cliente</Col>
-            <Col sm={4} align="start">
-              <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
-                  onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
-                  }}
-                />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
-            </Col>
-
-            <Col></Col>
-            <Col sm={4}>
-              
-            </Col>
-          </Row>
-
-          <Row align="end" style={{ marginBottom: 20 }}>
-            <Col>Posibles clientes</Col>
-            <Col sm={4} align="start">
-                <MultipleArray
-                  endpoint="Search/resolver-areas"
-                  handleChange={handleChange}
-                  keyFilter="resolutionAreaIds"
-                  valueData={contactData.resolutionAreaIds}
-                  defaultValue="Call Center"
-                  styleRequire={styles.multiple.size}
-                  //changeStatus={changeStatus}
-                />
-            </Col>
-
-            <Col></Col>
-            <Col sm={4}>
-              
-            </Col>
-          </Row>
-        </Row>
-
-        <Row className="mb-200" style={{ marginBottom: 30 }}>
-          <Row>
-            <Col style={{ marginBottom: 10 }}>
-              {" "}
               <h4>DATOS REGISTRO</h4>{" "}
             </Col>
           </Row>
           <Row align="end" style={{ marginBottom: 20 }}>
-            <Col></Col>
+            {/* <Col>Creado por </Col>
             <Col sm={4}>
-              
-            </Col>
+              <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                name="documentTypeName"
+                defaultValue={reference.documentTypeName}
+              />
+            </Col> */}
             <Col>Propietario de Contacto</Col>
             <Col sm={4} align="start">
               <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
+                  searchEndpoint="clerks"
+                  disabled={false}
+                  keyFilter={"ContactOwnerId"}
                   onChange={handleChange}
                   value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
+                    return await valueField(contactData.ContactOwnerId, "ContactOwnerId");
                   }}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -825,7 +685,7 @@ const Forms = ({
             </Col>
           </Row>
 
-          <Row align="end" style={{ marginBottom: 20 }}>
+          {/* <Row align="end" style={{ marginBottom: 20 }}>
             <Col></Col>
             <Col sm={4}>
               
@@ -839,132 +699,9 @@ const Forms = ({
                 defaultValue={reference.documentTypeName}
               />
             </Col>
-          </Row>
+          </Row> */}
         </Row>
 
-        <Row className="mb-200" style={{ marginBottom: 30 }}>
-          <Row>
-            <Col style={{ marginBottom: 10 }}>
-              {" "}
-              <h4>OTROS CAMPOS</h4>{" "}
-            </Col>
-          </Row>
-          <Row align="end" style={{ marginBottom: 20 }}>
-            <Col>Gerente Sucursal User</Col>
-            <Col sm={4} align="start">
-                <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
-                  onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
-                  }}
-                />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
-            </Col>
-
-            <Col>Supervisor User</Col>
-            <Col sm={4} align="start">
-              <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
-                  onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
-                  }}
-                />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
-            </Col>
-          </Row>
-
-          <Row align="end" style={{ marginBottom: 20 }}>
-            <Col>Team Leader User</Col>
-            <Col sm={4} align="start">
-              <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
-                  onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
-                  }}
-                />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
-            </Col>
-
-            <Col>Oficial User</Col>
-            <Col sm={4} align="start">
-              <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={contactData?.contactId !== null}
-                  keyFilter={"companyId"}
-                  onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
-                  }}
-                />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
-            </Col>
-          </Row>
-          
-        </Row>
-
-        <Row className="mb-200" style={{ marginBottom: 30 }}>
-          <Row>
-            <Col style={{ marginBottom: 10 }}>
-              {" "}
-              <h4>PRODUCTOS PREAPROBADOS</h4>{" "}
-            </Col>
-          </Row>
-          <Row align="end" style={{ marginBottom: 20 }}>
-            <Col>Tarjeta Preaprobada</Col>
-            <Col sm={4} align="start">
-              <Form.Control as="textarea"  />
-            </Col>
-
-            <Col>Prestamo Preaprobado</Col>
-            <Col sm={4} align="start">
-              <Form.Control as="textarea"  />
-            </Col>
-          </Row>
-
-        </Row>
-
-        <Row className="mb-200" style={{ marginBottom: 30 }}>
-          <Row>
-            <Col style={{ marginBottom: 10 }}>
-              {" "}
-              <h4>PRODUCTOS PREAPROBADOS</h4>{" "}
-            </Col>
-          </Row>
-          <Row align="end" style={{ marginBottom: 20 }}>
-            <Col>Actualizado</Col>
-            <Col sm={4} align="start">
-              <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
-              />
-            </Col>
-
-            <Col></Col>
-            <Col sm={4} align="start">
-              
-            </Col>
-          </Row>
-
-        </Row>
       </div>
     </div>
   );
