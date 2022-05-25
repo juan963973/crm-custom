@@ -38,7 +38,10 @@ export const CustomAsyncPaginate = ({searchEndpoint, disabled, keyFilter, onChan
             };
 
             if (keySearch.length < 3)
-                return;
+                return {
+                    options: [],
+                    hasMore: false,
+                };
 
             options = await seletScroll(`Search/${searchEndpoint}?q=${keySearch}`, params);
             filteredOptions = options.items;
