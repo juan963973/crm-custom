@@ -3,7 +3,14 @@ import React, {useState} from "react";
 import {AsyncPaginate} from "react-select-async-paginate";
 import {seletScroll} from "services/filterService";
 
-export const CustomAsyncPaginate = ({searchEndpoint, disabled, keyFilter, onChange, defaultValue}: any) => {
+export const CustomAsyncPaginate = ({
+                                        searchEndpoint,
+                                        disabled,
+                                        keyFilter,
+                                        onChange,
+                                        defaultValue,
+                                        returnObject
+                                    }: any) => {
     const [data, setData] = useState(null);
 
     let options: any = [];
@@ -68,6 +75,11 @@ export const CustomAsyncPaginate = ({searchEndpoint, disabled, keyFilter, onChan
     const changeValue = (e: any) => {
         if (e) {
             setData(e)
+            if (returnObject) {
+                onChange({target: {id: keyFilter, value: e.value}}, keyFilter) 
+                return;
+            }
+
             const {value} = e;
             onChange(value, keyFilter);
             return;
