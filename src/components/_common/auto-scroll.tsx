@@ -20,7 +20,7 @@ export const CustomAsyncPaginate = ({
 
     const loadOptions = async (search: any, prevOptions: any) => {
         let filteredOptions;
-
+    
         if (!search) {
             countSearch = 0;
             const page = keySearch

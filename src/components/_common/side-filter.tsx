@@ -74,7 +74,12 @@ const SideFilter = ({module}: any) => {
 
     const isChecked = (item: any) => (checked.includes(item));
 
-    const handleSaveFilter = (event: any) => {
+    const handleSaveFilter = (event: any, keyValue?: string) => {
+        if (!event)  {
+            setCheckListFilter(prevState => delete prevState[keyValue as keyof typeof checkListFilter])
+            return;
+        }
+        
         const keyFilter = event.target.id;
         const value = event.target.value;
         setCheckListFilter({...checkListFilter, [keyFilter]: value});
