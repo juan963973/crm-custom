@@ -11,3 +11,8 @@ export default function getCompanyData(id: number) {
     }, []);
     return data
 }
+
+export async function PaisesService(): Promise<any> {
+    const res = await axios.get<any>(`http://country.io/names.json`)
+    return res.data
+}
