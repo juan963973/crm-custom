@@ -38,29 +38,6 @@ const Forms = ({
     },
   };
 
-  const valueField = async (id: any, label: any) => {
-
-    if(!id)
-      return;
-
-    let page;
-    let valueData;
-    switch (label) {
-      case "contactId":
-        page = "Info/contacts/contact-info";
-        valueData = await refenceField(page, id);
-        return valueData
-        break;
-      case "companyId":
-        page = "Info/contacts/company-info";
-        valueData = await refenceField(page, id);
-        return valueData
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
     <div className="container-fluid" style={{ marginTop: "126px" }}>
       <div style={{ paddingLeft: "25px" }}>
@@ -484,9 +461,7 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"companyId"}
                   onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.companyId, "companyId");
-                  }}
+                  defaultValue={{value: contactData.companyId, label: reference.companyId}}
                 />
             </Col>
 
@@ -509,9 +484,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"companiesIds"}
                   onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.companiesIds, "companiesIds");
-                  }}
+                  // defaultValue={reference.companiesIds}
+                  // value={async () => {
+                  //   return await valueField(contactData.companiesIds, "companiesIds");
+                  // }}
                 />
             </Col>
 
@@ -577,9 +553,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"teamLeaderClerkId"}
                   onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.teamLeaderClerkId, "teamLeaderClerkId");
-                  }}
+                  // value={async () => {
+                  //   return await valueField(contactData.teamLeaderClerkId, "teamLeaderClerkId");
+                  // }}
+                  // defaultValue={{value: contactData.teamLeaderClerkId, label: reference.teamLeaderClerkId}}
                 />
             </Col>
           </Row>
@@ -592,9 +569,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"branchId"}
                   onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.branchId, "branchId");
-                  }}
+                  // value={async () => {
+                  //   return await valueField(contactData.branchId, "branchId");
+                  // }}
+                  // defaultValue={{value: contactData.teamLeaderClerkId, label: reference.teamLeaderClerkId}}
                 />
                 <Form.Control.Feedback type="invalid">
                   Ambos campos no pueden estar vacío
@@ -608,9 +586,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"supervisorClerkId"}
                   onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.supervisorClerkId, "supervisorClerkId");
-                  }}
+                  // value={async () => {
+                  //   return await valueField(contactData.supervisorClerkId, "supervisorClerkId");
+                  // }}
+                  // defaultValue={{value: contactData.teamLeaderClerkId, label: reference.teamLeaderClerkId}}
                 />
             </Col>
           </Row>
@@ -623,9 +602,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"branchManagerClerkId"}
                   onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.branchManagerClerkId, "branchManagerClerkId");
-                  }}
+                  // value={async () => {
+                  //   return await valueField(contactData.branchManagerClerkId, "branchManagerClerkId");
+                  // }}
+                  // defaultValue={{value: contactData.teamLeaderClerkId, label: reference.teamLeaderClerkId}}
                 />
                 <Form.Control.Feedback type="invalid">
                   Ambos campos no pueden estar vacío
@@ -639,9 +619,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"officialId"}
                   onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.officialId, "officialId");
-                  }}
+                  // value={async () => {
+                  //   return await valueField(contactData.officialId, "officialId");
+                  // }}
+                  // defaultValue={{value: contactData.teamLeaderClerkId, label: reference.teamLeaderClerkId}}
                 />
                 <Form.Control.Feedback type="invalid">
                   Ambos campos no pueden estar vacío
@@ -675,9 +656,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"ContactOwnerId"}
                   onChange={handleChange}
-                  value={async () => {
-                    return await valueField(contactData.ContactOwnerId, "ContactOwnerId");
-                  }}
+                  // value={async () => {
+                  //   return await valueField(contactData.ContactOwnerId, "ContactOwnerId");
+                  // }}
+                  // defaultValue={{value: contactData.teamLeaderClerkId, label: reference.teamLeaderClerkId}}
                 />
                 <Form.Control.Feedback type="invalid">
                   Ambos campos no pueden estar vacío
