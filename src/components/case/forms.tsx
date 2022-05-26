@@ -9,7 +9,6 @@ import {useEffect} from "react";
 const Forms = ({
   handleChange,
   reference,
-  dataPromoter,
   caseData,
   paramsRequired,
   cascade,
