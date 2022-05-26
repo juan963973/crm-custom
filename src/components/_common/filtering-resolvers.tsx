@@ -31,7 +31,6 @@ export default function FilteringResolvers() {
                     classNamePrefix="select"
                     placeholder="Seleccione Área Resolutora"
                 />
-                ñoño
             </div>
     )
 }

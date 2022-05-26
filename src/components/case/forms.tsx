@@ -9,7 +9,6 @@ import {useEffect} from "react";
 const Forms = ({
   handleChange,
   reference,
-  dataPromoter,
   caseData,
   paramsRequired,
   cascade,
@@ -81,7 +80,7 @@ const Forms = ({
               /> */}
               
               <CustomAsyncPaginate
-                searchEndpoint="contacts"
+                searchEndpoint="companies"
                 disabled={caseData?.contactId !== null}
                 keyFilter={"companyId"}
                 onChange={handleChange}
