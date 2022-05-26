@@ -1,6 +1,32 @@
-export class CreateOrUpdateCompanyModel {
-    name: string;
-    documentType: string;
+export interface CreateOrUpdateCompanyModel {
+        name:string;
+        ruc:string;
+        foundation:Date;
+        clientTypeId:number;
+        nationality:number;
+        contactsIds:[];
+        description:string;
+        employersQuantity:number;
+        billingRangeId:number;
+        walletTypeId:number;
+        paymentEntity:number;
+        operatingEntitiesIds:[];
+        economicActivitiesIds:[];
+        address:string;
+        reference:string;
+        homeNumber:number;
+        department:number;
+        city:number;
+        neighborhood:string;
+        billingCountry:string;
+        billingState:string;
+        billingStreet:string;
+        isClient:string;
+        clientCode:string;
+        bancaId:number;
+        clientState:string;
+        branchId:number;
+        officialId:number;
 }
 
 export class CompanyModel {
