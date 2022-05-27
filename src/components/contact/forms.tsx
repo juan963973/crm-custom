@@ -37,6 +37,7 @@ const Forms = ({
       },
     },
   };
+  
 
   return (
     <div className="container-fluid" style={{ marginTop: "126px" }}>
@@ -191,6 +192,7 @@ const Forms = ({
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
                 name="clientCode"
+                onChange={(e) => handleChange(e)}
                 defaultValue={reference.clientCode}
               />
             </Col>
@@ -216,16 +218,27 @@ const Forms = ({
                   value={contactData.clientStatus}
                 />
             </Col>
+            
+            {paramsRequired.clientCode ? (
+              <>
+                <Col>Es Cliente Salario?</Col>
+                <Col sm={4}>
+                    <MultipleSelect
+                      endpoint={"Search/is-client-salary"}
+                      onChange={handleChange}
+                      keyFilter={"isClientSalary"}
+                      value={contactData.isClientSalary}
+                    />
+                </Col>
+              </>
+              ): (
+                <>
+                  <Col></Col>
+                  <Col sm={4}>
+                  </Col>
+                </>
+            )}
 
-            <Col>Es Cliente Salario?</Col>
-            <Col sm={4}>
-                <MultipleSelect
-                  endpoint={"Search/is-client-salary"}
-                  onChange={handleChange}
-                  keyFilter={"isClientSalary"}
-                  value={contactData.isClientSalary}
-                />
-            </Col>
           </Row>
 
 
@@ -239,68 +252,26 @@ const Forms = ({
                   value={contactData.clientType}
                 />
             </Col>
-            <Col>Es funcionario?</Col>
-            <Col sm={4}>
-            <MultipleSelect
-                  endpoint={"Search/is-clerk"}
-                  onChange={handleChange}
-                  keyFilter={"isClerk"}
-                  value={contactData.isClerk}
-                />
-            </Col>
-          </Row>
 
-        </Row>
-
-        <Row className="mb-200" style={{ marginBottom: 30 }}>
-          <Row>
-            <Col style={{ marginBottom: 10 }}>
-              {" "}
-              <h4>DATOS DE CONTACTO</h4>{" "}
-            </Col>
-          </Row>
-          <Row align="end" style={{ marginBottom: 20 }}>
-            <Col>Correo electrónico</Col>
-            <Col sm={4} align="start">
-              <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                name="email"
-                defaultValue={reference.email}
-              />
-            </Col>
-
-            <Col>Móvil</Col>
-            <Col sm={4} align="start">
-              <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                name="mobile"
-                defaultValue={reference.mobile}
-              />
-            </Col>
-          </Row>
-
-          <Row align="end" style={{ marginBottom: 20 }}>
-            <Col>Correo electrónico secundario</Col>
-            <Col sm={4} align="start">
-              <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
-              />
-            </Col>
-
-            <Col>Telefono Fijo</Col>
-            <Col sm={4} align="start">
-              <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
-              />
-            </Col>
+            {paramsRequired.clientCode ? (
+              <>
+                <Col>Es funcionario?</Col>
+                <Col sm={4}>
+                <MultipleSelect
+                      endpoint={"Search/is-clerk"}
+                      onChange={handleChange}
+                      keyFilter={"isClerk"}
+                      value={contactData.isClerk}
+                    />
+                </Col>
+              </>
+              ): (
+                <>
+                  <Col></Col>
+                  <Col sm={4}>
+                  </Col>
+                </>
+            )}
           </Row>
 
         </Row>
@@ -399,6 +370,61 @@ const Forms = ({
           </Row>
 
         </Row>
+        
+        {paramsRequired.sendCorrespondence && (
+          <Row className="mb-200" style={{ marginBottom: 30 }}>
+            <Row>
+              <Col style={{ marginBottom: 10 }}>
+                {" "}
+                <h4>DIRECCION PARA CORRESPONDENCIA</h4>{" "}
+              </Col>
+            </Row>
+            <Row align="end" style={{ marginBottom: 20 }}>
+              <Col>Domicilio para correspondencia</Col>
+              <Col sm={4} align="start">
+                <FormControl
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  name="email"
+                  defaultValue={reference.email}
+                />
+              </Col>
+
+              <Col>Estado para correspondencia</Col>
+              <Col sm={4} align="start">
+                <FormControl
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  name="mobile"
+                  defaultValue={reference.mobile}
+                />
+              </Col>
+            </Row>
+
+            <Row align="end" style={{ marginBottom: 20 }}>
+              <Col>País para correspondencia</Col>
+              <Col sm={4} align="start">
+                <FormControl
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  name="documentTypeName"
+                  defaultValue={reference.documentTypeName}
+                />
+              </Col>
+
+              <Col>Ciudad para correspondencia</Col>
+              <Col sm={4} align="start">
+                <FormControl
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  name="documentTypeName"
+                  defaultValue={reference.documentTypeName}
+                />
+              </Col>
+            </Row>
+
+          </Row>
+        )}
 
         <Row className="mb-200" style={{ marginBottom: 30 }}>
           <Row>
