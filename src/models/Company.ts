@@ -6,6 +6,7 @@ export interface CreateOrUpdateCompanyModel {
         nationality:number;
         contactsIds:[];
         description:string;
+        economicActivity:string;
         employersQuantity:number;
         billingRangeId:number;
         walletTypeId:number;
@@ -27,6 +28,7 @@ export interface CreateOrUpdateCompanyModel {
         clientState:string;
         branchId:number;
         officialId:number;
+        teamLeaderUserId:number
 }
 
 export class CompanyModel {
