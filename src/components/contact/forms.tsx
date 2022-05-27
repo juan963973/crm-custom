@@ -62,7 +62,7 @@ const Forms = ({
             <Col>Nacionalidad</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/types"}
+                endpoint={"Search/nationalities"}
                 onChange={handleChange}
                 keyFilter={"nationality"}
                 value={contactData.nationality}
@@ -92,7 +92,7 @@ const Forms = ({
             <Col>Genero Contacto</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/types"}
+                endpoint={"Search/gender-contact"}
                 onChange={handleChange}
                 keyFilter={"genderId"}
                 value={contactData.genderId}
@@ -152,7 +152,7 @@ const Forms = ({
             <Col>Tipo de Cartera</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/types"}
+                endpoint={"Search/wallet-types"}
                 onChange={handleChange}
                 keyFilter={"walletTypeId"}
                 value={contactData.walletTypeId}
@@ -166,7 +166,7 @@ const Forms = ({
             <Col>Estado Civil</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/types"}
+                endpoint={"Search/civil-status"}
                 onChange={handleChange}
                 keyFilter={"civilStatusId"}
                 value={contactData.civilStatusId}
@@ -198,7 +198,7 @@ const Forms = ({
             <Col>Es Cliente?</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/types"}
+                endpoint={"Search/is-client"}
                 onChange={handleChange}
                 keyFilter={"isClient"}
                 value={contactData.isClient}
@@ -210,7 +210,7 @@ const Forms = ({
             <Col>Estado</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                  endpoint={"Search/types"}
+                  endpoint={"Search/client-states"}
                   onChange={handleChange}
                   keyFilter={"clientStatus"}
                   value={contactData.clientStatus}
@@ -220,7 +220,7 @@ const Forms = ({
             <Col>Es Cliente Salario?</Col>
             <Col sm={4}>
                 <MultipleSelect
-                  endpoint={"Search/types"}
+                  endpoint={"Search/is-client-salary"}
                   onChange={handleChange}
                   keyFilter={"isClientSalary"}
                   value={contactData.isClientSalary}
@@ -233,7 +233,7 @@ const Forms = ({
             <Col>Tipo Persona</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                  endpoint={"Search/types"}
+                  endpoint={"Search/client-types"}
                   onChange={handleChange}
                   keyFilter={"clientType"}
                   value={contactData.clientType}
@@ -242,7 +242,7 @@ const Forms = ({
             <Col>Es funcionario?</Col>
             <Col sm={4}>
             <MultipleSelect
-                  endpoint={"Search/types"}
+                  endpoint={"Search/is-clerk"}
                   onChange={handleChange}
                   keyFilter={"isClerk"}
                   value={contactData.isClerk}
@@ -326,7 +326,7 @@ const Forms = ({
             <Col>Departamento Contacto</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/types"}
+                endpoint={"Search/departament"}
                 onChange={handleChange}
                 keyFilter={"department"}
                 value={contactData.department}
@@ -461,7 +461,7 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"companyId"}
                   onChange={handleChange}
-                  defaultValue={{value: contactData.companyId, label: reference.companyId}}
+                  // defaultValue={{value: contactData.companyId, label: reference.companyId}}
                 />
             </Col>
 
@@ -539,7 +539,7 @@ const Forms = ({
             <Col>Banca</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/types"}
+                endpoint={"Search/bancas"}
                 onChange={handleChange}
                 keyFilter={"bancaId"}
                 value={contactData.bancaId}
