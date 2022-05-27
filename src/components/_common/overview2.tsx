@@ -237,7 +237,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
 
                                 <Col style={{ color: 'gray' }}>Domicilio de facturación</Col>
                                 <Col sm={4} align="start">
-                                    {dataCompany?.promotorEmail ? dataCompany.promotorEmail : ' No encuentro '}
+                                    {dataCompany?.billingStreet ? dataCompany.billingStreet : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
@@ -255,7 +255,35 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
 
                         <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>
-                                <Col> <h6>DIRECCIÓN REGISTRO</h6> </Col>
+                                <Col> <h6>DATOS CLIENTE</h6> </Col>
+                            </Row>
+                            <Row align="end">
+                                <Col style={{ color: 'gray' }}>Código cliente</Col>
+                                <Col align="start">
+                                    {dataCompany?.clientCode ? dataCompany.clientCode : ' - '}
+                                </Col>
+
+                                <Col style={{ color: 'gray' }}>Estado cliente</Col>
+                                <Col sm={4} align="start">
+                                    {dataCompany?.clientState ? dataCompany.clientState : ' - '}
+                                </Col>
+                            </Row>
+                            <Row align="end">
+                                <Col style={{ color: 'gray' }}>Banca</Col>
+                                <Col align="start">
+                                    {dataCompany?.bancaName ? dataCompany.bancaName : ' - '}
+                                </Col>
+
+                                <Col style={{ color: 'gray' }}>¿Es cliente?</Col>
+                                <Col sm={4} align="start">
+                                    {dataCompany?.isClient ? dataCompany.isClient : ' - '}
+                                </Col>
+                            </Row>
+                        </Row>
+
+                        <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
+                            <Row>
+                                <Col> <h6>DATOS REGISTRO</h6> </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Creado por</Col>
@@ -326,7 +354,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                     <Card body>
                         <Row className='mt-200'>
                             <Col align="start">
-                                <h6>
+                                <h6 id="cases">
                                     Casos
                                 </h6>
                             </Col>

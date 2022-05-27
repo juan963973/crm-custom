@@ -86,15 +86,13 @@ export default function Show() {
 
             <Container style={{ display: 'block' }}>
                 <Row>
-                    <Col sm={2}>
-                        <b>Related List</b>
-                        <p>Notes</p>
-                        <p>Historial de Estado</p>
-                        <p>Attachments</p>
-                        <p>Open activities</p>
-                        <p>Close activities</p>
-                        <p>Links</p>
-                        <p className="text-primary">Add link</p>
+                <Col sm={2}>
+                        <b>Lista relacionada</b>
+                        <Col>
+                            <div><a href="#cases" style={{ textDecoration: 'none' }}>Casos</a></div>
+                            {/* <div><p>Enlaces</p></div> */}
+                        </Col>
+                        {/* <p className="text-primary">Add link</p> */}
                     </Col>
 
                     <Col style={{
