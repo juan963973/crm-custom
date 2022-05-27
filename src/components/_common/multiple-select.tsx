@@ -58,6 +58,9 @@ const MultipleSelect = ({
         fetchData();
     }, [endpoint]);
 
+    console.log(data);
+    
+
     return (
         <Form.Select
             placeholder={placeholder}
