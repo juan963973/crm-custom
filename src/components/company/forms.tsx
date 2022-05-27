@@ -1,7 +1,8 @@
+import MultipleArray from "components/_common/array-select";
+import "rsuite/dist/rsuite.min.css";
 import { CustomAsyncPaginate } from "components/_common/auto-scroll";
-import SelectCountry from "components/_common/select-country";
+import MultipleSelect from "components/_common/multiple-select";
 import { Col, Form, InputGroup, Row, FormControl } from "react-bootstrap";
-import { PaisesService } from "services/companyService";
 
 const FormCompany = ({ handleChange, companyData }: any) => {
   const styles = {
@@ -27,6 +28,10 @@ const FormCompany = ({ handleChange, companyData }: any) => {
         width: "100%",
       },
     },
+  };
+
+  const autoCompleteName = (id: number) => {
+    let page = "";
   };
 
   return (
@@ -72,15 +77,12 @@ const FormCompany = ({ handleChange, companyData }: any) => {
           <Row align="end" className="mt-1">
             <Col>Tipo Cliente</Col>
             <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="clientTypeId"
-                  onChange={handleChange}
-                  value={companyData.clientTypeId}
-                />
-              </InputGroup>
+              <MultipleSelect
+                value={companyData.clientTypeId}
+                endpoint={"Search/client-types"}
+                onChange={handleChange}
+                keyFilter={"clientTypeId"}
+              />
             </Col>
 
             <Col>Fecha Fundación</Col>
@@ -101,9 +103,12 @@ const FormCompany = ({ handleChange, companyData }: any) => {
           <Row align="end" className="mt-1">
             <Col>Nacionalidad</Col>
             <Col sm={4}>
-            <SelectCountry 
-              handleChange={handleChange}
-            />
+              <MultipleSelect
+                value={companyData.nationality}
+                endpoint={"Search/nationalities"}
+                onChange={handleChange}
+                keyFilter={"nationality"}
+              />
             </Col>
             <Col></Col>
             <Col sm={4}></Col>
@@ -118,23 +123,28 @@ const FormCompany = ({ handleChange, companyData }: any) => {
 
           <Row align="end" className="mt-1">
             <Col>Empresa Principal</Col>
-            <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                searchEndpoint="companies"
+                disabled={false}
+                keyFilter={"parentCompanyId"}
+                onChange={handleChange}
+                returnObject
+                // value={async () => {
+                //   return await valueField(contactData.branchId, "branchId");
+                // }}
+                defaultValue={{value: companyData.parentCompanyId, label: companyData.parentCompanyName}}
+              />
             </Col>
 
             <Col>Rango de Facturación Anual</Col>
             <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+              <MultipleSelect
+                value={companyData.billingRangeId}
+                endpoint={"Search/billing-ranges"}
+                onChange={handleChange}
+                keyFilter={"billingRangeId"}
+              />
             </Col>
           </Row>
 
@@ -154,12 +164,12 @@ const FormCompany = ({ handleChange, companyData }: any) => {
 
             <Col>Tipo de Cartera</Col>
             <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+              <MultipleSelect
+                value={companyData.walletTypeId}
+                endpoint={"Search/wallet-types"}
+                onChange={handleChange}
+                keyFilter={"walletTypeId"}
+              />
             </Col>
           </Row>
 
@@ -179,37 +189,39 @@ const FormCompany = ({ handleChange, companyData }: any) => {
 
             <Col>Entidad Financiera para pago de Salarios</Col>
             <Col sm={4}>
-              <Form.Select 
-                  aria-label="Default select example"
-              >
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+              <MultipleSelect
+                value={companyData.paymentEntity}
+                endpoint={"Search/operating-entities"}
+                onChange={handleChange}
+                keyFilter={"paymentEntity"}
+              />
             </Col>
           </Row>
 
           <Row align="end" className="mt-1">
             <Col>Actividad Económica (core)</Col>
-            <Col sm={4}>
+            <Col sm={4} align="start">
               <InputGroup className="mb-2">
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
+                  name="economicActivity"
+                  onChange={handleChange}
+                  value={companyData.economicActivity}
                 />
               </InputGroup>
             </Col>
 
             <Col>Entidad financiera en la que opera</Col>
-            <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+            <Col sm={4} align="start">
+              <MultipleArray
+                placeholder={"Entidad financiera"}
+                endpoint="Search/operating-entities"
+                handleChange={handleChange}
+                keyFilter="operatingEntitiesIds"
+                valueData={companyData.operatingEntitiesIds}
+                styleRequire={styles.multiple.size}
+              />
             </Col>
           </Row>
 
@@ -221,18 +233,22 @@ const FormCompany = ({ handleChange, companyData }: any) => {
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
                   name="nationality"
+                  onChange={handleChange}
+                  value={companyData.name}
                 />
               </InputGroup>
             </Col>
 
             <Col>Lista de Actividad Economica</Col>
             <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+              <MultipleArray
+                placeholder={"Actividad Económica"}
+                endpoint="Search/economic-activities"
+                handleChange={handleChange}
+                keyFilter="economicActivitiesIds"
+                valueData={companyData.economicActivitiesIds}
+                styleRequire={styles.multiple.size}
+              />
             </Col>
           </Row>
 
@@ -366,7 +382,9 @@ const FormCompany = ({ handleChange, companyData }: any) => {
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
+                  name="homeNumber"
+                  onChange={handleChange}
+                  value={companyData.homeNumber}
                 />
               </InputGroup>
             </Col>
@@ -407,7 +425,9 @@ const FormCompany = ({ handleChange, companyData }: any) => {
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="rucCompany"
+                  name="nationality"
+                  onChange={handleChange}
+                  value={companyData.name}
                 />
               </InputGroup>
             </Col>
@@ -536,12 +556,12 @@ const FormCompany = ({ handleChange, companyData }: any) => {
           <Row align="end" className="mt-1">
             <Col>Team Leader</Col>
             <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+              <CustomAsyncPaginate
+                searchEndpoint={"clerks"}
+                keyFilter={"teamLeaderUserId"}
+                onChange={handleChange}
+                //defaultValue={ {value: caseData.contactId, label: reference.fullName}}
+              />
             </Col>
 
             <Col></Col>
