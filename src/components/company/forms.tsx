@@ -123,13 +123,18 @@ const FormCompany = ({ handleChange, companyData }: any) => {
 
           <Row align="end" className="mt-1">
             <Col>Empresa Principal</Col>
-            <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                searchEndpoint="companies"
+                disabled={false}
+                keyFilter={"parentCompanyId"}
+                onChange={handleChange}
+                returnObject
+                // value={async () => {
+                //   return await valueField(contactData.branchId, "branchId");
+                // }}
+                defaultValue={{value: companyData.parentCompanyId, label: companyData.parentCompanyName}}
+              />
             </Col>
 
             <Col>Rango de Facturación Anual</Col>

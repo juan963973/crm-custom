@@ -3,6 +3,7 @@ export interface CreateOrUpdateCompanyModel {
         ruc:string;
         foundation:Date;
         clientTypeId:number;
+        parentCompanyId:number;
         nationality:number;
         contactsIds:[];
         description:string;
