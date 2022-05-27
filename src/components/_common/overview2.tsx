@@ -9,50 +9,10 @@ import Notes from "components/_common/notes";
 import NewButtonCase from "./newButtonCase";
 
 export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
-    const [cases, setCases] = useState<CaseDetailModel>({} as CaseDetailModel)
-    // useEffect(() => {
-
-    //     detail(page, id)
-
-    //         .then(data => {
-
-    //             setCases(data)
-
-    //         })
-
-    //         .catch(e => console.log(e));
-
-    // }, [])
-
-    // let data = cases
-    // console.log(data)
     console.log('info de empresa', dataCompany)
 
     return (
         <>
-            {/* <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
-                <Row style={{ width: '99%' }} >
-                    <Card body >
-                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }} className='mt-200'>
-                            <Col className='d-flex justify-content-end'>Empresa owner</Col>
-                            <Col>{dataCompany?.caseStatusName ? dataCompany.caseStatusName : ' - '}</Col>
-                        </Row>
-                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
-                            <Col className='d-flex justify-content-end'>Phone</Col>
-                            <Col>{dataCompany?.phone ? dataCompany.phone : ' - '}</Col>
-                        </Row>
-                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
-                            <Col className='d-flex justify-content-end'>RUC</Col>
-                            <Col>{dataCompany?.ruc ? dataCompany.ruc : ' - '}</Col>
-                        </Row>
-                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
-                            <Col className='d-flex justify-content-end'>Territories</Col>
-                            <Col>{cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}</Col>
-                        </Row>
-                    </Card>
-                </Row>
-            </Row> */}
-
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
                     <Card body>
@@ -93,7 +53,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                     Sitio web
                                 </Col>
                                 <Col sm={4} align="start">
-                                {dataCompany?.website ? dataCompany.website : ' - '}
+                                    {dataCompany?.website ? dataCompany.website : ' - '}
                                 </Col>
                             </Row>
                         </Row>
@@ -124,7 +84,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                     {dataCompany?.billingRangeName ? dataCompany.billingRangeName : ' - '}
                                 </Col>
                             </Row>
-                            <Row align="end"  style={{ marginBottom: 10, marginTop: 10 }}>
+                            <Row align="end" style={{ marginBottom: 10, marginTop: 10 }}>
                                 <Col style={{ color: 'gray' }}>Tipo de cartera</Col>
                                 <Col align="start">
                                     {dataCompany?.walletTypeName ? dataCompany.walletTypeName : ' - '}
@@ -166,18 +126,18 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Email empresa</Col>
                                 <Col align="start">
-                                    {cases?.promotorPhone ? cases.promotorPhone : ' No se '}
+                                    {dataCompany?.promotorPhone ? dataCompany.promotorPhone : ' No se '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Teléfono móvil</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promotorEmail ? cases.promotorEmail : ' No se '}
+                                    {dataCompany?.promotorEmail ? dataCompany.promotorEmail : ' No se '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Teléfono</Col>
                                 <Col align="start">
-                                    {cases?.promotorPhone ? cases.promotorPhone : ' No se '}
+                                    {dataCompany?.promotorPhone ? dataCompany.promotorPhone : ' No se '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}></Col>
@@ -248,7 +208,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
 
                                 <Col style={{ color: 'gray' }}>Ciudad de facturación</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.o ? cases.o : ' No encuentro '}
+                                    {dataCompany?.o ? dataCompany.o : ' No encuentro '}
                                 </Col>
                             </Row>
                         </Row>
@@ -340,13 +300,8 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                 </Col>
                             </Row>
                         </Row>
-
                     </Card>
-
-
                 </Row>
-
-
             </Row>
 
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
@@ -366,22 +321,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                             justifyContent: 'between',
                             alignItems: 'center'
                         }}>
-                            <Row
-                                style={{
-                                    color: 'gray',
-                                    marginBottom: 10,
-                                    marginTop: 10,
-                                    borderColor: 'rgb(237, 240, 244)',
-                                    borderStyle: 'solid',
-                                    borderWidth: 'thin',
-                                    borderLeft: 'none',
-                                    borderRight: 'none'
-                                }}>
-                                <Col>Nro. Ticket</Col>
-                                <Col>Asunto</Col>
-                                <Col>Estatus</Col>
-                                <Col>Tipo</Col>
-                            </Row>
+
                             <Row
                                 style={{
                                     marginBottom: 10,
@@ -393,11 +333,55 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                     borderLeft: 'none',
                                     borderRight: 'none'
                                 }}>
-                                <Col>NO DEFINIDO </Col>
-                                <Col> </Col>
-                                <Col>ASIGNACION</Col>
-                                <Col>CONSULTA</Col>
                             </Row>
+                            {dataCompany.cases?.lenght > 0 ? dataCompany.cases.map((item: { caseStatusName: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal; duration: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal; modifiedAt: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal; modifiedByName: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal; }) => {
+
+                                <Row>
+                                    <Row
+                                        style={{
+                                            color: 'gray',
+                                            marginBottom: 10,
+                                            marginTop: 10,
+                                            borderColor: 'rgb(237, 240, 244)',
+                                            borderStyle: 'solid',
+                                            borderWidth: 'thin',
+                                            borderLeft: 'none',
+                                            borderRight: 'none'
+                                        }}>
+                                        <Col>Nro. Ticket</Col>
+                                        <Col>Asunto</Col>
+                                        <Col>Estatus</Col>
+                                        <Col>Tipo</Col>
+                                    </Row>
+                                    <Row style={{
+                                        marginBottom: 10,
+                                        marginTop: 10,
+                                        borderColor: 'rgb(237, 240, 244)',
+                                        borderStyle: 'solid',
+                                        borderWidth: 'thin',
+                                        borderLeft: 'none',
+                                        borderRight: 'none',
+                                        borderTop: 'none'
+                                    }}>
+                                        <Col>{item.caseStatusName}</Col>
+                                        <Col>{item.duration} días</Col>
+                                        <Col>{item.modifiedAt}</Col>
+                                        <Col>{item.modifiedByName}</Col>
+                                    </Row>
+                                </Row>
+
+                            }) : <Row style={{
+                                marginBottom: 10,
+                                marginTop: 10,
+                                borderColor: 'rgb(237, 240, 244)',
+                                borderStyle: 'solid',
+                                borderWidth: 'thin',
+                                borderLeft: 'none',
+                                borderRight: 'none',
+                                borderTop: 'none'
+                            }}>
+                                <Col style={{ display: 'flex', justifyContent: 'center' }}>Sin datos</Col>
+                            </Row>}
                         </Row>
                     </Card>
                 </Row>

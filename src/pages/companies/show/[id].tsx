@@ -13,7 +13,7 @@ const page = "cases";
 export default function Show() {
 
 
-    const id = 2
+    const id = 3
     // let data = cases
 
     let dataCompany: any = getCompanyData(id)
