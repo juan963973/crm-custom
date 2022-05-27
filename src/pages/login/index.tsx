@@ -104,7 +104,7 @@ export default function Login() {
                 //     }
                 //   }
 
-                localStorageSetItem(data).then(() => router.push('/'))
+                localStorageSetItem(data).then(() => router.push('/cases'))
                 // localStorageSetItem(data1).then(() => router.push('/cases'))
             }).catch(({ response }) => {
                 toast.error(response, {
