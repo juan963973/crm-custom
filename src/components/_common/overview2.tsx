@@ -8,41 +8,42 @@ import { CaseDetailModel } from '../../models/Case';
 import Notes from "components/_common/notes";
 import NewButtonCase from "./newButtonCase";
 
-export default function Overview2({ page, id, dataIdCase }: any) {
+export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
     const [cases, setCases] = useState<CaseDetailModel>({} as CaseDetailModel)
-    useEffect(() => {
+    // useEffect(() => {
 
-        detail(page, id)
+    //     detail(page, id)
 
-            .then(data => {
+    //         .then(data => {
 
-                setCases(data)
+    //             setCases(data)
 
-            })
+    //         })
 
-            .catch(e => console.log(e));
+    //         .catch(e => console.log(e));
 
-    }, [])
+    // }, [])
 
-    let data = cases
+    // let data = cases
     // console.log(data)
+    console.log('info de empresa', dataCompany)
 
     return (
         <>
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
+            {/* <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
                 <Row style={{ width: '99%' }} >
                     <Card body >
                         <Row sm={3} style={{ color: 'gray', marginRight: 30 }} className='mt-200'>
                             <Col className='d-flex justify-content-end'>Empresa owner</Col>
-                            <Col>{cases?.caseStatusName ? cases.caseStatusName : ' - '}</Col>
+                            <Col>{dataCompany?.caseStatusName ? dataCompany.caseStatusName : ' - '}</Col>
                         </Row>
                         <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
                             <Col className='d-flex justify-content-end'>Phone</Col>
-                            <Col>{cases?.originName ? cases.originName : ' - '}</Col>
+                            <Col>{dataCompany?.phone ? dataCompany.phone : ' - '}</Col>
                         </Row>
                         <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
                             <Col className='d-flex justify-content-end'>RUC</Col>
-                            <Col>{cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}</Col>
+                            <Col>{dataCompany?.ruc ? dataCompany.ruc : ' - '}</Col>
                         </Row>
                         <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
                             <Col className='d-flex justify-content-end'>Territories</Col>
@@ -50,7 +51,7 @@ export default function Overview2({ page, id, dataIdCase }: any) {
                         </Row>
                     </Card>
                 </Row>
-            </Row>
+            </Row> */}
 
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
@@ -63,33 +64,37 @@ export default function Overview2({ page, id, dataIdCase }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Empresa name</Col>
                                 <Col align="start">
-                                    {cases?.contactFullname ? cases.contactFullname : ' - '}
+                                    {dataCompany?.name ? dataCompany.name : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Fecha Fundación</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.companyName ? cases.companyName : ' - '}
+                                    {dataCompany?.foundation ? dataCompany.foundation : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Nacionalidad</Col>
                                 <Col align="start">
-                                    {cases?.contactFullname ? cases.contactFullname : ' - '}
+                                    {dataCompany?.nationalityName ? dataCompany.nationalityName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>RUC</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.companyName ? cases.companyName : ' - '}
+                                    {dataCompany?.ruc ? dataCompany.ruc : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Tipo Cliente</Col>
                                 <Col align="start">
-                                    {cases?.contactFullname ? cases.contactFullname : ' - '}
+                                    {dataCompany?.type ? dataCompany.type : ' - '}
                                 </Col>
 
-                                <Col style={{ color: 'gray' }}></Col>
-                                <Col sm={4} align="start"></Col>
+                                <Col style={{ color: 'gray' }}>
+                                    Sitio web
+                                </Col>
+                                <Col sm={4} align="start">
+                                {dataCompany?.website ? dataCompany.website : ' - '}
+                                </Col>
                             </Row>
                         </Row>
 
@@ -100,46 +105,45 @@ export default function Overview2({ page, id, dataIdCase }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Empresa principal</Col>
                                 <Col align="start">
-                                    {cases?.clientDocumentTypeName ? cases.clientDocumentTypeName : ' - '}
+                                    {dataCompany?.o ? dataCompany.o : ' No hay '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Cantidad de funcionarios</Col>
                                 <Col sm={4} align="start">
-                                    {/* {cases?.contactEmail ? cases.contactEmail : ' - '} */}
-                                    ***
+                                    {dataCompany?.employersQuantity ? dataCompany.employersQuantity : ' - '}
                                 </Col>
                             </Row>
-                            <Row align="end">
+                            <Row align="end" style={{ marginBottom: 10, marginTop: 10 }}>
                                 <Col style={{ color: 'gray' }}>Actividad económica (core)</Col>
                                 <Col align="start">
-                                    {cases?.clientDocumentNumber ? cases.clientDocumentNumber : ' - '}
+                                    {dataCompany == 0?.economicActivityName ? dataCompany.economicActivityName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Rango de facturación anual</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.clientMobile ? cases.clientMobile : ' - '}
+                                    {dataCompany?.billingRangeName ? dataCompany.billingRangeName : ' - '}
                                 </Col>
                             </Row>
-                            <Row align="end">
+                            <Row align="end"  style={{ marginBottom: 10, marginTop: 10 }}>
                                 <Col style={{ color: 'gray' }}>Tipo de cartera</Col>
                                 <Col align="start">
-                                    {cases?.clientClientCode ? cases.clientClientCode : ' - '}
+                                    {dataCompany?.walletTypeName ? dataCompany.walletTypeName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Entidad financiera para pago de salarios</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.contactPhone ? cases.contactPhone : ' - '}
+                                    {dataCompany == 0?.salaryPaymentEntityName ? dataCompany.salaryPaymentEntityName : ' - '}
                                 </Col>
                             </Row>
-                            <Row align="end">
+                            <Row align="end" style={{ marginBottom: 10, marginTop: 10 }}>
                                 <Col style={{ color: 'gray' }}>Entidad financiera en la que opera</Col>
                                 <Col align="start">
-                                    {cases?.clientClientCode ? cases.clientClientCode : ' - '}
+                                    {dataCompany == 0?.operatingEntityNames ? dataCompany.operatingEntityNames : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Lista de Actividad Economica</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.contactPhone ? cases.contactPhone : ' - '}
+                                    {dataCompany == 0?.economicActivityName ? dataCompany.economicActivityName : ' - '}
                                 </Col>
                             </Row>
                         </Row>
@@ -151,29 +155,29 @@ export default function Overview2({ page, id, dataIdCase }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Contacto Lookup</Col>
                                 <Col align="start">
-                                    {cases?.promotorName ? cases.promotorName : ' - '} - (en duro)
+                                    {dataCompany?.promotorName ? dataCompany.promotorName : ' No se '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Correo electrónico</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promotorDocumentNumber ? cases.promotorDocumentNumber : ' - '}
+                                    {dataCompany?.promotorDocumentNumber ? dataCompany.promotorDocumentNumber : ' No se '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Email empresa</Col>
                                 <Col align="start">
-                                    {cases?.promotorPhone ? cases.promotorPhone : ' - '}
+                                    {cases?.promotorPhone ? cases.promotorPhone : ' No se '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Teléfono móvil</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promotorEmail ? cases.promotorEmail : ' - '}
+                                    {cases?.promotorEmail ? cases.promotorEmail : ' No se '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Teléfono</Col>
                                 <Col align="start">
-                                    {cases?.promotorPhone ? cases.promotorPhone : ' - '}
+                                    {cases?.promotorPhone ? cases.promotorPhone : ' No se '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}></Col>
@@ -188,34 +192,34 @@ export default function Overview2({ page, id, dataIdCase }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Dirección</Col>
                                 <Col align="start">
-                                    {cases?.promotorPhone ? cases.promotorPhone : ' - '}
+                                    {dataCompany?.address ? dataCompany.address : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Referencia</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promotorEmail ? cases.promotorEmail : ' - '}
+                                    {dataCompany?.reference ? dataCompany.reference : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Nro. de casa</Col>
                                 <Col align="start">
-                                    {cases?.promotorPhone ? cases.promotorPhone : ' - '}
+                                    {dataCompany?.homeNumber ? dataCompany.homeNumber : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Departamento</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promotorEmail ? cases.promotorEmail : ' - '}
+                                    {dataCompany?.departament ? dataCompany.departament : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Ciudad</Col>
                                 <Col align="start">
-                                    {cases?.promotorPhone ? cases.promotorPhone : ' - '}
+                                    {dataCompany?.city ? dataCompany.city : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Barrio</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promotorEmail ? cases.promotorEmail : ' - '}
+                                    {dataCompany?.neighborhood ? dataCompany.neighborhood : ' - '}
                                 </Col>
                             </Row>
                         </Row>
@@ -228,23 +232,23 @@ export default function Overview2({ page, id, dataIdCase }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>País de facturación</Col>
                                 <Col align="start">
-                                    {cases?.promotorPhone ? cases.promotorPhone : ' - '}
+                                    {dataCompany?.billingCountry ? dataCompany.billingCountry : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Domicilio de facturación</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promotorEmail ? cases.promotorEmail : ' - '}
+                                    {dataCompany?.promotorEmail ? dataCompany.promotorEmail : ' No encuentro '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Estado de facturación</Col>
                                 <Col align="start">
-                                    {cases?.promotorPhone ? cases.promotorPhone : ' - '}
+                                    {dataCompany?.billingState ? dataCompany.billingState : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Ciudad de facturación</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promotorEmail ? cases.promotorEmail : ' - '}
+                                    {cases?.o ? cases.o : ' No encuentro '}
                                 </Col>
                             </Row>
                         </Row>
@@ -256,12 +260,12 @@ export default function Overview2({ page, id, dataIdCase }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Creado por</Col>
                                 <Col align="start">
-                                    {cases?.promotorPhone ? cases.promotorPhone : ' - '}
+                                    {dataCompany?.userWhoCreatedName ? dataCompany.userWhoCreatedName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Modificado por</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promotorEmail ? cases.promotorEmail : ' - '}
+                                    {dataCompany?.userWhoModifiedName ? dataCompany.userWhoModifiedName : ' - '}
                                 </Col>
                             </Row>
                         </Row>
@@ -273,18 +277,18 @@ export default function Overview2({ page, id, dataIdCase }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Team leader</Col>
                                 <Col align="start">
-                                    {cases?.promotorPhone ? cases.promotorPhone : ' - '}
+                                    {dataCompany?.teamLeaderUserName ? dataCompany.teamLeaderUserName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Gerente sucursal</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.promotorEmail ? cases.promotorEmail : ' - '}
+                                    {dataCompany?.branchManagerUserName ? dataCompany.branchManagerUserName : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Supervisor</Col>
                                 <Col align="start">
-                                    {cases?.promotorPhone ? cases.promotorPhone : ' - '}
+                                    {dataCompany?.supervisorUserName ? dataCompany.supervisorUserName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}></Col>
@@ -292,6 +296,22 @@ export default function Overview2({ page, id, dataIdCase }: any) {
                             </Row>
                         </Row>
 
+                        <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
+                            <Row>
+                                <Col> <h6>ATENCIÓN</h6> </Col>
+                            </Row>
+                            <Row align="end">
+                                <Col style={{ color: 'gray' }}>Sucursal</Col>
+                                <Col align="start">
+                                    {dataCompany?.branchName ? dataCompany.branchName : ' - '}
+                                </Col>
+
+                                <Col style={{ color: 'gray' }}>Oficial</Col>
+                                <Col sm={4} align="start">
+                                    {dataCompany?.officialName ? dataCompany.officialName : ' - '}
+                                </Col>
+                            </Row>
+                        </Row>
 
                     </Card>
 

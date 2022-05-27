@@ -16,12 +16,14 @@ export default function Show() {
     const id = 2
     // let data = cases
 
-    let data: any = getCompanyData(id)
+    let dataCompany: any = getCompanyData(id)
 
     let dataIdCase = {
         id: id,
         view: 'companyId'
     }
+
+    
 
     return (
         <>
@@ -64,7 +66,7 @@ export default function Show() {
                     </Col>
                     <Col sm={8} style={{ marginRight: 'auto'}}>
 
-                            <h4>Cabecera</h4>
+                            <h4>{dataCompany.name}</h4>
 
                     </Col>
                     <Col sm={2} style={{ marginLeft: 'auto', display: 'flex', justifyContent: 'flex-end' }} align='end'>
@@ -84,7 +86,7 @@ export default function Show() {
 
             <Container style={{ display: 'block' }}>
                 <Row>
-                    {/* <Col sm={2}>
+                    <Col sm={2}>
                         <b>Related List</b>
                         <p>Notes</p>
                         <p>Historial de Estado</p>
@@ -93,7 +95,7 @@ export default function Show() {
                         <p>Close activities</p>
                         <p>Links</p>
                         <p className="text-primary">Add link</p>
-                    </Col> */}
+                    </Col>
 
                     <Col style={{
                         backgroundColor: '#edf0f4'
@@ -119,7 +121,7 @@ export default function Show() {
                             <Row style={{
                                 maxHeight: "25rem", overflow: "auto", backgroundColor: '#edf0f4'
                             }}>
-                                <Overview2 page={page} id={id} dataIdCase={dataIdCase}/>
+                                <Overview2 page={page} id={id} dataIdCase={dataIdCase} dataCompany={dataCompany}/>
                             </Row>
 
 
