@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Forms from "components/contact/forms";
 import { injectStyle } from "react-toastify/dist/inject-style";
 import { CreateContactModel } from "../../../models/Contact";
-import { create, refenceField } from "../../../services/contactService";
+import { create, refenceField } from "services/contactService";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import HeaderForms from "components/_common/header-forms";

@@ -18,6 +18,11 @@ export const CustomAsyncPaginate = ({
     let countSearch = 0;
     let keySearch: string = "";
 
+    const defaultOptions = () => ({
+        options: [] as any,
+        hasMore: false,
+    });
+
     const loadOptions = async (search: any, prevOptions: any) => {
         let filteredOptions;
 
@@ -32,9 +37,13 @@ export const CustomAsyncPaginate = ({
                 pageSize: 20,
             };
 
-            options = await seletScroll(page, params);
-            filteredOptions = options.items;
-            countPage = countPage + 1;
+            try {
+                options = await seletScroll(page, params);
+                filteredOptions = options.items;
+                countPage = countPage + 1;
+            } catch (e) {
+                return defaultOptions()
+            }
 
         } else {
             countPage = 0;
@@ -45,10 +54,7 @@ export const CustomAsyncPaginate = ({
             };
 
             if (keySearch.length < 3)
-                return {
-                    options: [],
-                    hasMore: false,
-                };
+                return defaultOptions()
 
             options = await seletScroll(`Search/${searchEndpoint}?q=${keySearch}`, params);
             filteredOptions = options.items;
@@ -76,7 +82,7 @@ export const CustomAsyncPaginate = ({
         if (e) {
             setData(e)
             if (returnObject) {
-                onChange({target: {id: keyFilter, value: e.value}}, keyFilter) 
+                onChange({target: {id: keyFilter, value: e.value}}, keyFilter)
                 return;
             }
 
