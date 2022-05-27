@@ -210,7 +210,7 @@ const Forms = ({
             <Col>Estado</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                  endpoint={"Search/client-state"}
+                  endpoint={"Search/client-states"}
                   onChange={handleChange}
                   keyFilter={"clientStatus"}
                   value={contactData.clientStatus}
@@ -233,7 +233,7 @@ const Forms = ({
             <Col>Tipo Persona</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                  endpoint={"Search/persons-type"}
+                  endpoint={"Search/client-types"}
                   onChange={handleChange}
                   keyFilter={"clientType"}
                   value={contactData.clientType}
@@ -242,7 +242,7 @@ const Forms = ({
             <Col>Es funcionario?</Col>
             <Col sm={4}>
             <MultipleSelect
-                  endpoint={"Search/is-funcionary"}
+                  endpoint={"Search/is-clerk"}
                   onChange={handleChange}
                   keyFilter={"isClerk"}
                   value={contactData.isClerk}
@@ -461,7 +461,7 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"companyId"}
                   onChange={handleChange}
-                  defaultValue={{value: contactData.companyId, label: reference.companyId}}
+                  // defaultValue={{value: contactData.companyId, label: reference.companyId}}
                 />
             </Col>
 
