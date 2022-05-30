@@ -3,8 +3,10 @@ import { Col, Row, Card, InputGroup, FormControl, Button } from "react-bootstrap
 import NewButtonCase from "./newButtonCase";
 
 export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
-    
-    const { cases } = dataCompany
+
+    const { cases, economicActivityName, operatingEntityNames, salaryPaymentEntityName } = dataCompany;
+
+    console.log('economicActivityName', economicActivityName)
 
     return (
         <>
@@ -68,9 +70,25 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                 </Col>
                             </Row>
                             <Row align="end" style={{ marginBottom: 10, marginTop: 10 }}>
+                                <Col style={{ color: 'gray' }}>Descripción</Col>
+                                <Col align="start">
+                                    {dataCompany?.description ? dataCompany.description : ' - '}
+                                </Col>
+
+                                <Col style={{ color: 'gray' }}>Origen de los fondos</Col>
+                                <Col sm={4} align="start">
+                                    {dataCompany?.sourceFunds ? dataCompany.sourceFunds : ' - '}
+                                </Col>
+                            </Row>
+
+                            <Row align="end" style={{ marginBottom: 10, marginTop: 10 }}>
                                 <Col style={{ color: 'gray' }}>Actividad económica (core)</Col>
                                 <Col align="start">
-                                    {dataCompany.economicActivityName?.lenght > 0 ? dataCompany.economicActivityName : ' - '}
+                                    {economicActivityName?.length > 0 ? economicActivityName.map((el: any) => {
+                                        return (
+                                            <p>{el}</p>
+                                        )
+                                    }) : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Rango de facturación anual</Col>
@@ -78,6 +96,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                     {dataCompany?.billingRangeName ? dataCompany.billingRangeName : ' - '}
                                 </Col>
                             </Row>
+
                             <Row align="end" style={{ marginBottom: 10, marginTop: 10 }}>
                                 <Col style={{ color: 'gray' }}>Tipo de cartera</Col>
                                 <Col align="start">
@@ -86,23 +105,35 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
 
                                 <Col style={{ color: 'gray' }}>Entidad financiera para pago de salarios</Col>
                                 <Col sm={4} align="start">
-                                    {dataCompany.salaryPaymentEntityName?.lenght > 0 ? dataCompany.salaryPaymentEntityName : ' - '}
+                                    {salaryPaymentEntityName?.length > 0 ? salaryPaymentEntityName.map((el: any) => {
+                                        return (
+                                            <p>{el}</p>
+                                        )
+                                    }) : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end" style={{ marginBottom: 10, marginTop: 10 }}>
                                 <Col style={{ color: 'gray' }}>Entidad financiera en la que opera</Col>
                                 <Col align="start">
-                                    {dataCompany.operatingEntityNames?.lenght > 0 ? dataCompany.operatingEntityNames : ' - '}
+                                    {operatingEntityNames?.length > 0 ? operatingEntityNames.map((el: any) => {
+                                        return (
+                                            <p>{el}</p>
+                                        )
+                                    }) : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Lista de Actividad Economica</Col>
                                 <Col sm={4} align="start">
-                                    {dataCompany.economicActivityName?.lenght > 0 ? dataCompany.economicActivityName : ' - '}
+                                    {economicActivityName?.length > 0 ? economicActivityName.map((el: any) => {
+                                        return (
+                                            <p>{el}</p>
+                                        )
+                                    }) : ' - '}
                                 </Col>
                             </Row>
                         </Row>
 
-                        <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
+                        {/* <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>
                                 <Col> <h6>DATOS DEL CONTACTO</h6> </Col>
                             </Row>
@@ -131,13 +162,13 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Teléfono</Col>
                                 <Col align="start">
-                                    {dataCompany?.promotorPhone ? dataCompany.promotorPhone : ' No se '}
+                                    {dataCompany?.phone ? dataCompany.phone : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}></Col>
                                 <Col sm={4} align="start"></Col>
                             </Row>
-                        </Row>
+                        </Row> */}
 
                         <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>
@@ -315,55 +346,40 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                             justifyContent: 'between',
                             alignItems: 'center'
                         }}>
-
-                            <Row
+                            {cases?.length > 0 ? (<Row
                                 style={{
+                                    color: 'gray',
                                     marginBottom: 10,
                                     marginTop: 10,
                                     borderColor: 'rgb(237, 240, 244)',
                                     borderStyle: 'solid',
                                     borderWidth: 'thin',
-                                    borderTop: 'none',
                                     borderLeft: 'none',
                                     borderRight: 'none'
                                 }}>
-                            </Row>
-                            {cases?.length > 0 ? cases.map((item:any) => {
-                                return(
-                                    <Row>
-                                    <Row
-                                        style={{
-                                            color: 'gray',
+                                <Col>Asunto</Col>
+                                <Col>Estado</Col>
+                                <Col>Tipo</Col>
+                                <Col>Nombre y Apellido</Col>
+                            </Row>) : null}
+                            {cases?.length > 0 ? cases.map((item: any) => {
+                                return (
+                                        <Row style={{
                                             marginBottom: 10,
                                             marginTop: 10,
                                             borderColor: 'rgb(237, 240, 244)',
                                             borderStyle: 'solid',
                                             borderWidth: 'thin',
                                             borderLeft: 'none',
-                                            borderRight: 'none'
-                                        }}>
-                                        <Col>Asunto</Col>
-                                        <Col>Estado</Col>
-                                        <Col>Tipo</Col>
-                                        <Col>Nombre y Apellido</Col>
-                                    </Row>
-                                    <Row style={{
-                                        marginBottom: 10,
-                                        marginTop: 10,
-                                        borderColor: 'rgb(237, 240, 244)',
-                                        borderStyle: 'solid',
-                                        borderWidth: 'thin',
-                                        borderLeft: 'none',
-                                        borderRight: 'none',
-                                        borderTop: 'none'
-                                    }}
-                                    key={item.id}>
-                                        <Col>{item?.issue ? item.issue : 'Sin asunto'}</Col>
-                                        <Col>{item?.caseStatusName ? item.caseStatusName : 'Sin estado'}</Col>
-                                        <Col>{item?.CONSULTA ? item.CONSULTA : 'Sin datos de la consulta'}</Col>
-                                        <Col>{item?.contactFullName ? item.contactFullName : 'Sin datos del Contacto'}</Col>
-                                    </Row>
-                                </Row>
+                                            borderRight: 'none',
+                                            borderTop: 'none'
+                                        }}
+                                            key={item.id}>
+                                            <Col>{item?.issue ? item.issue : 'Sin asunto'}</Col>
+                                            <Col>{item?.caseStatusName ? item.caseStatusName : 'Sin estado'}</Col>
+                                            <Col>{item?.CONSULTA ? item.CONSULTA : 'Sin datos de la consulta'}</Col>
+                                            <Col>{item?.contactFullName ? item.contactFullName : 'Sin datos del Contacto'}</Col>
+                                        </Row>
                                 )
 
                             }) : <Row style={{
