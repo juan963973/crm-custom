@@ -4,12 +4,16 @@ import {
 import getCompanyData from "services/companyService";
 import Overview2 from "components/_common/overview2";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-const page = "cases";
+const page = "companies";
 
-export default function Show() {
-    const id = 3
+export default function Show({ id, uri }: any) {
+    // const id = 2
+
     const [dataCompany, setdataCompany] = useState({} as any)
+
+    const router = useRouter()
 
     useEffect(() => {
         getCompanyData(id).then(d =>{ 
@@ -94,4 +98,15 @@ export default function Show() {
 
         </>
     )
+}
+
+export async function getServerSideProps(req: any, res: any) {
+    const {
+        query: { id },
+        resolvedUrl,
+    } = req;
+    const uri = resolvedUrl.split("/")[1];
+    return {
+        props: { id, uri },
+    };
 }

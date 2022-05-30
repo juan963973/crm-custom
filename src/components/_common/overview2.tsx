@@ -6,8 +6,6 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
 
     const { cases, economicActivityName, operatingEntityNames, salaryPaymentEntityName } = dataCompany;
 
-    console.log('economicActivityName', economicActivityName)
-
     return (
         <>
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
@@ -61,7 +59,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Empresa principal</Col>
                                 <Col align="start">
-                                    {dataCompany?.o ? dataCompany.o : ' No hay '}
+                                    {dataCompany?.o ? dataCompany.o : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Cantidad de funcionarios</Col>
