@@ -1,22 +1,16 @@
 import React from "react";
 import { Col, Row, Card, InputGroup, FormControl, Button } from "react-bootstrap";
-import { useEffect, useState } from "react";
-
-import { detail } from "../../services/caseService";
-import { CaseDetailModel } from '../../models/Case';
-
-import Notes from "components/_common/notes";
 import NewButtonCase from "./newButtonCase";
 
 export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
-    console.log('info de empresa', dataCompany)
+    
+    const { cases } = dataCompany
 
     return (
         <>
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
                     <Card body>
-
                         <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>
                                 <Col> <h6>DATOS BÁSICOS DE LA EMPRESA</h6> </Col>
@@ -76,7 +70,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                             <Row align="end" style={{ marginBottom: 10, marginTop: 10 }}>
                                 <Col style={{ color: 'gray' }}>Actividad económica (core)</Col>
                                 <Col align="start">
-                                    {dataCompany == 0?.economicActivityName ? dataCompany.economicActivityName : ' - '}
+                                    {dataCompany.economicActivityName?.lenght > 0 ? dataCompany.economicActivityName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Rango de facturación anual</Col>
@@ -92,18 +86,18 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
 
                                 <Col style={{ color: 'gray' }}>Entidad financiera para pago de salarios</Col>
                                 <Col sm={4} align="start">
-                                    {dataCompany == 0?.salaryPaymentEntityName ? dataCompany.salaryPaymentEntityName : ' - '}
+                                    {dataCompany.salaryPaymentEntityName?.lenght > 0 ? dataCompany.salaryPaymentEntityName : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end" style={{ marginBottom: 10, marginTop: 10 }}>
                                 <Col style={{ color: 'gray' }}>Entidad financiera en la que opera</Col>
                                 <Col align="start">
-                                    {dataCompany == 0?.operatingEntityNames ? dataCompany.operatingEntityNames : ' - '}
+                                    {dataCompany.operatingEntityNames?.lenght > 0 ? dataCompany.operatingEntityNames : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Lista de Actividad Economica</Col>
                                 <Col sm={4} align="start">
-                                    {dataCompany == 0?.economicActivityName ? dataCompany.economicActivityName : ' - '}
+                                    {dataCompany.economicActivityName?.lenght > 0 ? dataCompany.economicActivityName : ' - '}
                                 </Col>
                             </Row>
                         </Row>
@@ -208,7 +202,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
 
                                 <Col style={{ color: 'gray' }}>Ciudad de facturación</Col>
                                 <Col sm={4} align="start">
-                                    {dataCompany?.o ? dataCompany.o : ' No encuentro '}
+                                    {dataCompany?.billingCity ? dataCompany.billingCity : ' - '}
                                 </Col>
                             </Row>
                         </Row>
@@ -334,9 +328,9 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                     borderRight: 'none'
                                 }}>
                             </Row>
-                            {dataCompany.cases?.lenght > 0 ? dataCompany.cases.map((item: { caseStatusName: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal; duration: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal; modifiedAt: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal; modifiedByName: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal; }) => {
-
-                                <Row>
+                            {cases?.length > 0 ? cases.map((item:any) => {
+                                return(
+                                    <Row>
                                     <Row
                                         style={{
                                             color: 'gray',
@@ -348,10 +342,10 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                             borderLeft: 'none',
                                             borderRight: 'none'
                                         }}>
-                                        <Col>Nro. Ticket</Col>
                                         <Col>Asunto</Col>
-                                        <Col>Estatus</Col>
+                                        <Col>Estado</Col>
                                         <Col>Tipo</Col>
+                                        <Col>Nombre y Apellido</Col>
                                     </Row>
                                     <Row style={{
                                         marginBottom: 10,
@@ -362,13 +356,15 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                         borderLeft: 'none',
                                         borderRight: 'none',
                                         borderTop: 'none'
-                                    }}>
-                                        <Col>{item.caseStatusName}</Col>
-                                        <Col>{item.duration} días</Col>
-                                        <Col>{item.modifiedAt}</Col>
-                                        <Col>{item.modifiedByName}</Col>
+                                    }}
+                                    key={item.id}>
+                                        <Col>{item?.issue ? item.issue : 'Sin asunto'}</Col>
+                                        <Col>{item?.caseStatusName ? item.caseStatusName : 'Sin estado'}</Col>
+                                        <Col>{item?.CONSULTA ? item.CONSULTA : 'Sin datos de la consulta'}</Col>
+                                        <Col>{item?.contactFullName ? item.contactFullName : 'Sin datos del Contacto'}</Col>
                                     </Row>
                                 </Row>
+                                )
 
                             }) : <Row style={{
                                 marginBottom: 10,
