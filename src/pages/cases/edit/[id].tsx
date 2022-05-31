@@ -12,7 +12,8 @@ import { create, refenceField, saveUpdate, update } from "services/caseService";
 function EditCase({ id, uri }: any) {
   const [casesData, setCasesData] = useState<CreateCaseModel>({
     callDirectionId: 1,
-    businessOfficerId: 1
+    businessOfficerId: 1,
+    subject: ""
   } as CreateCaseModel);
 
   const [dataReference, setDataReference] = useState({
@@ -68,10 +69,16 @@ function EditCase({ id, uri }: any) {
           let value = response.promoterId;
           completeField(key, value);
         }
+        
         setCasesData(response);
       })
       .catch((e: any) => console.log(e));
   }, []);
+
+  if(!casesData){
+
+    return <p>loading...</p>
+  }
 
   const handleChange = (e: any, name: string | null = null) => {
     if (!name) {

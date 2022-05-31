@@ -9,7 +9,6 @@ import {useEffect} from "react";
 const Forms = ({
   handleChange,
   reference,
-  dataPromoter,
   caseData,
   paramsRequired,
   cascade,
@@ -109,7 +108,6 @@ const Forms = ({
                 aria-describedby="inputGroup-sizing-default"
                 name="documentTypeName"
                 defaultValue={reference.documentTypeName}
-                style={styles.disable}
                 disabled
               />
             </Col>
@@ -122,7 +120,6 @@ const Forms = ({
                   aria-describedby="inputGroup-sizing-default"
                   name="email"
                   defaultValue={reference.email}
-                  style={styles.disable}
                   disabled
                 />
               </InputGroup>
@@ -140,7 +137,6 @@ const Forms = ({
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
                   defaultValue={reference.documentNumber}
-                  style={styles.disable}
                   disabled
                 />
               </InputGroup>
@@ -153,7 +149,6 @@ const Forms = ({
                   defaultValue={reference.mobile}
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  style={styles.disable}
                   disabled
                 />
               </InputGroup>
@@ -168,7 +163,6 @@ const Forms = ({
                   defaultValue={reference.clientCode}
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  style={styles.disable}
                   disabled
                 />
               </InputGroup>
@@ -181,7 +175,6 @@ const Forms = ({
                   defaultValue={reference.phone}
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  style={styles.disable}
                   disabled
                 />
               </InputGroup>
@@ -196,7 +189,6 @@ const Forms = ({
                   defaultValue={reference.branchName}
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  style={styles.disable}
                   disabled
                 />
               </InputGroup>
@@ -491,7 +483,7 @@ const Forms = ({
               />
             </Col>
             <Col>Oficial Negocio</Col>
-            <Col sm={4}>
+            <Col sm={4} align="start">
               {/* <InputGroup className="mb-2">
                   <FormControl
                     aria-label="Default"
@@ -501,11 +493,11 @@ const Forms = ({
                     defaultValue={caseData.businessOfficer}
                   />
                 </InputGroup> */}
-              <MultipleSelect
-                endpoint={"Search/clerks"}
-                onChange={handleChange}
+              <CustomAsyncPaginate
+                searchEndpoint="clerks"
                 keyFilter={"businessOfficerId"}
-                value={reference.officialId}
+                onChange={handleChange}
+                defaultValue={ {value: caseData.businessOfficerId, label: reference.officialFullName}}
               />
             </Col>
           </Row>

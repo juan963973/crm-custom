@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Forms from "components/contact/forms";
 import { injectStyle } from "react-toastify/dist/inject-style";
 import { CreateContactModel } from "../../../models/Contact";
-import { create, refenceField } from "../../../services/contactService";
+import { create, refenceField } from "services/contactService";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import HeaderForms from "components/_common/header-forms";
@@ -45,6 +45,9 @@ function New({ module, query }: any) {
   const [requiredSubType, setRequiredSubType] = useState(false);
   const [requiredResolverArea, setRequiredResolverArea] = useState(false);
   const [requiredTipifications, setRequiredTipifications] = useState(false);
+  const [sendCorrespondence, setSendCorrespondence] = useState(true);
+  const [clientCode, setClientCode] = useState(false);
+  
   var arrayData:any;
 
   const router = useRouter();
@@ -63,6 +66,7 @@ function New({ module, query }: any) {
       switch (e.target.type) {
         case "checkbox":
           value = e.target.checked;
+          setSendCorrespondence(!value)
           break;
         case "select-one":
           if (isNaN(e.target.value)) {
@@ -87,6 +91,15 @@ function New({ module, query }: any) {
         if (key == "subtypeId") {
           page = `Search/typifications?${key}=${value}`;
           setEndpointCascade({ ...endpointCascade, typificationId: page });
+        }
+
+        if(key == "clientCode") {
+          console.log(value);
+          if(value.length > 0) {
+            setClientCode(true)
+          } else {
+            setClientCode(false)
+          }
         }
 
         setContactsData({ ...contactsData, [key]: value });
@@ -290,6 +303,8 @@ function New({ module, query }: any) {
     requiredResolverArea,
     originValid,
     statusValid,
+    sendCorrespondence,
+    clientCode
   };
 
   return (

@@ -3,13 +3,25 @@ import React, {useState} from "react";
 import {AsyncPaginate} from "react-select-async-paginate";
 import {seletScroll} from "services/filterService";
 
-export const CustomAsyncPaginate = ({searchEndpoint, disabled, keyFilter, onChange, defaultValue}: any) => {
+export const CustomAsyncPaginate = ({
+                                        searchEndpoint,
+                                        disabled,
+                                        keyFilter,
+                                        onChange,
+                                        defaultValue,
+                                        returnObject
+                                    }: any) => {
     const [data, setData] = useState(null);
 
     let options: any = [];
     let countPage = 0;
     let countSearch = 0;
     let keySearch: string = "";
+
+    const defaultOptions = () => ({
+        options: [] as any,
+        hasMore: false,
+    });
 
     const loadOptions = async (search: any, prevOptions: any) => {
         let filteredOptions;
@@ -25,9 +37,13 @@ export const CustomAsyncPaginate = ({searchEndpoint, disabled, keyFilter, onChan
                 pageSize: 20,
             };
 
-            options = await seletScroll(page, params);
-            filteredOptions = options.items;
-            countPage = countPage + 1;
+            try {
+                options = await seletScroll(page, params);
+                filteredOptions = options.items;
+                countPage = countPage + 1;
+            } catch (e) {
+                return defaultOptions()
+            }
 
         } else {
             countPage = 0;
@@ -38,10 +54,7 @@ export const CustomAsyncPaginate = ({searchEndpoint, disabled, keyFilter, onChan
             };
 
             if (keySearch.length < 3)
-                return {
-                    options: [],
-                    hasMore: false,
-                };
+                return defaultOptions()
 
             options = await seletScroll(`Search/${searchEndpoint}?q=${keySearch}`, params);
             filteredOptions = options.items;
@@ -68,6 +81,11 @@ export const CustomAsyncPaginate = ({searchEndpoint, disabled, keyFilter, onChan
     const changeValue = (e: any) => {
         if (e) {
             setData(e)
+            if (returnObject) {
+                onChange({target: {name: keyFilter, value: e.value}}, keyFilter)
+                return;
+            }
+
             const {value} = e;
             onChange(value, keyFilter);
             return;
