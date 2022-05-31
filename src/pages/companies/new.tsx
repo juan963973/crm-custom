@@ -5,43 +5,59 @@ import { injectStyle } from "react-toastify/dist/inject-style";
 import FormCompany from "components/company/forms";
 import HeaderForms from "components/_common/header-forms";
 import { toast, ToastContainer } from "react-toastify";
+import { createCompany } from "services/companyService";
 
 function New() {
-  const [companyData, setCompanyData] = useState<CreateOrUpdateCompanyModel>({} as CreateOrUpdateCompanyModel);
+  const [companyData, setCompanyData] = useState<CreateOrUpdateCompanyModel>(
+    {} as CreateOrUpdateCompanyModel
+  );
 
   const [validated, setValidated] = useState(false);
+  const [endpointCascade, setEndpointCascade] = useState({});
 
   if (typeof window !== "undefined") {
     injectStyle();
   }
 
   const handleChange = (e: any, name: string | null = null) => {
-
-    if(!name){
-      let name = e.target.name;
+    if (e.target) {
+      let nameData = e.target.name;
       let value = e.target.value;
-      setCompanyData({...companyData,[name]:value})
+      if (nameData == "department") {
+        let page = `Search/city?code=${value}`;
+
+        setEndpointCascade({ ...endpointCascade, city: page });
+      }
+
+      setCompanyData({ ...companyData, [nameData]: value });
+    } else {
+      setCompanyData({ ...companyData, [name]: e });
     }
-    
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
-      console.log("falta validar")
+      console.log("falta validar");
     } else {
-      toast.success("Se ha guardado con exito!", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      try {
+        let page = 'Companies'
+        await createCompany(page, companyData)
+        toast.success("Se ha guardado con exito!", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
-    setValidated(true)
+    setValidated(true);
   };
 
   const handleClose = () => {
@@ -50,11 +66,7 @@ function New() {
 
   return (
     <>
-      <Form
-        noValidate
-        validated={validated}
-        onSubmit={handleSubmit}
-      >
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <div
           className="shadow-sm p-3 mb-5 bg-white rounded container-fluid"
           style={{ zIndex: 9, marginTop: "-71px", position: "fixed" }}
@@ -62,9 +74,10 @@ function New() {
           <HeaderForms title="Crear Empresa" handleClose={handleClose} />
         </div>
         <ToastContainer />
-        <FormCompany 
-          handleChange={handleChange} 
-          companyData = {companyData}
+        <FormCompany
+          handleChange={handleChange}
+          companyData={companyData}
+          cascade={endpointCascade}
         />
       </Form>
     </>
