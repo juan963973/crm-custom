@@ -9,11 +9,13 @@ import { toast, ToastContainer } from "react-toastify";
 import HeaderForms from "components/_common/header-forms";
 
 function New({ module, query }: any) {
-  const [contactsData, setContactsData] = useState<CreateContactModel>({
-    callDirectionId: 1,
-    contactId: null,
-    companyId: null,
-  } as CreateContactModel);
+  // const [contactsData, setContactsData] = useState<CreateContactModel>({
+  //   callDirectionId: 1,
+  //   contactId: null,
+  //   companyId: null,
+  // } as CreateContactModel);
+
+  const [contactsData, setContactsData] = useState<CreateContactModel>({} as CreateContactModel);
   
   const [dataReference, setDataReference] = useState({
     documentTypeName: "",
@@ -33,8 +35,7 @@ function New({ module, query }: any) {
   });
 
   const [endpointCascade, setEndpointCascade] = useState({
-    subtypeId: "Search/subtypes",
-    typificationId: "Search/typifications",
+    city: "Search/city"
   });
 
   const [validated, setValidated] = useState(false);
@@ -73,7 +74,9 @@ function New({ module, query }: any) {
             value = null;
             break;
           }
-          value = Number(e.target.value);
+          // value = Number(e.target.value);
+          value = e.target.value;
+          console.log('selectone::', value)
           break;
         default:
           value = e.target.value;
@@ -83,9 +86,9 @@ function New({ module, query }: any) {
       if (key == "contactId" || key == "companyId" || key == "promoterId") {
         await completeField(key, value);
       } else {
-        if (key == "typeId") {
-          page = `Search/subtypes?${key}=${value}`;
-          setEndpointCascade({ ...endpointCascade, subtypeId: page });
+        if (key == "department") {
+          page = `Search/city?code=${value}`;
+          setEndpointCascade({ ...endpointCascade, city: page });
         }
 
         if (key == "subtypeId") {
@@ -217,61 +220,60 @@ function New({ module, query }: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const form = e.currentTarget;
-    console.log(form);
     if (form.checkValidity() === false) {
       console.log("Falta Validar");
     } else {
       let page = "Contacts";
       let validation = true;
       try {
-        if (contactsData.companyId == null && contactsData.contactId == null) {
-          validation = false;
-          setCustomerValid(true);
-        } else {
-          setCustomerValid(false);
-        }
+        // if (contactsData.companyId == null && contactsData.contactId == null) {
+        //   validation = false;
+        //   setCustomerValid(true);
+        // } else {
+        //   setCustomerValid(false);
+        // }
 
-        if (!contactsData.typeId) {
-          setRequiredType(true);
-          validation = false;
-        } else {
-          setRequiredType(false);
-        }
+        // if (!contactsData.typeId) {
+        //   setRequiredType(true);
+        //   validation = false;
+        // } else {
+        //   setRequiredType(false);
+        // }
 
-        if (!contactsData.subtypeId) {
-          setRequiredSubType(true);
-          validation = false;
-        } else {
-          setRequiredSubType(false);
-        }
+        // if (!contactsData.subtypeId) {
+        //   setRequiredSubType(true);
+        //   validation = false;
+        // } else {
+        //   setRequiredSubType(false);
+        // }
 
-        if (!contactsData.typificationId) {
-          setRequiredTipifications(true);
-          validation = false;
-        } else {
-          setRequiredTipifications(false);
-        }
+        // if (!contactsData.typificationId) {
+        //   setRequiredTipifications(true);
+        //   validation = false;
+        // } else {
+        //   setRequiredTipifications(false);
+        // }
 
-        if (!contactsData.resolutionAreaIds) {
-          setRequiredResolverArea(true);
-          validation = false;
-        } else {
-          setRequiredResolverArea(false);
-        }
+        // if (!contactsData.resolutionAreaIds) {
+        //   setRequiredResolverArea(true);
+        //   validation = false;
+        // } else {
+        //   setRequiredResolverArea(false);
+        // }
 
-        if (!contactsData.contactStatusId) {
-          setStatusValid(true);
-          validation = false;
-        } else {
-          setStatusValid(false);
-        }
+        // if (!contactsData.contactStatusId) {
+        //   setStatusValid(true);
+        //   validation = false;
+        // } else {
+        //   setStatusValid(false);
+        // }
 
-        if (!contactsData.originId) {
-          setOriginValid(true);
-          validation = false;
-        } else {
-          setOriginValid(false);
-        }
+        // if (!contactsData.originId) {
+        //   setOriginValid(true);
+        //   validation = false;
+        // } else {
+        //   setOriginValid(false);
+        // }
 
         if (validation) {
           await create(page, contactsData);

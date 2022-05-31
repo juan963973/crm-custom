@@ -319,7 +319,7 @@ const Forms = ({
             <Col>Ciudad</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/types"}
+                endpoint={cascade.city}
                 onChange={handleChange}
                 keyFilter={"city"}
                 value={contactData.city}
@@ -355,10 +355,10 @@ const Forms = ({
               <input
                   type="checkbox"
                   className="input-group-text"
-                  name="sendMailInThisDirection"
+                  name="sendMailInThisStreet"
                   onChange={(e) => handleChange(e)}
                   checked={
-                    contactData.sendMailInThisDirection ? contactData.sendMailInThisDirection : false
+                    contactData.sendMailInThisStreet ? contactData.sendMailInThisStreet : false
                   }
               />
             </Col>
@@ -591,7 +591,7 @@ const Forms = ({
             <Col>Sucursal BC</Col>
             <Col sm={4} align="start">
               <CustomAsyncPaginate
-                  searchEndpoint="contacts"
+                  searchEndpoint="branches"
                   disabled={false}
                   keyFilter={"branchId"}
                   onChange={handleChange}
