@@ -1,10 +1,10 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
-import { useDropzone, FileWithPath } from 'react-dropzone';
+import { useDropzone } from 'react-dropzone';
 import { importFile } from "services/attachService";
 
 
-export default function AttachFilesButton(id: any) {
+export default function AttachFilesButton( { id: any } ) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,8 +18,7 @@ export default function AttachFilesButton(id: any) {
       const e = await importFile(id, file)
       console.log('formData', formData)
     }
-    // alert('Archivo(s) enviados con exito')
-    location.reload();
+    alert('Archivo(s) enviados con exito')
   }
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({    

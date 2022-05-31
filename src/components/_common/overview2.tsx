@@ -1,8 +1,8 @@
 import React from "react";
-import { Col, Row, Card, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Col, Row, Card } from "react-bootstrap";
 import NewButtonCase from "./newButtonCase";
 
-export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
+export default function Overview2({ dataIdCase, dataCompany }: any) {
 
     const { cases, economicActivityName, operatingEntityNames, salaryPaymentEntityName } = dataCompany;
 
@@ -380,17 +380,16 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                         </Row>
                                 )
 
-                            }) : <Row style={{
+                            }) : <Row>
+                                <Col style={{ display: 'flex',
+                                justifyContent: 'center',
                                 marginBottom: 10,
                                 marginTop: 10,
                                 borderColor: 'rgb(237, 240, 244)',
                                 borderStyle: 'solid',
                                 borderWidth: 'thin',
                                 borderLeft: 'none',
-                                borderRight: 'none',
-                                borderTop: 'none'
-                            }}>
-                                <Col style={{ display: 'flex', justifyContent: 'center' }}>Sin datos</Col>
+                                borderRight: 'none', }}>Sin datos</Col>
                             </Row>}
                         </Row>
                     </Card>
