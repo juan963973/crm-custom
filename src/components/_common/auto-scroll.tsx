@@ -82,7 +82,7 @@ export const CustomAsyncPaginate = ({
         if (e) {
             setData(e)
             if (returnObject) {
-                onChange({target: {id: keyFilter, value: e.value}}, keyFilter)
+                onChange({target: {name: keyFilter, value: e.value}}, keyFilter)
                 return;
             }
 
