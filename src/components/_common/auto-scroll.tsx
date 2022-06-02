@@ -97,7 +97,7 @@ export const CustomAsyncPaginate = ({
         <AsyncPaginate
             onKeyDown={handleKey}
             debounceTimeout={300}
-            value={defaultValue ?? data}
+            value={defaultValue?.label  ? defaultValue : data}
             loadOptions={loadOptions}
             onChange={changeValue}
             isDisabled={disabled}
