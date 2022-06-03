@@ -1,23 +1,34 @@
 import {
-    Button, Col, Container, Form, Row, Card, InputGroup, FormControl,
-    ButtonGroup, ToggleButton, Nav, Tabs, Tab
+    Button, Col, Container, Row
 } from "react-bootstrap";
-import { useRouter } from 'next/router'
-import { useState } from "react";
-import { CaseDetailModel } from ".../../models/Case";
-import Overview from "components/_common/overview";
-import Overview2 from "components/_common/overview2";
+import Overview3 from "components/_common/overview3";
 import getContactData from "services/contactService";
+import {useRouter} from "next/router";
+import {useEffect, useState} from "react";
+import getCompanyData from "../../../services/companyService";
 
-const page = "cases";
+const page = "contacts";
 
-export default function Show() {
+export default function Show({ id, uri }: any) {
     // const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
-    // const router = useRouter()
-    const id = 1
-    let data: any = getContactData(id)
+    const router = useRouter()
+    // const id = 1
+    // let data: any = getContactData(id)
+    console.log('data', data)
 
     let dataId = id
+//////////////////////
+    const [dataContact, setDataContact] = useState({} as any)
+
+    useEffect(() => {
+        getContactData(id).then(d =>{
+            setDataContact(d as any)
+        })
+    }, []);
+
+    const data = dataContact;
+
+    console.log('idContact', id);
 
     let dataIdCase = {
         id: id,
@@ -25,7 +36,9 @@ export default function Show() {
     }
 
 
-    // let data = cases
+
+    if (!dataContact)
+        return <></>
 
     return (
         <>
@@ -95,7 +108,7 @@ export default function Show() {
                             <Row style={{
                                 maxHeight: "25rem", overflow: "auto", backgroundColor: '#edf0f4'
                             }}>
-                                <Overview2 page={page} id={id} dataIdCase={dataIdCase}/>
+                                <Overview3 page={page} id={id} dataIdCase={dataIdCase}/>
                             </Row>
                         </Row>
                     </Col>
@@ -105,4 +118,15 @@ export default function Show() {
 
         </>
     )
+}
+
+export async function getServerSideProps(req: any, res: any) {
+    const {
+        query: { id },
+        resolvedUrl,
+    } = req;
+    const uri = resolvedUrl.split("/")[1];
+    return {
+        props: { id, uri },
+    };
 }
