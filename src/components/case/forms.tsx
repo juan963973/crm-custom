@@ -483,7 +483,7 @@ const Forms = ({
               />
             </Col>
             <Col>Oficial Negocio</Col>
-            <Col sm={4}>
+            <Col sm={4} align="start">
               {/* <InputGroup className="mb-2">
                   <FormControl
                     aria-label="Default"
@@ -497,7 +497,7 @@ const Forms = ({
                 searchEndpoint="clerks"
                 keyFilter={"businessOfficerId"}
                 onChange={handleChange}
-                //defaultValue={ {value: caseData.businessOfficerId, label: reference.fullName}}
+                defaultValue={ {value: caseData.businessOfficerId, label: reference.officialFullName}}
               />
             </Col>
           </Row>

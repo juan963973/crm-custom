@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CreateOrUpdateCompanyModel } from "models/Company";
 import { useEffect, useState } from "react";
 
 
@@ -12,7 +13,12 @@ export default function getCompanyData(id: number) {
     return data
 }
 
-export async function PaisesService(): Promise<any> {
-    const res = await axios.get<any>(`http://country.io/names.json`)
+export async function createCompany(page:any,model:CreateOrUpdateCompanyModel): Promise<any[]> {
+    const res = await axios.post<any[]>(`${process.env.BASE_URL}/${page}`,model)
+    return res.data
+}
+
+export async function updateCompany(page:any,model:CreateOrUpdateCompanyModel): Promise<any[]> {
+    const res = await axios.put<any[]>(`${process.env.BASE_URL}/${page}`,model)
     return res.data
 }

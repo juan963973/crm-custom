@@ -3,8 +3,9 @@ import "rsuite/dist/rsuite.min.css";
 import { CustomAsyncPaginate } from "components/_common/auto-scroll";
 import MultipleSelect from "components/_common/multiple-select";
 import { Col, Form, InputGroup, Row, FormControl } from "react-bootstrap";
+import InputForm from "components/_common/input-components";
 
-const FormCompany = ({ handleChange, companyData }: any) => {
+const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
   const styles = {
     disable: {
       background: "white",
@@ -30,10 +31,6 @@ const FormCompany = ({ handleChange, companyData }: any) => {
     },
   };
 
-  const autoCompleteName = (id: number) => {
-    let page = "";
-  };
-
   return (
     <div className="container-fluid" style={{ marginTop: "126px" }}>
       <div style={{ paddingLeft: "25px" }}>
@@ -55,6 +52,7 @@ const FormCompany = ({ handleChange, companyData }: any) => {
                   name="name"
                   onChange={handleChange}
                   value={companyData.name}
+                  required
                 />
               </InputGroup>
             </Col>
@@ -69,6 +67,7 @@ const FormCompany = ({ handleChange, companyData }: any) => {
                   name="ruc"
                   onChange={handleChange}
                   value={companyData.ruc}
+                  required
                 />
               </InputGroup>
             </Col>
@@ -78,10 +77,10 @@ const FormCompany = ({ handleChange, companyData }: any) => {
             <Col>Tipo Cliente</Col>
             <Col sm={4}>
               <MultipleSelect
-                value={companyData.clientTypeId}
+                value={companyData.clientType}
                 endpoint={"Search/client-types"}
                 onChange={handleChange}
-                keyFilter={"clientTypeId"}
+                keyFilter={"clientType"}
               />
             </Col>
 
@@ -94,7 +93,7 @@ const FormCompany = ({ handleChange, companyData }: any) => {
                   name="foundation"
                   type="date"
                   onChange={handleChange}
-                  value={companyData.foundation}
+                  value={dataDate}
                 />
               </InputGroup>
             </Col>
@@ -104,10 +103,10 @@ const FormCompany = ({ handleChange, companyData }: any) => {
             <Col>Nacionalidad</Col>
             <Col sm={4}>
               <MultipleSelect
-                value={companyData.nationality}
+                value={companyData.nationalityId}
                 endpoint={"Search/nationalities"}
                 onChange={handleChange}
-                keyFilter={"nationality"}
+                keyFilter={"nationalityId"}
               />
             </Col>
             <Col></Col>
@@ -126,14 +125,13 @@ const FormCompany = ({ handleChange, companyData }: any) => {
             <Col sm={4} align="start">
               <CustomAsyncPaginate
                 searchEndpoint="companies"
-                disabled={false}
                 keyFilter={"parentCompanyId"}
                 onChange={handleChange}
                 returnObject
-                // value={async () => {
-                //   return await valueField(contactData.branchId, "branchId");
-                // }}
-                defaultValue={{value: companyData.parentCompanyId, label: companyData.parentCompanyName}}
+                defaultValue={{
+                  value: companyData?.parentCompanyId,
+                  label: companyData?.parentCompanyName,
+                }}
               />
             </Col>
 
@@ -232,15 +230,15 @@ const FormCompany = ({ handleChange, companyData }: any) => {
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
+                  name="sourceFunds"
                   onChange={handleChange}
-                  value={companyData.name}
+                  value={companyData.sourceFunds}
                 />
               </InputGroup>
             </Col>
 
             <Col>Lista de Actividad Economica</Col>
-            <Col sm={4}>
+            <Col sm={4} align="start">
               <MultipleArray
                 placeholder={"Actividad Económica"}
                 endpoint="Search/economic-activities"
@@ -260,66 +258,59 @@ const FormCompany = ({ handleChange, companyData }: any) => {
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Contacto Lookup</Col>
-            <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
-            </Col>
-
             <Col>Telefono Movil</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
+                  name="mobile"
+                  onChange={handleChange}
+                  value={companyData.mobile}
                 />
               </InputGroup>
             </Col>
-          </Row>
 
-          <Row align="end" className="mt-1">
             <Col>Correo electrónico</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
-                />
-              </InputGroup>
-            </Col>
-
-            <Col>Teléfono</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
+                  name="email"
+                  onChange={handleChange}
+                  value={companyData.email}
                 />
               </InputGroup>
             </Col>
           </Row>
 
           <Row align="end" className="mt-1">
+            <Col>Teléfono</Col>
+            <Col sm={4}>
+              <InputGroup className="mb-2">
+                <FormControl
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  name="phone"
+                  onChange={handleChange}
+                  value={companyData.phone}
+                />
+              </InputGroup>
+            </Col>
+
             <Col>Email Empresa</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
+                  name="email"
+                  onChange={handleChange}
+                  value={companyData.email}
                 />
               </InputGroup>
             </Col>
-
-            <Col></Col>
-            <Col sm={4}></Col>
           </Row>
 
           <Row style={{ marginBottom: 10 }}>
@@ -336,68 +327,58 @@ const FormCompany = ({ handleChange, companyData }: any) => {
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
+                  name="address"
+                  onChange={handleChange}
+                  value={companyData.address}
                 />
               </InputGroup>
             </Col>
 
             <Col>Departamento</Col>
             <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+              <MultipleSelect
+                value={companyData.departmentId}
+                endpoint={"Search/departament"}
+                onChange={handleChange}
+                keyFilter={"departmentId"}
+              />
             </Col>
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Referencia</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
-                />
-              </InputGroup>
-            </Col>
-
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.reference}
+              sm={4}
+              title="Referencia"
+              name="reference"
+            />
             <Col>Ciudad</Col>
             <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+              <MultipleSelect
+                value={companyData.cityId}
+                endpoint={cascade.city}
+                onChange={handleChange}
+                keyFilter={"cityId"}
+              />
             </Col>
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Nro Casa</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="homeNumber"
-                  onChange={handleChange}
-                  value={companyData.homeNumber}
-                />
-              </InputGroup>
-            </Col>
-
-            <Col>Barrio</Col>
-            <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
-            </Col>
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.homeNumber}
+              sm={4}
+              title="Nro Casa"
+              name="homeNumber"
+            />
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.neighborhood}
+              sm={4}
+              title="Barrio"
+              name="neighborhood"
+            />
           </Row>
 
           <Row style={{ marginBottom: 10 }}>
@@ -408,53 +389,37 @@ const FormCompany = ({ handleChange, companyData }: any) => {
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>País de facturación</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
-                />
-              </InputGroup>
-            </Col>
-
-            <Col>Estado de facturación</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
-                  onChange={handleChange}
-                  value={companyData.name}
-                />
-              </InputGroup>
-            </Col>
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.billingCountry}
+              sm={4}
+              title="País de facturación"
+              name="billingCountry"
+            />
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.billingState}
+              sm={4}
+              title="Estado de facturación"
+              name="billingState"
+            />
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Domicilio de facturación</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
-                />
-              </InputGroup>
-            </Col>
-
-            <Col>Ciudad de facturación</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="rucCompany"
-                />
-              </InputGroup>
-            </Col>
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.billingStreet}
+              sm={4}
+              title="Domicilio de facturación"
+              name="billingStreet"
+            />
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.billingCity}
+              sm={4}
+              title="Ciudad de facturación"
+              name="billingCity"
+            />
           </Row>
 
           <Row style={{ marginBottom: 10 }}>
@@ -465,47 +430,42 @@ const FormCompany = ({ handleChange, companyData }: any) => {
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Codigo Cliente</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="nationality"
-                />
-              </InputGroup>
-            </Col>
-
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.clientCode}
+              sm={4}
+              title="Codigo Cliente"
+              name="clientCode"
+            />
             <Col>Banca</Col>
             <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+              <MultipleSelect
+                value={companyData.bancaId}
+                endpoint={"Search/bancas"}
+                onChange={handleChange}
+                keyFilter={"bancaId"}
+              />
             </Col>
           </Row>
 
           <Row align="end" className="mt-1">
             <Col>Estado Cliente</Col>
             <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+              <MultipleSelect
+                value={companyData.clientState}
+                endpoint={"Search/client-states"}
+                onChange={handleChange}
+                keyFilter={"clientState"}
+              />
             </Col>
-
             <Col>Es Cliente ?</Col>
             <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+              <MultipleSelect
+                value={companyData.isClient}
+                endpoint={"Search/is-client"}
+                onChange={handleChange}
+                keyFilter={"isClient"}
+              />
             </Col>
           </Row>
 
@@ -518,13 +478,16 @@ const FormCompany = ({ handleChange, companyData }: any) => {
 
           <Row align="end" className="mt-1">
             <Col>Creado por</Col>
-            <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                searchEndpoint={"clerks"}
+                keyFilter={"userWhoCreatedId"}
+                onChange={handleChange}
+                defaultValue={{
+                  value: companyData?.userWhoCreatedId,
+                  label: companyData?.userWhoCreatedName,
+                }}
+              />
             </Col>
 
             <Col></Col>
@@ -533,13 +496,16 @@ const FormCompany = ({ handleChange, companyData }: any) => {
 
           <Row align="end" className="mt-1">
             <Col>Modificado por</Col>
-            <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                searchEndpoint={"clerks"}
+                keyFilter={"userWhoUpdatedId"}
+                onChange={handleChange}
+                defaultValue={{
+                  value: companyData?.userWhoUpdatedId,
+                  label: companyData?.userWhoUpdatedName,
+                }}
+              />
             </Col>
 
             <Col></Col>
@@ -555,12 +521,15 @@ const FormCompany = ({ handleChange, companyData }: any) => {
 
           <Row align="end" className="mt-1">
             <Col>Team Leader</Col>
-            <Col sm={4}>
+            <Col sm={4} align="start">
               <CustomAsyncPaginate
                 searchEndpoint={"clerks"}
-                keyFilter={"teamLeaderUserId"}
+                keyFilter={"teamLeaderClerkId"}
                 onChange={handleChange}
-                //defaultValue={ {value: caseData.contactId, label: reference.fullName}}
+                defaultValue={{
+                  value: companyData?.teamLeaderClerkId,
+                  label: companyData?.teamLeaderClerkFullName,
+                }}
               />
             </Col>
 
@@ -570,13 +539,16 @@ const FormCompany = ({ handleChange, companyData }: any) => {
 
           <Row align="end" className="mt-1">
             <Col>Gerente Sucursal</Col>
-            <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                searchEndpoint={"clerks"}
+                keyFilter={"branchManagerClerkId"}
+                onChange={handleChange}
+                defaultValue={{
+                  value: companyData?.branchManagerClerkId,
+                  label: companyData?.branchManagerClerkFullName,
+                }}
+              />
             </Col>
 
             <Col></Col>
@@ -585,13 +557,16 @@ const FormCompany = ({ handleChange, companyData }: any) => {
 
           <Row align="end" className="mt-1">
             <Col>Supervisor</Col>
-            <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                searchEndpoint={"clerks"}
+                keyFilter={"supervisorClerkId"}
+                onChange={handleChange}
+                defaultValue={{
+                  value: companyData?.supervisorClerkId,
+                  label: companyData?.supervisorClerkFullName,
+                }}
+              />
             </Col>
 
             <Col></Col>
@@ -607,23 +582,29 @@ const FormCompany = ({ handleChange, companyData }: any) => {
 
           <Row align="end" className="mt-1">
             <Col>Sucursal</Col>
-            <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                searchEndpoint={"branches"}
+                keyFilter={"branchCode"}
+                onChange={handleChange}
+                defaultValue={{
+                  value: companyData?.branchCode,
+                  label: companyData?.branchName,
+                }}
+              />
             </Col>
 
             <Col>Oficial</Col>
-            <Col sm={4}>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                searchEndpoint={"clerks"}
+                keyFilter={"officialId"}
+                onChange={handleChange}
+                defaultValue={{
+                  value: companyData?.officialId,
+                  label: companyData?.officialName,
+                }}
+              />
             </Col>
           </Row>
         </Row>

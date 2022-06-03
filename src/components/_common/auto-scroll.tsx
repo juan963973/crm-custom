@@ -82,7 +82,7 @@ export const CustomAsyncPaginate = ({
         if (e) {
             setData(e)
             if (returnObject) {
-                onChange({target: {id: keyFilter, value: e.value}}, keyFilter)
+                onChange({target: {name: keyFilter, value: e.value}}, keyFilter)
                 return;
             }
 
@@ -97,7 +97,7 @@ export const CustomAsyncPaginate = ({
         <AsyncPaginate
             onKeyDown={handleKey}
             debounceTimeout={300}
-            value={defaultValue ?? data}
+            value={defaultValue?.label  ? defaultValue : data}
             loadOptions={loadOptions}
             onChange={changeValue}
             isDisabled={disabled}

@@ -2,11 +2,12 @@ export interface CreateOrUpdateCompanyModel {
         name:string;
         ruc:string;
         foundation:Date;
-        clientTypeId:number;
+        clientType:string;
         parentCompanyId:number;
-        nationality:number;
+        nationalityId:number;
         contactsIds:[];
         description:string;
+        sourceFunds: string;
         economicActivity:string;
         employersQuantity:number;
         billingRangeId:number;
@@ -14,22 +15,26 @@ export interface CreateOrUpdateCompanyModel {
         paymentEntity:number;
         operatingEntitiesIds:[];
         economicActivitiesIds:[];
+        phone:string;
+        mobile:string;
         address:string;
+        email:string;
         reference:string;
         homeNumber:number;
-        department:number;
-        city:number;
+        departmentId:number;
+        cityId:number;
         neighborhood:string;
         billingCountry:string;
         billingState:string;
         billingStreet:string;
+        billingCity: string;
         isClient:string;
         clientCode:string;
         bancaId:number;
         clientState:string;
-        branchId:number;
+        branchCode:string;
         officialId:number;
-        teamLeaderUserId:number
+        teamLeaderClerkId:number
 }
 
 export class CompanyModel {
