@@ -115,8 +115,6 @@ function New({module}:any) {
     }
   };
 
-  console.log(module.split('/')[0])
-
   return (
     <>
       <Form

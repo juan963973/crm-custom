@@ -8,10 +8,10 @@ import { refenceField } from "services/contactService";
 const Forms = ({
   handleChange,
   reference,
-  dataPromoter,
   contactData,
   paramsRequired,
   cascade,
+  dataDate,
 }: any) => {
   const styles = {
     disable: {
@@ -65,8 +65,8 @@ const Forms = ({
               <MultipleSelect
                 endpoint={"Search/nationalities"}
                 onChange={handleChange}
-                keyFilter={"nationality"}
-                value={contactData.nationality}
+                keyFilter={"nationalityId"}
+                value={contactData.nationalityId}
               />
             </Col>
           </Row>
@@ -127,7 +127,9 @@ const Forms = ({
                     aria-label="Default"
                     aria-describedby="inputGroup-sizing-default"
                     name="dateOfBirth"
-                    defaultValue={reference.dateOfBirth}
+                    onChange={(e) => handleChange(e)}
+                    defaultValue={contactData.dateOfBirth}
+                    value={dataDate}
                   />
                 </InputGroup>
               </Col>
@@ -186,17 +188,22 @@ const Forms = ({
             </Col>
           </Row>
           <Row align="end" style={{ marginBottom: 20 }}>
-            <Col>Codigo Cliente</Col>
-            <Col sm={4} align="start">
-              <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                name="clientCode"
-                onChange={(e) => handleChange(e)}
-                defaultValue={reference.clientCode}
-              />
-            </Col>
 
+            {/* {paramsRequired.form == 'edit' && ( */}
+              {/* <> */}
+                <Col>Codigo Cliente</Col>
+                <Col sm={4} align="start">
+                  <FormControl
+                    aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default"
+                    name="clientCode"
+                    onChange={(e) => handleChange(e)}
+                    defaultValue={contactData.clientCode}
+                    disabled={true}
+                  />
+                </Col>
+              {/* </> */}
+            {/* )} */}
             <Col>Es Cliente?</Col>
             <Col sm={4} align="start">
               <MultipleSelect
@@ -219,7 +226,7 @@ const Forms = ({
                 />
             </Col>
             
-            {paramsRequired.clientCode ? (
+            {paramsRequired.form == 'edit' ? (
               <>
                 <Col>Es Cliente Salario?</Col>
                 <Col sm={4}>
@@ -253,7 +260,7 @@ const Forms = ({
                 />
             </Col>
 
-            {paramsRequired.clientCode ? (
+            {paramsRequired.form == 'edit' ? (
               <>
                 <Col>Es funcionario?</Col>
                 <Col sm={4}>
@@ -290,7 +297,8 @@ const Forms = ({
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
                 name="address"
-                defaultValue={reference.address}
+                defaultValue={contactData.address}
+                onChange={(e) => handleChange(e)}
               />
             </Col>
 
@@ -299,8 +307,8 @@ const Forms = ({
               <MultipleSelect
                 endpoint={"Search/departament"}
                 onChange={handleChange}
-                keyFilter={"department"}
-                value={contactData.department}
+                keyFilter={"departmentId"}
+                value={contactData.departmentId}
               />
             </Col>
           </Row>
@@ -312,17 +320,19 @@ const Forms = ({
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
                 name="homeNumber"
-                defaultValue={reference.homeNumber}
+                onChange={(e) => handleChange(e)}
+                defaultValue={contactData.homeNumber}
               />
             </Col>
 
             <Col>Ciudad</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={"Search/types"}
+                endpoint={cascade.cityId}
                 onChange={handleChange}
-                keyFilter={"city"}
-                value={contactData.city}
+                keyFilter={"cityId"}
+                value={contactData.cityId}
+                // defaultValue={contactData.cityId}
               />
             </Col>
           </Row>
@@ -334,7 +344,8 @@ const Forms = ({
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
                 name="reference"
-                defaultValue={reference.reference}
+                defaultValue={contactData.reference}
+                onChange={(e) => handleChange(e)}
               />
             </Col>
 
@@ -344,7 +355,8 @@ const Forms = ({
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
                 name="neighborhood"
-                defaultValue={reference.neighborhood}
+                defaultValue={contactData.neighborhood}
+                onChange={(e) => handleChange(e)}
               />
             </Col>
           </Row>
@@ -355,10 +367,10 @@ const Forms = ({
               <input
                   type="checkbox"
                   className="input-group-text"
-                  name="sendMailInThisDirection"
+                  name="sendMailInThisStreet"
                   onChange={(e) => handleChange(e)}
                   checked={
-                    contactData.sendMailInThisDirection ? contactData.sendMailInThisDirection : false
+                    contactData.sendMailInThisStreet ? contactData.sendMailInThisStreet : false
                   }
               />
             </Col>
@@ -385,9 +397,15 @@ const Forms = ({
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
+                  type="email"
                   name="email"
-                  defaultValue={reference.email}
+                  defaultValue={contactData.email}
+                  onChange={(e) => handleChange(e)}
+                  placeholder="Ingrese el email"
                 />
+                <Form.Control.Feedback type="invalid">
+                  Debe ingresar un email
+                </Form.Control.Feedback>
               </Col>
 
               <Col>Estado para correspondencia</Col>
@@ -396,7 +414,8 @@ const Forms = ({
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
                   name="mobile"
-                  defaultValue={reference.mobile}
+                  defaultValue={contactData.mobile}
+                  onChange={(e) => handleChange(e)}
                 />
               </Col>
             </Row>
@@ -407,8 +426,9 @@ const Forms = ({
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="documentTypeName"
-                  defaultValue={reference.documentTypeName}
+                  name="mailingCountry"
+                  defaultValue={contactData.mailingCountry}
+                  onChange={(e) => handleChange(e)}
                 />
               </Col>
 
@@ -417,8 +437,9 @@ const Forms = ({
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="documentTypeName"
-                  defaultValue={reference.documentTypeName}
+                  name="mailingCity"
+                  defaultValue={contactData.mailingCity}
+                  onChange={(e) => handleChange(e)}
                 />
               </Col>
             </Row>
@@ -440,7 +461,8 @@ const Forms = ({
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
                 name="workPlace"
-                defaultValue={reference.workPlace}
+                defaultValue={contactData.workPlace}
+                onChange={(e) => handleChange(e)}
               />
             </Col>
 
@@ -450,7 +472,8 @@ const Forms = ({
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
                 name="workPhone"
-                defaultValue={reference.workPhone}
+                defaultValue={contactData.workPhone}
+                onChange={(e) => handleChange(e)}
               />
             </Col>
           </Row>
@@ -462,7 +485,8 @@ const Forms = ({
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
                 name="currentSalary"
-                defaultValue={reference.currentSalary}
+                defaultValue={contactData.currentSalary}
+                onChange={(e) => handleChange(e)}
               />
             </Col>
 
@@ -487,7 +511,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"companyId"}
                   onChange={handleChange}
-                  // defaultValue={{value: contactData.companyId, label: reference.companyId}}
+                  defaultValue={{
+                    value: contactData?.companyId, 
+                    label: contactData?.companyName
+                  }}
                 />
             </Col>
 
@@ -497,31 +524,13 @@ const Forms = ({
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
                 name="economicActivity"
-                defaultValue={reference.economicActivity}
+                defaultValue={contactData.economicActivity}
+                onChange={(e) => handleChange(e)}
               />
             </Col>
           </Row>
 
-          <Row align="end" style={{ marginBottom: 20 }}>
-            <Col>Empresas Lookup</Col>
-            <Col sm={4} align="start">
-              <CustomAsyncPaginate
-                  searchEndpoint="companies"
-                  disabled={false}
-                  keyFilter={"companiesIds"}
-                  onChange={handleChange}
-                  // defaultValue={reference.companiesIds}
-                  // value={async () => {
-                  //   return await valueField(contactData.companiesIds, "companiesIds");
-                  // }}
-                />
-            </Col>
-
-            <Col></Col>
-            <Col sm={4}>
-              
-            </Col>
-          </Row>
+         
         </Row>
 
         <Row className="mb-200" style={{ marginBottom: 30 }}>
@@ -579,10 +588,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"teamLeaderClerkId"}
                   onChange={handleChange}
-                  // value={async () => {
-                  //   return await valueField(contactData.teamLeaderClerkId, "teamLeaderClerkId");
-                  // }}
-                  // defaultValue={{value: contactData.teamLeaderClerkId, label: reference.teamLeaderClerkId}}
+                  defaultValue={{
+                    value: contactData?.teamLeaderClerkId, 
+                    label: contactData?.teamLeaderClerkName
+                  }}
                 />
             </Col>
           </Row>
@@ -591,18 +600,14 @@ const Forms = ({
             <Col>Sucursal BC</Col>
             <Col sm={4} align="start">
               <CustomAsyncPaginate
-                  searchEndpoint="contacts"
-                  disabled={false}
-                  keyFilter={"branchId"}
+                  searchEndpoint="branches"
+                  keyFilter={"branchCode"}
                   onChange={handleChange}
-                  // value={async () => {
-                  //   return await valueField(contactData.branchId, "branchId");
-                  // }}
-                  // defaultValue={{value: contactData.teamLeaderClerkId, label: reference.teamLeaderClerkId}}
+                  defaultValue={{
+                    value: contactData?.branchCode, 
+                    label: contactData?.branchName
+                  }}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
             </Col>
 
             <Col>Supervisor</Col>
@@ -612,10 +617,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"supervisorClerkId"}
                   onChange={handleChange}
-                  // value={async () => {
-                  //   return await valueField(contactData.supervisorClerkId, "supervisorClerkId");
-                  // }}
-                  // defaultValue={{value: contactData.teamLeaderClerkId, label: reference.teamLeaderClerkId}}
+                  defaultValue={{
+                    value: contactData?.supervisorClerkId, 
+                    label: contactData?.supervisorClerkName
+                  }}
                 />
             </Col>
           </Row>
@@ -628,14 +633,11 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"branchManagerClerkId"}
                   onChange={handleChange}
-                  // value={async () => {
-                  //   return await valueField(contactData.branchManagerClerkId, "branchManagerClerkId");
-                  // }}
-                  // defaultValue={{value: contactData.teamLeaderClerkId, label: reference.teamLeaderClerkId}}
+                  defaultValue={{
+                    value: contactData?.branchManagerClerkId, 
+                    label: contactData?.branchManagerClerkName
+                  }}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
             </Col>
 
             <Col>Oficial</Col>
@@ -645,14 +647,11 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"officialId"}
                   onChange={handleChange}
-                  // value={async () => {
-                  //   return await valueField(contactData.officialId, "officialId");
-                  // }}
-                  // defaultValue={{value: contactData.teamLeaderClerkId, label: reference.teamLeaderClerkId}}
+                  defaultValue={{
+                    value: contactData?.officialId, 
+                    label: contactData?.officialName
+                  }}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
             </Col>
           </Row>
           
@@ -666,48 +665,21 @@ const Forms = ({
             </Col>
           </Row>
           <Row align="end" style={{ marginBottom: 20 }}>
-            {/* <Col>Creado por </Col>
-            <Col sm={4}>
-              <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
-              />
-            </Col> */}
+
             <Col>Propietario de Contacto</Col>
             <Col sm={4} align="start">
               <CustomAsyncPaginate
                   searchEndpoint="clerks"
-                  disabled={false}
-                  keyFilter={"ContactOwnerId"}
+                  keyFilter={"contactOwnerId"}
                   onChange={handleChange}
-                  // value={async () => {
-                  //   return await valueField(contactData.ContactOwnerId, "ContactOwnerId");
-                  // }}
-                  // defaultValue={{value: contactData.teamLeaderClerkId, label: reference.teamLeaderClerkId}}
+                  defaultValue={{
+                    value: contactData?.contactOwnerId, 
+                    label: contactData?.contactOwnerName
+                  }}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Ambos campos no pueden estar vacío
-                </Form.Control.Feedback>
             </Col>
           </Row>
 
-          {/* <Row align="end" style={{ marginBottom: 20 }}>
-            <Col></Col>
-            <Col sm={4}>
-              
-            </Col>
-            <Col>Modificado</Col>
-            <Col sm={4} align="start">
-              <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                name="documentTypeName"
-                defaultValue={reference.documentTypeName}
-              />
-            </Col>
-          </Row> */}
         </Row>
 
       </div>
