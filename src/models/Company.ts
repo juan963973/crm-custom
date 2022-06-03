@@ -4,7 +4,7 @@ export interface CreateOrUpdateCompanyModel {
         foundation:Date;
         clientType:string;
         parentCompanyId:number;
-        nationality:number;
+        nationalityId:number;
         contactsIds:[];
         description:string;
         sourceFunds: string;
@@ -15,12 +15,14 @@ export interface CreateOrUpdateCompanyModel {
         paymentEntity:number;
         operatingEntitiesIds:[];
         economicActivitiesIds:[];
+        phone:string;
+        mobile:string;
         address:string;
         email:string;
         reference:string;
         homeNumber:number;
-        department:number;
-        city:number;
+        departmentId:number;
+        cityId:number;
         neighborhood:string;
         billingCountry:string;
         billingState:string;
@@ -30,9 +32,9 @@ export interface CreateOrUpdateCompanyModel {
         clientCode:string;
         bancaId:number;
         clientState:string;
-        branchId:number;
+        branchCode:string;
         officialId:number;
-        teamLeaderUserId:number
+        teamLeaderClerkId:number
 }
 
 export class CompanyModel {

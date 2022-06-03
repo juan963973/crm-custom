@@ -6,6 +6,7 @@ import FormCompany from "components/company/forms";
 import HeaderForms from "components/_common/header-forms";
 import { toast, ToastContainer } from "react-toastify";
 import { createCompany } from "services/companyService";
+import { useRouter } from "next/router";
 
 function New() {
   const [companyData, setCompanyData] = useState<CreateOrUpdateCompanyModel>(
@@ -14,6 +15,7 @@ function New() {
 
   const [validated, setValidated] = useState(false);
   const [endpointCascade, setEndpointCascade] = useState({});
+  const router = useRouter();
 
   if (typeof window !== "undefined") {
     injectStyle();
@@ -23,7 +25,7 @@ function New() {
     if (e.target) {
       let nameData = e.target.name;
       let value = e.target.value;
-      if (nameData == "department") {
+      if (nameData == "departmentId") {
         let page = `Search/city?code=${value}`;
 
         setEndpointCascade({ ...endpointCascade, city: page });
@@ -42,7 +44,7 @@ function New() {
       console.log("falta validar");
     } else {
       try {
-        let page = 'Companies'
+        let page = 'Companies';
         await createCompany(page, companyData)
         toast.success("Se ha guardado con exito!", {
           position: "top-center",
@@ -53,6 +55,10 @@ function New() {
           draggable: true,
           progress: undefined,
         });
+
+        setTimeout(() => {
+          router.push(`/companies`);
+        }, 2000);
       } catch (error) {
         console.log(error);
       }
@@ -78,6 +84,7 @@ function New() {
           handleChange={handleChange}
           companyData={companyData}
           cascade={endpointCascade}
+          dataDate = {companyData.foundation}
         />
       </Form>
     </>

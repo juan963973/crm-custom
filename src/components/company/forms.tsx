@@ -3,8 +3,9 @@ import "rsuite/dist/rsuite.min.css";
 import { CustomAsyncPaginate } from "components/_common/auto-scroll";
 import MultipleSelect from "components/_common/multiple-select";
 import { Col, Form, InputGroup, Row, FormControl } from "react-bootstrap";
+import InputForm from "components/_common/input-components";
 
-const FormCompany = ({ handleChange, companyData, cascade }: any) => {
+const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
   const styles = {
     disable: {
       background: "white",
@@ -76,7 +77,7 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
             <Col>Tipo Cliente</Col>
             <Col sm={4}>
               <MultipleSelect
-                value={companyData.clientTypeId}
+                value={companyData.clientType}
                 endpoint={"Search/client-types"}
                 onChange={handleChange}
                 keyFilter={"clientType"}
@@ -92,7 +93,7 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
                   name="foundation"
                   type="date"
                   onChange={handleChange}
-                  value={companyData.foundation}
+                  value={dataDate}
                 />
               </InputGroup>
             </Col>
@@ -102,10 +103,10 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
             <Col>Nacionalidad</Col>
             <Col sm={4}>
               <MultipleSelect
-                value={companyData.nationality}
+                value={companyData.nationalityId}
                 endpoint={"Search/nationalities"}
                 onChange={handleChange}
-                keyFilter={"nationality"}
+                keyFilter={"nationalityId"}
               />
             </Col>
             <Col></Col>
@@ -122,12 +123,15 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
           <Row align="end" className="mt-1">
             <Col>Empresa Principal</Col>
             <Col sm={4} align="start">
-            <CustomAsyncPaginate
-                searchEndpoint="contacts"
-                keyFilter={"contactId"}
+              <CustomAsyncPaginate
+                searchEndpoint="companies"
+                keyFilter={"parentCompanyId"}
                 onChange={handleChange}
                 returnObject
-                //defaultValue={ {value: companyData.contactId, label: reference.fullName}}
+                defaultValue={{
+                  value: companyData?.parentCompanyId,
+                  label: companyData?.parentCompanyName,
+                }}
               />
             </Col>
 
@@ -226,9 +230,9 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="SourceFunds"
+                  name="sourceFunds"
                   onChange={handleChange}
-                  value={companyData.SourceFunds}
+                  value={companyData.sourceFunds}
                 />
               </InputGroup>
             </Col>
@@ -260,9 +264,9 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
                 <FormControl
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
-                  name="SourceFunds"
+                  name="mobile"
                   onChange={handleChange}
-                  value={companyData.SourceFunds}
+                  value={companyData.mobile}
                 />
               </InputGroup>
             </Col>
@@ -332,66 +336,49 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
 
             <Col>Departamento</Col>
             <Col sm={4}>
-            <MultipleSelect
-                value={companyData.department}
+              <MultipleSelect
+                value={companyData.departmentId}
                 endpoint={"Search/departament"}
                 onChange={handleChange}
-                keyFilter={"department"}
+                keyFilter={"departmentId"}
               />
             </Col>
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Referencia</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="reference"
-                  onChange={handleChange}
-                  value={companyData.reference}
-                />
-              </InputGroup>
-            </Col>
-
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.reference}
+              sm={4}
+              title="Referencia"
+              name="reference"
+            />
             <Col>Ciudad</Col>
             <Col sm={4}>
-            <MultipleSelect
-                value={companyData.city}
+              <MultipleSelect
+                value={companyData.cityId}
                 endpoint={cascade.city}
                 onChange={handleChange}
-                keyFilter={"city"}
+                keyFilter={"cityId"}
               />
             </Col>
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Nro Casa</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="homeNumber"
-                  onChange={handleChange}
-                  value={companyData.homeNumber}
-                />
-              </InputGroup>
-            </Col>
-
-            <Col>Barrio</Col>
-            <Col sm={4}>
-            <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="neighborhood"
-                  onChange={handleChange}
-                  value={companyData.neighborhood}
-                />
-              </InputGroup>
-            </Col>
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.homeNumber}
+              sm={4}
+              title="Nro Casa"
+              name="homeNumber"
+            />
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.neighborhood}
+              sm={4}
+              title="Barrio"
+              name="neighborhood"
+            />
           </Row>
 
           <Row style={{ marginBottom: 10 }}>
@@ -402,59 +389,37 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>País de facturación</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="billingCountry"
-                  onChange={handleChange}
-                  value={companyData.billingCountry}
-                />
-              </InputGroup>
-            </Col>
-
-            <Col>Estado de facturación</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="billingState"
-                  onChange={handleChange}
-                  value={companyData.billingState}
-                />
-              </InputGroup>
-            </Col>
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.billingCountry}
+              sm={4}
+              title="País de facturación"
+              name="billingCountry"
+            />
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.billingState}
+              sm={4}
+              title="Estado de facturación"
+              name="billingState"
+            />
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Domicilio de facturación</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="billingStreet"
-                  onChange={handleChange}
-                  value={companyData.billingStreet}
-                />
-              </InputGroup>
-            </Col>
-
-            <Col>Ciudad de facturación</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="billingCity"
-                  onChange={handleChange}
-                  value={companyData.billingCity}
-                />
-              </InputGroup>
-            </Col>
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.billingStreet}
+              sm={4}
+              title="Domicilio de facturación"
+              name="billingStreet"
+            />
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.billingCity}
+              sm={4}
+              title="Ciudad de facturación"
+              name="billingCity"
+            />
           </Row>
 
           <Row style={{ marginBottom: 10 }}>
@@ -465,22 +430,16 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Codigo Cliente</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="clientCode"
-                  onChange={handleChange}
-                  value={companyData.clientCode}
-                />
-              </InputGroup>
-            </Col>
-
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.clientCode}
+              sm={4}
+              title="Codigo Cliente"
+              name="clientCode"
+            />
             <Col>Banca</Col>
             <Col sm={4}>
-            <MultipleSelect
+              <MultipleSelect
                 value={companyData.bancaId}
                 endpoint={"Search/bancas"}
                 onChange={handleChange}
@@ -492,17 +451,16 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
           <Row align="end" className="mt-1">
             <Col>Estado Cliente</Col>
             <Col sm={4}>
-            <MultipleSelect
+              <MultipleSelect
                 value={companyData.clientState}
                 endpoint={"Search/client-states"}
                 onChange={handleChange}
                 keyFilter={"clientState"}
               />
             </Col>
-
             <Col>Es Cliente ?</Col>
             <Col sm={4}>
-            <MultipleSelect
+              <MultipleSelect
                 value={companyData.isClient}
                 endpoint={"Search/is-client"}
                 onChange={handleChange}
@@ -521,11 +479,14 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
           <Row align="end" className="mt-1">
             <Col>Creado por</Col>
             <Col sm={4} align="start">
-            <CustomAsyncPaginate
+              <CustomAsyncPaginate
                 searchEndpoint={"clerks"}
-                keyFilter={"teamLeaderUserId"}
+                keyFilter={"userWhoCreatedId"}
                 onChange={handleChange}
-                //defaultValue={ {value: caseData.contactId, label: reference.fullName}}
+                defaultValue={{
+                  value: companyData?.userWhoCreatedId,
+                  label: companyData?.userWhoCreatedName,
+                }}
               />
             </Col>
 
@@ -536,11 +497,14 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
           <Row align="end" className="mt-1">
             <Col>Modificado por</Col>
             <Col sm={4} align="start">
-            <CustomAsyncPaginate
+              <CustomAsyncPaginate
                 searchEndpoint={"clerks"}
-                keyFilter={"teamLeaderUserId"}
+                keyFilter={"userWhoUpdatedId"}
                 onChange={handleChange}
-                //defaultValue={ {value: caseData.contactId, label: reference.fullName}}
+                defaultValue={{
+                  value: companyData?.userWhoUpdatedId,
+                  label: companyData?.userWhoUpdatedName,
+                }}
               />
             </Col>
 
@@ -560,9 +524,12 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
             <Col sm={4} align="start">
               <CustomAsyncPaginate
                 searchEndpoint={"clerks"}
-                keyFilter={"teamLeaderUserId"}
+                keyFilter={"teamLeaderClerkId"}
                 onChange={handleChange}
-                //defaultValue={ {value: caseData.contactId, label: reference.fullName}}
+                defaultValue={{
+                  value: companyData?.teamLeaderClerkId,
+                  label: companyData?.teamLeaderClerkFullName,
+                }}
               />
             </Col>
 
@@ -573,11 +540,14 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
           <Row align="end" className="mt-1">
             <Col>Gerente Sucursal</Col>
             <Col sm={4} align="start">
-            <CustomAsyncPaginate
+              <CustomAsyncPaginate
                 searchEndpoint={"clerks"}
                 keyFilter={"branchManagerClerkId"}
                 onChange={handleChange}
-                //defaultValue={ {value: caseData.contactId, label: reference.fullName}}
+                defaultValue={{
+                  value: companyData?.branchManagerClerkId,
+                  label: companyData?.branchManagerClerkFullName,
+                }}
               />
             </Col>
 
@@ -588,11 +558,14 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
           <Row align="end" className="mt-1">
             <Col>Supervisor</Col>
             <Col sm={4} align="start">
-            <CustomAsyncPaginate
+              <CustomAsyncPaginate
                 searchEndpoint={"clerks"}
                 keyFilter={"supervisorClerkId"}
                 onChange={handleChange}
-                //defaultValue={ {value: caseData.contactId, label: reference.fullName}}
+                defaultValue={{
+                  value: companyData?.supervisorClerkId,
+                  label: companyData?.supervisorClerkFullName,
+                }}
               />
             </Col>
 
@@ -610,21 +583,27 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
           <Row align="end" className="mt-1">
             <Col>Sucursal</Col>
             <Col sm={4} align="start">
-            <CustomAsyncPaginate
+              <CustomAsyncPaginate
                 searchEndpoint={"branches"}
-                keyFilter={"branchId"}
+                keyFilter={"branchCode"}
                 onChange={handleChange}
-                //defaultValue={ {value: caseData.contactId, label: reference.fullName}}
+                defaultValue={{
+                  value: companyData?.branchCode,
+                  label: companyData?.branchName,
+                }}
               />
             </Col>
 
             <Col>Oficial</Col>
             <Col sm={4} align="start">
-            <CustomAsyncPaginate
+              <CustomAsyncPaginate
                 searchEndpoint={"clerks"}
                 keyFilter={"officialId"}
                 onChange={handleChange}
-                //defaultValue={ {value: caseData.contactId, label: reference.fullName}}
+                defaultValue={{
+                  value: companyData?.officialId,
+                  label: companyData?.officialName,
+                }}
               />
             </Col>
           </Row>
