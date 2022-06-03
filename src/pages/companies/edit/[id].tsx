@@ -24,6 +24,10 @@ function EditCase({ id, uri }: any) {
     update(page, id)
       .then((response: any) => {
         setCompanyData(response);
+        if (response.departmentId) {
+          let page = `Search/city?code=${response.departmentId}`;
+          setEndpointCascade({ ...endpointCascade, city: page });
+        }
       })
       .catch((e: any) => console.log(e));
   }, []);
