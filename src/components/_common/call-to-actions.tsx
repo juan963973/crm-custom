@@ -2,7 +2,8 @@ import { useRouter } from 'next/router';
 import { Col, Row, Button } from "react-bootstrap";
 import { FaFilter, FaList, FaColumns } from 'react-icons/fa';
 import FilteringResolvers from "components/_common/filtering-resolvers";
-import { canAccess } from 'auth/canAccess';
+import { CanActive } from 'auth/CanActive';
+import { permissionFront } from 'auth/permissions';
 
 export default function CallToActions({params}:any) {
     const {ModuleText, textList, textKanban, setViewFilter, setViewKanban, viewFilter, viewKanban, module} = params
@@ -45,10 +46,10 @@ export default function CallToActions({params}:any) {
                         }
                     </div>
                 </Button>
-                {canAccess(`${module}/visitreport`) && (
+                {CanActive(permissionFront.CAN_CHANGE_STATUS_CASES) && (
                     <Button onClick={exportCase} variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }}>Tablero {ModuleText}</Button>
                 )}
-                {canAccess(`${module}/new`) && (
+                {CanActive(permissionFront.CAN_CHANGE_STATUS_CASES) && (
                     <Button onClick={goToCreate}>Crear {ModuleText}</Button>
                 )}
             </Col>

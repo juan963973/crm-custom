@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import { canAccess } from './canAccess';
+import { CanActive } from './CanActive';
+import { permissionFront } from 'auth/permissions';
+import { routes } from 'pages/routes';
+
 
 export const RouteGuard = ({ children }:any) => {
     const router = useRouter();
@@ -21,7 +24,12 @@ export const RouteGuard = ({ children }:any) => {
         }
 
         if(auth) {
-            let access = canAccess(url, 'url')
+
+            const routerFilter = routes.filter((params:any) => params.url == url)
+            let routerObj:string = routerFilter.length ? routerFilter[0].permission: ''
+
+            // let access = canAccess(routerObj)
+            let access = true
             if (access) {
                 setAuthorized(true);
             } else {

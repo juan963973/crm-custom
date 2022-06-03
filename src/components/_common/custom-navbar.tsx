@@ -9,7 +9,8 @@ import Image from 'next/image'
 import logo from '../../../public/logo.svg'
 
 import SearchGlobal from './searchGlobal'
-import { canAccess } from 'auth/canAccess';
+import { CanActive } from 'auth/CanActive';
+import { routes } from 'pages/routes';
 
 
 
@@ -20,12 +21,6 @@ function CustomNavbar() {
       localStorage.removeItem('auth');
       router.push('/login')
     }
-
-    const routes = [
-      { url: '/contacts', title: 'Contactos' },
-      { url: '/companies', title: 'Empresas' },
-      { url: '/cases', title: 'Casos' }
-    ]  
 
     return (
       <Navbar bg="dark" variant="dark" expand="lg" fixed="top" style={{ padding: 0 }}>
@@ -47,11 +42,11 @@ function CustomNavbar() {
               {
                 routes.map((index:any) => (
                   <>
-                    {canAccess(index?.url, "url") && (
+                    {CanActive(index?.permission) && (
                       <Nav.Link>
                         <Link href={index.url}><span style={{color:'white'}}>{index.title}</span></Link>
                       </Nav.Link>
-                    )}
+                    )} 
                   </>
                   
                 )) 

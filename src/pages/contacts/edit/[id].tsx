@@ -1,39 +1,40 @@
-import Forms from "components/case/forms";
+import Forms from "components/contact/forms";
 import HeaderForms from "components/_common/header-forms";
 import _ from "lodash";
-import { CreateCaseModel } from "models/Case";
+import { CreateContactModel } from "models/Contact";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
-import { create, refenceField, saveUpdate, update } from "services/caseService";
+import { create, refenceField, saveUpdate, update } from "services/contactService";
 
-function EditCase({ id, uri }: any) {
-  const [casesData, setCasesData] = useState<CreateCaseModel>({
-    callDirectionId: 1,
-    businessOfficerId: 1
-  } as CreateCaseModel);
+function EditContact({ id, uri }: any) {
+  // const [contactsData, setContactsData] = useState<CreateContactModel>({
+  //   callDirectionId: 1,
+  //   businessOfficerId: 1
+  // } as CreateContactModel);
 
+  const [contactsData, setContactsData] = useState<CreateContactModel>({} as CreateContactModel);
+  
   const [dataReference, setDataReference] = useState({
     documentTypeName: "",
     email: "",
     clientCode: "",
     documentNumber: "",
-    branchName: null,
     phone: "",
     mobile: "",
-  });
-  console.log(id);
-  const [dataPromoter, setDataPromoter] = useState({
-    email: "",
-    documentNumber: "",
-    mobile: "",
+    officialId: null,
   });
 
+  // const [dataPromoter, setDataPromoter] = useState({
+  //   email: "",
+  //   documentNumber: "",
+  //   mobile: "",
+  // });
+
   const [endpointCascade, setEndpointCascade] = useState({
-    subtypeId: "Search/subtypes",
-    typificationId: "Search/typifications",
+    city: "Search/city"
   });
 
   const [validated, setValidated] = useState(false);
@@ -44,6 +45,10 @@ function EditCase({ id, uri }: any) {
   const [requiredSubType, setRequiredSubType] = useState(false);
   const [requiredResolverArea, setRequiredResolverArea] = useState(false);
   const [requiredTipifications, setRequiredTipifications] = useState(false);
+  const [sendCorrespondence, setSendCorrespondence] = useState(true);
+  const [clientCode, setClientCode] = useState(false);
+
+
   const router = useRouter();
 
   if (typeof window !== "undefined") {
@@ -68,7 +73,7 @@ function EditCase({ id, uri }: any) {
           let value = response.promoterId;
           completeField(key, value);
         }
-        setCasesData(response);
+        setContactsData(response);
       })
       .catch((e: any) => console.log(e));
   }, []);
@@ -77,37 +82,52 @@ function EditCase({ id, uri }: any) {
     if (!name) {
       let key = e.target.name;
       let value;
+      let page = "";
+
       switch (e.target.type) {
         case "checkbox":
           value = e.target.checked;
+          setSendCorrespondence(!value)
           break;
         case "select-one":
-          if (isNaN(e.target.value)) {
+          if (Number.isNaN(e.target.value)) {
             value = null;
             break;
           }
-          value = Number(e.target.value);
+          // value = Number(e.target.value);
+          value = e.target.value;
+          console.log('selectone::', value)
           break;
         default:
           value = e.target.value;
           break;
       }
+
       if (key == "contactId" || key == "companyId" || key == "promoterId") {
         completeField(key, value);
       }
-      let page = "";
-      if (key == "typeId") {
-        page = `Search/subtypes?${key}=${value}`;
-        setEndpointCascade({ ...endpointCascade, subtypeId: page });
+
+      if (key == "departmentId") {
+        page = `Search/city?code=${value}`;
+        setEndpointCascade({ ...endpointCascade, city: page });
       }
       if (key == "subtypeId") {
         page = `Search/typifications?${key}=${value}`;
         setEndpointCascade({ ...endpointCascade, typificationId: page });
       }
-      setCasesData({ ...casesData, [key]: value });
+
+      if(key == "clientCode") {
+        if(value.length > 0) {
+          setClientCode(true)
+        } else {
+          setClientCode(false)
+        }
+      }
+
+      setContactsData({ ...contactsData, [key]: value });
       return;
     } else {
-      setCasesData({ ...casesData, [name]: e });
+      setContactsData({ ...contactsData, [name]: e });
       return;
     }
   };
@@ -116,12 +136,12 @@ function EditCase({ id, uri }: any) {
     let page;
     switch (key) {
       case "companyId":
-        page = "Info/cases/company-info";
+        page = "Info/contacts/company-info";
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);
             setDataReference(res);
-            //setCasesData({ ...casesData, businessOfficerId: res.officialId });
+            //setContactsData({ ...contactsData, businessOfficerId: res.officialId });
           } catch (error) {
             console.log(error);
           }
@@ -129,19 +149,19 @@ function EditCase({ id, uri }: any) {
 
         break;
       case "contactId":
-        page = "Info/cases/contact-info";
+        page = "Info/contacts/contact-info";
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);
             setDataReference(res);
-            //setCasesData({ ...casesData, businessOfficerId: res.officialId });
+            //setContactsData({ ...contactsData, businessOfficerId: res.officialId });
           } catch (error) {
             console.log(error);
           }
         }
         break;
       case "promoterId":
-        page = "Info/cases/contact-info";
+        page = "Info/contacts/contact-info";
         try {
           const res: any = await refenceField(page, value);
           setDataPromoter(res);
@@ -161,65 +181,63 @@ function EditCase({ id, uri }: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const form = e.currentTarget;
-    console.log(form);
     if (form.checkValidity() === false) {
       console.log("Falta Validar");
     } else {
-      let page = `Cases/${id}`;
-
+      let page = `Contacts/${id}`;
       let validation = true;
       try {
-        if (casesData.companyId == null && casesData.contactId == null) {
-          validation = false;
-          setCustomerValid(true);
-        } else {
-          setCustomerValid(false);
-        }
+        // if (contactsData.companyId == null && contactsData.contactId == null) {
+        //   validation = false;
+        //   setCustomerValid(true);
+        // } else {
+        //   setCustomerValid(false);
+        // }
 
-        if (!casesData.typeId) {
-          setRequiredType(true);
-          validation = false;
-        } else {
-          setRequiredType(false);
-        }
+        // if (!contactsData.typeId) {
+        //   setRequiredType(true);
+        //   validation = false;
+        // } else {
+        //   setRequiredType(false);
+        // }
 
-        if (!casesData.subtypeId) {
-          setRequiredSubType(true);
-          validation = false;
-        } else {
-          setRequiredSubType(false);
-        }
+        // if (!contactsData.subtypeId) {
+        //   setRequiredSubType(true);
+        //   validation = false;
+        // } else {
+        //   setRequiredSubType(false);
+        // }
 
-        if (!casesData.typificationId) {
-          setRequiredTipifications(true);
-          validation = false;
-        } else {
-          setRequiredTipifications(false);
-        }
+        // if (!contactsData.typificationId) {
+        //   setRequiredTipifications(true);
+        //   validation = false;
+        // } else {
+        //   setRequiredTipifications(false);
+        // }
 
-        if (!casesData.caseStatusId) {
-          setStatusValid(true);
-          validation = false;
-        } else {
-          setStatusValid(false);
-        }
+        // if (!contactsData.contactStatusId) {
+        //   setStatusValid(true);
+        //   validation = false;
+        // } else {
+        //   setStatusValid(false);
+        // }
 
-        if (!casesData.originId) {
-          setOriginValid(true);
-          validation = false;
-        } else {
-          setOriginValid(false);
-        }
+        // if (!contactsData.originId) {
+        //   setOriginValid(true);
+        //   validation = false;
+        // } else {
+        //   setOriginValid(false);
+        // }
 
-        if (!casesData.resolutionAreaIds) {
-          setRequiredResolverArea(true);
-          validation = false;
-        } else {
-          setRequiredResolverArea(false);
-        }
+        // if (!contactsData.resolutionAreaIds) {
+        //   setRequiredResolverArea(true);
+        //   validation = false;
+        // } else {
+        //   setRequiredResolverArea(false);
+        // }
 
         if (validation) {
-          await saveUpdate(page, casesData);
+          await saveUpdate(page, contactsData);
           toast.success("Se ha modificado con exito!", {
             position: "top-center",
             autoClose: 2000,
@@ -230,7 +248,7 @@ function EditCase({ id, uri }: any) {
             progress: undefined,
           });
           setTimeout(() => {
-            // router.push(`/cases`);
+            router.push(`/contacts`);
           }, 2000);
         }
       } catch (error) {
@@ -241,8 +259,8 @@ function EditCase({ id, uri }: any) {
   };
 
   const params = {
-    setCasesData,
-    casesData,
+    setContactsData,
+    contactsData,
   };
 
   const paramsRequired = {
@@ -252,7 +270,10 @@ function EditCase({ id, uri }: any) {
     customerValid,
     requiredResolverArea,
     originValid,
-    statusValid
+    statusValid,
+    sendCorrespondence,
+    clientCode,
+    form: 'edit'
   };
 
   return (
@@ -273,8 +294,7 @@ function EditCase({ id, uri }: any) {
         <Forms
           handleChange={handleChange}
           reference={dataReference}
-          dataPromoter={dataPromoter}
-          caseData={casesData}
+          contactData={contactsData}
           params={params}
           paramsRequired={paramsRequired}
           cascade={endpointCascade}
@@ -284,7 +304,7 @@ function EditCase({ id, uri }: any) {
   );
 }
 
-export default EditCase;
+export default EditContact;
 
 export async function getServerSideProps(req: any, res: any) {
   const {

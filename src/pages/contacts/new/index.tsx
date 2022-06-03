@@ -22,17 +22,16 @@ function New({ module, query }: any) {
     email: "",
     clientCode: "",
     documentNumber: "",
-    branchName: null,
     phone: "",
     mobile: "",
     officialId: null,
   });
 
-  const [dataPromoter, setDataPromoter] = useState({
-    email: "",
-    documentNumber: "",
-    mobile: "",
-  });
+  // const [dataPromoter, setDataPromoter] = useState({
+  //   email: "",
+  //   documentNumber: "",
+  //   mobile: "",
+  // });
 
   const [endpointCascade, setEndpointCascade] = useState({
     city: "Search/city"
@@ -70,7 +69,7 @@ function New({ module, query }: any) {
           setSendCorrespondence(!value)
           break;
         case "select-one":
-          if (isNaN(e.target.value)) {
+          if (Number.isNaN(e.target.value)) {
             value = null;
             break;
           }
@@ -86,7 +85,7 @@ function New({ module, query }: any) {
       if (key == "contactId" || key == "companyId" || key == "promoterId") {
         await completeField(key, value);
       } else {
-        if (key == "department") {
+        if (key == "departmentId") {
           page = `Search/city?code=${value}`;
           setEndpointCascade({ ...endpointCascade, city: page });
         }
@@ -97,7 +96,6 @@ function New({ module, query }: any) {
         }
 
         if(key == "clientCode") {
-          console.log(value);
           if(value.length > 0) {
             setClientCode(true)
           } else {
@@ -153,16 +151,16 @@ function New({ module, query }: any) {
             businessOfficerId: null,
             [key]: value,
           });
-          setDataReference({
-            documentTypeName: "",
-            email: "",
-            clientCode: "",
-            documentNumber: "",
-            branchName: null,
-            phone: "",
-            mobile: "",
-            officialId: null,
-          });
+          // setDataReference({
+          //   documentTypeName: "",
+          //   email: "",
+          //   clientCode: "",
+          //   documentNumber: "",
+          //   branchName: null,
+          //   phone: "",
+          //   mobile: "",
+          //   officialId: null,
+          // });
         }
 
         break;
@@ -186,16 +184,16 @@ function New({ module, query }: any) {
             businessOfficerId: null,
             [key]: value,
           });
-          setDataReference({
-            documentTypeName: "",
-            email: "",
-            clientCode: "",
-            documentNumber: "",
-            branchName: null,
-            phone: "",
-            mobile: "",
-            officialId: null,
-          });
+          // setDataReference({
+          //   documentTypeName: "",
+          //   email: "",
+          //   clientCode: "",
+          //   documentNumber: "",
+          //   branchName: null,
+          //   phone: "",
+          //   mobile: "",
+          //   officialId: null,
+          // });
         }
         break;
       case "promoterId":
@@ -306,7 +304,8 @@ function New({ module, query }: any) {
     originValid,
     statusValid,
     sendCorrespondence,
-    clientCode
+    clientCode,
+    form: 'new'
   };
 
   return (
@@ -322,7 +321,6 @@ function New({ module, query }: any) {
           <Forms
             handleChange={handleChange}
             reference={dataReference}
-            dataPromoter={dataPromoter}
             contactData={contactsData}
             paramsRequired={paramsRequired}
             cascade={endpointCascade}

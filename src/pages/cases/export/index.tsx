@@ -12,7 +12,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
 import exportReport from "services/exportReport";
 
-import {canAccess} from "auth/canAccess"
+import {CanActive} from "auth/CanActive"
+import { permissionFront } from 'auth/permissions';
 
 export default function Show() {
     const styles = {
@@ -46,7 +47,7 @@ export default function Show() {
 
     return (
         <>
-            {canAccess(`/cases/visitreport`) && (
+            {CanActive(permissionFront.CAN_CHANGE_STATUS_CASES) && (
                 <>
                     <Container className="p-3 mb-3 bg-white rounded mt-2">
                         <ToastContainer />
