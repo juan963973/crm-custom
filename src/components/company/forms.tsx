@@ -5,7 +5,7 @@ import MultipleSelect from "components/_common/multiple-select";
 import { Col, Form, InputGroup, Row, FormControl } from "react-bootstrap";
 import InputForm from "components/_common/input-components";
 
-const FormCompany = ({ handleChange, companyData, cascade }: any) => {
+const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
   const styles = {
     disable: {
       background: "white",
@@ -93,7 +93,7 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
                   name="foundation"
                   type="date"
                   onChange={handleChange}
-                  value={companyData.foundation}
+                  value={dataDate}
                 />
               </InputGroup>
             </Col>
@@ -346,19 +346,13 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Referencia</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="reference"
-                  onChange={handleChange}
-                  value={companyData.reference}
-                />
-              </InputGroup>
-            </Col>
-
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.reference}
+              sm={4}
+              title="Referencia"
+              name="reference"
+            />
             <Col>Ciudad</Col>
             <Col sm={4}>
               <MultipleSelect
@@ -371,31 +365,20 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Nro Casa</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="homeNumber"
-                  onChange={handleChange}
-                  value={companyData.homeNumber}
-                />
-              </InputGroup>
-            </Col>
-
-            <Col>Barrio</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="neighborhood"
-                  onChange={handleChange}
-                  value={companyData.neighborhood}
-                />
-              </InputGroup>
-            </Col>
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.homeNumber}
+              sm={4}
+              title="Nro Casa"
+              name="homeNumber"
+            />
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.neighborhood}
+              sm={4}
+              title="Barrio"
+              name="neighborhood"
+            />
           </Row>
 
           <Row style={{ marginBottom: 10 }}>
@@ -447,19 +430,13 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
           </Row>
 
           <Row align="end" className="mt-1">
-            <Col>Codigo Cliente</Col>
-            <Col sm={4}>
-              <InputGroup className="mb-2">
-                <FormControl
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  name="clientCode"
-                  onChange={handleChange}
-                  value={companyData.clientCode}
-                />
-              </InputGroup>
-            </Col>
-
+            <InputForm
+              handleChange={handleChange}
+              valueData={companyData.clientCode}
+              sm={4}
+              title="Codigo Cliente"
+              name="clientCode"
+            />
             <Col>Banca</Col>
             <Col sm={4}>
               <MultipleSelect
@@ -481,7 +458,6 @@ const FormCompany = ({ handleChange, companyData, cascade }: any) => {
                 keyFilter={"clientState"}
               />
             </Col>
-
             <Col>Es Cliente ?</Col>
             <Col sm={4}>
               <MultipleSelect

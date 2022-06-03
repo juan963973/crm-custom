@@ -82,6 +82,15 @@ function EditCase({ id, uri }: any) {
     window.history.back();
   };
 
+  const dateFormat = (date:any)=>{
+    let dateStr = String(date).split('/');
+    if(dateStr[0].length==2){
+      return `${dateStr[2]}-${dateStr[1]}-${dateStr[0]}`;
+    }else{
+      return date;
+    }
+  }
+
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -96,6 +105,7 @@ function EditCase({ id, uri }: any) {
           handleChange={handleChange}
           companyData={companyData}
           cascade={endpointCascade}
+          dataDate = {dateFormat(companyData.foundation)}
         />
       </Form>
     </>

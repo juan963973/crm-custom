@@ -84,6 +84,7 @@ function New() {
           handleChange={handleChange}
           companyData={companyData}
           cascade={endpointCascade}
+          dataDate = {companyData.foundation}
         />
       </Form>
     </>
