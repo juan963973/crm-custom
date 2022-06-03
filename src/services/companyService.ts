@@ -12,3 +12,8 @@ export async function createCompany(page:any,model:CreateOrUpdateCompanyModel): 
     const res = await axios.post<any[]>(`${process.env.BASE_URL}/${page}`,model)
     return res.data
 }
+
+export async function updateCompany(page:any,model:CreateOrUpdateCompanyModel): Promise<any[]> {
+    const res = await axios.put<any[]>(`${process.env.BASE_URL}/${page}`,model)
+    return res.data
+}
