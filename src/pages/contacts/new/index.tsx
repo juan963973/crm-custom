@@ -34,7 +34,7 @@ function New({ module, query }: any) {
   // });
 
   const [endpointCascade, setEndpointCascade] = useState({
-    city: "Search/city"
+    cityId: "Search/city"
   });
 
   const [validated, setValidated] = useState(false);
@@ -87,7 +87,7 @@ function New({ module, query }: any) {
       } else {
         if (key == "departmentId") {
           page = `Search/city?code=${value}`;
-          setEndpointCascade({ ...endpointCascade, city: page });
+          setEndpointCascade({ ...endpointCascade, cityId: page });
         }
 
         if (key == "subtypeId") {
@@ -324,6 +324,7 @@ function New({ module, query }: any) {
             contactData={contactsData}
             paramsRequired={paramsRequired}
             cascade={endpointCascade}
+            dataDate = {contactsData.dateOfBirth}
           />
         </Form>
     </>

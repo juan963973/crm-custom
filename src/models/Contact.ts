@@ -98,7 +98,8 @@ export interface CreateContactModel{
     economicActivity: string,
     description: string,
     bancaId: string,
-    branchId: string,
+    branchId: number,
+    branchCode: string,
     branchManagerClerkId: string,
     branchManagerUserId: string,
     supervisorUserId: string,
@@ -108,5 +109,5 @@ export interface CreateContactModel{
     officialId: string,
     sendMailInThisStreet: boolean,
     companyId:string,
-    ContactOwnerId:string
+    contactOwnerId:string
   }

@@ -11,6 +11,7 @@ const Forms = ({
   contactData,
   paramsRequired,
   cascade,
+  dataDate,
 }: any) => {
   const styles = {
     disable: {
@@ -128,7 +129,7 @@ const Forms = ({
                     name="dateOfBirth"
                     onChange={(e) => handleChange(e)}
                     defaultValue={contactData.dateOfBirth}
-                    value={contactData.dateOfBirth}
+                    value={dataDate}
                   />
                 </InputGroup>
               </Col>
@@ -225,7 +226,7 @@ const Forms = ({
                 />
             </Col>
             
-            {paramsRequired.clientCode ? (
+            {paramsRequired.form == 'edit' ? (
               <>
                 <Col>Es Cliente Salario?</Col>
                 <Col sm={4}>
@@ -259,7 +260,7 @@ const Forms = ({
                 />
             </Col>
 
-            {paramsRequired.clientCode ? (
+            {paramsRequired.form == 'edit' ? (
               <>
                 <Col>Es funcionario?</Col>
                 <Col sm={4}>
@@ -327,7 +328,7 @@ const Forms = ({
             <Col>Ciudad</Col>
             <Col sm={4} align="start">
               <MultipleSelect
-                endpoint={cascade.city}
+                endpoint={cascade.cityId}
                 onChange={handleChange}
                 keyFilter={"cityId"}
                 value={contactData.cityId}
@@ -510,7 +511,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"companyId"}
                   onChange={handleChange}
-                  // defaultValue={{value: contactData.companyId, label: contactData.companyId}}
+                  defaultValue={{
+                    value: contactData?.companyId, 
+                    label: contactData?.companyName
+                  }}
                 />
             </Col>
 
@@ -584,10 +588,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"teamLeaderClerkId"}
                   onChange={handleChange}
-                  // value={async () => {
-                  //   return await valueField(contactData.teamLeaderClerkId, "teamLeaderClerkId");
-                  // }}
-                  // defaultValue={{value: contactData.teamLeaderClerkId, label: contactData.teamLeaderClerkId}}
+                  defaultValue={{
+                    value: contactData?.teamLeaderClerkId, 
+                    label: contactData?.teamLeaderClerkName
+                  }}
                 />
             </Col>
           </Row>
@@ -597,13 +601,12 @@ const Forms = ({
             <Col sm={4} align="start">
               <CustomAsyncPaginate
                   searchEndpoint="branches"
-                  disabled={false}
-                  keyFilter={"branchId"}
+                  keyFilter={"branchCode"}
                   onChange={handleChange}
-                  // value={async () => {
-                  //   return await valueField(contactData.branchId, "branchId");
-                  // }}
-                  // defaultValue={{value: contactData.teamLeaderClerkId, label: contactData.teamLeaderClerkId}}
+                  defaultValue={{
+                    value: contactData?.branchCode, 
+                    label: contactData?.branchName
+                  }}
                 />
             </Col>
 
@@ -614,10 +617,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"supervisorClerkId"}
                   onChange={handleChange}
-                  // value={async () => {
-                  //   return await valueField(contactData.supervisorClerkId, "supervisorClerkId");
-                  // }}
-                  // defaultValue={{value: contactData.teamLeaderClerkId, label: contactData.teamLeaderClerkId}}
+                  defaultValue={{
+                    value: contactData?.supervisorClerkId, 
+                    label: contactData?.supervisorClerkName
+                  }}
                 />
             </Col>
           </Row>
@@ -630,10 +633,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"branchManagerClerkId"}
                   onChange={handleChange}
-                  // value={async () => {
-                  //   return await valueField(contactData.branchManagerClerkId, "branchManagerClerkId");
-                  // }}
-                  // defaultValue={{value: contactData.teamLeaderClerkId, label: contactData.teamLeaderClerkId}}
+                  defaultValue={{
+                    value: contactData?.branchManagerClerkId, 
+                    label: contactData?.branchManagerClerkName
+                  }}
                 />
             </Col>
 
@@ -644,10 +647,10 @@ const Forms = ({
                   disabled={false}
                   keyFilter={"officialId"}
                   onChange={handleChange}
-                  // value={async () => {
-                  //   return await valueField(contactData.officialId, "officialId");
-                  // }}
-                  // defaultValue={{value: contactData.teamLeaderClerkId, label: contactData.teamLeaderClerkId}}
+                  defaultValue={{
+                    value: contactData?.officialId, 
+                    label: contactData?.officialName
+                  }}
                 />
             </Col>
           </Row>
@@ -667,11 +670,12 @@ const Forms = ({
             <Col sm={4} align="start">
               <CustomAsyncPaginate
                   searchEndpoint="clerks"
-                  disabled={false}
-                  keyFilter={"ContactOwnerId"}
+                  keyFilter={"contactOwnerId"}
                   onChange={handleChange}
-                  returnObject
-                  defaultValue={{value: contactData?.ContactOwnerId, label: contactData?.ContactOwnerName}}
+                  defaultValue={{
+                    value: contactData?.contactOwnerId, 
+                    label: contactData?.contactOwnerName
+                  }}
                 />
             </Col>
           </Row>

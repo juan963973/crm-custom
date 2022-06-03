@@ -34,7 +34,7 @@ function EditContact({ id, uri }: any) {
   // });
 
   const [endpointCascade, setEndpointCascade] = useState({
-    city: "Search/city"
+    cityId: "Search/city"
   });
 
   const [validated, setValidated] = useState(false);
@@ -73,8 +73,17 @@ function EditContact({ id, uri }: any) {
           let value = response.promoterId;
           completeField(key, value);
         }
+
+        if (response.departmentId) {
+          let page = `Search/city?code=${response.departmentId}`;
+          setEndpointCascade({ ...endpointCascade, cityId: page });
+        }
+
         setContactsData(response);
       })
+
+     
+      
       .catch((e: any) => console.log(e));
   }, []);
 
@@ -109,7 +118,7 @@ function EditContact({ id, uri }: any) {
 
       if (key == "departmentId") {
         page = `Search/city?code=${value}`;
-        setEndpointCascade({ ...endpointCascade, city: page });
+        setEndpointCascade({ ...endpointCascade, cityId: page });
       }
       if (key == "subtypeId") {
         page = `Search/typifications?${key}=${value}`;
@@ -136,7 +145,7 @@ function EditContact({ id, uri }: any) {
     let page;
     switch (key) {
       case "companyId":
-        page = "Info/contacts/company-info";
+        page = "Info/cases/company-info";
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);
@@ -149,7 +158,7 @@ function EditContact({ id, uri }: any) {
 
         break;
       case "contactId":
-        page = "Info/contacts/contact-info";
+        page = "Info/cases/contact-info";
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);
@@ -161,7 +170,7 @@ function EditContact({ id, uri }: any) {
         }
         break;
       case "promoterId":
-        page = "Info/contacts/contact-info";
+        page = "Info/cases/contact-info";
         try {
           const res: any = await refenceField(page, value);
           setDataPromoter(res);
@@ -276,6 +285,15 @@ function EditContact({ id, uri }: any) {
     form: 'edit'
   };
 
+  const dateFormat = (date:any)=>{
+    let dateStr = String(date).split('/');
+    if(dateStr[0].length==2){
+      return `${dateStr[2]}-${dateStr[1]}-${dateStr[0]}`;
+    }else{
+      return date;
+    }
+  }
+
   return (
     <>
       <Form
@@ -298,6 +316,7 @@ function EditContact({ id, uri }: any) {
           params={params}
           paramsRequired={paramsRequired}
           cascade={endpointCascade}
+          dataDate = {dateFormat(contactsData.dateOfBirth)}
         />
       </Form>
     </>
