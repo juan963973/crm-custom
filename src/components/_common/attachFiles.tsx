@@ -5,8 +5,8 @@ import { urlFile } from "services/attachService";
 import { deleteFile } from "services/attachService";
 
 export default function AttachFiles ( { attachments, id }: any ) {
-    
-    console.log('attachments', attachments)
+
+    console.log('AttachFiles', id);
 
     return (
 

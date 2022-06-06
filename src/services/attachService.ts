@@ -2,7 +2,7 @@ import axios from "axios"
 
 const importFile = async (id: any, file: any) => {
     const formData = new FormData();
-    console.log('el ide es:L', id.id)
+    console.log('el ide es:L', id)
     formData.append("file", file);
     const attachmentModel = {
         module: "Case",
@@ -10,7 +10,7 @@ const importFile = async (id: any, file: any) => {
         file: formData
     }
     try {
-        const res = await axios.post(`${process.env.BASE_URL}/Attachment?module=Case&moduleId=${id.id}`, formData);
+        const res = await axios.post(`${process.env.BASE_URL}/Attachment?module=Case&moduleId=${id}`, formData);
         console.log('success attach file')
     } catch (ex) {
         console.log(ex);
