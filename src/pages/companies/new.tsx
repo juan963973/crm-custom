@@ -28,7 +28,7 @@ function New() {
       if (nameData == "departmentId") {
         let page = `Search/city?code=${value}`;
 
-        setEndpointCascade({ ...endpointCascade, city: page });
+        setEndpointCascade({ ...endpointCascade, cityId: page });
       }
 
       setCompanyData({ ...companyData, [nameData]: value });

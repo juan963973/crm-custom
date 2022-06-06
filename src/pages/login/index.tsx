@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import type { ReactElement } from 'react';
+import type { ReactElement } from 'react'; 
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -76,36 +76,38 @@ export default function Login() {
                 //           "id": "a5140eab-72cf-4588-afb3-b7105ad830ff",
                 //           "name": "custom-crm-admin",
                 //           "functionPoint": [
-                //             "CAN_ACCESS_ROL",
-                //             "CAN_MANAGE_ROL",
-                //             "CAN_ACCESS_USERS",
-                //             "CAN_MANAGE_USERS",
-                //             "CAN_ACCESS_BULK",
-                //             "CAN_MANAGE_BULK",
-                //             "CAN_ACCESS_CASES",
-                //             "CAN_MANAGE_CASES",
-                //             "CAN_ACCESS_COMPANIES",
-                //             "CAN_MANAGE_COMPANIES",
-                //             "CAN_ACCESS_CONTACTS",
-                //             "CAN_MANAGE_CONTACTS",
-                //             "CAN_ACCESS_FILTER",
-                //             "CAN_ACCESS_FULLSEARCH",
-                //             "CAN_MANAGE_FULLSEARCH",
-                //             "CAN_ACCESS_INFO",
-                //             "CAN_MANAGE_INFO",
-                //             "CAN_ACCESS_INFO",
-                //             "CAN_ACCESS_VISITREPORT",
-                //             "CAN_MANAGE_VISITREPORT",
-                //             "CAN_ACCESS_SEARCH",
-                //             "CAN_MANAGE_SEARCH"
+                //                 "CAN_VIEW_USERS",
+                //                 "CAN_CREATE_USERS",
+                //                 "CAN_UPDATE_USERS",
+                //                 "CAN_REMOVE_USERS",
+                //                 "CAN_VIEW_GROUP",
+                //                 "CAN_CREATE_GROUP",
+                //                 "CAN_UPDATE_GROUP",
+                //                 "CAN_REMOVE_GROUP",
+                //                 "CAN_LIST_VIEW_CASES",
+                //                 "KAN_BAN_VIEW_CASES",
+                //                 "CAN_DETAILS_CASES",
+                //                 "CAN_GET_CASES",
+                //                 "CAN_CREATE_CASES",
+                //                 "CAN_UPDATE_CASES",
+                //                 "CAN_REMOVE_CASES",
+                //                 "CAN_CHANGE_STATUS_CASES",
+                //                 "CAN_VIEW_CONTACT",
+                //                 "CAN_CREATE_CONTACT",
+                //                 "CAN_UPDATE_CONTACT",
+                //                 "CAN_REMOVE_CONTACT",
+                //                 "CAN_VIEW_COMPANIES",
+                //                 "CAN_CREATE_COMPANIES",
+                //                 "CAN_UPDATE_COMPANIES",
+                //                 "CAN_REMOVE_COMPANIES"
                 //           ]
                 //         }
                 //       ]
                 //     }
                 //   }
 
-                localStorageSetItem(data).then(() => router.push('/cases'))
                 // localStorageSetItem(data1).then(() => router.push('/cases'))
+                localStorageSetItem(data).then(() => router.push('/cases'))
             }).catch(({ response }) => {
                 toast.error(response, {
                     position: "top-center",
