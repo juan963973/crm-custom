@@ -4,8 +4,9 @@ import { useDropzone } from 'react-dropzone';
 import { importFile } from "services/attachService";
 
 
-export default function AttachFilesButton({id}: any ) {
+export default function AttachFilesButton({id, attachFiles}: any ) {
   console.log('AttachFilesButton', id);
+  console.log('AttachBotonButton', attachFiles)
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

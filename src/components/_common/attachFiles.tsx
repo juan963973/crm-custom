@@ -4,8 +4,8 @@ import AttachFilesButton from "./AttachFilesButton";
 import { urlFile } from "services/attachService";
 import { deleteFile } from "services/attachService";
 
-export default function AttachFiles ( { attachments, id }: any ) {
-
+export default function AttachFiles ( { attachments, id, attachFiles }: any ) {
+    console.log('attachFiles componente', attachFiles )
     console.log('AttachFiles', id);
 
     return (
@@ -17,7 +17,7 @@ export default function AttachFiles ( { attachments, id }: any ) {
                         <Col><h6 id='attachments'>ARCHIVOS ADJUNTOS</h6></Col>
 
                         <Col align="end">
-                            <AttachFilesButton id={id} />
+                            <AttachFilesButton id={id} attachFiles={attachFiles}/>
                         </Col>
                     </Row>
                     <Row>
