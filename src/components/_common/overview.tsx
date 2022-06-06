@@ -77,8 +77,7 @@ export default function Overview({ page, id, cases, attachFiles, setAttachFiles 
 
                                 <Col style={{ color: 'gray' }}>Correo electronico</Col>
                                 <Col sm={4} align="start">
-                                    {/* {cases?.contactEmail ? cases.contactEmail : ' - '} */}
-                                    ***
+                                    {cases?.contactEmail ? cases.contactEmail : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
@@ -120,7 +119,7 @@ export default function Overview({ page, id, cases, attachFiles, setAttachFiles 
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Nombre y apellido gestor</Col>
                                 <Col align="start">
-                                    {cases?.promotorName ? cases.promotorName : ' - '} - (en duro)
+                                    {cases?.promotorName ? cases.promotorName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Nro. de documento gestor</Col>
