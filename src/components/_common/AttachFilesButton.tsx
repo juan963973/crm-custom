@@ -17,7 +17,7 @@ export default function AttachFilesButton({id, attachFiles}: any ) {
     for (var i = 0; i < acceptedFiles.length; i++) {
       let file = acceptedFiles[i];
       formData.append('articleFiles[]', file);
-      const e = await importFile(id, file)
+      const e = await importFile(id, file, attachFiles)
       console.log('formData', formData)
     }
     alert('Archivo(s) enviados con exito')

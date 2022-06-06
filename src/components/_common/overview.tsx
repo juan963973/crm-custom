@@ -5,7 +5,7 @@ import HistoryState from "components/_common/historyState"
 import Notes from "components/_common/notes";
 import AttachFiles from "components/_common/attachFiles";
 
-export default function Overview({ page, id, cases, attachFiles }: any) {
+export default function Overview({ page, id, cases, attachFiles, setAttachFiles }: any) {
     console.log("Overview attachFiles", attachFiles)
 
     return (
@@ -440,7 +440,7 @@ export default function Overview({ page, id, cases, attachFiles }: any) {
 
             <HistoryState statusHistories={cases.statusHistories} />
 
-            <AttachFiles id={id} attachments={cases.attachments} attachFiles={attachFiles}/>
+            <AttachFiles id={id} attachments={cases.attachments} attachFiles={attachFiles} setAttachFiles={setAttachFiles}/>
 
 
 

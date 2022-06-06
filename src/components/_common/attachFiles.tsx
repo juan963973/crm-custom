@@ -1,10 +1,10 @@
-import { ReactChild, ReactFragment, ReactPortal } from "react";
+import { ReactChild, ReactFragment, ReactPortal, useEffect, useState} from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import AttachFilesButton from "./AttachFilesButton";
 import { urlFile } from "services/attachService";
 import { deleteFile } from "services/attachService";
 
-export default function AttachFiles ( { attachments, id, attachFiles }: any ) {
+export default function AttachFiles ( { attachments, id, attachFiles, setAttachFiles }: any ) {
     console.log('attachFiles componente', attachFiles )
     console.log('AttachFiles', id);
 
@@ -23,8 +23,8 @@ export default function AttachFiles ( { attachments, id, attachFiles }: any ) {
                     <Row>
                         <Col>
 
-                            {attachments?.length > 0 ? (attachments.map((item: { url: string; id: any; }) => (
-                                <Row>
+                            {attachFiles?.length > 0 ? (attachFiles.map((item: { url: string; id: any; }) => (
+                                <Row key={attachFiles.id}>
                                     <div style={{
                                         color: 'gray',
                                         display: 'flex',
@@ -43,7 +43,7 @@ export default function AttachFiles ( { attachments, id, attachFiles }: any ) {
                                             </Button>
 
                                             <Button variant="danger" className="btn btn-primary btn-sm"
-                                                onClick={() => deleteFile(item.id)}
+                                                onClick={() => deleteFile(item.id, attachFiles, setAttachFiles)}
                                                 style={{ marginLeft: '5px'}}>
                                                 Eliminar
                                             </Button>
