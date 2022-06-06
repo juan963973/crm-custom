@@ -266,7 +266,7 @@ export default function Overview3({dataIdCase, data}: any) {
                                 <Col sm={4} align="start">
                                     {companiesName?.length > 0 ? companiesName.map((el: any) =>{
                                         return (
-                                            <p>{el}</p>
+                                            <p key={el}>{el}</p>
                                         )
                                     }) : ' - '}
                                 </Col>

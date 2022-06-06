@@ -84,7 +84,7 @@ export default function Overview2({ dataIdCase, dataCompany }: any) {
                                 <Col align="start">
                                     {economicActivityName?.length > 0 ? economicActivityName.map((el: any) => {
                                         return (
-                                            <p>{el}</p>
+                                            <p key={el}>{el}</p>
                                         )
                                     }) : ' - '}
                                 </Col>
@@ -105,7 +105,7 @@ export default function Overview2({ dataIdCase, dataCompany }: any) {
                                 <Col sm={4} align="start">
                                     {salaryPaymentEntityName?.length > 0 ? salaryPaymentEntityName.map((el: any) => {
                                         return (
-                                            <p>{el}</p>
+                                            <p key={el}>{el}</p>
                                         )
                                     }) : ' - '}
                                 </Col>
@@ -115,7 +115,7 @@ export default function Overview2({ dataIdCase, dataCompany }: any) {
                                 <Col align="start">
                                     {operatingEntityNames?.length > 0 ? operatingEntityNames.map((el: any) => {
                                         return (
-                                            <p>{el}</p>
+                                            <p key={el}>{el}</p>
                                         )
                                     }) : ' - '}
                                 </Col>
@@ -124,7 +124,7 @@ export default function Overview2({ dataIdCase, dataCompany }: any) {
                                 <Col sm={4} align="start">
                                     {economicActivityName?.length > 0 ? economicActivityName.map((el: any) => {
                                         return (
-                                            <p>{el}</p>
+                                            <p key={el}>{el}</p>
                                         )
                                     }) : ' - '}
                                 </Col>
