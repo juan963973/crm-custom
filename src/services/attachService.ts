@@ -1,10 +1,12 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
+import axios from "axios";
+import { detail } from "services/caseService";
+import {useEffect} from "react";
 
-const importFile = async (id: any, file: any, attachFiles: any) => {
+const importFile = async (id: any, file: any, attachFiles: any, setAttachFiles: any) => {
     const formData = new FormData();
     console.log('el ide es:L', id)
     formData.append("file", file);
+    const page = "cases";
     const attachmentModel = {
         module: "Case",
         moduleId: id,
@@ -12,9 +14,14 @@ const importFile = async (id: any, file: any, attachFiles: any) => {
     }
     try {
         const res = await axios.post(`${process.env.BASE_URL}/Attachment?module=Case&moduleId=${id}`, formData);
-        // const updateFile = attachFiles.filter(
-        //
-        // )
+        detail(page, id)
+
+            .then(data => {
+
+                setAttachFiles(data.attachments)
+
+            })
+
         console.log('success attach file')
     } catch (ex) {
         console.log(ex);

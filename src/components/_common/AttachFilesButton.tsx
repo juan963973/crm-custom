@@ -4,9 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import { importFile } from "services/attachService";
 
 
-export default function AttachFilesButton({id, attachFiles}: any ) {
-  console.log('AttachFilesButton', id);
-  console.log('AttachBotonButton', attachFiles)
+export default function AttachFilesButton({id, attachFiles, setAttachFiles}: any ) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -17,7 +15,7 @@ export default function AttachFilesButton({id, attachFiles}: any ) {
     for (var i = 0; i < acceptedFiles.length; i++) {
       let file = acceptedFiles[i];
       formData.append('articleFiles[]', file);
-      const e = await importFile(id, file, attachFiles)
+      const e = await importFile(id, file, attachFiles, setAttachFiles)
       console.log('formData', formData)
     }
     alert('Archivo(s) enviados con exito')

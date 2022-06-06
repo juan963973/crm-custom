@@ -5,8 +5,6 @@ import { urlFile } from "services/attachService";
 import { deleteFile } from "services/attachService";
 
 export default function AttachFiles ( { attachments, id, attachFiles, setAttachFiles }: any ) {
-    console.log('attachFiles componente', attachFiles )
-    console.log('AttachFiles', id);
 
     return (
 
@@ -17,7 +15,7 @@ export default function AttachFiles ( { attachments, id, attachFiles, setAttachF
                         <Col><h6 id='attachments'>ARCHIVOS ADJUNTOS</h6></Col>
 
                         <Col align="end">
-                            <AttachFilesButton id={id} attachFiles={attachFiles}/>
+                            <AttachFilesButton id={id} attachFiles={attachFiles} setAttachFiles={setAttachFiles}/>
                         </Col>
                     </Row>
                     <Row>

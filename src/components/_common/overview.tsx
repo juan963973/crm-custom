@@ -6,7 +6,6 @@ import Notes from "components/_common/notes";
 import AttachFiles from "components/_common/attachFiles";
 
 export default function Overview({ page, id, cases, attachFiles, setAttachFiles }: any) {
-    console.log("Overview attachFiles", attachFiles)
 
     return (
         <>
@@ -317,24 +316,6 @@ export default function Overview({ page, id, cases, attachFiles, setAttachFiles 
                             </Row>
 
                         </Row> */}
-
-                        <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
-                            <Row>
-                                <Col> <h6>DATOS ADICIONALES</h6> </Col>
-                            </Row>
-                            <Row align="end" sm={4}>
-                                <Col style={{ color: 'gray' }}>Agregar comentarios</Col>
-                                <Col align="start">
-                                    -- (en duro)
-                                </Col>
-
-                                {/* <Col style={{ color: 'gray' }}>Nro. de comentarios</Col>
-                                <Col sm={4} align="start">
-                                    -
-                                </Col> */}
-                            </Row>
-
-                        </Row>
 
                         {/* <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>

@@ -36,8 +36,6 @@ export default function Show({ id, uri }: any) {
 
     let data = cases
 
-    console.log('attachFiles', attachFiles)
-
     return (
         <>
             < HeaderCases subject={cases.subject} />
