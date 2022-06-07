@@ -34,7 +34,7 @@ export default function Show({ id, uri }: any) {
             <Container className="shadow-sm p-3 mb-3 bg-white rounded mt-2">
             <Row style={{ marginTop: '50px', display: 'flex', alignItems: 'start', height: '30px' }}>
                     <Col sm={1} style={{ width: '50px'}}>
-                        <img src="/backIcon.png" alt="Atrás" height="20" onClick={() => { window.history.back() }} />
+                        <img src="/backIcon.png" style={{ cursor: 'pointer' }} alt="Atrás" style={{ cursor: 'pointer' }} height="20" onClick={() => { window.history.back() }} />
                     </Col>
                     
                     <Col  sm={1} style={{ width: '70px'}}>

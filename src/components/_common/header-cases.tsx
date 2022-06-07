@@ -55,7 +55,7 @@ export default function HeaderCases(props: {subject: any}) {
                 <ToastContainer />
                 <Row style={{ marginTop: '50px', display: 'flex', alignItems: 'start', height: '30px' }}>
                     <Col sm={1}>
-                        <img src="/backIcon.png" alt="Atrás" height="20" onClick={() => { window.history.back() }} />
+                        <img src="/backIcon.png" alt="Atrás" style={{ cursor: 'pointer' }} height="20" onClick={() => { window.history.back() }} />
                     </Col>
                     <Col sm={5} style={{ marginRight: 'auto'}}>
                         <Row>
