@@ -14,7 +14,7 @@ export default function HistoryState(cases: any) {
                         </Col>
                     </Row>
                     <Row>
-                        {cases?.statusHistories > 0 ? (
+                        {cases?.statusHistories?.length > 0 ? (
                             <Row style={{
                                 color: 'gray',
                                 marginBottom: 10,
@@ -42,8 +42,10 @@ export default function HistoryState(cases: any) {
                                 borderLeft: 'none',
                                 borderRight: 'none', }}>Sin datos</Col>
                             </Row>}
-                        {cases.statusHistories?.map((item: { caseStatusName: boolean | ReactChild | ReactFragment | ReactPortal; duration: boolean | ReactChild | ReactFragment | ReactPortal; modifiedAt: boolean | ReactChild | ReactFragment | ReactPortal; modifiedByName: boolean | ReactChild | ReactFragment | ReactPortal }) => (
-                            <Row style={{
+                        {cases.statusHistories?.map((item: {
+                            id: any;
+                            caseStatusName: boolean | ReactChild | ReactFragment | ReactPortal; duration: boolean | ReactChild | ReactFragment | ReactPortal; modifiedAt: boolean | ReactChild | ReactFragment | ReactPortal; modifiedByName: boolean | ReactChild | ReactFragment | ReactPortal }) => (
+                            <Row key={item.id} style={{
                                 marginBottom: 10,
                                 marginTop: 10,
                                 borderColor: 'rgb(237, 240, 244)',
