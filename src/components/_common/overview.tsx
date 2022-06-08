@@ -1,53 +1,16 @@
 import React from "react";
 import { Col, Row, Card } from "react-bootstrap";
-
 import HistoryState from "components/_common/historyState"
 import Notes from "components/_common/notes";
 import AttachFiles from "components/_common/attachFiles";
 
 export default function Overview({ page, id, cases, attachFiles, setAttachFiles }: any) {
-
+    const { resolverAreas, resolvers } = cases;
     return (
         <>
-            <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }} className="d-flex justify-content-center">
-                <Row style={{ width: '99%' }} >
-                    <Card body >
-                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }} className='mt-200'>
-                            <Col className='d-flex justify-content-end'>Estado</Col>
-                            <Col>{cases?.caseStatusName ? cases.caseStatusName : ' - '}</Col>
-                        </Row>
-                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
-                            <Col className='d-flex justify-content-end'>Origen del caso</Col>
-                            <Col>{cases?.originName ? cases.originName : ' - '}</Col>
-                        </Row>
-                        <Row sm={3} style={{ color: 'gray', marginRight: 30 }}>
-                            <Col className='d-flex justify-content-end'>Propietario del caso</Col>
-                            <Col>{cases?.caseOwnerUserName ? cases.caseOwnerUserName : ' - '}</Col>
-                        </Row>
-                    </Card>
-                </Row>
-            </Row>
-
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
                     <Card body>
-                        {/* <Row className='mt-200' style={{ marginBottom: 35 }}>
-                            <Col>
-                                <Row> <h6>Esconder detalles</h6></Row>
-                            </Col>
-                        </Row> */}
-                        {/* <Row style={{ marginTop: 30 }}>
-                            <Row>
-                                <Col> <h6>NRO. DE TICKET - CRONÓMETRO</h6> </Col>
-                            </Row>
-                            <Row>
-                                <Col style={{ color: 'gray' }}>Nro_Ticket_Finansys</Col>
-                                <Col>{cases?.ticketNumber ? cases.ticketNumber : ' - '}</Col>
-                                <Col style={{ color: 'gray' }}> Tiempo (auto) </Col>
-                                <Col>{cases?.time ? cases.time : ' - '}</Col>
-                            </Row>
-                        </Row> */}
-
                         <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>
                                 <Col> <h6>CLIENTE</h6> </Col>
@@ -105,7 +68,7 @@ export default function Overview({ page, id, cases, attachFiles, setAttachFiles 
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Sucursal cliente</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.contactBranchName ? cases.contactBranchName : ' - '}
+                                    {cases?.clientBranchName ? cases.clientBranchName : ' - '}
                                 </Col>
                                 <Col ></Col>
                                 <Col ></Col>
@@ -162,7 +125,6 @@ export default function Overview({ page, id, cases, attachFiles, setAttachFiles 
                             <Row>
                                 <Col> <h6>EXPLICACIÓN DEL CASO</h6> </Col>
                             </Row>
-
 
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Asunto</Col>
@@ -248,7 +210,6 @@ export default function Overview({ page, id, cases, attachFiles, setAttachFiles 
                                 <Col sm={4} align="start">
                                 </Col>
                             </Row>
-
                         </Row>
 
                         <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
@@ -258,7 +219,11 @@ export default function Overview({ page, id, cases, attachFiles, setAttachFiles 
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Áreas Resolutoras</Col>
                                 <Col align="start">
-                                    {cases?.resolverAreas ? cases.resolverAreas : ' - '}
+                                    {resolverAreas?.length > 0 ? resolverAreas.map((el: any) =>{
+                                        return(
+                                            <Row key={el}>{el}</Row>
+                                        )
+                                    }) : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Oficial negocio</Col>
@@ -267,10 +232,16 @@ export default function Overview({ page, id, cases, attachFiles, setAttachFiles 
                                 </Col>
                             </Row>
                             <Row align="start">
-                                <Col style={{ color: 'gray' }}>Personas Resolutoras</Col>
+                                <Col style={{ color: 'gray' }}>Personas resolutoras</Col>
                                 <Col align="start">
-                                    {cases?.resolvers ? cases.resolvers : ' - '}
+                                    {resolvers?.length > 0 ? resolvers.map((el: any) =>{
+                                        return(
+                                            <Row key={el}>{el}</Row>
+                                        )
+                                    }) : ' - '}
                                 </Col>
+                                <Col style={{ color: 'gray' }}></Col>
+                                <Col align="start"></Col>
                             </Row>
 
                         </Row>
@@ -295,105 +266,11 @@ export default function Overview({ page, id, cases, attachFiles, setAttachFiles 
                                 <Col sm={4} align="start">
                                     {cases?.resolutionClientFavorName ? cases.resolutionClientFavorName : ' - '}
                                 </Col>
-                                {/* <Col style={{ color: 'gray' }}>¿Desea solicitar una prórroga del caso?</Col>
-                                <Col align="start">
-                                    {cases?.requestExtension ? cases.requestExtension : ' - '}
-                                </Col> */}
                             </Row>
 
                         </Row>
-
-                        {/* <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
-                            <Row>
-                                <Col> <h6>COMENTARIOS</h6> </Col>
-                            </Row>
-                            <Row align="start">
-                                <Col style={{ color: 'gray' }}>Comentarios</Col>
-                                <Col align="start">
-                                    -
-                                </Col>
-                            </Row>
-
-                        </Row> */}
-
-                        {/* <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
-                            <Row>
-                                <Col> <h6>USO INTERNO - AUTOMATIZACIÓN</h6> </Col>
-                            </Row>
-                            <Row align="end">
-                                <Col style={{ color: 'gray' }}>Notas_auto</Col>
-                                <Col align="start">
-                                    -
-                                </Col>
-
-                                <Col style={{ color: 'gray' }}>Fecha/Hora Cierre</Col>
-                                <Col sm={4} align="start">
-                                    -
-                                </Col>
-                            </Row>
-                            <Row align="end">
-                                <Col style={{ color: 'gray' }}>Nro Ticket (auto)</Col>
-                                <Col align="start">
-                                    123456
-                                </Col>
-
-                                <Col style={{ color: 'gray' }}>Actualizado</Col>
-                                <Col sm={4} align="start">
-                                    -
-                                </Col>
-                            </Row>
-
-                        </Row>
-
-                        <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
-                            <Row>
-                                <Col> <h6>AUTOMATIZACIÓN - FORM</h6> </Col>
-                            </Row>
-                            <Row align="end">
-                                <Col style={{ color: 'gray' }}>Nombre/Empresa (auto)</Col>
-                                <Col align="start">
-                                    -
-                                </Col>
-
-                                <Col style={{ color: 'gray' }}>RUC (auto)</Col>
-                                <Col sm={4} align="start">
-                                    -
-                                </Col>
-                            </Row>
-                            <Row align="end">
-                                <Col style={{ color: 'gray' }}>Nombre (auto)</Col>
-                                <Col align="start">
-                                    -
-                                </Col>
-
-                                <Col style={{ color: 'gray' }}>Apellido (auto)</Col>
-                                <Col sm={4} align="start">
-                                    -
-                                </Col>
-                            </Row>
-                            <Row align="end">
-                                <Col style={{ color: 'gray' }}>Teléfono Gestor (auto)</Col>
-                                <Col align="start">
-                                    -
-                                </Col>
-
-                                <Col style={{ color: 'gray' }}>Email (auto)</Col>
-                                <Col sm={4} align="start">
-                                    -
-                                </Col>
-                            </Row>
-                        </Row> */}
-
-
-
-
-
                     </Card>
-
-
                 </Row>
-
-
             </Row>
 
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
@@ -405,13 +282,6 @@ export default function Overview({ page, id, cases, attachFiles, setAttachFiles 
                             </Col>
                         </Row>
                         <Row>
-                            {/* <InputGroup className="mb-3">
-                                <FormControl
-                           C         aria-label="Example text with button addon"
-                                    aria-describedby="basic-addon1"
-                                    placeholder="Add a note..."
-                                />
-                            </InputGroup> */}
                             <Notes id={id} />
                         </Row>
                     </Card>
@@ -421,8 +291,6 @@ export default function Overview({ page, id, cases, attachFiles, setAttachFiles 
             <HistoryState statusHistories={cases.statusHistories} />
 
             <AttachFiles id={id} attachments={cases.attachments} attachFiles={attachFiles} setAttachFiles={setAttachFiles}/>
-
-
 
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
                 <Row style={{ width: '99%' }}>
@@ -460,7 +328,6 @@ export default function Overview({ page, id, cases, attachFiles, setAttachFiles 
                     </Card>
                 </Row>
             </Row>
-
         </>
     )
 }
