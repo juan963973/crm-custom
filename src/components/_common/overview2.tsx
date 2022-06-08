@@ -3,9 +3,7 @@ import { Col, Row, Card } from "react-bootstrap";
 import NewButtonCase from "./newButtonCase";
 
 export default function Overview2({ dataIdCase, dataCompany }: any) {
-
     const { cases, economicActivityName, operatingEntityNames, salaryPaymentEntityName } = dataCompany;
-
     return (
         <>
             <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
@@ -131,43 +129,6 @@ export default function Overview2({ dataIdCase, dataCompany }: any) {
                             </Row>
                         </Row>
 
-                        {/* <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
-                            <Row>
-                                <Col> <h6>DATOS DEL CONTACTO</h6> </Col>
-                            </Row>
-                            <Row align="end">
-                                <Col style={{ color: 'gray' }}>Contacto Lookup</Col>
-                                <Col align="start">
-                                    {dataCompany?.promotorName ? dataCompany.promotorName : ' No se '}
-                                </Col>
-
-                                <Col style={{ color: 'gray' }}>Correo electrónico</Col>
-                                <Col sm={4} align="start">
-                                    {dataCompany?.promotorDocumentNumber ? dataCompany.promotorDocumentNumber : ' No se '}
-                                </Col>
-                            </Row>
-                            <Row align="end">
-                                <Col style={{ color: 'gray' }}>Email empresa</Col>
-                                <Col align="start">
-                                    {dataCompany?.promotorPhone ? dataCompany.promotorPhone : ' No se '}
-                                </Col>
-
-                                <Col style={{ color: 'gray' }}>Teléfono móvil</Col>
-                                <Col sm={4} align="start">
-                                    {dataCompany?.promotorEmail ? dataCompany.promotorEmail : ' No se '}
-                                </Col>
-                            </Row>
-                            <Row align="end">
-                                <Col style={{ color: 'gray' }}>Teléfono</Col>
-                                <Col align="start">
-                                    {dataCompany?.phone ? dataCompany.phone : ' - '}
-                                </Col>
-
-                                <Col style={{ color: 'gray' }}></Col>
-                                <Col sm={4} align="start"></Col>
-                            </Row>
-                        </Row> */}
-
                         <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>
                                 <Col> <h6>DIRECCIÓN DE LA EMPRESA</h6> </Col>
@@ -191,13 +152,13 @@ export default function Overview2({ dataIdCase, dataCompany }: any) {
 
                                 <Col style={{ color: 'gray' }}>Departamento</Col>
                                 <Col sm={4} align="start">
-                                    {dataCompany?.departament ? dataCompany.departament : ' - '}
+                                    {dataCompany?.departmentName ? dataCompany.departmentName : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Ciudad</Col>
                                 <Col align="start">
-                                    {dataCompany?.city ? dataCompany.city : ' - '}
+                                    {dataCompany?.cityName ? dataCompany.cityName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Barrio</Col>
