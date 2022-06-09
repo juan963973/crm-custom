@@ -18,7 +18,7 @@ export default function CallToActions({params}:any) {
     const goToCreate = () => router.push(`${module}/new`)
 
     const exportCase = () => {
-        window.open("http://192.168.121.16:3000/cases/export");
+        window.open(`${process.env.BASE_HOST}/cases/export`);
     }
 
     return (
@@ -31,27 +31,32 @@ export default function CallToActions({params}:any) {
                 </Button>
             </Col>
             <Col xs={3} >
-                <FilteringResolvers />
+                {ModuleText == 'Casos' && <FilteringResolvers />}
             </Col>
             {/* <Col align='end'>
                 
             </Col>  */}
             
             <Col align='end'>
-                <Button variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }} onClick={toggleViewKanban}>
-                    <div>
-                        {viewKanban ? 
-                            <><FaList style={{color:"black"}} /> {textList}</>: 
-                            <><FaColumns style={{color:"black"}} /> {textKanban}</>
+                {ModuleText == 'Casos' &&
+                    <>
+                        <Button variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }} onClick={toggleViewKanban}>
+                            <div>
+                                {viewKanban ? 
+                                    <><FaList style={{color:"black"}} /> {textList}</>: 
+                                    <><FaColumns style={{color:"black"}} /> {textKanban}</>
+                                }
+                            </div>
+                        </Button>
+                        {CanActive(permissionFront.CAN_CHANGE_STATUS_CASES) && 
+                            <Button onClick={exportCase} variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }}>Tablero {ModuleText}</Button>
                         }
-                    </div>
-                </Button>
-                {CanActive(permissionFront.CAN_CHANGE_STATUS_CASES) && (
-                    <Button onClick={exportCase} variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }}>Tablero {ModuleText}</Button>
-                )}
-                {CanActive(permissionFront.CAN_CHANGE_STATUS_CASES) && (
+                    </>
+                }
+                {CanActive(permissionFront.CAN_CHANGE_STATUS_CASES) && 
                     <Button onClick={goToCreate}>Crear {ModuleText}</Button>
-                )}
+                }
+                
             </Col>
         </>
     )

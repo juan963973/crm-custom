@@ -11,7 +11,7 @@ export default function HeaderForms({title, handleClose}:any) {
               <Button variant="secondary" onClick={handleClose}>
                 Cancelar
               </Button>{" "}
-              <Button variant="secondary">Guardar y nuevo</Button>{" "}
+              {/* <Button variant="secondary">Guardar y nuevo</Button>{" "} */}
               <Button variant="primary" type="submit">
                 Guardar
               </Button>{" "}
