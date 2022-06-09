@@ -507,7 +507,7 @@ const Forms = ({
             <Col sm={4} align="start">
               <MultipleArray
                   placeholder={"Personas Resolutoras"}
-                endpoint="Search/resolvers"
+                endpoint="Search/resolvers-duplicate"
                 handleChange={handleChange}
                 keyFilter="resolverIds"
                 valueData={caseData.resolverIds}
@@ -584,7 +584,7 @@ const Forms = ({
           </Row>
         </Row>
 
-        <Row style={{ marginBottom: 30 }}>
+        {/* <Row style={{ marginBottom: 30 }}>
           <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
@@ -606,7 +606,7 @@ const Forms = ({
             <Col></Col>
             <Col sm={4}></Col>
           </Row>
-        </Row>
+        </Row> */}
       </div>
     </div>
   );

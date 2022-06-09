@@ -1,10 +1,10 @@
 import {permissionFront} from 'auth/permissions'
 
 export const routes = [
-    { url: '/contacts', title: 'Contactos', permission: permissionFront.CAN_VIEW_CONTACT},
-    // { url: '/contacts/new', title: 'Contactos', permission: permissionFront.CAN_CREATE_CONTACT},
-    // { url: '/contacts/edit', title: 'Contactos', permission: permissionFront.CAN_UPDATE_CONTACT},
-    // { url: '/contacts/show', title: 'Contactos', permission: permissionFront.CAN_VIEW_CONTACT},
+    { url: '/contacts', title: 'Contactos', permission: permissionFront.CAN_VIEW_CONTACTS},
+    // { url: '/contacts/new', title: 'Contactos', permission: permissionFront.CAN_CREATE_CONTACTS},
+    // { url: '/contacts/edit', title: 'Contactos', permission: permissionFront.CAN_UPDATE_CONTACTS},
+    // { url: '/contacts/show', title: 'Contactos', permission: permissionFront.CAN_VIEW_CONTACTS},
     { url: '/companies', title: 'Empresas', permission: permissionFront.CAN_VIEW_COMPANIES},
     // { url: '/companies/new', title: 'Empresas', permission: permissionFront.CAN_CREATE_COMPANIES},
     // { url: '/companies/edit', title: 'Empresas', permission: permissionFront.CAN_UPDATE_COMPANIES},
