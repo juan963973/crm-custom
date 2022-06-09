@@ -30,7 +30,7 @@ export default function CallToActions({params}:any) {
                     </div>
                 </Button>
             </Col>
-            <Col xs={2} >
+            <Col xs={3} >
                 {ModuleText == 'Casos' && <FilteringResolvers />}
             </Col>
             {/* <Col align='end'>

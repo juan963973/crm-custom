@@ -5,7 +5,7 @@ import HistoryState from "components/_common/historyState"
 import Notes from "components/_common/notes";
 import AttachFiles from "components/_common/attachFiles";
 
-export default function Overview({ page, id, cases }: any) {
+export default function Overview({ page, id, cases, attachFiles, setAttachFiles }: any) {
 
     return (
         <>
@@ -77,8 +77,7 @@ export default function Overview({ page, id, cases }: any) {
 
                                 <Col style={{ color: 'gray' }}>Correo electronico</Col>
                                 <Col sm={4} align="start">
-                                    {/* {cases?.contactEmail ? cases.contactEmail : ' - '} */}
-                                    ***
+                                    {cases?.contactEmail ? cases.contactEmail : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
@@ -120,7 +119,7 @@ export default function Overview({ page, id, cases }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Nombre y apellido gestor</Col>
                                 <Col align="start">
-                                    {cases?.promotorName ? cases.promotorName : ' - '} - (en duro)
+                                    {cases?.promotorName ? cases.promotorName : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Nro. de documento gestor</Col>
@@ -317,24 +316,6 @@ export default function Overview({ page, id, cases }: any) {
 
                         </Row> */}
 
-                        <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
-                            <Row>
-                                <Col> <h6>DATOS ADICIONALES</h6> </Col>
-                            </Row>
-                            <Row align="end" sm={4}>
-                                <Col style={{ color: 'gray' }}>Agregar comentarios</Col>
-                                <Col align="start">
-                                    -- (en duro)
-                                </Col>
-
-                                {/* <Col style={{ color: 'gray' }}>Nro. de comentarios</Col>
-                                <Col sm={4} align="start">
-                                    -
-                                </Col> */}
-                            </Row>
-
-                        </Row>
-
                         {/* <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
                             <Row>
                                 <Col> <h6>USO INTERNO - AUTOMATIZACIÓN</h6> </Col>
@@ -439,7 +420,7 @@ export default function Overview({ page, id, cases }: any) {
 
             <HistoryState statusHistories={cases.statusHistories} />
 
-            <AttachFiles id={id} attachments={cases.attachments} />
+            <AttachFiles id={id} attachments={cases.attachments} attachFiles={attachFiles} setAttachFiles={setAttachFiles}/>
 
 
 

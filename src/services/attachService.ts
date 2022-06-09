@@ -1,16 +1,27 @@
-import axios from "axios"
+import axios from "axios";
+import { detail } from "services/caseService";
+import {useEffect} from "react";
 
-const importFile = async (id: any, file: any) => {
+const importFile = async (id: any, file: any, attachFiles: any, setAttachFiles: any) => {
     const formData = new FormData();
-    console.log('el ide es:L', id.id)
+    console.log('el ide es:L', id)
     formData.append("file", file);
+    const page = "cases";
     const attachmentModel = {
         module: "Case",
         moduleId: id,
         file: formData
     }
     try {
-        const res = await axios.post(`${process.env.BASE_URL}/Attachment?module=Case&moduleId=${id.id}`, formData);
+        const res = await axios.post(`${process.env.BASE_URL}/Attachment?module=Case&moduleId=${id}`, formData);
+        detail(page, id)
+
+            .then(data => {
+
+                setAttachFiles(data.attachments)
+
+            })
+
         console.log('success attach file')
     } catch (ex) {
         console.log(ex);
@@ -19,9 +30,14 @@ const importFile = async (id: any, file: any) => {
 
 export const urlFile = `${process.env.BASE_URL}/Attachment?id=`
 
-export async function deleteFile(id: any) {
+
+export async function deleteFile(id: any, attachFiles: any, setAttachFiles: any) {
     try {
         const res = await axios.delete(`${process.env.BASE_URL}/Attachment?id=${id}`)
+        const updateFile = attachFiles.filter(
+            (attachFiles: any) => attachFiles.id !== id
+        )
+        setAttachFiles(updateFile)
        alert('Archivo Eliminado')
        console.log('Archivo eliminado :', res.data)
         return res.data

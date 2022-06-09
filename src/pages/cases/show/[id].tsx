@@ -17,6 +17,7 @@ const page = "cases";
 
 export default function Show({ id, uri }: any) {
     const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
+    const [attachFiles, setAttachFiles] = useState([]);
     useEffect(() => {
 
         detail(page, id)
@@ -24,6 +25,7 @@ export default function Show({ id, uri }: any) {
             .then(data => {
 
                 setCases(data)
+                setAttachFiles(data.attachments)
 
             })
 
@@ -81,7 +83,7 @@ export default function Show({ id, uri }: any) {
                                     backgroundColor: "#edf0f4",
                                 }}
                             >
-                                <Overview page={page} id={id} cases={cases}/>
+                                <Overview page={page} id={id} cases={cases} attachFiles={attachFiles} setAttachFiles={setAttachFiles}/>
                             </Row>
                         </Row>
                     </Col>

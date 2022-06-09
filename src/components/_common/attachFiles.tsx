@@ -1,19 +1,10 @@
-import { ReactChild, ReactFragment, ReactPortal } from "react";
+import { ReactChild, ReactFragment, ReactPortal, useEffect, useState} from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import AttachFilesButton from "./AttachFilesButton";
 import { urlFile } from "services/attachService";
 import { deleteFile } from "services/attachService";
 
-export default function AttachFiles(props: { attachments: any[]; id: any; }) {
-    let dataFile = props.attachments
-    console.log(dataFile)
-
-    function substr(str: string) {
-        var length = 120;
-        // var myString = str;
-        var myTruncatedString = str.split('/').pop();
-        return myTruncatedString
-    }
+export default function AttachFiles ( { attachments, id, attachFiles, setAttachFiles }: any ) {
 
     return (
 
@@ -24,14 +15,45 @@ export default function AttachFiles(props: { attachments: any[]; id: any; }) {
                         <Col><h6 id='attachments'>ARCHIVOS ADJUNTOS</h6></Col>
 
                         <Col align="end">
-                            <AttachFilesButton id={props.id} />
+                            <AttachFilesButton id={id} attachFiles={attachFiles} setAttachFiles={setAttachFiles}/>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
 
-                            {dataFile ? (dataFile.map((item) => (
-                                <Row style={{
+                            {attachFiles?.length > 0 ? (attachFiles.map((item: { url: string; id: any; }) => (
+                                <Row key={attachFiles.id}>
+                                    <div style={{
+                                        color: 'gray',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        marginBottom: 5,
+                                        marginTop: 5,
+                                    }}>
+                                        {/* <Col sm={1}>{item.id}</Col> */}
+                                        <Col sm={1}> <img src="/attachments.png" width="20" height="20" /></Col>
+                                        <Col sm={9}>{item.url.split("\\").pop()}</Col>
+                                        <Col style={{ display: "flex" }}>
+
+                                            <Button variant="primary" className="btn btn-primary btn-sm"
+                                                href={`${urlFile}${item.id}`}>
+                                                Ver
+                                            </Button>
+
+                                            <Button variant="danger" className="btn btn-primary btn-sm"
+                                                onClick={() => deleteFile(item.id, attachFiles, setAttachFiles)}
+                                                style={{ marginLeft: '5px'}}>
+                                                Eliminar
+                                            </Button>
+                                        </Col>
+                                    </div>
+                                </Row>
+                            )))
+
+                                : <Row style={{
+                                    color: 'gray',
+                                    display: 'flex',
+                                    justifyContent: 'center',
                                     marginBottom: 10,
                                     marginTop: 10,
                                     borderColor: 'rgb(237, 240, 244)',
@@ -39,27 +61,9 @@ export default function AttachFiles(props: { attachments: any[]; id: any; }) {
                                     borderWidth: 'thin',
                                     borderLeft: 'none',
                                     borderRight: 'none',
-                                    borderTop: 'none'
-                                }} >
-                                    {/* <Col sm={1}>{item.id}</Col> */}
-                                    <Col sm={1}> <img src="/attachments.png" width="20" height="20" /></Col>
-                                    <Col sm={10}>{item.url.split("\\").pop()}</Col>
-                                    <Col style={ { display: "flex"}}>
-                                   
-                                        <Button variant="primary" className="btn btn-primary btn-sm"
-                                            href={`${urlFile}${item.id}`}>
-                                            Ver
-                                        </Button>
-
-                                        {/* <Button variant="danger" className="btn btn-primary btn-sm"
-                                            onClick={() => deleteFile(item.id)}>
-                                            Eliminar
-                                        </Button> */}
-                                    </Col>
-                                </Row>
-                            )))
-
-                                : <Row style={{ color: 'gray' }}>Sin adjuntos</Row>
+                                }}
+                                >
+                                    Sin adjuntos</Row>
 
                             }
 

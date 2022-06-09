@@ -14,23 +14,38 @@ export default function HistoryState(cases: any) {
                         </Col>
                     </Row>
                     <Row>
-                        <Row style={{
-                            color: 'gray',
-                            marginBottom: 10,
-                            marginTop: 10,
-                            borderColor: 'rgb(237, 240, 244)',
-                            borderStyle: 'solid',
-                            borderWidth: 'thin',
-                            borderLeft: 'none',
-                            borderRight: 'none'
-                        }}>
-                            <Col>Estado</Col>
-                            <Col>Duración (días)</Col>
-                            <Col>Tiempo modificación</Col>
-                            <Col>Modificado por</Col>
-                        </Row>
-                        {cases.statusHistories?.map((item: { caseStatusName: boolean | ReactChild | ReactFragment | ReactPortal; duration: boolean | ReactChild | ReactFragment | ReactPortal; modifiedAt: boolean | ReactChild | ReactFragment | ReactPortal; modifiedByName: boolean | ReactChild | ReactFragment | ReactPortal }) => (
+                        {cases?.statusHistories?.length > 0 ? (
                             <Row style={{
+                                color: 'gray',
+                                marginBottom: 10,
+                                marginTop: 10,
+                                borderColor: 'rgb(237, 240, 244)',
+                                borderStyle: 'solid',
+                                borderWidth: 'thin',
+                                borderLeft: 'none',
+                                borderRight: 'none'
+                            }}>
+                                <Col>Estado</Col>
+                                <Col>Duración (días)</Col>
+                                <Col>Tiempo modificación</Col>
+                                <Col>Modificado por</Col>
+                            </Row>
+                        ) : 
+                        <Row>
+                                <Col style={{ display: 'flex',
+                                justifyContent: 'center',
+                                marginBottom: 10,
+                                marginTop: 10,
+                                borderColor: 'rgb(237, 240, 244)',
+                                borderStyle: 'solid',
+                                borderWidth: 'thin',
+                                borderLeft: 'none',
+                                borderRight: 'none', }}>Sin datos</Col>
+                            </Row>}
+                        {cases.statusHistories?.map((item: {
+                            id: any;
+                            caseStatusName: boolean | ReactChild | ReactFragment | ReactPortal; duration: boolean | ReactChild | ReactFragment | ReactPortal; modifiedAt: boolean | ReactChild | ReactFragment | ReactPortal; modifiedByName: boolean | ReactChild | ReactFragment | ReactPortal }) => (
+                            <Row key={item.id} style={{
                                 marginBottom: 10,
                                 marginTop: 10,
                                 borderColor: 'rgb(237, 240, 244)',

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
-import { Col, Container, Row, Button } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 
 import SideFilter from "components/_common/side-filter";
 import Kanban from "components/_common/kanban";

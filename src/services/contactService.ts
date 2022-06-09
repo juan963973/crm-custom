@@ -34,12 +34,7 @@ export async function deleteContact(page:any): Promise<any[]> {
 }
 
 
-export default function getContactData(id: number) {
-    const [data, setData] = useState([])
-    useEffect(() => {
-        axios.get((`${process.env.BASE_URL}/Contacts/${id}/details`)).then((response) => {
-            setData(response.data)
-        });
-    }, []);
+export default async function getContactData(id: number) {
+    const {data} = await axios.get((`${process.env.BASE_URL}/Contacts/${id}/details`));
     return data
 }

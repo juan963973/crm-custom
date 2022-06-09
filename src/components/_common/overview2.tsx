@@ -1,8 +1,8 @@
 import React from "react";
-import { Col, Row, Card, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Col, Row, Card } from "react-bootstrap";
 import NewButtonCase from "./newButtonCase";
 
-export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
+export default function Overview2({ dataIdCase, dataCompany }: any) {
 
     const { cases, economicActivityName, operatingEntityNames, salaryPaymentEntityName } = dataCompany;
 
@@ -84,7 +84,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                 <Col align="start">
                                     {economicActivityName?.length > 0 ? economicActivityName.map((el: any) => {
                                         return (
-                                            <p>{el}</p>
+                                            <p key={el}>{el}</p>
                                         )
                                     }) : ' - '}
                                 </Col>
@@ -105,7 +105,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                 <Col sm={4} align="start">
                                     {salaryPaymentEntityName?.length > 0 ? salaryPaymentEntityName.map((el: any) => {
                                         return (
-                                            <p>{el}</p>
+                                            <p key={el}>{el}</p>
                                         )
                                     }) : ' - '}
                                 </Col>
@@ -115,7 +115,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                 <Col align="start">
                                     {operatingEntityNames?.length > 0 ? operatingEntityNames.map((el: any) => {
                                         return (
-                                            <p>{el}</p>
+                                            <p key={el}>{el}</p>
                                         )
                                     }) : ' - '}
                                 </Col>
@@ -124,7 +124,7 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                 <Col sm={4} align="start">
                                     {economicActivityName?.length > 0 ? economicActivityName.map((el: any) => {
                                         return (
-                                            <p>{el}</p>
+                                            <p key={el}>{el}</p>
                                         )
                                     }) : ' - '}
                                 </Col>
@@ -380,17 +380,16 @@ export default function Overview2({ page, id, dataIdCase, dataCompany }: any) {
                                         </Row>
                                 )
 
-                            }) : <Row style={{
+                            }) : <Row>
+                                <Col style={{ display: 'flex',
+                                justifyContent: 'center',
                                 marginBottom: 10,
                                 marginTop: 10,
                                 borderColor: 'rgb(237, 240, 244)',
                                 borderStyle: 'solid',
                                 borderWidth: 'thin',
                                 borderLeft: 'none',
-                                borderRight: 'none',
-                                borderTop: 'none'
-                            }}>
-                                <Col style={{ display: 'flex', justifyContent: 'center' }}>Sin datos</Col>
+                                borderRight: 'none', }}>Sin datos</Col>
                             </Row>}
                         </Row>
                     </Card>
