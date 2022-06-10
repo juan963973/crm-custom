@@ -2,7 +2,7 @@ import axios from "axios";
 import { detail } from "services/caseService";
 import {useEffect} from "react";
 
-const importFile = async (id: any, file: any, attachFiles: any, setAttachFiles: any) => {
+export const importFile = async (id: any, file: any, attachFiles: any, setAttachFiles: any) => {
     const formData = new FormData();
     console.log('el ide es:L', id)
     formData.append("file", file);
@@ -46,4 +46,27 @@ export async function deleteFile(id: any, attachFiles: any, setAttachFiles: any)
     }
 }
 
-export { importFile }
+export async function getFile (id: number, origin: string) {
+    const method = 'GET';
+        const url = `${process.env.BASE_URL}/Attachment?id=${id}`;
+    try {
+        axios
+            .request({
+                url,
+                method,
+                responseType: 'blob', //important
+            })
+
+            .then(({ data }) => {
+                const downloadUrl = window.URL.createObjectURL(new Blob([data]));
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.setAttribute('download', `${origin}`); //any other extension
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+            });
+    } catch (e) {
+        console.error(e);
+    }
+}
