@@ -1,8 +1,19 @@
 import axios from "axios"
 import { ReactChild, ReactFragment, ReactPortal, useEffect, useState } from "react"
+import { format } from "date-fns";
 import { Card, Col, Row } from "react-bootstrap"
 
 export default function HistoryState(cases: any) {
+
+    function formaterDate(str: string) {
+        let str1 = str.slice(0, 4)
+        let str2 = str.slice(5, 7)
+        let str3 = str.slice(8, 10)
+        console.log('probado', str3, '...', str2, '...', str1);
+        let newStr = `${str3}/${str2}/${str1}`;
+
+        return newStr;
+    }
 
     return (
         <Row style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15 }}>
@@ -44,7 +55,7 @@ export default function HistoryState(cases: any) {
                             </Row>}
                         {cases.statusHistories?.map((item: {
                             id: any;
-                            caseStatusName: boolean | ReactChild | ReactFragment | ReactPortal; duration: boolean | ReactChild | ReactFragment | ReactPortal; modifiedAt: boolean | ReactChild | ReactFragment | ReactPortal; modifiedByName: boolean | ReactChild | ReactFragment | ReactPortal }) => (
+                            caseStatusName: boolean | ReactChild | ReactFragment | ReactPortal; duration: boolean | ReactChild | ReactFragment | ReactPortal; modifiedAt : boolean | ReactChild | ReactFragment | ReactPortal; modifiedByName: boolean | ReactChild | ReactFragment | ReactPortal }) => (
                             <Row key={item.id} style={{
                                 marginBottom: 10,
                                 marginTop: 10,
@@ -57,7 +68,7 @@ export default function HistoryState(cases: any) {
                             }}>
                                 <Col>{item.caseStatusName}</Col>
                                 <Col>{item.duration} días</Col>
-                                <Col>{item.modifiedAt}</Col>
+                                <Col>{formaterDate(item.modifiedAt)}</Col>
                                 <Col>{item.modifiedByName}</Col>
                             </Row>
                         ))}
