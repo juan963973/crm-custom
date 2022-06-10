@@ -1,38 +1,3 @@
-export interface CasesModel {
-    "id": number;
-    "Creado el": Date;
-    "Numero de Ticket": string;
-    "Tipo": string;
-    "Subtipo": string;
-    "Tipificacion": string;
-    "Sucursal Recepcion": string;
-    "Hora de Recepcion": string;
-    "Sucursal Afectada": string;
-    "Estado": string;
-    "Origen": string;
-    "Subject": string;
-    "Descripcion": string;
-    "Dueño del caso": string;
-    "Areas Resolutoras": string;
-    "Empresa": string;
-    "Direccion de Llamada": string;
-    "Tags": string;
-    "Actualizado el": string;
-    "Solucion": string;
-    "Comentario": string;
-    "Pedido de extension": boolean;
-    "Oficial de Negocios": string;
-    "Promotor": string;
-    "Numero de Comentarios": number;
-    "Contacto": string;
-    "Email": string;
-    "Nro de Cliente":string;
-    "Telfono Contacto":string;
-    "Contacto Full name":string;
-    "Sucursal Cliente":string;
-    "Layout":string;
-}
-
 export interface CaseDetailModel {
     clientDocumentNumber: any;
     clientMobile: any;
@@ -49,7 +14,6 @@ export interface CaseDetailModel {
     claimAmount: any;
     currencyName: any;
     subject: any;
-    caseStasubjecttsubjectusName: ReactNode;
     businessOfficerUserName: any;
     callDirectionName: any;
     contactEmail: any;
@@ -112,5 +76,4 @@ export interface CreateCaseModel {
     qualification:	    string,
     requestExtension:	boolean,
     attachmentFile:	    string
-
 }

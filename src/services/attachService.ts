@@ -61,7 +61,7 @@ export async function getFile (id: number, origin: string) {
                 const downloadUrl = window.URL.createObjectURL(new Blob([data]));
                 const link = document.createElement('a');
                 link.href = downloadUrl;
-                link.setAttribute('download', `${origin}`); //any other extension
+                link.setAttribute('download', `${origin.split("/").pop()}`); //any other extension
                 document.body.appendChild(link);
                 link.click();
                 link.remove();
