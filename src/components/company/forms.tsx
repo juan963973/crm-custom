@@ -31,6 +31,8 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
     },
   };
 
+  console.log('cascade::',cascade)
+
   return (
     <div className="container-fluid" style={{ marginTop: "126px" }}>
       <div style={{ paddingLeft: "25px" }}>
@@ -356,10 +358,10 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
             <Col>Ciudad</Col>
             <Col sm={4}>
               <MultipleSelect
-                value={companyData.cityId}
-                endpoint={cascade.city}
+                endpoint={cascade.cityId}
                 onChange={handleChange}
                 keyFilter={"cityId"}
+                value={companyData.cityId}
               />
             </Col>
           </Row>
