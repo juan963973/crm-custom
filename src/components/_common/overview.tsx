@@ -4,7 +4,7 @@ import HistoryState from "components/_common/historyState"
 import Notes from "components/_common/notes";
 import AttachFiles from "components/_common/attachFiles";
 
-export default function Overview({ page, id, cases, attachFiles, setAttachFiles }: any) {
+export default function Overview({ id, cases, attachFiles, setAttachFiles }: any) {
     const { resolverAreas, resolvers } = cases;
     return (
         <>
