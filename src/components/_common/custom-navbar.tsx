@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { BsFillGearFill, BsFillBellFill, BsSearch, BsCalendarEventFill, BsFillFileEarmarkPlusFill, BsGrid3X3GapFill } from "react-icons/bs"
 
 import Image from 'next/image'
-import logo from '../../../public/logo.svg'
+import logo from '../../../public/logo-light.svg'
 
 import SearchGlobal from './searchGlobal'
 import { CanActive } from 'auth/CanActive';

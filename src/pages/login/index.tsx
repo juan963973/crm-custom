@@ -131,7 +131,7 @@ export default function Login() {
                     <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style={{padding: "30px", background: "white", borderRadius: "2px 0 0 2px", boxShadow:"0px 2px 30px #ccc6", borderRight: "2px solid #f1f1f1" }}>
                         <Form onSubmit={handleSubmit}>
                         <ToastContainer />
-                            <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start" style={{marginLeft: "-23px",  marginBottom: "20px"}}>
+                            <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start" style={{marginBottom: "20px"}}>
                                 <Image
                                     src={logo}
                                     alt="Imágen inválida"
