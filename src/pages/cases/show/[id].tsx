@@ -24,6 +24,7 @@ export default function Show({ id, uri }: any) {
 
             .then(data => {
 
+                // @ts-ignore
                 setCases(data)
                 setAttachFiles(data.attachments)
 

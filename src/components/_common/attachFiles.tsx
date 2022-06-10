@@ -1,8 +1,8 @@
-import { ReactChild, ReactFragment, ReactPortal, useEffect, useState} from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import AttachFilesButton from "./AttachFilesButton";
 import { urlFile } from "services/attachService";
 import { deleteFile } from "services/attachService";
+import {getFile} from "services/attachService";
 
 export default function AttachFiles ( { attachments, id, attachFiles, setAttachFiles }: any ) {
 
@@ -30,13 +30,12 @@ export default function AttachFiles ( { attachments, id, attachFiles, setAttachF
                                         marginBottom: 5,
                                         marginTop: 5,
                                     }}>
-                                        {/* <Col sm={1}>{item.id}</Col> */}
                                         <Col sm={1}> <img src="/attachments.png" width="20" height="20" /></Col>
-                                        <Col sm={9}>{item.url.split("\\").pop()}</Col>
+                                        <Col sm={9}>{item.url.split("/").pop()}</Col>
                                         <Col style={{ display: "flex" }}>
 
                                             <Button variant="primary" className="btn btn-primary btn-sm"
-                                                href={`${urlFile}${item.id}`}>
+                                                    onClick={ () => getFile(item.id, item.url) }>
                                                 Ver
                                             </Button>
 
