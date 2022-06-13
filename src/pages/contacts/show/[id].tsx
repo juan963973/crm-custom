@@ -50,9 +50,6 @@ export default function Show({ id, uri }: any) {
                     </Col>
                     <Col sm={2} style={{ marginLeft: 'auto', display: 'flex', justifyContent: 'flex-end'}} align='end'>
                         <Row align='end' style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                            {/*<Col>*/}
-                            {/*    <Button variant="primary">Enviar correo</Button>{' '}*/}
-                            {/*</Col>*/}
                             <Col > <Button variant="secondary" style={{background: '#FFF', color: 'black' }}>Edit</Button>{' '}</Col>
                             <Col>
                                 <DropdownButton variant="secondary"align="end" id="dropdown-basic-button" title="..." style={{background: '#FFF', color: 'black' }}>
@@ -72,9 +69,7 @@ export default function Show({ id, uri }: any) {
                         <b>Lista relacionada</b>
                         <Col>
                             <div><a href="#cases" style={{ textDecoration: 'none' }}>Casos</a></div>
-                            {/* <div><p>Enlaces</p></div> */}
                         </Col>
-                        {/* <p className="text-primary">Add link</p> */}
                     </Col>
 
                     <Col style={{
@@ -86,15 +81,7 @@ export default function Show({ id, uri }: any) {
                                 <Col sm={4} style={{ width: 'auto' }}>
 
                                     <Button variant="primary">Visión general</Button>
-                                    {/* 
-                                    <Tabs defaultActiveKey="overview" id="uncontrolled-tab-example" className="flex-row" variant="pills">
-                                        <Tab eventKey="overview" title="Overview">
-                                            <Overview />
-                                        </Tab>
-                                        <Tab eventKey="timeline" title="Timeline">
-                                            <Timeline />
-                                        </Tab>
-                                    </Tabs> */}
+
                                 </Col>
                             </Row>
 

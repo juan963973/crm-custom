@@ -5,7 +5,6 @@ import NewButtonCase from "./newButtonCase";
 export default function Overview3({dataIdCase, data}: any) {
     const {cases, companiesName } = data;
 
-
     return (
         <>
             <Row style={{alignItems: 'center', justifyContent: 'center', marginBottom: 15, marginTop: 15}}>
@@ -26,23 +25,11 @@ export default function Overview3({dataIdCase, data}: any) {
                                     {data?.documentNumber ? data.documentNumber : ' - '}
                                 </Col>
                             </Row>
-                            {/*<Row align="end" style={{ marginBottom: '5px' }}>*/}
-                            {/*    <Col style={{ color: 'gray' }}>Nombre</Col>*/}
-                            {/*    <Col align="start">*/}
-                            {/*        /!* {dataCompany?.nationalityName ? dataCompany.nationalityName : ' - '} *!/*/}
-                            {/*    </Col>*/}
-
-                            {/*    <Col style={{ color: 'gray' }}>Apellidos</Col>*/}
-                            {/*    <Col sm={4} align="start">*/}
-                            {/*        /!* {dataCompany?.ruc ? dataCompany.ruc : ' - '} *!/*/}
-                            {/*    </Col>*/}
-                            {/*</Row>*/}
                             <Row align="end" style={{marginBottom: '5px'}}>
                                 <Col style={{color: 'gray'}}>Estado Civil</Col>
                                 <Col align="start">
                                     {data?.civilStatusName ? data.civilStatusName : ' - '}
                                 </Col>
-
                                 <Col style={{color: 'gray'}}>
                                     Nacionalidad
                                 </Col>
@@ -50,13 +37,11 @@ export default function Overview3({dataIdCase, data}: any) {
                                     {data?.nationalityName ? data.nationalityName : ' - '}
                                 </Col>
                             </Row>
-
                             <Row align="end" style={{marginBottom: '5px'}}>
                                 <Col style={{color: 'gray'}}>Género contacto</Col>
                                 <Col align="start">
                                     {data?.genderName ? data.genderName : ' - '}
                                 </Col>
-
                                 <Col style={{color: 'gray'}}>
                                     Fecha de nacimiento
                                 </Col>
@@ -64,13 +49,11 @@ export default function Overview3({dataIdCase, data}: any) {
                                     {data?.dateOfBirth ? data.dateOfBirth : ' - '}
                                 </Col>
                             </Row>
-
                             <Row align="end" style={{marginBottom: '5px'}}>
                                 <Col style={{color: 'gray'}}>Edad contacto</Col>
                                 <Col align="start">
                                     {data?.contactAge ? data.contactAge : ' - '}
                                 </Col>
-
                                 <Col style={{color: 'gray'}}>
                                     Tipo de cartera
                                 </Col>
@@ -79,7 +62,6 @@ export default function Overview3({dataIdCase, data}: any) {
                                 </Col>
                             </Row>
                         </Row>
-
                         <Row className='mt-200' style={{marginBottom: 20, marginTop: 20}}>
                             <Row>
                                 <Col><h6>DATOS DEL CLIENTE</h6></Col>
@@ -89,7 +71,6 @@ export default function Overview3({dataIdCase, data}: any) {
                                 <Col align="start">
                                     {data?.clientCode ? data.clientCode : ' - '}
                                 </Col>
-
                                 <Col style={{color: 'gray'}}>Estado</Col>
                                 <Col sm={4} align="start">
                                     {data?.clientStatus ? data.clientStatus : ' - '}
@@ -100,7 +81,6 @@ export default function Overview3({dataIdCase, data}: any) {
                                 <Col align="start">
                                     {data?.isClient ? data.isClient : ' - '}
                                 </Col>
-
                                 <Col style={{color: 'gray'}}>¿Es cliente salario?</Col>
                                 <Col sm={4} align="start">
                                     {data?.isClientSalary ? data.isClientSalary : ' - '}
@@ -111,7 +91,6 @@ export default function Overview3({dataIdCase, data}: any) {
                                 <Col align="start">
                                     {data?.isClerk ? data.isClerk : ' - '}
                                 </Col>
-
                                 <Col style={{color: 'gray'}}></Col>
                                 <Col sm={4} align="start"></Col>
                             </Row>
@@ -289,7 +268,7 @@ export default function Overview3({dataIdCase, data}: any) {
                             <Row align="end" style={{marginBottom: '5px'}}>
                                 <Col style={{color: 'gray'}}>Descripción</Col>
                                 <Col align="start">
-                                    {data?.mmmmmm ? data.mmmmmm : ' Arreglar '}
+                                    {data?.description ? data.description : ' - '}
                                 </Col>
 
                                 <Col style={{color: 'gray'}}></Col>

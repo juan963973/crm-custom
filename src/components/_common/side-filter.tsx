@@ -79,8 +79,8 @@ const SideFilter = ({module}: any) => {
             setCheckListFilter(prevState => delete prevState[keyValue as keyof typeof checkListFilter])
             return;
         }
-        
-        const keyFilter = event.target.id;
+
+        const keyFilter = event.target.id === undefined ? event.target.name : event.target.name;
         const value = event.target.value;
         setCheckListFilter({...checkListFilter, [keyFilter]: value});
         return;
