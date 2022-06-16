@@ -22,7 +22,15 @@ function New() {
   }
 
   const handleChange = (e: any, name: string | null = null) => {
-    if (e.target) {
+    if (e === null ){
+      // @ts-ignore
+      setCompanyData( companyData => {
+        const { operatingEntitiesIds, economicActivitiesIds, ...rest } = companyData;
+        console.log ("rest", rest)
+        return rest
+      })
+    }
+    else if (e.target) {
       let nameData = e.target.name;
       let value = e.target.value;
       if (nameData == "departmentId") {

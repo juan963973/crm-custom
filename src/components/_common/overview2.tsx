@@ -57,7 +57,7 @@ export default function Overview2({ dataIdCase, dataCompany }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Empresa principal</Col>
                                 <Col align="start">
-                                    {dataCompany?.o ? dataCompany.o : ' - '}
+                                    {dataCompany?.parentCompanyId ? dataCompany.parentCompanyId : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Cantidad de funcionarios</Col>

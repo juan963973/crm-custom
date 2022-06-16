@@ -168,7 +168,7 @@ export default function Overview3({dataIdCase, data}: any) {
                             <Row align="end" style={{marginBottom: '5px'}}>
                                 <Col style={{color: 'gray'}}>¿Enviar correspondencia a esta dirección?</Col>
                                 <Col align="start">
-                                    {data?.noHay ? data.noHay : ' - '}
+                                    {data?.sendCorrespondenceUbications === null ? 'No' : ' Sí '}
                                 </Col>
 
                                 <Col style={{color: 'gray'}}></Col>
@@ -325,7 +325,7 @@ export default function Overview3({dataIdCase, data}: any) {
 
                                 <Col style={{color: 'gray'}}>Propietario del contacto</Col>
                                 <Col sm={4}
-                                     align="start"> {data?.ppp ? data.ppp : ' - '}</Col>
+                                     align="start"> {data?.caseOwnerId ? data.caseOwnerId : ' - '}</Col>
                             </Row>
 
                             <Row align="end" style={{marginBottom: '5px'}}>

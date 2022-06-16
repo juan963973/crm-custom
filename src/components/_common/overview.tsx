@@ -197,7 +197,7 @@ export default function Overview({ id, cases, attachFiles, setAttachFiles }: any
 
                                 <Col style={{ color: 'gray' }}>Fecha/hora de Recepción</Col>
                                 <Col sm={4} align="start">
-                                    - en duro
+                                    {cases?.receptionAt ? cases.receptionAt : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">
