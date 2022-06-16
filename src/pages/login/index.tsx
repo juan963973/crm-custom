@@ -165,7 +165,7 @@ export default function Login() {
                             <div className="form-outline mb-4">
                                 <Form.Control
                                     autoFocus
-                                    type='text'
+                                    type='email'
                                     name='userName'
                                     placeholder='Escriba una dirección de correo electrónico válida'
                                     value={body.userName}

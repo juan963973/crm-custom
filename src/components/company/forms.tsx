@@ -178,6 +178,7 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
+                  type="number"
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
                   name="employersQuantity"
@@ -368,6 +369,7 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
 
           <Row align="end" className="mt-1">
             <InputForm
+              type="number"
               handleChange={handleChange}
               valueData={companyData.homeNumber}
               sm={4}
