@@ -39,7 +39,8 @@ export const CustomAsyncPaginate = ({
 
             try {
                 options = await seletScroll(page, params);
-                filteredOptions = options.items;
+                filteredOptions = [{value: null, label: " - SIN ASIGNAR - "}, ...options.items];
+                // filteredOptions = options.items;
                 countPage = countPage + 1;
             } catch (e) {
                 return defaultOptions()
@@ -93,15 +94,31 @@ export const CustomAsyncPaginate = ({
         onChange(null, keyFilter);
     }
 
+    console.log({name: keyFilter});
+    console.log('data::', data, 'defaultValue::', defaultValue)
+    console.log('defaultValue::', defaultValue?.label)
+    console.log('condicion::', defaultValue?.label != ''  ? defaultValue : data)
+
+    // if(defaultValue?.value != null){
+    //     defaultValue.label = data?.label
+    // }
+    // let datos;
+    // if(defaultValue?.label != null ) {
+    //     datos = defaultValue
+    // } else {
+    //     datos = null
+    // }
     return (
         <AsyncPaginate
             onKeyDown={handleKey}
             debounceTimeout={300}
+            // value={defaultValue}
+            // value={defaultValue?.label != null  ? defaultValue : data}
             value={defaultValue?.label  ? defaultValue : data}
             loadOptions={loadOptions}
             onChange={changeValue}
             isDisabled={disabled}
-            isClearable
+            // isClearable
         />
     );
 };

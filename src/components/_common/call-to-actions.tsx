@@ -18,7 +18,7 @@ export default function CallToActions({params}:any) {
     const goToCreate = () => router.push(`${module}/new`)
 
     const exportCase = () => {
-        window.open(`${process.env.BASE_HOST}/cases/export`);
+        window.open(`/cases/export`);
     }
 
     return (

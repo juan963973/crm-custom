@@ -24,6 +24,8 @@ function New({module, query}: any) {
         phone: "",
         mobile: "",
         officialId: null,
+        // fullName:"",
+        // name:""
     });
 
     const [dataPromoter, setDataPromoter] = useState({
@@ -147,6 +149,8 @@ function New({module, query}: any) {
                         phone: "",
                         mobile: "",
                         officialId: null,
+                        // fullName:"",
+                        // name:""
                     });
                 }
 
@@ -163,7 +167,6 @@ function New({module, query}: any) {
                     }
                 } else {
                     arrayData = {...arrayData, businessOfficerId: null}
-
                     setDataReference({
                         documentTypeName: "",
                         email: "",
@@ -173,6 +176,8 @@ function New({module, query}: any) {
                         phone: "",
                         mobile: "",
                         officialId: null,
+                        // fullName:"",
+                        // name:""
                     });
                 }
                 break;
