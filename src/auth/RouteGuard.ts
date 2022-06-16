@@ -22,14 +22,28 @@ export const RouteGuard = ({ children }:any) => {
                 router.push('/');
             }
         }
-
         if(auth) {
 
-            const routerFilter = routes.filter((params:any) => params.url == url)
-            let routerObj:string = routerFilter.length ? routerFilter[0].permission: ''
-
-            // let access = canAccess(routerObj)
-            let access = true
+            const path = url.split('/');
+            let routerFilter:any;
+            let routerObj:any;
+            if(path[2] !== undefined) {
+                routerFilter = path[2];
+                routes.forEach((element:any) => {
+                    if(element.url == `/${path[1]}`) {
+                        routerObj = element[routerFilter]
+                    }
+                })
+            } else {
+                routerFilter = 'view';
+                routes.forEach((element:any) => {
+                    if(element.url == `/${path[1]}`) {
+                        routerObj = element[routerFilter]
+                    }
+                })
+            }
+            
+            let access = CanActive(routerObj)
             if (access) {
                 setAuthorized(true);
             } else {
