@@ -42,11 +42,15 @@ function CustomNavbar() {
               {
                 routes.map((index:any) => (
                   <>
-                    {CanActive(index?.view) && (
-                      <Nav.Link>
-                        <Link href={index.url}><span style={{color:'white'}}>{index.title}</span></Link>
-                      </Nav.Link>
-                    )} 
+                    {!index?.hideNavbar && (
+                      <>
+                        {CanActive(index?.view) && (
+                          <Nav.Link>
+                            <Link href={index.url}><span style={{color:'white'}}>{index.title}</span></Link>
+                          </Nav.Link>
+                        )} 
+                      </>
+                    )}
                   </>
                   
                 )) 

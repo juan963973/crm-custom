@@ -139,7 +139,6 @@ function New({module, query}: any) {
                     }
                 } else {
                     arrayData = {...arrayData, businessOfficerId: null}
-
                     setDataReference({
                         documentTypeName: "",
                         email: "",
@@ -161,7 +160,7 @@ function New({module, query}: any) {
                     try {
                         const res: any = await refenceField(page, value);
                         setDataReference(res);
-                        arrayData = {...arrayData, businessOfficerId: res.officialId}
+                        arrayData = {...arrayData, businessOfficerId: res.officialId? res.officialId:null}
                     } catch (error) {
                         console.log(error);
                     }
