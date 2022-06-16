@@ -24,7 +24,7 @@ export default function NewButtonCase({ dataIdCase } : Props) {
     return (
         <Button
             size="sm"
-            variant="secondary"
+            variant="primary"
             onClick={() => sendProps()}
         >
             Nuevo

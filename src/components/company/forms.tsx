@@ -432,13 +432,18 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
           </Row>
 
           <Row align="end" className="mt-1">
-            <InputForm
-              handleChange={handleChange}
-              valueData={companyData.clientCode}
-              sm={4}
-              title="Codigo Cliente"
-              name="clientCode"
-            />
+            <Col>Código Cliente</Col>
+            <Col sm={4}>
+              <FormControl
+                    // handleChange={handleChange}
+                    valueData={companyData.clientCode}
+                    sm={4}
+                    title="Codigo Cliente"
+                    name="clientCode"
+                    disabled={true}
+                    readOnly
+              />
+            </Col>
             <Col>Banca</Col>
             <Col sm={4}>
               <MultipleSelect
