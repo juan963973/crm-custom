@@ -46,6 +46,7 @@ const SideFilter = ({module}: any) => {
     const handleCheck = (event: any) => {
         let updatedList = [...checked];
         if (event.target.checked) {
+            console.log(event.target.value, updatedList)
             updatedList = [...checked, event.target.value];
         } else {
             updatedList.splice(checked.indexOf(event.target.value), 1);
@@ -80,7 +81,7 @@ const SideFilter = ({module}: any) => {
             return;
         }
 
-        const keyFilter = event.target.id === undefined ? event.target.name : event.target.name;
+        const keyFilter = event.target.id === undefined ? event.target.name : event.target.id;
         const value = event.target.value;
         setCheckListFilter({...checkListFilter, [keyFilter]: value});
         return;

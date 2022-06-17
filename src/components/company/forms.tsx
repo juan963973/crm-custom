@@ -438,8 +438,8 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
             <Col sm={4}>
               <FormControl
                     // handleChange={handleChange}
-                    valueData={companyData.clientCode}
-                    sm={4}
+                    value={companyData.clientCode}
+                    // sm={4}
                     title="Codigo Cliente"
                     name="clientCode"
                     disabled={true}
