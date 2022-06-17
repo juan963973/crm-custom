@@ -21,7 +21,6 @@ export async function kanbanChangeStatus(module:any, dataChange:any): Promise<an
 }
 
 export async function getFieldsFilter(module:any): Promise<any[]> {
-    console.log('getFieldsFilter::ENV',process.env)
     const res = await axios.get<any[]>(`${process.env.BASE_URL}/filter${module}`)
     return res.data
 }
