@@ -19,7 +19,7 @@ export default function Index({module}:any) {
     const [viewFilter, setViewFilter] = useState(false);
     const [viewKanban, setViewKanban] = useState(false);
 
-    const ModuleText   = 'Contactos';
+    const ModuleText   = 'Contacto';
     const textList   = 'Vista de Lista';
     const textKanban = 'Vista Kanban';
 

@@ -31,14 +31,11 @@ export default function CallToActions({params}:any) {
                 </Button>
             </Col>
             <Col xs={3} >
-                {ModuleText == 'Casos' && <FilteringResolvers />}
+                {ModuleText == 'Caso' && <FilteringResolvers />}
             </Col>
-            {/* <Col align='end'>
-                
-            </Col>  */}
             
             <Col align='end'>
-                {ModuleText == 'Casos' &&
+                {ModuleText == 'Caso' &&
                     <>
                         <Button variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }} onClick={toggleViewKanban}>
                             <div>
@@ -49,7 +46,7 @@ export default function CallToActions({params}:any) {
                             </div>
                         </Button>
                         {CanActive(permissionFront.CAN_CHANGE_STATUS_CASES) && 
-                            <Button onClick={exportCase} variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }}>Tablero {ModuleText}</Button>
+                            <Button onClick={exportCase} variant="secondary" style={{background: '#FFF', color: 'black', marginRight: '24px' }}>Tablero Casos</Button>
                         }
                     </>
                 }

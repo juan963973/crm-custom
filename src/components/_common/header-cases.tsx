@@ -64,14 +64,14 @@ export default function HeaderCases(props: {subject: any}) {
                     </Col>
                     <Col sm={2} style={{ marginLeft: 'auto', display: 'flex', justifyContent: 'flex-end' }} align='end'>
                         <Row align='end' style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                            <Col > <Button variant="secondary" style={{background: '#FFF', color: 'black' }}>Edit</Button>{' '}</Col>
+                            <Col > <Button variant="secondary" style={{background: '#FFF', color: 'black' }}>Editar</Button>{' '}</Col>
                             <Col>
                                 <DropdownButton variant="secondary"align="end" id="dropdown-basic-button" title="..." style={{background: '#FFF', color: 'black' }}>
-                                    <Dropdown.Item href="#/action-1">Clonar</Dropdown.Item>
+                                    {/*<Dropdown.Item href="#/action-1">Clonar</Dropdown.Item>*/}
                                     {CanActive(permissionFront.CAN_REMOVE_CASES) && (
                                         <Dropdown.Item onClick={deleteHandle}>Eliminar</Dropdown.Item>
                                     )}
-                                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                    {/*<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>*/}
                                 </DropdownButton>{" "}
                             </Col>
                         </Row>

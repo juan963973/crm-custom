@@ -18,7 +18,7 @@ export default function Index({module}:any) {
     const [viewFilter, setViewFilter] = useState(false);
     const [viewKanban, setViewKanban] = useState(false);
 
-    const ModuleText   = 'Casos';
+    const ModuleText   = 'Caso';
     const textList   = 'Vista de Lista';
     const textKanban = 'Vista Kanban';
 

@@ -37,7 +37,7 @@ export default function Show({ id, uri }: any) {
             <Container className="shadow-sm p-3 mb-3 bg-white rounded mt-2">
                 <Row style={{ marginTop: '50px', display: 'flex', alignItems: 'start', height: '30px' }}>
                     <Col sm={1} style={{ width: '50px'}}>
-                        <img src="/backIcon.png" alt="Atrás" height="20" onClick={() => { window.history.back() }} />
+                        <img src="/backIcon.png" alt="Atrás" height="20" style={{ cursor: 'pointer' }} onClick={() => { window.history.back() }} />
                     </Col>
 
                     <Col  sm={1} style={{ width: '70px'}}>
@@ -48,18 +48,18 @@ export default function Show({ id, uri }: any) {
                         <h4>{data.fullName}</h4>
 
                     </Col>
-                    <Col sm={2} style={{ marginLeft: 'auto', display: 'flex', justifyContent: 'flex-end'}} align='end'>
-                        <Row align='end' style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                            <Col > <Button variant="secondary" style={{background: '#FFF', color: 'black' }}>Edit</Button>{' '}</Col>
-                            <Col>
-                                <DropdownButton variant="secondary"align="end" id="dropdown-basic-button" title="..." style={{background: '#FFF', color: 'black' }}>
-                                    <Dropdown.Item href="#/action-1">Clonar</Dropdown.Item>
-                                    <Dropdown.Item>Eliminar</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                </DropdownButton>{" "}
-                            </Col>
-                        </Row>
-                    </Col>
+                    {/*<Col sm={2} style={{ marginLeft: 'auto', display: 'flex', justifyContent: 'flex-end'}} align='end'>*/}
+                    {/*    <Row align='end' style={{ display: 'flex', justifyContent: 'flex-end' }}>*/}
+                    {/*        <Col > <Button variant="secondary" style={{background: '#FFF', color: 'black' }}>Edit</Button>{' '}</Col>*/}
+                    {/*        <Col>*/}
+                    {/*            <DropdownButton variant="secondary"align="end" id="dropdown-basic-button" title="..." style={{background: '#FFF', color: 'black' }}>*/}
+                    {/*                <Dropdown.Item href="#/action-1">Clonar</Dropdown.Item>*/}
+                    {/*                <Dropdown.Item>Eliminar</Dropdown.Item>*/}
+                    {/*                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>*/}
+                    {/*            </DropdownButton>{" "}*/}
+                    {/*        </Col>*/}
+                    {/*    </Row>*/}
+                    {/*</Col>*/}
                 </Row>
             </Container>
 
