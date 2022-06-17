@@ -119,8 +119,8 @@ const Kanban = ({module}:any) => {
                                                     >
                                                         <Link href={ `/${module}/show/${item.id}` }>
                                                             <a style={{textDecoration: 'none', color:'#000'}}>
-                                                                <div>{item.issue }</div>
-                                                                <div>{item.ticketNumber }</div>
+                                                                <div><b>{item.subject }</b></div>
+                                                                <div>{item.ticketNumber ? `Ticket: #${item.ticketNumber}`:  ''}</div>
                                                                 <div>{item.type }</div>
                                                                 <div>{item.subtype }</div>
                                                                 <div>{item.resolutionAreas.join(',') }</div>
