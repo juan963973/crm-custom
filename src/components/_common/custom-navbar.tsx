@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Button, Container, Form, FormControl, Nav, NavDropdown } from 'react-bootstrap'
 import Navbar from 'react-bootstrap/Navbar'
 import { useRouter } from 'next/router';
-import { BsFillGearFill, BsFillBellFill, BsSearch, BsCalendarEventFill, BsFillFileEarmarkPlusFill, BsGrid3X3GapFill } from "react-icons/bs"
+import { BsFillGearFill, BsFillBellFill, BsSearch, BsCalendarEventFill, BsFillFileEarmarkPlusFill, BsGrid3X3GapFill, BsPersonCircle } from "react-icons/bs"
 
 import Image from 'next/image'
 import logo from '../../../public/logo-light.svg'
@@ -11,13 +11,22 @@ import logo from '../../../public/logo-light.svg'
 import SearchGlobal from './searchGlobal'
 import { CanActive } from 'auth/CanActive';
 import { routes } from 'pages/routes';
+import { useEffect, useState } from 'react';
 
 
 
 function CustomNavbar() {
     const router = useRouter();
+    const [user, setUser] = useState('')
+
+    useEffect(() => {
+      let auth:any = localStorage?.getItem('auth')
+      auth = JSON.parse(auth);
+      setUser(auth?.user?.userName)
+    }, [])
 
     const handleLogout = () => {
+      setUser('');
       localStorage.removeItem('auth');
       router.push('/login')
     }
@@ -55,13 +64,6 @@ function CustomNavbar() {
                   
                 )) 
               }
-              {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-              </NavDropdown> */}
             </Nav>
 
             <Nav>
@@ -78,20 +80,19 @@ function CustomNavbar() {
               <Nav.Link href="#deets">
                 <BsCalendarEventFill className='icons-navbar' />
               </Nav.Link>
-              <Nav.Link onClick={handleLogout}>
-                <BsFillGearFill className='icons-navbar' />
-              </Nav.Link>
-              {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <BsFillGearFill className='icons-navbar' />
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown 
+                title={<BsPersonCircle className='icons-navbar-user' />}
+                align="end"
+                id="basic-nav-dropdown">
+                <div style={{padding: "0 10px", color: "#1675e0" }}>{user}</div>
+                {/* <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-              </NavDropdown> */}
-              <Nav.Link eventKey={2} href="#memes">
+                <NavDropdown.Item onClick={handleLogout}>Cerrar sesión</NavDropdown.Item>
+              </NavDropdown>
+              {/* <Nav.Link eventKey={2} href="#memes">
                 <BsGrid3X3GapFill className='icons-navbar' />
-              </Nav.Link>
+              </Nav.Link> */}
               
             </Nav>
 
