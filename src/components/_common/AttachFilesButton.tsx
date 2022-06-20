@@ -39,6 +39,8 @@ export default function AttachFilesButton({id, attachFiles, setAttachFiles}: any
       'image/tiff': ['.tiff'],
       'image/tif': ['.tif'],
       'text/plain': ['.txt'],
+      'application/msword': ['.doc'],
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
       'application/vnd.ms-excel': ['.xls'],
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
     },
@@ -88,7 +90,10 @@ export default function AttachFilesButton({id, attachFiles, setAttachFiles}: any
             }}
             >
               <input {...getInputProps()} />
-              <p>Haga clic aquí o suelte los archivos para adjuntarlos.</p>
+              {/*<p>Haga clic aquí o suelte los archivos para adjuntarlos.</p>*/}
+              Haga clic aquí o suelte los archivos para adjuntarlos. <br/>
+              Formatos admitidos: pdf, docx, xlsx, , odt, jpg, png, tiff
+              <br/>Máx. 10 MB
             </div>
             {files.length > 0 && <React.Fragment>
               <div>
