@@ -8,6 +8,7 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
 import { create, refenceField, saveUpdate, update } from "services/contactService";
+import getContactData from "services/contactService";
 
 function EditContact({ id, uri }: any) {
   // const [contactsData, setContactsData] = useState<CreateContactModel>({
@@ -16,6 +17,15 @@ function EditContact({ id, uri }: any) {
   // } as CreateContactModel);
 
   const [contactsData, setContactsData] = useState<CreateContactModel>({} as CreateContactModel);
+  const [dataContact, setDataContact] = useState({} as any)
+
+  useEffect(() => {
+    getContactData(id).then(d =>{
+      setDataContact(d as any)
+    })
+  }, []);
+
+  console.log('dataContact', dataContact)
   
   const [dataReference, setDataReference] = useState({
     documentTypeName: "",
@@ -313,6 +323,7 @@ function EditContact({ id, uri }: any) {
           handleChange={handleChange}
           reference={dataReference}
           contactData={contactsData}
+          dataContact={dataContact}
           params={params}
           paramsRequired={paramsRequired}
           cascade={endpointCascade}
