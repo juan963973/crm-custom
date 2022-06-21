@@ -83,6 +83,7 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
                 endpoint={"Search/client-types"}
                 onChange={handleChange}
                 keyFilter={"clientType"}
+                disabled={true}
               />
             </Col>
 
