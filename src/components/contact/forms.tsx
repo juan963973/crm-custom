@@ -257,6 +257,7 @@ const Forms = ({
                   onChange={handleChange}
                   keyFilter={"clientType"}
                   value={contactData.clientType}
+                  disabled={true}
                 />
             </Col>
 
