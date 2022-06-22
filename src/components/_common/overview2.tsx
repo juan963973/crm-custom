@@ -38,7 +38,7 @@ export default function Overview2({ dataIdCase, dataCompany }: any) {
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Tipo Cliente</Col>
                                 <Col align="start">
-                                    {dataCompany?.type ? dataCompany.type : ' - '}
+                                    {dataCompany?.clientType ? dataCompany.clientType : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>
