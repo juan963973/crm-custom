@@ -10,6 +10,7 @@ const Forms = ({
   handleChange,
   reference,
   caseData,
+  cases,
   paramsRequired,
   cascade,
 }: any) => {
@@ -607,6 +608,39 @@ const Forms = ({
             <Col sm={4}></Col>
           </Row>
         </Row> */}
+
+        {cases?.userWhoCreatedName ? (
+            <>
+              <Row style={{ marginBottom: 30 }}>
+                <Row style={{ marginBottom: 10 }}>
+                  <Col>
+                    {" "}
+                    <h4>DATOS DE REGISTRO</h4>{" "}
+                  </Col>
+                </Row>
+                <Col>Creado por</Col>
+                <Col sm={4} align="start">
+                  <CustomAsyncPaginate
+                      disabled={true}
+                      searchEndpoint="clerks"
+                      keyFilter={"businessOfficerId"}
+                      onChange={handleChange}
+                      defaultValue={ {value: cases.userWhoCreatedName, label: cases.userWhoCreatedName}}
+                  />
+                </Col>
+                <Col>Modificado por</Col>
+                <Col sm={4} align="start">
+                  <CustomAsyncPaginate
+                      disabled={true}
+                      searchEndpoint="clerks"
+                      keyFilter={"businessOfficerId"}
+                      onChange={handleChange}
+                      defaultValue={ {value: cases.userWhoModifiedName, label: cases.userWhoModifiedName}}
+                  />
+                </Col>
+              </Row>
+            </>
+        ) : null}
       </div>
     </div>
   );
