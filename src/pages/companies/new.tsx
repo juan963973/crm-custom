@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 
 function New() {
   const [companyData, setCompanyData] = useState<CreateOrUpdateCompanyModel>(
-    {} as CreateOrUpdateCompanyModel
+    { clientType: 'PersonaJuridica' } as CreateOrUpdateCompanyModel
   );
 
   const [validated, setValidated] = useState(false);
@@ -43,6 +43,7 @@ function New() {
     } else {
       setCompanyData({ ...companyData, [name]: e });
     }
+    console.log('companyData', companyData)
   };
 
   const handleSubmit = async (e: any) => {

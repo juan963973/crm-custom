@@ -83,6 +83,7 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
                 endpoint={"Search/client-types"}
                 onChange={handleChange}
                 keyFilter={"clientType"}
+                disabled={true}
               />
             </Col>
 
@@ -481,53 +482,9 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
           <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
-              <h4>DATOS REGISTRO</h4>{" "}
+              <h4>DATOS ENCARGADO</h4>{" "}
             </Col>
           </Row>
-
-          <Row align="end" className="mt-1">
-            <Col>Creado por</Col>
-            <Col sm={4} align="start">
-              <CustomAsyncPaginate
-                searchEndpoint={"clerks"}
-                keyFilter={"userWhoCreatedId"}
-                onChange={handleChange}
-                defaultValue={{
-                  value: companyData?.userWhoCreatedId,
-                  label: companyData?.userWhoCreatedName,
-                }}
-              />
-            </Col>
-
-            <Col></Col>
-            <Col sm={4}></Col>
-          </Row>
-
-          <Row align="end" className="mt-1">
-            <Col>Modificado por</Col>
-            <Col sm={4} align="start">
-              <CustomAsyncPaginate
-                searchEndpoint={"clerks"}
-                keyFilter={"userWhoUpdatedId"}
-                onChange={handleChange}
-                defaultValue={{
-                  value: companyData?.userWhoUpdatedId,
-                  label: companyData?.userWhoUpdatedName,
-                }}
-              />
-            </Col>
-
-            <Col></Col>
-            <Col sm={4}></Col>
-          </Row>
-
-          <Row style={{ marginBottom: 10 }}>
-            <Col>
-              {" "}
-              <h4>DATOS REGISTRO</h4>{" "}
-            </Col>
-          </Row>
-
           <Row align="end" className="mt-1">
             <Col>Team Leader</Col>
             <Col sm={4} align="start">
@@ -581,6 +538,54 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
             <Col></Col>
             <Col sm={4}></Col>
           </Row>
+
+          {companyData?.userWhoCreatedName ? (
+              <>
+                <Row style={{ marginBottom: 10 }}>
+                  <Col>
+                    {" "}
+                    <h4>DATOS REGISTRO</h4>{" "}
+                  </Col>
+                </Row>
+                <Row align="end" className="mt-1">
+                  <Col>Creado por</Col>
+                  <Col sm={4} align="start">
+                    <CustomAsyncPaginate
+                        searchEndpoint={"clerks"}
+                        keyFilter={"userWhoCreatedId"}
+                        onChange={handleChange}
+                        disabled={true}
+                        defaultValue={{
+                          value: companyData?.userWhoCreatedId,
+                          label: companyData?.userWhoCreatedName,
+                        }}
+                    />
+                  </Col>
+
+                  <Col></Col>
+                  <Col sm={4}></Col>
+                </Row>
+
+                <Row align="end" className="mt-1">
+                  <Col>Modificado por</Col>
+                  <Col sm={4} align="start">
+                    <CustomAsyncPaginate
+                        searchEndpoint={"clerks"}
+                        keyFilter={"userWhoUpdatedId"}
+                        onChange={handleChange}
+                        disabled={true}
+                        defaultValue={{
+                          value: companyData?.userWhoUpdatedId,
+                          label: companyData?.userWhoUpdatedName,
+                        }}
+                    />
+                  </Col>
+                  <Col></Col>
+                  <Col sm={4}></Col>
+                </Row>
+              </>
+          ) : null}
+
 
           <Row style={{ marginBottom: 10 }}>
             <Col>

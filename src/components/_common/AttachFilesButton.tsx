@@ -14,6 +14,7 @@ export default function AttachFilesButton({id, attachFiles, setAttachFiles}: any
 
     for (var i = 0; i < acceptedFiles.length; i++) {
       let file = acceptedFiles[i];
+      console.log('file', file)
       formData.append('articleFiles[]', file);
       const e = await importFile(id, file, attachFiles, setAttachFiles)
       console.log('formData', formData)
@@ -39,6 +40,8 @@ export default function AttachFilesButton({id, attachFiles, setAttachFiles}: any
       'image/tiff': ['.tiff'],
       'image/tif': ['.tif'],
       'text/plain': ['.txt'],
+      'application/msword': ['.doc'],
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
       'application/vnd.ms-excel': ['.xls'],
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
     },
@@ -47,6 +50,7 @@ export default function AttachFilesButton({id, attachFiles, setAttachFiles}: any
   });
 
   // console.log(props.id)
+
   const files = acceptedFiles.map(file => (
     <Row key={file.path}>
       <Col sm={1}><img src="/foldericon.png" width="20" height="20"  style={{marginRight: '10x'}}/></Col>
@@ -88,7 +92,9 @@ export default function AttachFilesButton({id, attachFiles, setAttachFiles}: any
             }}
             >
               <input {...getInputProps()} />
-              <p>Haga clic aquí o suelte los archivos para adjuntarlos.</p>
+              Haga clic aquí o suelte los archivos para adjuntarlos. <br/>
+              Formatos admitidos: pdf, docx, xlsx, odt, jpg, png, tiff.
+              <br/>Máx. 10 MB por archivo.
             </div>
             {files.length > 0 && <React.Fragment>
               <div>

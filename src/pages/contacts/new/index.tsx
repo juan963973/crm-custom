@@ -15,7 +15,7 @@ function New({ module, query }: any) {
   //   companyId: null,
   // } as CreateContactModel);
 
-  const [contactsData, setContactsData] = useState<CreateContactModel>({} as CreateContactModel);
+  const [contactsData, setContactsData] = useState<CreateContactModel>({ clientType: 'PersonaFisica' } as CreateContactModel);
   
   const [dataReference, setDataReference] = useState({
     documentTypeName: "",
