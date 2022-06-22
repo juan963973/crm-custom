@@ -269,6 +269,24 @@ export default function Overview({ id, cases, attachFiles, setAttachFiles }: any
                             </Row>
 
                         </Row>
+
+                        <Row className='mt-200' style={{ marginBottom: 20, marginTop: 20 }}>
+                            <Row>
+                                <Col> <h6>DATOS REGISTRO</h6> </Col>
+                            </Row>
+                            <Row align="end">
+                                <Col style={{ color: 'gray' }}>Creado por</Col>
+                                <Col align="start">
+                                    {cases?.userWhoCreatedName ? cases.userWhoCreatedName : ' - '}
+                                </Col>
+
+                                <Col style={{ color: 'gray' }}>Modificado por</Col>
+                                <Col sm={4} align="start">
+                                    {cases?.userWhoModifiedName ? cases.userWhoModifiedName : ' - '}
+                                </Col>
+                            </Row>
+                        </Row>
+
                     </Card>
                 </Row>
             </Row>
