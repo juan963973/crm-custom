@@ -611,33 +611,72 @@ const Forms = ({
 
         {cases?.userWhoCreatedName ? (
             <>
-              <Row style={{ marginBottom: 30 }}>
-                <Row style={{ marginBottom: 10 }}>
-                  <Col>
+              <Row className="mb-200" style={{ marginBottom: 30 }}>
+                <Row>
+                  <Col style={{ marginBottom: 10 }}>
                     {" "}
                     <h4>DATOS DE REGISTRO</h4>{" "}
                   </Col>
                 </Row>
-                <Col>Creado por</Col>
-                <Col sm={4} align="start">
-                  <CustomAsyncPaginate
-                      disabled={true}
-                      searchEndpoint="clerks"
-                      keyFilter={"businessOfficerId"}
-                      onChange={handleChange}
-                      defaultValue={ {value: cases.userWhoCreatedName, label: cases.userWhoCreatedName}}
-                  />
-                </Col>
-                <Col>Modificado por</Col>
-                <Col sm={4} align="start">
-                  <CustomAsyncPaginate
-                      disabled={true}
-                      searchEndpoint="clerks"
-                      keyFilter={"businessOfficerId"}
-                      onChange={handleChange}
-                      defaultValue={ {value: cases.userWhoModifiedName, label: cases.userWhoModifiedName}}
-                  />
-                </Col>
+                <Row align="end" style={{ marginBottom: 10 }}>
+                  <Col>Creado por</Col>
+                  <Col sm={4} align="start">
+                    <InputGroup className="mb-2">
+                      <FormControl
+                          aria-label="Default"
+                          aria-describedby="inputGroup-sizing-default"
+                          name="foundation"
+                          type="text"
+                          value={cases?.userWhoCreatedName ? cases.userWhoCreatedName : 'Sin datos'}
+                          readOnly
+                      />
+                    </InputGroup>
+                  </Col>
+
+                  <Col>Fecha Creado</Col>
+                  <Col sm={4}>
+                    <InputGroup className="mb-2">
+                      <FormControl
+                          aria-label="Default"
+                          aria-describedby="inputGroup-sizing-default"
+                          name="foundation"
+                          type="text"
+                          value={cases?.createdAt ? cases.createdAt : 'Sin datos'}
+                          readOnly
+                      />
+                    </InputGroup>
+                  </Col>
+                </Row>
+
+                <Row align="end" style={{ marginBottom: 10 }}>
+                  <Col>Modificado por</Col>
+                  <Col sm={4}>
+                    <InputGroup className="mb-2">
+                      <FormControl
+                          aria-label="Default"
+                          aria-describedby="inputGroup-sizing-default"
+                          name="foundation"
+                          type="text"
+                          value={cases?.userWhoModifiedName ? cases.userWhoModifiedName : 'Sin datos'}
+                          readOnly
+                      />
+                    </InputGroup>
+                  </Col>
+
+                  <Col>Fecha modificado</Col>
+                  <Col sm={4}>
+                    <InputGroup className="mb-2">
+                      <FormControl
+                          aria-label="Default"
+                          aria-describedby="inputGroup-sizing-default"
+                          name="foundation"
+                          type="text"
+                          value={cases?.updatedAt ? cases.updatedAt : 'Sin datos'}
+                          readOnly
+                      />
+                    </InputGroup>
+                  </Col>
+                </Row>
               </Row>
             </>
         ) : null}
