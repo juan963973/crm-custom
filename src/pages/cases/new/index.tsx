@@ -101,16 +101,18 @@ function New({module, query}: any) {
         } else {
             if (name == "contactId" || name == "companyId" || name == "promoterId") {
                 await completeField(name, e);
-                
+                console.log("query.data::", query.data)
                 if (query.data) {
                     const {id, view} = JSON.parse(query.data);
                     let value = {...casesData, [view]: id}
                     arrayData = {...arrayData, ...value};
                     if (view == "contactId") {
+                        console.log("contactId_id::", id)
                         const res: any = await refenceField("Info/cases/contact-info", id);
                         setDataReference(res);
                         arrayData = {...arrayData, businessOfficerId: res.officialId}
                     } else if (view == "companyId") {
+                        console.log("companyId_id::", id)
                         const res: any = await refenceField("Info/cases/company-info", id);
                         setDataReference(res);
                         arrayData = {...arrayData, businessOfficerId: res.officialId}

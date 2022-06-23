@@ -317,8 +317,8 @@ function EditContact({ id, uri }: any) {
           style={{ zIndex: 9, marginTop: "-71px", position: "fixed" }}
         >
           <HeaderForms title="Editar Caso" handleClose={handleClose} />
-          <ToastContainer />
         </div>
+        <ToastContainer />
         <Forms
           handleChange={handleChange}
           reference={dataReference}
