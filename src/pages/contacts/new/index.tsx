@@ -7,6 +7,7 @@ import { create, refenceField } from "services/contactService";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import HeaderForms from "components/_common/header-forms";
+import { thousandsFormat } from "utils";
 
 function New({ module, query }: any) {
   // const [contactsData, setContactsData] = useState<CreateContactModel>({
@@ -101,6 +102,13 @@ function New({ module, query }: any) {
           } else {
             setClientCode(false)
           }
+        }
+
+        if(key == "currentSalary") {
+            let nuevo = e.target.value;
+            nuevo = nuevo.replaceAll(".", "");
+            e.target.value = thousandsFormat(nuevo)
+            value = nuevo
         }
 
         setContactsData({ ...contactsData, [key]: value });
