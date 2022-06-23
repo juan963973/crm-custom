@@ -25,7 +25,6 @@ function EditCase({ id, uri }: any) {
     phone: "",
     mobile: "",
   });
-  console.log(id);
   const [dataPromoter, setDataPromoter] = useState({
     email: "",
     documentNumber: "",
@@ -46,6 +45,7 @@ function EditCase({ id, uri }: any) {
   const [requiredResolverArea, setRequiredResolverArea] = useState(false);
   const [requiredTipifications, setRequiredTipifications] = useState(false);
   const router = useRouter();
+  let arrayData: any;
 
   if (typeof window !== "undefined") {
     injectStyle();
@@ -55,15 +55,26 @@ function EditCase({ id, uri }: any) {
     let page = _.startCase(uri);
     update(page, id)
       .then((response: any) => {
-        if (response.companyId !== null) {
-          let key = "companyId";
+        console.log("response::", response);
+        
+        if (response.companyId !== null && response.contactId !== null) {
+          let key = "companyIdContactId";
           let value = response.companyId;
-          completeField(key, value);
-        } else if (response.contactId !== null) {
+          completeField(key, value, response.contactId);
+
+          // key = "contactId";
+          // value = response.contactId;
+          // completeField(key, value);
+        } else if (response.companyId === null && response.contactId !== null) {
           let key = "contactId";
           let value = response.contactId;
           completeField(key, value);
+        } else if (response.companyId !== null && response.contactId === null) {
+          let key = "companyId";
+          let value = response.companyId;
+          completeField(key, value);
         }
+
         if (response.promoterId !== null) {
           let key = "promoterId";
           let value = response.promoterId;
@@ -80,7 +91,9 @@ function EditCase({ id, uri }: any) {
     return <p>loading...</p>
   }
 
-  const handleChange = (e: any, name: string | null = null) => {
+  const handleChange = async (e: any, name: string | null = null) => {
+    console.log("name::", name);
+    
     if (!name) {
       let key = e.target.name;
       let value;
@@ -114,12 +127,27 @@ function EditCase({ id, uri }: any) {
       setCasesData({ ...casesData, [key]: value });
       return;
     } else {
-      setCasesData({ ...casesData, [name]: e });
+
+      if (name == "contactId" || name == "companyId" || name == "promoterId") {
+            if (name == "contactId") {
+                const res: any = await refenceField("Info/cases/contact-info", e);
+                console.log("rescontactId::", res);
+                setDataReference(res);
+            } else if (name == "companyId") {
+                const res: any = await refenceField("Info/cases/company-info", e);
+                console.log("rescompanyId::", res);
+                setDataReference(res);
+            }
+      }
+      arrayData = {...arrayData, [name]: e};
+      setCasesData({...casesData, ...arrayData});
       return;
+
     }
   };
 
-  const completeField = async (key: any, value: any) => {
+  const completeField = async (key: any, value: any, contactId:any = null) => {
+    // const completeField = (key: any, value: any) => {
     let page;
     switch (key) {
       case "companyId":
@@ -137,6 +165,7 @@ function EditCase({ id, uri }: any) {
         break;
       case "contactId":
         page = "Info/cases/contact-info";
+
         if (value !== null) {
           try {
             const res: any = await refenceField(page, value);
@@ -147,6 +176,25 @@ function EditCase({ id, uri }: any) {
           }
         }
         break;
+      case "companyIdContactId":
+        let pageCompany = "Info/cases/company-info";
+        let pageContact = "Info/cases/contact-info";
+        if (value !== null) {
+          try {
+            let companyRes: any = await refenceField(pageCompany, value);
+            console.log('companyRes::', companyRes)
+            let contactRes:any = await refenceField(pageContact, contactId);
+            console.log('contactRes::', contactRes)
+            contactRes.name = companyRes.name
+            console.log("contactRes::", contactRes)
+            setDataReference(contactRes);
+            //setCasesData({ ...casesData, businessOfficerId: res.officialId });
+          } catch (error) {
+            console.log(error);
+          }
+        }
+
+        break;
       case "promoterId":
         page = "Info/cases/contact-info";
         try {
@@ -156,6 +204,7 @@ function EditCase({ id, uri }: any) {
           console.log(error);
         }
         break;
+        
       default:
         break;
     }
