@@ -1,13 +1,14 @@
 import Forms from "components/case/forms";
 import HeaderForms from "components/_common/header-forms";
 import _ from "lodash";
-import { CreateCaseModel } from "models/Case";
+import {CaseDetailModel, CreateCaseModel} from "models/Case";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
-import { create, refenceField, saveUpdate, update } from "services/caseService";
+import {create, detail, refenceField, saveUpdate, update} from "services/caseService";
+
 
 function EditCase({ id, uri }: any) {
   const [casesData, setCasesData] = useState<CreateCaseModel>({
@@ -15,6 +16,23 @@ function EditCase({ id, uri }: any) {
     businessOfficerId: 1,
     subject: ""
   } as CreateCaseModel);
+
+  const [cases, setCases] = useState<CaseDetailModel[]>([] as CaseDetailModel[])
+  useEffect(() => {
+    const page = 'cases'
+
+    detail(page, id)
+
+        .then(data => {
+
+          setCases(data)
+
+        })
+
+        .catch(e => console.log(e));
+
+  }, [])
+  // console.log('cases', cases)
 
   const [dataReference, setDataReference] = useState({
     documentTypeName: "",
@@ -331,6 +349,7 @@ function EditCase({ id, uri }: any) {
           reference={dataReference}
           dataPromoter={dataPromoter}
           caseData={casesData}
+          cases={cases}
           params={params}
           paramsRequired={paramsRequired}
           cascade={endpointCascade}

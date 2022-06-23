@@ -9,6 +9,7 @@ const Forms = ({
   handleChange,
   reference,
   contactData,
+  dataContact,
   paramsRequired,
   cascade,
   dataDate,
@@ -37,6 +38,9 @@ const Forms = ({
       },
     },
   };
+
+  console.log('userWhoCreatedName', contactData.userWhoCreatedName)
+  console.log('contactData', contactData)
   
 
   return (
@@ -257,6 +261,7 @@ const Forms = ({
                   onChange={handleChange}
                   keyFilter={"clientType"}
                   value={contactData.clientType}
+                  disabled={true}
                 />
             </Col>
 
@@ -679,6 +684,43 @@ const Forms = ({
                 />
             </Col>
           </Row>
+
+          {dataContact?.userWhoCreatedName ? (
+              <>
+                <Row align="end" style={{ marginBottom: 20 }}>
+
+                  <Col>Creado por</Col>
+                  <Col sm={4} align="start">
+                    <CustomAsyncPaginate
+                        searchEndpoint="clerks"
+                        keyFilter={"userWhoCreatedName"}
+                        onChange={handleChange}
+                        disabled={true}
+                        defaultValue={{
+                          value: dataContact?.userWhoCreatedName,
+                          label: dataContact?.userWhoCreatedName
+                        }}
+                    />
+                  </Col>
+                </Row>
+                <Row align="end" style={{ marginBottom: 20 }}>
+
+                  <Col>Modificado por</Col>
+                  <Col sm={4} align="start">
+                    <CustomAsyncPaginate
+                        searchEndpoint="clerks"
+                        disabled={true}
+                        keyFilter={"userWhoUpdatedId"}
+                        onChange={handleChange}
+                        defaultValue={{
+                          value: dataContact?.userWhoModifiedName,
+                          label: dataContact?.userWhoModifiedName
+                        }}
+                    />
+                  </Col>
+                </Row>
+              </>
+          ) : null}
 
         </Row>
 
