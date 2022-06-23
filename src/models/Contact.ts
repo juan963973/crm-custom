@@ -92,7 +92,7 @@ export interface CreateContactModel{
     mailingState: string,
     mailingCity: string,
     workPlace: string,
-    currentSalary: number,
+    currentSalary: string|number,
     workPhone: string,
     companiesIds: any[],
     economicActivity: string,

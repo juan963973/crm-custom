@@ -9,6 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
 import { create, refenceField, saveUpdate, update } from "services/contactService";
 import getContactData from "services/contactService";
+import { thousandsFormat } from "utils";
 
 function EditContact({ id, uri }: any) {
   // const [contactsData, setContactsData] = useState<CreateContactModel>({
@@ -24,8 +25,6 @@ function EditContact({ id, uri }: any) {
       setDataContact(d as any)
     })
   }, []);
-
-  console.log('dataContact', dataContact)
   
   const [dataReference, setDataReference] = useState({
     documentTypeName: "",
@@ -89,6 +88,10 @@ function EditContact({ id, uri }: any) {
           setEndpointCascade({ ...endpointCascade, cityId: page });
         }
 
+        if(response.currentSalary!== null) {
+          response = {...response, ['currentSalary']: thousandsFormat(response.currentSalary)};
+        }
+
         setContactsData(response);
       })
 
@@ -141,6 +144,13 @@ function EditContact({ id, uri }: any) {
         } else {
           setClientCode(false)
         }
+      }
+
+      if(key == "currentSalary") {
+        let nuevo = e.target.value;
+        nuevo = nuevo.replaceAll(".", "");
+        e.target.value = thousandsFormat(nuevo)
+        value = nuevo
       }
 
       setContactsData({ ...contactsData, [key]: value });
