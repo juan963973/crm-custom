@@ -1,9 +1,9 @@
 import {
-    Button, Col, Container, Row, DropdownButton, Dropdown
+    Button, Col, Container, Row, DropdownButton, Dropdown, ListGroup
 } from "react-bootstrap";
 import getCompanyData from "services/companyService";
 import Overview2 from "components/_common/overview2";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 const page = "companies";
@@ -65,10 +65,12 @@ export default function Show({ id, uri }: any) {
                 <Col sm={2}>
                         <b>Lista relacionada</b>
                         <Col>
-                            <div><a href="#cases" style={{ textDecoration: 'none' }}>Casos</a></div>
-                            {/* <div><p>Enlaces</p></div> */}
+                            <ListGroup style={{ width: '95%' }}>
+                                <ListGroup.Item as="a" action href="#cases">
+                                    Casos
+                                </ListGroup.Item>
+                            </ListGroup>
                         </Col>
-                        {/* <p className="text-primary">Add link</p> */}
                     </Col>
 
                     <Col style={{
@@ -83,7 +85,7 @@ export default function Show({ id, uri }: any) {
                             </Row>
 
                             <Row style={{
-                                maxHeight: "25rem", overflow: "auto", backgroundColor: '#edf0f4'
+                                maxHeight: "70vh", overflow: "auto", backgroundColor: '#edf0f4'
                             }}>
                                 <Overview2 page={page} id={id} dataIdCase={dataIdCase} dataCompany={dataCompany}/>
                             </Row>

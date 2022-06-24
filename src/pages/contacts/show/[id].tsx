@@ -1,10 +1,10 @@
 import {
-    Button, Col, Container, Dropdown, DropdownButton, Row
+    Button, Col, Container, Dropdown, DropdownButton, ListGroup, Row
 } from "react-bootstrap";
 import Overview3 from "components/_common/overview3";
 import getContactData from "services/contactService";
 import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import getCompanyData from "../../../services/companyService";
 
 const page = "contacts";
@@ -48,18 +48,6 @@ export default function Show({ id, uri }: any) {
                         <h4>{data.fullName}</h4>
 
                     </Col>
-                    {/*<Col sm={2} style={{ marginLeft: 'auto', display: 'flex', justifyContent: 'flex-end'}} align='end'>*/}
-                    {/*    <Row align='end' style={{ display: 'flex', justifyContent: 'flex-end' }}>*/}
-                    {/*        <Col > <Button variant="secondary" style={{background: '#FFF', color: 'black' }}>Edit</Button>{' '}</Col>*/}
-                    {/*        <Col>*/}
-                    {/*            <DropdownButton variant="secondary"align="end" id="dropdown-basic-button" title="..." style={{background: '#FFF', color: 'black' }}>*/}
-                    {/*                <Dropdown.Item href="#/action-1">Clonar</Dropdown.Item>*/}
-                    {/*                <Dropdown.Item>Eliminar</Dropdown.Item>*/}
-                    {/*                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>*/}
-                    {/*            </DropdownButton>{" "}*/}
-                    {/*        </Col>*/}
-                    {/*    </Row>*/}
-                    {/*</Col>*/}
                 </Row>
             </Container>
 
@@ -67,9 +55,11 @@ export default function Show({ id, uri }: any) {
                 <Row>
                     <Col sm={2}>
                         <b>Lista relacionada</b>
-                        <Col>
-                            <div><a href="#cases" style={{ textDecoration: 'none' }}>Casos</a></div>
-                        </Col>
+                        <ListGroup style={{ width: '95%' }}>
+                            <ListGroup.Item as="a" action href="#cases">
+                                Casos
+                            </ListGroup.Item>
+                        </ListGroup>
                     </Col>
 
                     <Col style={{
@@ -86,7 +76,7 @@ export default function Show({ id, uri }: any) {
                             </Row>
 
                             <Row style={{
-                                maxHeight: "25rem", overflow: "auto", backgroundColor: '#edf0f4'
+                                maxHeight: "70vh", overflow: "auto", backgroundColor: '#edf0f4'
                             }}>
                                 <Overview3 page={page} id={id} dataIdCase={dataIdCase}
                                 data={data}/>

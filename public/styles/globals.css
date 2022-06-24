@@ -46,6 +46,11 @@ a:hover {
   font-size: 20px;
 }
 
+
+.color-nav {
+  background-color: #1d70b7
+}
+
 #react-select-resolutionAreas-listbox {
   z-index: 99999999 !important;
 }
