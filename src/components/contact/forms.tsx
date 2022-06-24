@@ -687,37 +687,67 @@ const Forms = ({
 
           {dataContact?.userWhoCreatedName ? (
               <>
-                <Row align="end" style={{ marginBottom: 20 }}>
+                <Row className="mb-200" style={{ marginBottom: 30 }}>
+                  <Row align="end" style={{ marginBottom: 20 }}>
+                    <Col>Creado por</Col>
+                    <Col sm={4} align="start">
+                      <InputGroup className="mb-2">
+                        <FormControl
+                            aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default"
+                            name="foundation"
+                            type="text"
+                            value={dataContact?.userWhoCreatedName ? dataContact.userWhoCreatedName : 'Sin datos'}
+                            readOnly
+                        />
+                      </InputGroup>
+                    </Col>
 
-                  <Col>Creado por</Col>
-                  <Col sm={4} align="start">
-                    <CustomAsyncPaginate
-                        searchEndpoint="clerks"
-                        keyFilter={"userWhoCreatedName"}
-                        onChange={handleChange}
-                        disabled={true}
-                        defaultValue={{
-                          value: dataContact?.userWhoCreatedName,
-                          label: dataContact?.userWhoCreatedName
-                        }}
-                    />
-                  </Col>
-                </Row>
-                <Row align="end" style={{ marginBottom: 20 }}>
+                    <Col>Fecha creado</Col>
+                    <Col sm={4} align="start">
+                      <InputGroup className="mb-2">
+                        <FormControl
+                            aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default"
+                            name="foundation"
+                            type="text"
+                            value={dataContact?.createdAt ? dataContact.createdAt : 'Sin datos'}
+                            readOnly
+                        />
+                      </InputGroup>
+                    </Col>
+                  </Row>
 
-                  <Col>Modificado por</Col>
-                  <Col sm={4} align="start">
-                    <CustomAsyncPaginate
-                        searchEndpoint="clerks"
-                        disabled={true}
-                        keyFilter={"userWhoUpdatedId"}
-                        onChange={handleChange}
-                        defaultValue={{
-                          value: dataContact?.userWhoModifiedName,
-                          label: dataContact?.userWhoModifiedName
-                        }}
-                    />
-                  </Col>
+                  <Row align="end" style={{ marginBottom: 20 }}>
+                    <Col>Modificado por</Col>
+                    <Col sm={4} align="start">
+                      <InputGroup className="mb-2">
+                        <FormControl
+                            aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default"
+                            name="foundation"
+                            type="text"
+                            value={dataContact?.userWhoModifiedName ? dataContact.userWhoModifiedName : 'Sin datos'}
+                            readOnly
+                        />
+                      </InputGroup>
+                    </Col>
+
+                    <Col>Fecha Modificado</Col>
+                    <Col sm={4} align="start">
+                      <InputGroup className="mb-2">
+                        <FormControl
+                            aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default"
+                            name="foundation"
+                            type="text"
+                            value={dataContact?.updatedAt ? dataContact.updatedAt : 'Sin datos'}
+                            readOnly
+                        />
+                      </InputGroup>
+                    </Col>
+                  </Row>
+
                 </Row>
               </>
           ) : null}

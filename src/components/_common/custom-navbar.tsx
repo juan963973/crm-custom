@@ -31,8 +31,13 @@ function CustomNavbar() {
       router.push('/login')
     }
 
+    const styles = {
+        backgroundColor: '#1d70b7',
+        padding: 0
+    }
+
     return (
-      <Navbar bg="dark" variant="dark" expand="lg" fixed="top" style={{ padding: 0 }}>
+      <Navbar expand="lg" fixed="top" style={ styles }>
         <Container fluid>
           <Navbar.Brand href="/">
             <Image
