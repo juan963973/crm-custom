@@ -79,7 +79,7 @@ export default function Show({ id, uri }: any) {
 
                             <Row
                                 style={{
-                                    maxHeight: "25rem",
+                                    maxHeight: "70vh",
                                     overflow: "auto",
                                     backgroundColor: "#edf0f4",
                                 }}
