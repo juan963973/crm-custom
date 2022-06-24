@@ -58,7 +58,7 @@ const Forms = ({
                 /> */}
               <CustomAsyncPaginate
                 searchEndpoint="contacts"
-                disabled={caseData?.companyId !== null}
+                // disabled={caseData?.companyId !== null}
                 keyFilter={"contactId"}
                 onChange={handleChange}
                 defaultValue={ {value: caseData.contactId, label: reference.fullName}}
@@ -82,7 +82,7 @@ const Forms = ({
               
               <CustomAsyncPaginate
                 searchEndpoint="companies"
-                disabled={caseData?.contactId !== null}
+                disabled={caseData?.contactId !== null && caseData?.companyId === null}
                 keyFilter={"companyId"}
                 onChange={handleChange}
                 defaultValue={{value: caseData.companyId, label: reference.name}}

@@ -401,13 +401,15 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
               title="País de facturación"
               name="billingCountry"
             />
-            <InputForm
-              handleChange={handleChange}
-              valueData={companyData.billingState}
-              sm={4}
-              title="Estado de facturación"
-              name="billingState"
-            />
+            {/* <Col>Estado de facturación</Col>
+            <Col sm={4}>
+              <MultipleSelect
+                value={companyData.billingState}
+                endpoint={"Search/departament"}
+                onChange={handleChange}
+                keyFilter={"billingState"}
+              />
+            </Col> */}
           </Row>
 
           <Row align="end" className="mt-1">
@@ -418,13 +420,15 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
               title="Domicilio de facturación"
               name="billingStreet"
             />
-            <InputForm
-              handleChange={handleChange}
-              valueData={companyData.billingCity}
-              sm={4}
-              title="Ciudad de facturación"
-              name="billingCity"
-            />
+            {/* <Col>Ciudad de facturación</Col>
+            <Col sm={4}>
+              <MultipleSelect
+                  endpoint={cascade.billingCity}
+                  onChange={handleChange}
+                  keyFilter={"billingCity"}
+                  value={companyData.billingCity}
+                />
+            </Col> */}
           </Row>
 
           <Row style={{ marginBottom: 10 }}>
