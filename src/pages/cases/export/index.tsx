@@ -29,15 +29,15 @@ export default function Show() {
     }
 
     const handleSubmit = () => {
-        toast.success("Será enviado un email con el adjunto solicitado", {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+        // toast.success("Será enviado un email con el adjunto solicitado", {
+        //     position: "top-center",
+        //     autoClose: 2000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        // });
         exportReport(dayOne, dayTwo)
         console.log('Rango de fechas ingresada', dayOne, dayTwo)
     }
