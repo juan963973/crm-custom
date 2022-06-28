@@ -8,7 +8,8 @@ const Comment = ({
     updateComment,
     deleteComment,
     activeComment,
-    setActiveComment
+    setActiveComment,
+    user
 }: any) => {
     // const fiveMinutes = 300000
     // const timePassed = new Date() - new Date(comment.createdAt) > fiveMinutes
@@ -28,7 +29,8 @@ const Comment = ({
                 <div className="comment-right-part">
                     <div className="comment-content">
                         {/* <div className="comment-author">{comment.username}</div> */}
-                        <div><b>{comment?.username ? comment.username : 'Usuario'}</b></div>
+                        <div><b>{user ? user : 'Usuario'}</b> el dd/mm/aaaa a las 00:00hs.</div>
+                        <div style={{ fontSize: '90%'}}>Modificado por <b>{user ? user : 'Usuario'}</b> el dd/mm/aaaa a las 00:00hs.</div>
                         {/* <div>{createdAt}</div> */}
                     </div>
                     {!isEditing && <div className="comment-text">{comment.body}</div>}
