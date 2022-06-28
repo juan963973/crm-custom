@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Form } from "react-bootstrap";
 import { injectStyle } from "react-toastify/dist/inject-style";
 import FormCompany from "components/company/forms";
@@ -17,6 +17,8 @@ function EditCase({ id, uri }: any) {
 
   const [validated, setValidated] = useState(false);
   const [endpointCascade, setEndpointCascade] = useState({});
+  const [oficialValid, setOficialValid] = useState(false);
+  const [showElement, setShowElement] = useState(false)
   const router = useRouter();
 
   useEffect(() => {
@@ -57,6 +59,29 @@ function EditCase({ id, uri }: any) {
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       console.log("falta validar");
+      let validation = true;
+      toast.error("Debe completar todos los campos obligatorios!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      if (typeof companyData.officialId === 'undefined') {
+
+        validation = false;
+        setOficialValid(true);
+      }
+      else if (companyData.officialId == null) {
+        validation = false;
+        setOficialValid(true);
+      } else {
+        setOficialValid(false);
+      }
+
     } else {
       try {
         let page = `Companies/${id}`;
@@ -71,11 +96,12 @@ function EditCase({ id, uri }: any) {
           draggable: true,
           progress: undefined,
         });
-
+        setOficialValid(false);
         setTimeout(() => {
           router.push(`/companies`);
         }, 2000);
       } catch (error) {
+        setOficialValid(true);
         console.log(error);
       }
     }
@@ -86,6 +112,8 @@ function EditCase({ id, uri }: any) {
     window.history.back();
   };
 
+  const textInputDt = useRef(null);
+
   const dateFormat = (date:any)=>{
     let dateStr = String(date).split('/');
     if(dateStr[0].length==2){
@@ -94,6 +122,10 @@ function EditCase({ id, uri }: any) {
       return date;
     }
   }
+
+  const paramsRequired = {
+    oficialValid, showElement, textInputDt
+  };
 
   return (
     <>
@@ -110,6 +142,7 @@ function EditCase({ id, uri }: any) {
           companyData={companyData}
           cascade={endpointCascade}
           dataDate = {dateFormat(companyData.foundation)}
+          paramsRequired={paramsRequired}
         />
       </Form>
     </>
