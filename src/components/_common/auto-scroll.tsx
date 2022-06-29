@@ -72,6 +72,17 @@ export const CustomAsyncPaginate = ({
 
     const handleKey = (e: any) => {
         countSearch = 0;
+        if (
+            e.key === "CapsLock" || e.key === "Escape" ||
+            e.key === "ArrowUp" || e.key === "ArrowUp" || 
+            e.key === "ArrowLeft" || e.key === "ArrowRight"  ||
+            e.key === "Control" || e.key === "Shift" ||  
+            e.key === "Tab" || e.key === "Enter"  ||
+            e.key === "Alt" || e.key === "Delete"
+        ) {
+            return
+        }
+
         if (e.key === "Backspace") {
             keySearch = keySearch.slice(0, -1);
             return;
@@ -93,28 +104,14 @@ export const CustomAsyncPaginate = ({
         }
         onChange(null, keyFilter);
     }
-
-    console.log({name: keyFilter});
-    console.log('data::', data, 'defaultValue::', defaultValue)
-    console.log('defaultValue::', defaultValue?.label)
-    console.log('condicion::', defaultValue?.label != ''  ? defaultValue : data)
-
-    // if(defaultValue?.value != null){
-    //     defaultValue.label = data?.label
-    // }
-    // let datos;
-    // if(defaultValue?.label != null ) {
-    //     datos = defaultValue
-    // } else {
-    //     datos = null
-    // }
+    console.log("data", data);
     return (
         <AsyncPaginate
             onKeyDown={handleKey}
             debounceTimeout={300}
             // value={defaultValue}
             // value={defaultValue?.label != null  ? defaultValue : data}
-            value={defaultValue?.label  ? defaultValue : data}
+            value={defaultValue?.label ? defaultValue : data}
             loadOptions={loadOptions}
             onChange={changeValue}
             isDisabled={disabled}

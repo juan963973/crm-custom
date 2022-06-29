@@ -5,7 +5,7 @@ import MultipleSelect from "components/_common/multiple-select";
 import { Col, Form, InputGroup, Row, FormControl } from "react-bootstrap";
 import InputForm from "components/_common/input-components";
 
-const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate }: any) => {
+const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate, paramsRequired }: any) => {
   const styles = {
     disable: {
       background: "white",
@@ -303,7 +303,7 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
               </InputGroup>
             </Col>
 
-            <Col>Email Empresa</Col>
+            {/* <Col>Email Empresa</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
@@ -314,7 +314,7 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
                   value={companyData.email}
                 />
               </InputGroup>
-            </Col>
+            </Col> */}
           </Row>
 
           <Row style={{ marginBottom: 10 }}>
@@ -386,7 +386,7 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
             />
           </Row>
 
-          <Row style={{ marginBottom: 10 }}>
+          {/* <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>DIRECCION DE FACTURACION</h4>{" "}
@@ -401,7 +401,7 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
               title="País de facturación"
               name="billingCountry"
             />
-            {/* <Col>Estado de facturación</Col>
+            <Col>Estado de facturación</Col>
             <Col sm={4}>
               <MultipleSelect
                 value={companyData.billingState}
@@ -409,7 +409,7 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
                 onChange={handleChange}
                 keyFilter={"billingState"}
               />
-            </Col> */}
+            </Col>
           </Row>
 
           <Row align="end" className="mt-1">
@@ -420,7 +420,7 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
               title="Domicilio de facturación"
               name="billingStreet"
             />
-            {/* <Col>Ciudad de facturación</Col>
+            <Col>Ciudad de facturación</Col>
             <Col sm={4}>
               <MultipleSelect
                   endpoint={cascade.billingCity}
@@ -428,8 +428,8 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
                   keyFilter={"billingCity"}
                   value={companyData.billingCity}
                 />
-            </Col> */}
-          </Row>
+            </Col>
+          </Row> */}
 
           <Row style={{ marginBottom: 10 }}>
             <Col>
@@ -636,7 +636,10 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
 
             <Col>Oficial</Col>
             <Col sm={4} align="start">
+              <div className={"invalid"}>
               <CustomAsyncPaginate
+                required
+                name="OficialId"
                 searchEndpoint={"clerks"}
                 keyFilter={"officialId"}
                 onChange={handleChange}
@@ -644,7 +647,15 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
                   value: companyData?.officialId,
                   label: companyData?.officialName,
                 }}
+                //paramsRequired={paramsRequired.officialId}
+                //inputRef={paramsRequired.textInputDt}
               />
+              </div> 
+              {<div className={"error_oficial"} style={{
+                color: "#dc3545"
+              }}>
+                {paramsRequired.showElement ? <p>Campo Oficial es requerido</p> : null}
+              </div> }
             </Col>
           </Row>
         </Row>
