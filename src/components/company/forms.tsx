@@ -303,7 +303,7 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
               </InputGroup>
             </Col>
 
-            <Col>Email Empresa</Col>
+            {/* <Col>Email Empresa</Col>
             <Col sm={4}>
               <InputGroup className="mb-2">
                 <FormControl
@@ -314,7 +314,7 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
                   value={companyData.email}
                 />
               </InputGroup>
-            </Col>
+            </Col> */}
           </Row>
 
           <Row style={{ marginBottom: 10 }}>
@@ -386,7 +386,7 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
             />
           </Row>
 
-          <Row style={{ marginBottom: 10 }}>
+          {/* <Row style={{ marginBottom: 10 }}>
             <Col>
               {" "}
               <h4>DIRECCION DE FACTURACION</h4>{" "}
@@ -401,7 +401,7 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
               title="País de facturación"
               name="billingCountry"
             />
-            {/* <Col>Estado de facturación</Col>
+            <Col>Estado de facturación</Col>
             <Col sm={4}>
               <MultipleSelect
                 value={companyData.billingState}
@@ -409,7 +409,7 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
                 onChange={handleChange}
                 keyFilter={"billingState"}
               />
-            </Col> */}
+            </Col>
           </Row>
 
           <Row align="end" className="mt-1">
@@ -420,7 +420,7 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
               title="Domicilio de facturación"
               name="billingStreet"
             />
-            {/* <Col>Ciudad de facturación</Col>
+            <Col>Ciudad de facturación</Col>
             <Col sm={4}>
               <MultipleSelect
                   endpoint={cascade.billingCity}
@@ -428,8 +428,8 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
                   keyFilter={"billingCity"}
                   value={companyData.billingCity}
                 />
-            </Col> */}
-          </Row>
+            </Col>
+          </Row> */}
 
           <Row style={{ marginBottom: 10 }}>
             <Col>

@@ -136,7 +136,7 @@ const SideFilter = ({module}: any) => {
                                             <div>
                                                 {isChecked(item.key) && (
                                                     <>
-                                                        <Row>
+                                                        {/* <Row>
                                                             <Col md={6} className="mb-1">
                                                                 <Form.Select
                                                                     aria-label="Seleccione ..."
@@ -149,7 +149,7 @@ const SideFilter = ({module}: any) => {
                                                                     ))}
                                                                 </Form.Select>
                                                             </Col>
-                                                        </Row>
+                                                        </Row> */}
                                                         {item.type == "Textfield" && (
                                                             <Textfield
                                                                 value={isChecked(item.key) ? checkListFilter[item.key as keyof typeof checkListFilter] : null}
@@ -186,30 +186,32 @@ const SideFilter = ({module}: any) => {
                                             </div>
                                         </div>
                                     ))}
-                                    {(checked.length > 0) && <Row className="mt-2">
-                                        <Col md={4}></Col>
-                                        <Col md={3}>
-                                            <Button
-                                                className="submit-button btn-sm"
-                                                onClick={handleSubmit}
-                                            >
-                                                Aplicar
-                                            </Button>
-                                        </Col>
-                                        <Col md={3}>
-                                            <Button
-                                                className=" btn-sm btn-secondary" onClick={handleClear}
-                                            >
-                                                Cancelar
-                                            </Button>
-                                        </Col>
-                                    </Row>}
+                                   
                                 </Form>
                             </div>
                             {/* ----------------------------------------------------------- */}
                         </div>
                     </Container>
                 </Card.Body>
+                <Card.Footer >
+                    <Button
+                        className="btn-secondary btn-md" 
+                        onClick={handleClear}
+                        disabled={checked.length == 0}
+                        style={{width: '45%'}}
+                    >
+                        Cancelar
+                    </Button>
+                    {' '}
+                    <Button
+                        className="submit-button btn-md"
+                        onClick={handleSubmit}
+                        disabled={checked.length == 0}
+                        style={{width: '45%'}}
+                    >
+                        Aplicar
+                    </Button>
+                </Card.Footer>
             </Card>
         </>
     );
