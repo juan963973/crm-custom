@@ -30,7 +30,7 @@ const Comment = ({
                     <div className="comment-content">
                         {/* <div className="comment-author">{comment.username}</div> */}
                         <div><b>{user ? user : 'Usuario'}</b> el dd/mm/aaaa a las 00:00hs.</div>
-                        <div style={{ fontSize: '90%'}}>Modificado por <b>{user ? user : 'Usuario'}</b> el dd/mm/aaaa a las 00:00hs.</div>
+                        <small style={{ color: '#aaa'}}>Modificado por <b>{user ? user : 'Usuario'}</b> el dd/mm/aaaa a las 00:00hs.</small>
                         {/* <div>{createdAt}</div> */}
                     </div>
                     {!isEditing && <div className="comment-text">{comment.body}</div>}

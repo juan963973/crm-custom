@@ -8,7 +8,7 @@ import {
     updateComment as updateCommentApi,
 } from "./notes_api"
 import { createNote } from "services/notesService";
-import getStrUserName from "services/searchUserName"
+import {searchUserName} from "../../../services/searchUserName";
 
 const baseURLE = `${process.env.BASE_URL}/Notes`;
 
@@ -17,7 +17,7 @@ const Comments = ({ currentUserId }: any) => {
     const [backendComments, setBackendComments] = useState([])
     const [activeComment, setActiveComment] = useState(null)
     const rootComments = backendComments;
-    const [user, setUser] = useState('')
+    const [user, setUser] = useState('');
     const addComment = async (text: any) => {
         await createNote(text, currentUserId, 'case')
         axios.get(`${process.env.BASE_URL}/Cases/${currentUserId}/details`).then((response) => {
@@ -64,10 +64,6 @@ const Comments = ({ currentUserId }: any) => {
             setBackendComments(response.data.notes)
         });
     }, []);
-
-    // useEffect(() => {
-    //     getStrUserName()
-    // }, []);
 
     return (
         <div className="comments">
