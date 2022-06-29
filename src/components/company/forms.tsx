@@ -5,7 +5,7 @@ import MultipleSelect from "components/_common/multiple-select";
 import { Col, Form, InputGroup, Row, FormControl } from "react-bootstrap";
 import InputForm from "components/_common/input-components";
 
-const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate }: any) => {
+const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate, paramsRequired }: any) => {
   const styles = {
     disable: {
       background: "white",
@@ -636,7 +636,10 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
 
             <Col>Oficial</Col>
             <Col sm={4} align="start">
+              <div className={"invalid"}>
               <CustomAsyncPaginate
+                required
+                name="OficialId"
                 searchEndpoint={"clerks"}
                 keyFilter={"officialId"}
                 onChange={handleChange}
@@ -644,7 +647,15 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
                   value: companyData?.officialId,
                   label: companyData?.officialName,
                 }}
+                //paramsRequired={paramsRequired.officialId}
+                //inputRef={paramsRequired.textInputDt}
               />
+              </div> 
+              {<div className={"error_oficial"} style={{
+                color: "#dc3545"
+              }}>
+                {paramsRequired.showElement ? <p>Campo Oficial es requerido</p> : null}
+              </div> }
             </Col>
           </Row>
         </Row>

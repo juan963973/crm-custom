@@ -7,6 +7,7 @@ import HeaderForms from "components/_common/header-forms";
 import { toast, ToastContainer } from "react-toastify";
 import { createCompany } from "services/companyService";
 import { useRouter } from "next/router";
+import { useRef } from "react";
 
 function New() {
   const [companyData, setCompanyData] = useState<CreateOrUpdateCompanyModel>(
@@ -15,13 +16,20 @@ function New() {
 
   const [validated, setValidated] = useState(false);
   const [endpointCascade, setEndpointCascade] = useState({});
+  const [oficialValid, setOficialValid] = useState(false);
+  const [showElement, setShowElement] = useState(false)
   const router = useRouter();
 
   if (typeof window !== "undefined") {
     injectStyle();
   }
 
+  const textInputDt = useRef(null);
+
+  
   const handleChange = (e: any, name: string | null = null) => {
+
+    setShowElement(true);
     if (e === null ){
       // @ts-ignore
       setCompanyData( companyData => {
@@ -46,28 +54,94 @@ function New() {
     console.log('companyData', companyData)
   };
 
+  
+
+  
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
-      console.log("falta validar");
+      
+      let validation = true;
+      toast.error("Debe completar todos los campos obligatorios!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      if (typeof companyData.officialId === 'undefined') {
+        
+        validation = false;
+        setOficialValid(true);
+      }
+      else if (companyData.officialId == null) {
+        validation = false;
+        setOficialValid(true);
+      } else {
+        setOficialValid(false);
+      }
+
     } else {
       try {
         let page = 'Companies';
-        await createCompany(page, companyData)
-        toast.success("Se ha guardado con exito!", {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        let validation = true;
+        
+        if(typeof companyData.officialId === 'undefined') {
+          validation = false;
+          setOficialValid(true);
+          setShowElement(true);
+          toast.error("Debe Seleccionar el campo Oficial!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          
+        }
+        else if (companyData.officialId == null) {
+          validation = false;
+          setOficialValid(true);
 
-        setTimeout(() => {
-          router.push(`/companies`);
-        }, 2000);
+          toast.error("Debe Seleccionar el campo Oficial!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          
+        } else {
+          
+          setOficialValid(false);
+          await createCompany(page, companyData)
+        
+          toast.success("Se ha guardado con exito!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+
+          setTimeout(() => {
+            router.push(`/companies`);
+          }, 2000);
+
+        }
+
+        
+
       } catch (error) {
         console.log(error);
       }
@@ -79,6 +153,10 @@ function New() {
     window.history.back();
   };
 
+  const paramsRequired = {
+    oficialValid, showElement, textInputDt
+  };
+//usuario con permiso de empresa
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -93,6 +171,7 @@ function New() {
           handleChange={handleChange}
           companyData={companyData}
           cascade={endpointCascade}
+          paramsRequired={paramsRequired}
           dataDate = {companyData.foundation}
         />
       </Form>
