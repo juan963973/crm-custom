@@ -120,11 +120,12 @@ const Kanban = ({module}:any) => {
                                                         <Link href={ `/${module}/show/${item.id}` }>
                                                             <a style={{textDecoration: 'none', color:'#000'}}>
                                                                 <div><b>{item.subject }</b></div>
+                                                                <div><i>{item.nameContact ?? item.nameCompanies }</i></div>
                                                                 <div>{item.ticketNumber ? `Ticket: #${item.ticketNumber}`:  ''}</div>
                                                                 <div>{item.type }</div>
                                                                 <div>{item.subtype }</div>
-                                                                <div>{item.resolutionAreas.join(',') }</div>
-                                                                <div>{item.resolver.join(',') }</div>
+                                                                <div>{item.resolutionAreas.join(', ') }</div>
+                                                                <div>{item.resolver.join(', ') }</div>
                                                             </a>
                                                         </Link>
                                                         

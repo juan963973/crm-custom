@@ -483,7 +483,7 @@ const Forms = ({
             </Col>
           </Row>
 
-          <Row align="end" style={{ marginBottom: 20 }}>
+          {/* <Row align="end" style={{ marginBottom: 20 }}>
             <Col>Salario Actual</Col>
             <Col sm={4} align="start">
               <FormControl
@@ -498,7 +498,7 @@ const Forms = ({
             <Col></Col>
             <Col sm={4} align="start">
             </Col>
-          </Row>
+          </Row> */}
         </Row>
 
         <Row className="mb-200" style={{ marginBottom: 30 }}>

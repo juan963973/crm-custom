@@ -9,7 +9,7 @@ export interface ContactsModel {
     "Es Cliente?": string,
     "Correo electrónico": string,
     "Móvil": string,
-    "Salario Actual": string,
+    // "Salario Actual": string,
     "Teléfono Fijo": string,
     "Teléfono Laboral": string,
     "Edad Contacto": string,

@@ -215,10 +215,10 @@ export default function Overview3({dataIdCase, data}: any) {
                                     {data?.workPlace ? data.workPlace : ' - '}
                                 </Col>
 
-                                <Col style={{color: 'gray'}}>Salario actual</Col>
+                                {/* <Col style={{color: 'gray'}}>Salario actual</Col>
                                 <Col sm={4} align="start">
                                     {data?.currentSalary ? data.currentSalary : ' - '}
-                                </Col>
+                                </Col> */}
                             </Row>
                             <Row align="end" style={{marginBottom: '5px'}}>
                                 <Col style={{color: 'gray'}}>Teléfono laboral</Col>
