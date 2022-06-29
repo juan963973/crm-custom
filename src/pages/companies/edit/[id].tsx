@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { update } from "services/caseService";
 import { CreateOrUpdateCompanyModel } from "models/Company";
 import _ from "lodash";
-import { updateCompany } from "services/companyService";
+import getCompanyData, { updateCompany } from "services/companyService";
 import { useRouter } from "next/router";
 
 function EditCase({ id, uri }: any) {
@@ -35,6 +35,15 @@ function EditCase({ id, uri }: any) {
   if (typeof window !== "undefined") {
     injectStyle();
   }
+
+  const [dataCompany, setdataCompany] = useState({} as any)
+  useEffect(() => {
+    getCompanyData(id).then(d =>{
+      setdataCompany(d as any)
+    })
+  }, []);
+
+  console.log('dataCompany', dataCompany)
 
   const handleChange = (e: any, name: string | null = null) => {
     if (e === null ){
@@ -116,6 +125,7 @@ function EditCase({ id, uri }: any) {
         <FormCompany
           handleChange={handleChange}
           companyData={companyData}
+          dataCompany={dataCompany}
           cascade={endpointCascade}
           dataDate = {dateFormat(companyData.foundation)}
         />

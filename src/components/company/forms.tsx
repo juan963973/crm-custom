@@ -5,7 +5,7 @@ import MultipleSelect from "components/_common/multiple-select";
 import { Col, Form, InputGroup, Row, FormControl } from "react-bootstrap";
 import InputForm from "components/_common/input-components";
 
-const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
+const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate }: any) => {
   const styles = {
     disable: {
       background: "white",
@@ -554,38 +554,60 @@ const FormCompany = ({ handleChange, companyData, cascade, dataDate }: any) => {
                 <Row align="end" className="mt-1">
                   <Col>Creado por</Col>
                   <Col sm={4} align="start">
-                    <CustomAsyncPaginate
-                        searchEndpoint={"clerks"}
-                        keyFilter={"userWhoCreatedId"}
-                        onChange={handleChange}
-                        disabled={true}
-                        defaultValue={{
-                          value: companyData?.userWhoCreatedId,
-                          label: companyData?.userWhoCreatedName,
-                        }}
-                    />
+                    <InputGroup className="mb-2">
+                      <FormControl
+                          aria-label="Default"
+                          aria-describedby="inputGroup-sizing-default"
+                          name="foundation"
+                          type="text"
+                          value={companyData?.userWhoCreatedName ? companyData.userWhoCreatedName : 'Sin datos'}
+                          readOnly
+                      />
+                    </InputGroup>
                   </Col>
 
-                  <Col></Col>
-                  <Col sm={4}></Col>
+                  <Col>Fecha creado</Col>
+                  <Col sm={4} align="start">
+                    <InputGroup className="mb-2">
+                      <FormControl
+                          aria-label="Default"
+                          aria-describedby="inputGroup-sizing-default"
+                          name="foundation"
+                          type="text"
+                          value={dataCompany?.createdAt ? dataCompany.createdAt : 'Sin datos'}
+                          readOnly
+                      />
+                    </InputGroup>
+                  </Col>
                 </Row>
 
                 <Row align="end" className="mt-1">
                   <Col>Modificado por</Col>
                   <Col sm={4} align="start">
-                    <CustomAsyncPaginate
-                        searchEndpoint={"clerks"}
-                        keyFilter={"userWhoUpdatedId"}
-                        onChange={handleChange}
-                        disabled={true}
-                        defaultValue={{
-                          value: companyData?.userWhoUpdatedId,
-                          label: companyData?.userWhoUpdatedName,
-                        }}
-                    />
+                    <InputGroup className="mb-2">
+                      <FormControl
+                          aria-label="Default"
+                          aria-describedby="inputGroup-sizing-default"
+                          name="foundation"
+                          type="text"
+                          value={companyData?.userWhoUpdatedName ? companyData.userWhoUpdatedName : 'Sin datos'}
+                          readOnly
+                      />
+                    </InputGroup>
                   </Col>
-                  <Col></Col>
-                  <Col sm={4}></Col>
+                  <Col>Fecha Modificado</Col>
+                  <Col sm={4} align="start">
+                    <InputGroup className="mb-2">
+                      <FormControl
+                          aria-label="Default"
+                          aria-describedby="inputGroup-sizing-default"
+                          name="foundation"
+                          type="text"
+                          value={dataCompany?.updatedAt ? dataCompany.updatedAt : 'Sin datos'}
+                          readOnly
+                      />
+                    </InputGroup>
+                  </Col>
                 </Row>
               </>
           ) : null}

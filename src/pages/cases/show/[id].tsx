@@ -2,7 +2,8 @@ import {
     Button,
     Col,
     Container,
-    Row
+    Row,
+    ListGroup
 } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -46,14 +47,24 @@ export default function Show({ id, uri }: any) {
                     <Col sm={2}>
                         <b>Lista relacionada</b>
                         <Col>
-                            <div><a href="#notes" style={{ textDecoration: 'none' }}>Notas</a></div>
-                            <div><a href="#historyState" style={{ textDecoration: 'none' }}>Historial de Estado</a></div>
-                            <div><a href="#attachments" style={{ textDecoration: 'none' }}>Adjuntos</a></div>
-                            <div><a href="#openActivities" style={{ textDecoration: 'none' }}>Actividades abiertas</a></div>
-                            <div> <a href="#closedActivities" style={{ textDecoration: 'none' }}>Actividades cerradas</a></div>
-                            {/* <div><p>Enlaces</p></div> */}
+                            <ListGroup style={{ width: '95%' }}>
+                                <ListGroup.Item as="a" action href="#notes">
+                                    Notas
+                                </ListGroup.Item>
+                                <ListGroup.Item as="a" action href="#historyState">
+                                    Historial de Estado
+                                </ListGroup.Item>
+                                <ListGroup.Item as="a" action href="#attachments">
+                                    Adjuntos
+                                </ListGroup.Item>
+                                <ListGroup.Item as="a" action href="#openActivities">
+                                    Actividades abiertas
+                                </ListGroup.Item>
+                                <ListGroup.Item as="a" action href="#closedActivities">
+                                    Actividades cerradas
+                                </ListGroup.Item>
+                            </ListGroup>
                         </Col>
-                        {/* <p className="text-primary">Add link</p> */}
                     </Col>
 
                     <Col style={{
@@ -79,7 +90,7 @@ export default function Show({ id, uri }: any) {
 
                             <Row
                                 style={{
-                                    maxHeight: "25rem",
+                                    maxHeight: "70vh",
                                     overflow: "auto",
                                     backgroundColor: "#edf0f4",
                                 }}
