@@ -677,6 +677,24 @@ const Forms = ({
                     </InputGroup>
                   </Col>
                 </Row>
+
+                <Row align="end" style={{ marginBottom: 10 }}>
+                  <Col>Propietario del caso</Col>
+                  <Col sm={4} align="start">
+                    <CustomAsyncPaginate
+                        searchEndpoint="users"
+                        keyFilter={"contactOwnerId"}
+                        onChange={handleChange}
+                        defaultValue={{
+                          value: caseData?.caseOwnerId,
+                          label: cases?.caseOwnerUserName
+                        }}
+                    />
+                  </Col>
+
+                  <Col></Col>
+                  <Col sm={4}></Col>
+                </Row>
               </Row>
             </>
         ) : null}

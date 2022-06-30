@@ -674,7 +674,7 @@ const Forms = ({
             <Col>Propietario de Contacto</Col>
             <Col sm={4} align="start">
               <CustomAsyncPaginate
-                  searchEndpoint="clerks"
+                  searchEndpoint="users"
                   keyFilter={"contactOwnerId"}
                   onChange={handleChange}
                   defaultValue={{

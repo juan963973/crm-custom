@@ -609,6 +609,24 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
                     </InputGroup>
                   </Col>
                 </Row>
+
+                <Row align="end" className="mt-1">
+                  <Col>Propietario de empresa</Col>
+                  <Col sm={4} align="start">
+                    <CustomAsyncPaginate
+                        searchEndpoint="users"
+                        keyFilter={"contactOwnerId"}
+                        onChange={handleChange}
+                        defaultValue={{
+                          value: dataCompany?.contactOwnerId,
+                          label: dataCompany?.contactOwnerName
+                        }}
+                    />
+                  </Col>
+
+                  <Col></Col>
+                  <Col sm={4} align="start"></Col>
+                </Row>
               </>
           ) : null}
 
