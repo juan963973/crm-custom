@@ -683,11 +683,12 @@ const Forms = ({
                   <Col sm={4} align="start">
                     <CustomAsyncPaginate
                         searchEndpoint="users"
-                        keyFilter={"contactOwnerId"}
+                        keyFilter={"caseOwnerIdString"}
                         onChange={handleChange}
+                        value={caseData?.caseOwnerIdString ? caseData.caseOwnerIdString : 'Sin datos'}
                         defaultValue={{
-                          value: caseData?.caseOwnerId,
-                          label: cases?.caseOwnerUserName
+                          value: caseData?.caseOwnerIdString,
+                          label: cases?.caseOwnerIdString
                         }}
                     />
                   </Col>
