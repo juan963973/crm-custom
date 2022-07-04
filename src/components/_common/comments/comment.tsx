@@ -1,7 +1,7 @@
 import { Row, Col } from 'react-bootstrap'
 import CommentForm from './commentForm'
 import { searchUserName } from "../../../services/searchUserName";
-
+import {useEffect, useState} from "react";
 
 const Comment = ({
     comment,
@@ -19,6 +19,18 @@ const Comment = ({
     // const canDelete = currentUserId === comment.userId
     const createdAt = new Date(comment.createdAt).toLocaleDateString()
     const isEditing = activeComment && activeComment.type === 'editing' && activeComment.id === comment.id
+
+    const [author, setAuthor] = useState('');
+    const [modifier, setModifier] = useState('');
+    const [mainDate, setMainDate] = useState('');
+
+    useEffect(() => {
+        searchUserName(comment.userWhoCreatedId).then((user) => { setAuthor(user) })
+        searchUserName(comment.userWhoUpdatedId).then((user) => { setModifier(user) })
+    }, []);
+
+
+    console.log('modifier', modifier)
     return (
         <Row className="comment" style={{marginBottom: '10px'}}>
             <Col sm={1} style={{ marginRight: '15px'}}>
@@ -30,9 +42,9 @@ const Comment = ({
                 <div className="comment-right-part">
                     <div className="comment-content">
                         {/* <div className="comment-author">{comment.username}</div > */}
-                        <div><b>{comment?.userWhoCreatedId ? comment.userWhoCreatedId : 'Usuario'}</b> {comment?.createdAt ? `el ${comment.createdAt}` : ''}</div>
+                        <div><b>{comment?.userWhoCreatedId ? author : 'Usuario'}</b> {comment?.createdAt ? `el ${comment.createdAt}` : ''}</div>
 
-                        {comment?.userWhoUpdatedId ?  <small style={{ color: '#aaa'}}>Modificado por <b>{comment?.userWhoUpdatedId ? comment.userWhoUpdatedId : 'Usuario'}</b> {comment?.updatedAt ? `el ${comment.updatedAt}` : ''}</small> : null}
+                        {comment?.userWhoUpdatedId ?  <small style={{ color: '#aaa'}}>Modificado por <b>{comment?.userWhoUpdatedId ? modifier : 'Usuario'}</b> {comment?.updatedAt ? `el ${comment.updatedAt}` : ''}</small> : null}
                     </div>
                     {!isEditing && <div className="comment-text">{comment.body}</div>}
                     {isEditing && (
