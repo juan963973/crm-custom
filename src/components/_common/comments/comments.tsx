@@ -65,6 +65,9 @@ const Comments = ({ currentUserId }: any) => {
         });
     }, []);
 
+    // const fullNameNotes = searchUserName().then((user) => { setUser(user) })
+    console.log('user', user)
+
     return (
         <div className="comments">
             <CommentForm submitLabel='Guardar' handleSubmit={addComment} />

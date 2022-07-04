@@ -1,5 +1,6 @@
 import { Row, Col } from 'react-bootstrap'
 import CommentForm from './commentForm'
+import { searchUserName } from "../../../services/searchUserName";
 
 
 const Comment = ({
@@ -44,7 +45,7 @@ const Comment = ({
                         />
                     )}
                     {/* <div className='comment-actions'>
-                        {canEdit && <button className='comment-action btn btn-primary btn-sm' onClick={() =>
+                        {canEdit && <button className=`comment-action btn btn-primary btn-sm` onClick={() =>
                             setActiveComment({ id: comment.id, type: 'editing' })}
                         >Editar</button>}
                         {canDelete && <button className='comment-action btn btn-secondary btn-sm' onClick={() => deleteComment(comment.id)}>Eliminar</button>}

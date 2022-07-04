@@ -5,6 +5,5 @@ export async function searchUserName(): Promise<string> {
     auth = JSON.parse(auth);
     let id = auth?.user?.id;
     const res = await axios.get<any>(`${process.env.BASE_URL}/users/${id}`);
-
     return `${res.data.firtName} ${res.data.lastName}`
 }
