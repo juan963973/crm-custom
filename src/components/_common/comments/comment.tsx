@@ -29,10 +29,9 @@ const Comment = ({
                 <div className="comment-right-part">
                     <div className="comment-content">
                         {/* <div className="comment-author">{comment.username}</div > */}
-                        <div><b>{user ? user : 'Usuario'}</b> {comment?.CreatedAt ? `el ${comment.CreatedAt}` : ''}</div>
+                        <div><b>{comment?.userWhoCreatedId ? comment.userWhoCreatedId : 'Usuario'}</b> {comment?.createdAt ? `el ${comment.createdAt}` : ''}</div>
 
-                        {comment?.UpdatedAt ? <small style={{ color: '#aaa'}}>Modificado por <b>{user ? user : 'Usuario'}</b> {comment?.createdAt ? `el ${comment.createdAt}` : ''}</small> : null}
-                        {/* <div>{createdAt}</div> */}
+                        {comment?.userWhoUpdatedId ?  <small style={{ color: '#aaa'}}>Modificado por <b>{comment?.userWhoUpdatedId ? comment.userWhoUpdatedId : 'Usuario'}</b> {comment?.updatedAt ? `el ${comment.updatedAt}` : ''}</small> : null}
                     </div>
                     {!isEditing && <div className="comment-text">{comment.body}</div>}
                     {isEditing && (
