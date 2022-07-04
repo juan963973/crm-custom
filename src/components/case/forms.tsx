@@ -39,6 +39,9 @@ const Forms = ({
     },
   };
 
+  console.log("caseData", caseData);
+  console.log('reference', reference)
+
   return (
     <div className="container-fluid" style={{ marginTop: "126px" }}>
       <div style={{ paddingLeft: "25px" }}>
@@ -685,10 +688,9 @@ const Forms = ({
                         searchEndpoint="users"
                         keyFilter={"caseOwnerIdString"}
                         onChange={handleChange}
-                        value={caseData?.caseOwnerIdString ? caseData.caseOwnerIdString : 'Sin datos'}
                         defaultValue={{
-                          value: caseData?.caseOwnerIdString,
-                          label: cases?.caseOwnerIdString
+                          value: caseData.caseOwnerIdString,
+                          label: caseData.caseOwnerIdString
                         }}
                     />
                   </Col>

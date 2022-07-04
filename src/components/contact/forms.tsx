@@ -40,7 +40,7 @@ const Forms = ({
   };
 
   console.log('userWhoCreatedName', contactData.userWhoCreatedName)
-  console.log('contactData', contactData)
+  console.log('dataContact', dataContact)
   
 
   return (
@@ -675,11 +675,11 @@ const Forms = ({
             <Col sm={4} align="start">
               <CustomAsyncPaginate
                   searchEndpoint="users"
-                  keyFilter={"contactOwnerId"}
+                  keyFilter={"contactOwnerIdString"}
                   onChange={handleChange}
                   defaultValue={{
-                    value: contactData?.contactOwnerId, 
-                    label: contactData?.contactOwnerName
+                    value: dataContact.contactOwnerIdString,
+                    label: dataContact.contactOwnerIdString
                   }}
                 />
             </Col>
