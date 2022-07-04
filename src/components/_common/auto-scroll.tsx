@@ -78,7 +78,8 @@ export const CustomAsyncPaginate = ({
             e.key === "ArrowLeft" || e.key === "ArrowRight"  ||
             e.key === "Control" || e.key === "Shift" ||  
             e.key === "Tab" || e.key === "Enter"  ||
-            e.key === "Alt" || e.key === "Delete"
+            e.key === "Alt" || e.key === "Delete" ||
+            e.key === "Dead"
         ) {
             return
         }
