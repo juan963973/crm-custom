@@ -2,6 +2,7 @@ import { Row, Col } from 'react-bootstrap'
 import CommentForm from './commentForm'
 import { searchUserName } from "../../../services/searchUserName";
 import {useEffect, useState} from "react";
+import {getDateStr, getHourStr } from "../timeToString";
 
 const Comment = ({
     comment,
@@ -29,6 +30,7 @@ const Comment = ({
         searchUserName(comment.userWhoUpdatedId).then((user) => { setModifier(user) })
     }, []);
 
+    console.log('createdAt', comment.createdAt)
 
     console.log('modifier', modifier)
     return (
@@ -42,9 +44,9 @@ const Comment = ({
                 <div className="comment-right-part">
                     <div className="comment-content">
                         {/* <div className="comment-author">{comment.username}</div > */}
-                        <div><b>{comment?.userWhoCreatedId ? author : 'Usuario'}</b> {comment?.createdAt ? `el ${comment.createdAt}` : ''}</div>
+                        <div><b>{comment?.userWhoCreatedId ? author : 'Usuario'}</b> {comment?.createdAt ? `el ${getDateStr(comment.createdAt)}, a las ${getHourStr(comment.createdAt)} horas` : ''}</div>
 
-                        {comment?.userWhoUpdatedId ?  <small style={{ color: '#aaa'}}>Modificado por <b>{comment?.userWhoUpdatedId ? modifier : 'Usuario'}</b> {comment?.updatedAt ? `el ${comment.updatedAt}` : ''}</small> : null}
+                        {comment?.userWhoUpdatedId ?  <small style={{ color: '#aaa'}}>Modificado por <b>{comment?.userWhoUpdatedId ? modifier : 'Usuario'}</b> {comment?.updatedAt ? `el ${getDateStr(comment.updatedAt)}, a las ${getHourStr(comment.updatedAt)} horas` : ''}</small> : null}
                     </div>
                     {!isEditing && <div className="comment-text">{comment.body}</div>}
                     {isEditing && (
