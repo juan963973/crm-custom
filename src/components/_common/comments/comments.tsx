@@ -52,7 +52,7 @@ const Comments = ({ currentUserId }: any) => {
                 return backendComment
             })
             setBackendComments(updatedtBackendComments)
-            console.log('setBackendComments', setBackendComments)
+            // console.log('setBackendComments', setBackendComments)
             setActiveComment(null)
         })
     }
@@ -61,7 +61,7 @@ const Comments = ({ currentUserId }: any) => {
         axios.get(`${process.env.BASE_URL}/Cases/${currentUserId}/details`).then((response) => {
             setBackendComments(response.data.notes)
         });
-    }, []);
+    }, [backendComments]);
 
     return (
         <div className="comments">
