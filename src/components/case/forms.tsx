@@ -5,6 +5,7 @@ import MultipleArray from "components/_common/array-select";
 import { CustomAsyncPaginate } from "components/_common/auto-scroll";
 import { refenceField } from "services/caseService";
 import {useEffect} from "react";
+import {getHourStr, getDateStr} from "../_common/timeToString";
 
 const Forms = ({
   handleChange,
@@ -644,7 +645,7 @@ const Forms = ({
                           aria-describedby="inputGroup-sizing-default"
                           name="foundation"
                           type="text"
-                          value={cases?.createdAt ? cases.createdAt : 'Sin datos'}
+                          value={cases?.createdAt ? `${getDateStr(cases.createdAt)} - ${getHourStr(cases.createdAt)} hs.` : 'Sin datos'}
                           readOnly
                       />
                     </InputGroup>
@@ -674,7 +675,8 @@ const Forms = ({
                           aria-describedby="inputGroup-sizing-default"
                           name="foundation"
                           type="text"
-                          value={cases?.updatedAt ? cases.updatedAt : 'Sin datos'}
+                          // value={cases?.updatedAt ? cases.updatedAt : 'Sin datos'}
+                          value={cases?.updatedAt ? `${getDateStr(cases.updatedAt)} - ${getHourStr(cases.updatedAt)} hs.` : 'Sin datos'}
                           readOnly
                       />
                     </InputGroup>

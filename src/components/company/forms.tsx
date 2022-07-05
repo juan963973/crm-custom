@@ -4,6 +4,7 @@ import { CustomAsyncPaginate } from "components/_common/auto-scroll";
 import MultipleSelect from "components/_common/multiple-select";
 import { Col, Form, InputGroup, Row, FormControl } from "react-bootstrap";
 import InputForm from "components/_common/input-components";
+import {getDateStr, getHourStr} from "../_common/timeToString";
 
 const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate, paramsRequired }: any) => {
   const styles = {
@@ -574,7 +575,7 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
                           aria-describedby="inputGroup-sizing-default"
                           name="foundation"
                           type="text"
-                          value={dataCompany?.createdAt ? dataCompany.createdAt : 'Sin datos'}
+                          value={dataCompany?.createdAt ? `${getDateStr(dataCompany.createdAt)} - ${getHourStr(dataCompany.createdAt)} hs.` : 'Sin datos'}
                           readOnly
                       />
                     </InputGroup>
@@ -603,7 +604,7 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
                           aria-describedby="inputGroup-sizing-default"
                           name="foundation"
                           type="text"
-                          value={dataCompany?.updatedAt ? dataCompany.updatedAt : 'Sin datos'}
+                          value={dataCompany?.updatedAt ? `${getDateStr(dataCompany.updatedAt)} - ${getHourStr(dataCompany.updatedAt)} hs.` : 'Sin datos'}
                           readOnly
                       />
                     </InputGroup>
