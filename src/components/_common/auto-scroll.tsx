@@ -72,13 +72,15 @@ export const CustomAsyncPaginate = ({
 
     const handleKey = (e: any) => {
         countSearch = 0;
+        console.log('key::',e.key);
         if (
             e.key === "CapsLock" || e.key === "Escape" ||
             e.key === "ArrowUp" || e.key === "ArrowUp" || 
             e.key === "ArrowLeft" || e.key === "ArrowRight"  ||
             e.key === "Control" || e.key === "Shift" ||  
             e.key === "Tab" || e.key === "Enter"  ||
-            e.key === "Alt" || e.key === "Delete"
+            e.key === "Alt" || e.key === "Delete" ||
+            e.key === "Dead"
         ) {
             return
         }
