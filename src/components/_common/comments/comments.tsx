@@ -76,6 +76,7 @@ const Comments = ({ currentUserId }: any) => {
                         activeComment={activeComment}
                         setActiveComment={setActiveComment}
                         updateComment={updateComment}
+                        backendComments={backendComments}
                     />
                 ))}
             </div>

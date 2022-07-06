@@ -11,7 +11,8 @@ const Comment = ({
     deleteComment,
     activeComment,
     setActiveComment,
-    user
+    user,
+    backendComments
 }: any) => {
     // const fiveMinutes = 300000
     // const timePassed = new Date() - new Date(comment.createdAt) > fiveMinutes
@@ -23,12 +24,11 @@ const Comment = ({
 
     const [author, setAuthor] = useState('');
     const [modifier, setModifier] = useState('');
-    const [mainDate, setMainDate] = useState('');
 
     useEffect(() => {
         searchUserName(comment.userWhoCreatedId).then((user) => { setAuthor(user) })
         searchUserName(comment.userWhoUpdatedId).then((user) => { setModifier(user) })
-    }, []);
+    }, [backendComments]);
 
     return (
         <Row className="comment" style={{marginBottom: '10px'}}>
