@@ -679,8 +679,8 @@ const Forms = ({
                   keyFilter={"contactOwnerIdString"}
                   onChange={handleChange}
                   defaultValue={{
-                    value: dataContact.contactOwnerIdString,
-                    label: dataContact.fullNameContactOwner
+                    value: dataContact?.contactOwnerIdString ? dataContact.contactOwnerIdString : null,
+                    label: dataContact?.fullNameContactOwner ? dataContact.fullNameContactOwner : null
                   }}
                 />
             </Col>
