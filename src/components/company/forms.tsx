@@ -544,14 +544,14 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
             <Col sm={4}></Col>
           </Row>
 
+          <Row style={{ marginBottom: 10 }}>
+            <Col>
+              {" "}
+              <h4>DATOS REGISTRO</h4>{" "}
+            </Col>
+          </Row>
           {companyData?.userWhoCreatedName ? (
               <>
-                <Row style={{ marginBottom: 10 }}>
-                  <Col>
-                    {" "}
-                    <h4>DATOS REGISTRO</h4>{" "}
-                  </Col>
-                </Row>
                 <Row align="end" className="mt-1">
                   <Col>Creado por</Col>
                   <Col sm={4} align="start">
@@ -610,26 +610,25 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
                     </InputGroup>
                   </Col>
                 </Row>
-
-                <Row align="end" className="mt-1">
-                  <Col>Propietario de empresa</Col>
-                  <Col sm={4} align="start">
-                    <CustomAsyncPaginate
-                        searchEndpoint="users"
-                        keyFilter={"contactOwnerId"}
-                        onChange={handleChange}
-                        defaultValue={{
-                          value: dataCompany?.contactOwnerId,
-                          label: dataCompany?.contactOwnerName
-                        }}
-                    />
-                  </Col>
-
-                  <Col></Col>
-                  <Col sm={4} align="start"></Col>
-                </Row>
               </>
           ) : null}
+          <Row align="end" className="mt-1">
+            <Col>Propietario de empresa</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="users"
+                  keyFilter={"companyOwnerIdString"}
+                  onChange={handleChange}
+                  defaultValue={{
+                    value: dataCompany?.companyOwnerIdString,
+                    label: dataCompany?.fullNameCompanyOwner
+                  }}
+              />
+            </Col>
+
+            <Col></Col>
+            <Col sm={4} align="start"></Col>
+          </Row>
 
 
           <Row style={{ marginBottom: 10 }}>
