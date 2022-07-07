@@ -23,7 +23,6 @@ export const RouteGuard = ({ children }:any) => {
             }
         }
         if(auth) {
-
             const path = url.split('/');
             let routerFilter:any;
             let routerObj:any;
@@ -42,7 +41,7 @@ export const RouteGuard = ({ children }:any) => {
                     }
                 })
             }
-            
+
             let access = CanActive(routerObj)
             if (access) {
                 setAuthorized(true);
@@ -56,7 +55,11 @@ export const RouteGuard = ({ children }:any) => {
             setAuthorized(false);
             localStorage.removeItem('auth');
             if(url != '/login') {
-                router.push('/login');
+                if(url.includes('/recoveryAccount')) { 
+                    setAuthorized(true);
+                } else {
+                    router.push('/login');
+                }
             } else {
                 setAuthorized(true);
             }
