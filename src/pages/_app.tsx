@@ -24,17 +24,38 @@ axios.interceptors.request.use(
     }
 );
 
-// For POST requests
 axios.interceptors.response.use(
-    (res) => {
-        // Add configurations here
-        if (res.status === 201) {
-            console.log('Posted Successfully from interceptor');
-        }
-        return res;
-    },
+    (req) => { return req },
     (err) => {
-        return Promise.reject(err);
+        // const status = err.response ? err.response.status:null
+        let auth
+        auth = localStorage?.getItem('auth')
+        auth = JSON.parse(auth);
+        let body = {refresh_token: auth.token.refresh_token}
+
+        // if (status === 401) {
+        //     axios.post(`${process.env.BASE_URL}/users/refresh_token`, body)
+        //     .then((res) => {
+        //         localStorage?.setItem('auth', JSON.stringify(res));
+        //     })
+        //     .catch((err) => {    console.log(err); });
+        // }
+        if(err == 'Error: Network Error') { // 401 Unauthorized
+            let auth
+            auth = localStorage?.getItem('auth')
+            auth = JSON.parse(auth);
+            let body = {refresh_token: auth.token.refresh_token}
+            
+            console.log('entro en el interceptor::', body)
+            axios.post(`${process.env.BASE_URL}/users/refresh_token`, body)
+            .then((res) => {
+                console.log('respuesta del refresh_token: ', res)
+                // localStorage?.setItem('auth', JSON.stringify(res));
+            })
+            .catch((err) => {    console.log(err); });
+        }
+
+        return Promise.resolve(err);
     }
 );
 
