@@ -20,42 +20,25 @@ axios.interceptors.request.use(
         return req;
     },
     (err) => {
-        return Promise.reject(err);
+        return Promise.resolve(err);
     }
 );
 
-axios.interceptors.response.use(
-    (req) => { return req },
-    (err) => {
-        // const status = err.response ? err.response.status:null
-        let auth
-        auth = localStorage?.getItem('auth')
-        auth = JSON.parse(auth);
-        let body = {refresh_token: auth.token.refresh_token}
+axios.interceptors.response.use( resp => resp, async error  => {
 
-        // if (status === 401) {
-        //     axios.post(`${process.env.BASE_URL}/users/refresh_token`, body)
-        //     .then((res) => {
-        //         localStorage?.setItem('auth', JSON.stringify(res));
-        //     })
-        //     .catch((err) => {    console.log(err); });
-        // }
-        if(err == 'Error: Network Error') { // 401 Unauthorized
+        if(error.response.status === 401) {
             let auth
             auth = localStorage?.getItem('auth')
             auth = JSON.parse(auth);
-            let body = {refresh_token: auth.token.refresh_token}
-            
-            console.log('entro en el interceptor::', body)
-            axios.post(`${process.env.BASE_URL}/users/refresh_token`, body)
-            .then((res) => {
-                console.log('respuesta del refresh_token: ', res)
-                // localStorage?.setItem('auth', JSON.stringify(res));
-            })
-            .catch((err) => {    console.log(err); });
-        }
+            const response = await axios.post(`${process.env.BASE_URL}/users/refresh_token?refresh_token=${auth.token.refresh_token}`)
 
-        return Promise.resolve(err);
+            if(response.status === 200) {
+                localStorage?.setItem('auth', JSON.stringify(response.data));
+                axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token.access_token}`
+                return axios(error.config)
+            }
+        }
+        return error
     }
 );
 
