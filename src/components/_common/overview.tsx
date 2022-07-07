@@ -3,6 +3,7 @@ import { Col, Row, Card } from "react-bootstrap";
 import HistoryState from "components/_common/historyState"
 import Notes from "components/_common/notes";
 import AttachFiles from "components/_common/attachFiles";
+import {getDateStr, getHourStr} from "./timeToString";
 
 export default function Overview({ id, cases, attachFiles, setAttachFiles }: any) {
     const { resolverAreas, resolvers } = cases;
@@ -170,7 +171,7 @@ export default function Overview({ id, cases, attachFiles, setAttachFiles }: any
                             <Row align="end">
                                 <Col style={{ color: 'gray' }}>Fecha/Hora Creado</Col>
                                 <Col align="start">
-                                    {cases?.createdAt ? cases.createdAt : ' - '}
+                                    {cases?.createdAt ? `${getDateStr(cases.createdAt)} - ${getHourStr(cases.createdAt)} hs.` : ' - '}
                                 </Col>
 
                                 <Col style={{ color: 'gray' }}>Estado</Col>
@@ -197,7 +198,7 @@ export default function Overview({ id, cases, attachFiles, setAttachFiles }: any
 
                                 <Col style={{ color: 'gray' }}>Fecha/hora de Recepción</Col>
                                 <Col sm={4} align="start">
-                                    {cases?.receptionAt ? cases.receptionAt : ' - '}
+                                    {cases?.receptionAt ? `${getDateStr(cases.receptionAt)} - ${getHourStr(cases.receptionAt)} hs.` : ' - '}
                                 </Col>
                             </Row>
                             <Row align="end">

@@ -4,6 +4,7 @@ import { CustomAsyncPaginate } from "components/_common/auto-scroll";
 import MultipleSelect from "components/_common/multiple-select";
 import { Col, Form, InputGroup, Row, FormControl } from "react-bootstrap";
 import InputForm from "components/_common/input-components";
+import {getDateStr, getHourStr} from "../_common/timeToString";
 
 const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate, paramsRequired }: any) => {
   const styles = {
@@ -543,14 +544,14 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
             <Col sm={4}></Col>
           </Row>
 
+          <Row style={{ marginBottom: 10 }}>
+            <Col>
+              {" "}
+              <h4>DATOS REGISTRO</h4>{" "}
+            </Col>
+          </Row>
           {companyData?.userWhoCreatedName ? (
               <>
-                <Row style={{ marginBottom: 10 }}>
-                  <Col>
-                    {" "}
-                    <h4>DATOS REGISTRO</h4>{" "}
-                  </Col>
-                </Row>
                 <Row align="end" className="mt-1">
                   <Col>Creado por</Col>
                   <Col sm={4} align="start">
@@ -574,7 +575,7 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
                           aria-describedby="inputGroup-sizing-default"
                           name="foundation"
                           type="text"
-                          value={dataCompany?.createdAt ? dataCompany.createdAt : 'Sin datos'}
+                          value={dataCompany?.createdAt ? `${getDateStr(dataCompany.createdAt)} - ${getHourStr(dataCompany.createdAt)} hs.` : 'Sin datos'}
                           readOnly
                       />
                     </InputGroup>
@@ -603,7 +604,7 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
                           aria-describedby="inputGroup-sizing-default"
                           name="foundation"
                           type="text"
-                          value={dataCompany?.updatedAt ? dataCompany.updatedAt : 'Sin datos'}
+                          value={dataCompany?.updatedAt ? `${getDateStr(dataCompany.updatedAt)} - ${getHourStr(dataCompany.updatedAt)} hs.` : 'Sin datos'}
                           readOnly
                       />
                     </InputGroup>
@@ -611,6 +612,23 @@ const FormCompany = ({ handleChange, companyData, dataCompany, cascade, dataDate
                 </Row>
               </>
           ) : null}
+          <Row align="end" className="mt-1">
+            <Col>Propietario de empresa</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="users"
+                  keyFilter={"companyOwnerIdString"}
+                  onChange={handleChange}
+                  defaultValue={{
+                    value: dataCompany?.companyOwnerIdString,
+                    label: dataCompany?.fullNameCompanyOwner
+                  }}
+              />
+            </Col>
+
+            <Col></Col>
+            <Col sm={4} align="start"></Col>
+          </Row>
 
 
           <Row style={{ marginBottom: 10 }}>

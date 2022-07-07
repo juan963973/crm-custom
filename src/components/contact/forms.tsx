@@ -4,6 +4,7 @@ import "rsuite/dist/rsuite.min.css";
 import MultipleArray from "components/_common/array-select";
 import { CustomAsyncPaginate } from "components/_common/auto-scroll";
 import { refenceField } from "services/contactService";
+import {getDateStr, getHourStr} from "../_common/timeToString";
 
 const Forms = ({
   handleChange,
@@ -40,7 +41,7 @@ const Forms = ({
   };
 
   console.log('userWhoCreatedName', contactData.userWhoCreatedName)
-  console.log('contactData', contactData)
+  console.log('dataContact', dataContact)
   
 
   return (
@@ -674,12 +675,12 @@ const Forms = ({
             <Col>Propietario de Contacto</Col>
             <Col sm={4} align="start">
               <CustomAsyncPaginate
-                  searchEndpoint="clerks"
-                  keyFilter={"contactOwnerId"}
+                  searchEndpoint="users"
+                  keyFilter={"contactOwnerIdString"}
                   onChange={handleChange}
                   defaultValue={{
-                    value: contactData?.contactOwnerId, 
-                    label: contactData?.contactOwnerName
+                    value: dataContact?.contactOwnerIdString ? dataContact.contactOwnerIdString : null,
+                    label: dataContact?.fullNameContactOwner ? dataContact.fullNameContactOwner : null
                   }}
                 />
             </Col>
@@ -711,7 +712,7 @@ const Forms = ({
                             aria-describedby="inputGroup-sizing-default"
                             name="foundation"
                             type="text"
-                            value={dataContact?.createdAt ? dataContact.createdAt : 'Sin datos'}
+                            value={dataContact?.createdAt ? `${getDateStr(dataContact.createdAt)} - ${getHourStr(dataContact.createdAt)} hs.` : 'Sin datos'}
                             readOnly
                         />
                       </InputGroup>
@@ -741,7 +742,7 @@ const Forms = ({
                             aria-describedby="inputGroup-sizing-default"
                             name="foundation"
                             type="text"
-                            value={dataContact?.updatedAt ? dataContact.updatedAt : 'Sin datos'}
+                            value={dataContact?.updatedAt ? `${getDateStr(dataContact.updatedAt)} - ${getHourStr(dataContact.updatedAt)} hs.` : 'Sin datos'}
                             readOnly
                         />
                       </InputGroup>

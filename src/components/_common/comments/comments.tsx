@@ -15,7 +15,7 @@ const baseURLE = `${process.env.BASE_URL}/Notes`;
 const Comments = ({ currentUserId }: any) => {
     const [backendComments, setBackendComments] = useState([])
     const [activeComment, setActiveComment] = useState(null)
-    const rootComments = backendComments
+    const rootComments = backendComments;
     const addComment = async (text: any) => {
         await createNote(text, currentUserId, 'case')
         axios.get(`${process.env.BASE_URL}/Cases/${currentUserId}/details`).then((response) => {
@@ -52,7 +52,7 @@ const Comments = ({ currentUserId }: any) => {
                 return backendComment
             })
             setBackendComments(updatedtBackendComments)
-            console.log('setBackendComments', setBackendComments)
+            // console.log('setBackendComments', setBackendComments)
             setActiveComment(null)
         })
     }
@@ -61,7 +61,7 @@ const Comments = ({ currentUserId }: any) => {
         axios.get(`${process.env.BASE_URL}/Cases/${currentUserId}/details`).then((response) => {
             setBackendComments(response.data.notes)
         });
-    }, []);
+    }, [backendComments]);
 
     return (
         <div className="comments">
@@ -76,6 +76,7 @@ const Comments = ({ currentUserId }: any) => {
                         activeComment={activeComment}
                         setActiveComment={setActiveComment}
                         updateComment={updateComment}
+                        backendComments={backendComments}
                     />
                 ))}
             </div>

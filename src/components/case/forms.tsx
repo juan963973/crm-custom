@@ -5,6 +5,7 @@ import MultipleArray from "components/_common/array-select";
 import { CustomAsyncPaginate } from "components/_common/auto-scroll";
 import { refenceField } from "services/caseService";
 import {useEffect} from "react";
+import {getHourStr, getDateStr} from "../_common/timeToString";
 
 const Forms = ({
   handleChange,
@@ -38,6 +39,9 @@ const Forms = ({
       },
     },
   };
+
+  console.log("caseData", caseData);
+  console.log('reference', reference)
 
   return (
     <div className="container-fluid" style={{ marginTop: "126px" }}>
@@ -609,15 +613,16 @@ const Forms = ({
           </Row>
         </Row> */}
 
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
+              {" "}
+              <h4>DATOS DE REGISTRO</h4>{" "}
+            </Col>
+          </Row>
         {cases?.userWhoCreatedName ? (
             <>
-              <Row className="mb-200" style={{ marginBottom: 30 }}>
-                <Row>
-                  <Col style={{ marginBottom: 10 }}>
-                    {" "}
-                    <h4>DATOS DE REGISTRO</h4>{" "}
-                  </Col>
-                </Row>
+
                 <Row align="end" style={{ marginBottom: 10 }}>
                   <Col>Creado por</Col>
                   <Col sm={4} align="start">
@@ -641,7 +646,7 @@ const Forms = ({
                           aria-describedby="inputGroup-sizing-default"
                           name="foundation"
                           type="text"
-                          value={cases?.createdAt ? cases.createdAt : 'Sin datos'}
+                          value={cases?.createdAt ? `${getDateStr(cases.createdAt)} - ${getHourStr(cases.createdAt)} hs.` : 'Sin datos'}
                           readOnly
                       />
                     </InputGroup>
@@ -671,15 +676,34 @@ const Forms = ({
                           aria-describedby="inputGroup-sizing-default"
                           name="foundation"
                           type="text"
-                          value={cases?.updatedAt ? cases.updatedAt : 'Sin datos'}
+                          // value={cases?.updatedAt ? cases.updatedAt : 'Sin datos'}
+                          value={cases?.updatedAt ? `${getDateStr(cases.updatedAt)} - ${getHourStr(cases.updatedAt)} hs.` : 'Sin datos'}
                           readOnly
                       />
                     </InputGroup>
                   </Col>
                 </Row>
-              </Row>
+
+
             </>
         ) : null}
+          <Row align="end" style={{ marginBottom: 10 }}>
+            <Col>Propietario del caso</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="users"
+                  keyFilter={"caseOwnerIdString"}
+                  onChange={handleChange}
+                  defaultValue={{
+                    value: caseData?.caseOwnerIdString ? caseData.caseOwnerIdString : null,
+                    label: cases?.caseOwnerLabel ? cases.caseOwnerLabel : null,
+                  }}
+              />
+            </Col>
+            <Col></Col>
+            <Col sm={4}></Col>
+          </Row>
+        </Row>
       </div>
     </div>
   );
