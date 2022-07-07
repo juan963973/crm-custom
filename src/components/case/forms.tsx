@@ -613,15 +613,16 @@ const Forms = ({
           </Row>
         </Row> */}
 
+        <Row className="mb-200" style={{ marginBottom: 30 }}>
+          <Row>
+            <Col style={{ marginBottom: 10 }}>
+              {" "}
+              <h4>DATOS DE REGISTRO</h4>{" "}
+            </Col>
+          </Row>
         {cases?.userWhoCreatedName ? (
             <>
-              <Row className="mb-200" style={{ marginBottom: 30 }}>
-                <Row>
-                  <Col style={{ marginBottom: 10 }}>
-                    {" "}
-                    <h4>DATOS DE REGISTRO</h4>{" "}
-                  </Col>
-                </Row>
+
                 <Row align="end" style={{ marginBottom: 10 }}>
                   <Col>Creado por</Col>
                   <Col sm={4} align="start">
@@ -683,26 +684,26 @@ const Forms = ({
                   </Col>
                 </Row>
 
-                <Row align="end" style={{ marginBottom: 10 }}>
-                  <Col>Propietario del caso</Col>
-                  <Col sm={4} align="start">
-                    <CustomAsyncPaginate
-                        searchEndpoint="users"
-                        keyFilter={"caseOwnerIdString"}
-                        onChange={handleChange}
-                        defaultValue={{
-                          value: caseData.caseOwnerIdString,
-                          label: caseData.caseOwnerIdString
-                        }}
-                    />
-                  </Col>
 
-                  <Col></Col>
-                  <Col sm={4}></Col>
-                </Row>
-              </Row>
             </>
         ) : null}
+          <Row align="end" style={{ marginBottom: 10 }}>
+            <Col>Propietario del caso</Col>
+            <Col sm={4} align="start">
+              <CustomAsyncPaginate
+                  searchEndpoint="users"
+                  keyFilter={"caseOwnerIdString"}
+                  onChange={handleChange}
+                  defaultValue={{
+                    value: caseData?.caseOwnerIdString ? caseData.caseOwnerIdString : null,
+                    label: cases?.caseOwnerLabel ? cases.caseOwnerLabel : null,
+                  }}
+              />
+            </Col>
+            <Col></Col>
+            <Col sm={4}></Col>
+          </Row>
+        </Row>
       </div>
     </div>
   );
